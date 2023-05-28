@@ -63,3 +63,9 @@ VALUES (NULL, 3,
 INSERT INTO description(id, article_Id, descriptionText)
 VALUES (NULL, 3,
         'Der Datentyp "number" speichert numerische Werte, während der Datentyp "string" für Text verwendet wird. Boolesche Werte repräsentieren logische Aussagen wie "true" oder "false". Arrays sind geordnete Sammlungen von Werten, während Objekte Eigenschaften durch Schlüssel-Wert-Paare darstellen.');
+
+ALTER TABLE code
+    ADD FOREIGN KEY (article_Id) REFERENCES article(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE description
+    ADD FOREIGN KEY (article_Id) REFERENCES article(id) ON DELETE CASCADE ON UPDATE CASCADE;
