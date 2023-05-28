@@ -1,10 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <link href="prism/prism.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script defer type="module" src="js/init.js"></script>
+    <script defer type="module" src="js/children.js"></script>
+    <script defer type="module" src="js/content.js"></script>
+    <script defer type="module" src="js/navigations.js"></script>
+    <script defer type="module" src="js/edit.js"></script>
+    <script defer type="module" src="js/insert.js"></script>
+    <script defer type="module" src="js/formular.js"></script>
+
+
+    <title>MyDocuments</title>
+    <style>
+
+
+    </style>
 </head>
 <body>
+<div class="over-all-container">
+    <header>
+
+        <nav id="nav-header">
+            <div class="button-nav-container">
+                <div class="button-container-left">
+                    <button class=" btn btn-edit">Bearbeiten</button>
+                </div>
+                <div class="button-container-right">
+                    <button class="btn btn-hide btn-insert">Einfügen</button>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><span id="javascript">JAVASCRIPT</span></li>
+                <li><span id="php">PHP</span></li>
+                <li><span id="mysql">MSQL</span></li>
+                <li><span id="html">HTML/CSS</span></li>
+                <li><span id="how">HOW TO</span></li>
+            </ul>
+            <div class="settings-container">
+                <div class="settings">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </div>
+                <ul class="themes">
+                    <li><span id="the70s">the70s</span></li>
+                    <li><span id="ocean">ocean</span></li>
+                    <li><span id="darkmood">darkmode</span></li>
+                </ul>
+            </div>
+
+
+        </nav>
+    </header>
+    <section class="content-all-container">
+        <nav id="nav-left">
+        </nav>
+        <section class="content-container">
+            <pre class="line-numbers"><code class="language-javascript">
+            </code></pre>
+        </section>
+    </section>
+
+    <footer>
+    </footer>
+</div>
 
 </body>
+
 </html>
