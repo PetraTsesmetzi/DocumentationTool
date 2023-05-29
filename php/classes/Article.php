@@ -5,51 +5,85 @@ class Article
     private int $id;
     private int $articleNumber;
     private string $articleName;
-    private int $subchapter_Id;
-    private array $descriptionArr=[];
-    private array $codeArr=[];
+    private array $descriptionArr;
+    private array $codeArr;
 
     /**
-     * @param int $id
-     * @param int $articleNumber
-     * @param string $articleName
-     * @param int $subchapter_Id
-     * @param array $descriptionArr
-     * @param array $codeArr
+     * @param int|null $id
+     * @param int|null $articleNumber
+     * @param string|null $articleName
      */
-    public function __construct(int $id, int $articleNumber, string $articleName, int $subchapter_Id, array $descriptionArr, array $codeArr)
+    public function __construct(?int $id = null, ?int $articleNumber = null, ?string $articleName = null)
     {
-        $this->id = $id;
-        $this->articleNumber = $articleNumber;
-        $this->articleName = $articleName;
-        $this->subchapter_Id = $subchapter_Id;
-        $this->descriptionArr = $descriptionArr;
-        $this->codeArr = $codeArr;
+        if (isset($id) && isset($articleNumber) && isset($articleName)) {
+            $this->id = $id;
+            $this->articleNumber = $articleNumber;
+            $this->articleName = $articleName;
+        }
     }
 
-    public function CreateNewObject(int $id,int $articleNumber,string $articleName,int $subchapter_Id=null ): Article
+
+    public function getAllAsObjects(): array
     {
-        // TODO: Implement CreateNewObject() method.
-        return new Article();
+        try {
+            $dbh = DB::connect();
+            $sql = "SELECT * FROM article";
+            $result = $dbh->query($sql);
+            $articleArr = [];
+            while ($article = $result->fetchObject(__CLASS__)) {
+                $article->descriptionArr = (new Description())->getAllAsObjects($article);
+                $article->codeArr = (new Code())->getAllAsObjects($article);
+                $articleArr[] = $article;
+            }
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+        }
+
+
+        return $articleArr;
     }
 
-    public function getObjectById(int $id)
+    public function getObjectById(int $id): Article
+
     {
-        // TODO: Implement getObjectById() method.
+        try{
+            $dbh=DB::connect();
+            $sql="SELECT * FROM article WHERE id=:id";
+            $stmt=$dbh->prepare($sql);
+            $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+            $stmt->execute();
+            $article=$stmt->fetchObject(__CLASS__);
+            $article->descriptionArr=(new Description())->getAllAsObjects($article);
+            $article->codeArr=(new Code())->getAllAsObjects($article);
+
+        }catch(PDOException $e){
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+        }
+        return $article;
     }
 
-    public function getAllAsObjects()
-    {
-        // TODO: Implement getAllAsObjects() method.
-    }
 
     public function updateObject()
     {
-        // TODO: Implement updateObject() method.
+
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
-        // TODO: Implement delete() method.
+
     }
+
+    public function createNewObject(int $id, int $articleNumber, string $articleName, int $overlayingChapter_Id = null): Article
+    {
+        return new Article();
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
 }

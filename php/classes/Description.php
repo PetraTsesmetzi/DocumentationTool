@@ -13,35 +13,65 @@ class Description
      * @param string $descriptionText
      * @param int $article_Id
      */
-    public function __construct(int $id, string $descriptionText, int $article_Id)
+    public function __construct(?int $id = null, ?string $descriptionText = null, ?int $article_Id = null)
     {
-        $this->id = $id;
-        $this->descriptionText = $descriptionText;
-        $this->article_Id = $article_Id;
+
+        if (isset($id) && isset($descriptionText) && isset($article_Id)) {
+            $this->id = $id;
+            $this->descriptionText = $descriptionText;
+            $this->article_Id = $article_Id;
+        }
     }
 
-    public function CreateNewObject(int $id, int $nummer, string $name, int $article_Id = null): Description
+
+    public function getAllAsObjects(Article $article = null): array|null
     {
-        return new Description();
+
+        try {
+            $dbh = DB::connect();
+            if (!isset($article)) {
+                $sql = "SELECT * FROM description";
+                $result = $dbh->query($sql);
+            } else {
+                $sql = "SELECT * FROM description WHERE article_Id=:article_Id";
+                $stmt = $dbh->prepare($sql);
+                $id = $article->getId();
+                $stmt->bindParam('article_Id', $id);
+                $stmt->execute();
+                $result = $stmt;
+
+            }
+            $descriptionArr = [];
+            while ($description = $result->fetchObject(__CLASS__)) {
+                $descriptionArr[] = $description;
+            }
+
+
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+        }
+        return $descriptionArr;
     }
+
 
     public function getObjectById(int $id)
     {
-        // TODO: Implement getObjectById() method.
-    }
 
-    public function getAllAsObjects()
-    {
-        // TODO: Implement getAllAsObjects() method.
     }
 
     public function updateObject()
     {
-        // TODO: Implement updateObject() method.
+
     }
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
+
     }
+
+    public function createNewObject(int $id, int $nummer, string $name, int $article_Id = null): Description
+    {
+        return new Description();
+    }
+
 }

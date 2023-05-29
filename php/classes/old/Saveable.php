@@ -3,9 +3,10 @@
 interface Saveable
 
 {
-    public function getObjectById(int $id);
 
-    public function getAllAsObjects();
+
+    public function getAllAsObjects():array;
+    public function getObjectById(int $id);
 
     public function updateObject();
     public function delete($id);
