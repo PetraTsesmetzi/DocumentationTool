@@ -19,7 +19,7 @@ class NavLeft{
                             <li  class="nav-left-links" data-subchapterid="2"><span class="nav-span">Namenskonventionen</span></li>
                             <li  class="nav-left-links" data-subchapterid="3"><span class="nav-span">Datentypen</span></li>
                         </ul>
-                        </section>`;
+                      </section>`;
 
     }
     setActiveClassOnNav(e){
