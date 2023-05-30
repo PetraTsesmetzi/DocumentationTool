@@ -1,11 +1,18 @@
 DROP DATABASE IF EXISTS docutool;
 CREATE DATABASE IF NOT EXISTS docutool;
 USE docutool;
-
+CREATE TABLE subchapter
+(
+    id            INT PRIMARY KEY AUTO_INCREMENT,
+    subchapterNumber INT,
+    chapter_Id INT,
+    subchapterName   VARCHAR(100)
+);
 CREATE TABLE article
 (
     id            INT PRIMARY KEY AUTO_INCREMENT,
     articleNumber INT,
+    subchapter_Id INT,
     articleName   VARCHAR(100)
 );
 CREATE TABLE code
@@ -23,12 +30,19 @@ CREATE TABLE description
     descriptionText   TEXT
 );
 
-INSERT INTO article(id, articleNumber, articleName)
-VALUES (NULL, 1, 'Variables');
-INSERT INTO article(id, articleNumber, articleName)
-VALUES (NULL, 2, 'Namenskonvention');
-INSERT INTO article(id, articleNumber, articleName)
-VALUES (NULL, 3, 'Datentypen');
+INSERT INTO subchapter(id, subchapterNumber,chapter_Id, subchapterName)
+VALUES (NULL, 1,1, 'Values und Variables');
+INSERT INTO subchapter(id, subchapterNumber,chapter_Id, subchapterName)
+VALUES (NULL, 2,1, 'Basic Operators Mathoperators');
+INSERT INTO subchapter(id, subchapterNumber,chapter_Id, subchapterName)
+VALUES (NULL, 3,1, 'String und Template literals');
+
+INSERT INTO article(id, articleNumber,subchapter_Id, articleName)
+VALUES (NULL, 1,1, 'Variables');
+INSERT INTO article(id, articleNumber,subchapter_Id, articleName)
+VALUES (NULL, 2,1, 'Namenskonvention');
+INSERT INTO article(id, articleNumber,subchapter_Id, articleName)
+VALUES (NULL, 3,1, 'Datentypen');
 
 INSERT INTO code(id, article_Id,elementOrder, codeText)
 VALUES (NULL, 1,2, 'let firstName = "Matilda";console.log(firstName); //Matilda');

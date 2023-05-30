@@ -8,9 +8,10 @@ navLeft.render();
 navHeader.render();
 
 const controlArticles=function(e){
+    console.log(e.target.parentElement);
     const id=parseInt(e.target.parentElement.dataset.articleid);
 
-     model.loadArticle(id);
+     model.loadArticle2(id);
 }
 
 const navLeftLinks=navLeft.getParentElement();

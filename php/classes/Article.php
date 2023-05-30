@@ -33,7 +33,7 @@ class Article
             while ($article = $result->fetchObject(__CLASS__)) {
                 $article->descriptionArr = (new Description())->getAllAsObjects($article);
                 $article->codeArr = (new Code())->getAllAsObjects($article);
-                $articleArr[] = $article;
+                $articleArr[] = $article->getJSONEncode();
             }
         } catch (PDOException $e) {
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
@@ -43,7 +43,7 @@ class Article
         return $articleArr;
     }
 
-    public function getObjectById(int $id): Article
+    public function getObjectById(int $id): string
 
     {
         try{
@@ -59,7 +59,9 @@ class Article
         }catch(PDOException $e){
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
         }
-        return $article;
+
+        return $article->getJSONEncode();
+//        return $article;
     }
     public function getJSONEncode(): string
     {
@@ -77,7 +79,7 @@ class Article
 
     }
 
-    public function createNewObject(int $id, int $articleNumber, string $articleName, int $overlayingChapter_Id = null): Article
+    public function createNewObject(int $id, int $articleNumber, string $articleName, int $subchapterId = null): Article
     {
         return new Article();
     }
