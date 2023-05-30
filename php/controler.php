@@ -5,11 +5,12 @@ include './classes/Article.php';
 include './classes/Description.php';
 include './classes/Code.php';
 
+//echo $_POST['id'];
+$articleId=$_POST['id'];
+$article=new Article();
+$artikelById=$article->getObjectById($articleId);
+//$articleAll=$article->getAllAsObjects();
+echo json_encode($artikelById->getJSONEncode());
+//echo json_encode($articleAll->getJSONEncode());
 
-$meinArtikel=new Article();
-
-echo "<pre>";
-print_r($meinArtikel->getObjectById(3));
-//print_r($meinArtikel->getAllAsObjects());
-echo "</pre>";
 

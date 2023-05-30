@@ -1,12 +1,14 @@
 class NavLeft{
 
     #parentElement=document.querySelector('#nav-left');
+    #id;
 
 
     render(){
         const markup=this.#generateMarkup();
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
-        this.#parentElement.addEventListener('click',this.setActiveClassOnNav.bind(this));
+        this.#parentElement.addEventListener('click',this.#setActiveClassOnNav.bind(this));
+
 
 
     }
@@ -15,14 +17,14 @@ class NavLeft{
             return `<section>
                         <h1 data-titel="1">Javascript Fundamentals Part 1</h1>
                         <ul> 
-                            <li  class="nav-left-links" data-subchapterid="1"><span class="nav-span">Variables</span></li>
-                            <li  class="nav-left-links" data-subchapterid="2"><span class="nav-span">Namenskonventionen</span></li>
-                            <li  class="nav-left-links" data-subchapterid="3"><span class="nav-span">Datentypen</span></li>
+                            <li  class="nav-left-links" data-articleid="1"><span class="nav-span">Values und Variables</span></li>
+                            <li  class="nav-left-links" data-articleid="2"><span class="nav-span">Basic Operators Mathoperators</span></li>
+                            <li  class="nav-left-links" data-articleid="3"><span class="nav-span">String und Template literals</span></li>
                         </ul>
                       </section>`;
 
     }
-    setActiveClassOnNav(e){
+   #setActiveClassOnNav(e){
         this.#removeAttributeActiveOnLink();
         if(e.target.tagName==='SPAN'){
            e.target.classList.add('active');
@@ -40,6 +42,9 @@ class NavLeft{
         })
     }
 
+    getParentElement(){
+        return this.#parentElement;
+    }
 
 }
 

@@ -38,7 +38,7 @@ class Code
             }
             $codeArr = [];
             while($code=$result->fetchObject(__CLASS__)){
-                $codeArr[]=$code;
+                $codeArr[]=$code->getJSONEncode();
             }
 
         } catch (PDOException $e) {
@@ -47,7 +47,10 @@ class Code
 
         return $codeArr;
     }
-
+    public function getJSONEncode(): string
+    {
+        return json_encode(get_object_vars($this));
+    }
 
     public function getObjectById(int $id)
     {

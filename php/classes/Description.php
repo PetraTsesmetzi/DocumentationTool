@@ -43,7 +43,7 @@ class Description
             }
             $descriptionArr = [];
             while ($description = $result->fetchObject(__CLASS__)) {
-                $descriptionArr[] = $description;
+                $descriptionArr[] = $description->getJSONEncode();
             }
 
 
@@ -52,7 +52,10 @@ class Description
         }
         return $descriptionArr;
     }
-
+    public function getJSONEncode(): string
+    {
+        return json_encode(get_object_vars($this));
+    }
 
     public function getObjectById(int $id)
     {
