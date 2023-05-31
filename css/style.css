@@ -579,3 +579,9 @@ pre[class*=language-] {
 .btn-send:active{
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
 }
+#console-error{
+    margin:0 auto;
+    width:1000px;
+    height:50px;
+    border:1px solid crimson;
+}
