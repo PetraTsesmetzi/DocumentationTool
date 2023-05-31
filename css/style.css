@@ -555,13 +555,17 @@ pre[class*=language-] {
 }
 footer{
     position:fixed;
-    bottom:30px;
+    bottom:0px;
     left:300px;
-    width: 800px;
-    height:50px;
-    border:1px solid crimson;
+    right:20px;
+    /*width: 900px;*/
+    height:60px;
+    border:2px solid crimson;
+    background-color: #fff;
+    z-index:100;
 }
 #console-error{
+
     margin:0 auto;
     width:1000px;
     height:50px;
