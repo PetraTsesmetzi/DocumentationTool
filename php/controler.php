@@ -7,11 +7,11 @@ include './classes/Description.php';
 include './classes/Code.php';
 
 
-$articleId=$_POST['id'];
+$articleId = $_POST['id'];
 
-    $subchapter=new Subchapter();
-    $subchapterById=$subchapter->getObjectById($articleId);
-    echo json_encode($subchapterById);
+$subchapter = new Subchapter();
+$subchapterById = $subchapter->getObjectById($articleId);
+echo json_encode($subchapterById);
 
 
 

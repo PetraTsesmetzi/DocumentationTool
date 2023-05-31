@@ -20,6 +20,9 @@ class NavLeft{
                             <li  class="nav-left-links" data-articleid="1"><span class="nav-span">Values und Variables</span></li>
                             <li  class="nav-left-links" data-articleid="2"><span class="nav-span">Basic Operators Mathoperators</span></li>
                             <li  class="nav-left-links" data-articleid="3"><span class="nav-span">String und Template literals</span></li>
+                             <li  class="nav-left-links" data-articleid="1"><span class="nav-span">Values und Variables</span></li>
+                            <li  class="nav-left-links" data-articleid="2"><span class="nav-span">Basic Operators Mathoperators</span></li>
+                            <li  class="nav-left-links" data-articleid="3"><span class="nav-span">String und Template literals</span></li>
                         </ul>
                       </section>`;
 
