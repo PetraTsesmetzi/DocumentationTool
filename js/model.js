@@ -1,8 +1,9 @@
 export const state={
-    articles:[]
+    subchapter:{}
 }
 export const loadArticle2 = async (id) => {
     try {
+
         // Build formData object.
         let formData = new FormData();
         formData.append('id', id);
@@ -11,11 +12,16 @@ export const loadArticle2 = async (id) => {
                 body: formData,
                 method: "post"
             });
+
         //Wenn antwort nicht ok, dann Fehelermeldung
         if(!response.ok) throw new Error(`${data.message} (${response.status}`);
 
         //data aufbereitung für stateObject
         let data = JSON.parse(await response.json());
+
+        console.log(data)
+
+
 
         //dataObject wird geparsed
         const articlesArr=data.articleArr;
@@ -30,10 +36,9 @@ export const loadArticle2 = async (id) => {
                 articlesArr[key].codeArr[keyKey]=JSON.parse(articlesArr[key].codeArr[keyKey]);
             }
         }
-
-        //ein artikel Object wird erstellt
+        const articles2=[];
+        //ein artikel Object wird erstellt und in das articles array gepushed
         for (const key in articlesArr) {
-
             //mergen des descriptionsArr und CodeArr
 
             let articleElementsArr=[...articlesArr[key].descriptionArr,...articlesArr[key].codeArr]
@@ -46,13 +51,18 @@ export const loadArticle2 = async (id) => {
                 codeArr: articlesArr[key].codeArr,
                 articleElementArr:articleElementsArr
             }
-            state.articles.push(article);
+            articles2.push(article);
+
         }
-        console.log(state.articles);
-
-
-    } catch (e) {
-        console.log(e);
+        //ein subchapter wir erstellt
+        state.subchapter=
+            {
+                subchapterName:data.subchapterName,
+                articlesArr:articles2
+            }
+    } catch (Error) {
+        console.log(Error);
+        document.getElementById("console-error").innerHTML ='testtext für meldungnen';
     }
 }
 
