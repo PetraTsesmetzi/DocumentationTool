@@ -1,26 +1,40 @@
 import navLeft from "./views/NavLeft.js";
 import navHeader from "./views/NavHeader.js";
 import articleView from "./views/ArticleView.js";
+import editMode from "./views/EditMode.js";
+
 import * as model from './model.js';
-import {state} from "./model.js";
 
 
+/**
+ * navigationleisten einbinden
+ */
 navLeft.render();
 navHeader.render();
 
-const controlArticles = async function (e) {
-    // const id = parseInt(e.target.parentElement.dataset.articleid);
-    // await model.loadArticle2(id);
-    const id=window.location.hash.slice(1);
-    if(!id) return;
+/**
+ * 
+ * @param e
+ * @returns {Promise<void>}
+ */
+const loadArticles = async function (e) {
+
+    let id=window.location.hash.slice(1);
+    if(!id) id=1;
     console.log(id)
     await model.loadArticle2(id);
     articleView.render(model.state.subchapter);
     initializePrismScript();
 }
+const loadEditMode=function(){
 
-// const navLeftLinks = navLeft.getParentElement();
-// navLeftLinks.addEventListener('click', controlArticles.bind(this));
+    editMode.render('true');
+}
+
+const deleteArticle=function(e){
+    console.log('jfhdjdjdsdjkdjk')
+    console.log(e)
+}
 
 const initializePrismScript=function(){
     let scriptElement = document.createElement("script");
@@ -29,6 +43,13 @@ const initializePrismScript=function(){
     scriptElement.setAttribute("async", true);
     document.body.appendChild(scriptElement);
 }
-
-window.addEventListener('hashchange',controlArticles);
-window.addEventListener('load',controlArticles);
+/**
+ * eventlistener
+ */
+window.addEventListener('hashchange',loadArticles);
+window.addEventListener('load',loadArticles);
+const editBtn=document.querySelector('.btn-edit');
+editBtn.addEventListener('click',loadEditMode)
+const deleteButton=document.querySelector('.content-container');
+console.log('jkfjjfj');
+deleteButton.addEventListener('click',deleteArticle.bind(this));

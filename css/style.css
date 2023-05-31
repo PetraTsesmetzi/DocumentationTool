@@ -283,7 +283,7 @@ a:link,a:visited {
 
 }
 
-.subtitel {
+.article-header {
     /*border: 1px solid gray;*/
     height: 50px;
     display: flex;

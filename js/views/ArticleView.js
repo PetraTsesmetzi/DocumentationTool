@@ -21,7 +21,8 @@ class ArticleView {
         for (const key in this.#subcapterArticles) {
 
             htmlObj+=`<article>
-                      <div class="subtitel"><h2>${this.#subcapterArticles[key]['articleName']}</h2></div>`;
+                      <div class="article-header"><h2>${this.#subcapterArticles[key]['articleName']}</h2>
+                        <div class="button-container"></div></div>`;
             let articleElementArr=this.#subcapterArticles[key]['articleElementArr'];
 
             for (let i = 0; i <articleElementArr.length ; i++) {
