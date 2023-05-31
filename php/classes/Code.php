@@ -39,6 +39,7 @@ class Code
             $codeArr = [];
             while($code=$result->fetchObject(__CLASS__)){
                 $codeArr[]=$code->getJSONEncode();
+//                $codeArr[]=$code;
             }
 
         } catch (PDOException $e) {

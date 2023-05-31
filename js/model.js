@@ -60,9 +60,11 @@ export const loadArticle2 = async (id) => {
                 subchapterName:data.subchapterName,
                 articlesArr:articles2
             }
-    } catch (Error) {
-        console.log(Error);
-        document.getElementById("console-error").innerHTML ='testtext für meldungnen';
+    } catch (e) {
+        console.log(e.name);
+        console.log(e.message);
+        console.log(e.lineNumber);
+        document.getElementById("console-error").innerHTML =e.message;
     }
 }
 

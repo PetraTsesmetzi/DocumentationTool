@@ -35,7 +35,6 @@ class SubChapter
             $subChapter = [];
             while ($subChapter = $result->fetchObject(__CLASS__)) {
                 $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
-
                 $subChapter[] = $subChapter;
             }
         } catch (PDOException $e) {
@@ -45,7 +44,7 @@ class SubChapter
     }
 
     public function getObjectById(int $id): string
-
+//    public function getObjectById(int $id): SubChapter
     {
         try{
             $dbh=DB::connect();
@@ -59,6 +58,7 @@ class SubChapter
         }catch(PDOException $e){
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
         }
+//        return $subChapter;
         return $subChapter->getJSONEncode();
     }
 

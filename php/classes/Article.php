@@ -23,12 +23,22 @@ class Article
     }
 
 
-    public function getAllAsObjects(): array
+    public function getAllAsObjects(Subchapter $subchapter): array
     {
+
+
         try {
             $dbh = DB::connect();
-            $sql = "SELECT * FROM article";
-            $result = $dbh->query($sql);
+            if(!isset($subchapter)){
+                $sql = "SELECT * FROM article";
+                $result = $dbh->query($sql);
+            }
+            $sql = "SELECT * FROM article WHERE subchapter_Id=:subchapter_Id";
+            $stmt = $dbh->prepare($sql);
+            $id = $subchapter->getId();
+            $stmt->bindParam('subchapter_Id', $id);
+            $stmt->execute();
+            $result = $stmt;
             $articleArr = [];
             while ($article = $result->fetchObject(__CLASS__)) {
                 $article->descriptionArr = (new Description())->getAllAsObjects($article);
@@ -36,7 +46,7 @@ class Article
                 $articleArr[] = $article->getJSONEncode();
             }
         } catch (PDOException $e) {
-            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().$e->getLine());
         }
 
 
@@ -44,7 +54,7 @@ class Article
     }
 
     public function getObjectById(int $id): string
-
+//    public function getObjectById(int $id): Article
     {
         try{
             $dbh=DB::connect();
@@ -60,8 +70,9 @@ class Article
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
         }
 
-        return $article->getJSONEncode();
+
 //        return $article;
+        return $article->getJSONEncode();
     }
     public function getJSONEncode(): string
     {

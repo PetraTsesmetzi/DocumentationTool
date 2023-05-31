@@ -44,6 +44,7 @@ class Description
             $descriptionArr = [];
             while ($description = $result->fetchObject(__CLASS__)) {
                 $descriptionArr[] = $description->getJSONEncode();
+//                $descriptionArr[] = $description;
             }
 
 
