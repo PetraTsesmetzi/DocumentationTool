@@ -9,8 +9,6 @@ navLeft.render();
 navHeader.render();
 
 const controlArticles = async function (e) {
-
-
     // const id = parseInt(e.target.parentElement.dataset.articleid);
     // await model.loadArticle2(id);
     const id=window.location.hash.slice(1);
