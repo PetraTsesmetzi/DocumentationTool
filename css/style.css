@@ -37,10 +37,7 @@ html {
     position: relative;
 }
 
-/*h1{*/
-/*    font-size:20px;*/
-/*    margin: 50px 0 30px 0;*/
-/*}*/
+
 p {
     font-size: 16px;
     margin-bottom: 20px;
@@ -157,17 +154,7 @@ header {
     align-items:center;
 
 }
-/*.settings-container::after{*/
-/*    position:absolute;*/
-/*    content:"";*/
-/*    top: 0px;*/
-/*    right:10px;*/
-/*    background-color: #2d2d2d;*/
-/*    height: 100px;*/
-/*    width: 100px;*/
-/*    border:1px solid crimson;*/
-/*    display: block;*/
-/*}*/
+
 .settings{
 
 }
@@ -204,26 +191,7 @@ header {
     align-items: center;
 }
 
-/*#nav-header > ul > li a:link {*/
-/*    color: #fff;*/
-/*}*/
 
-/*!* visited link *!*/
-/*#nav-header > ul > li a:visited {*/
-/*    color: #fff;*/
-
-/*}*/
-
-/*!* mouse over link *!*/
-/*#nav-header > ul > li a:hover {*/
-/*    color: #fff;*/
-
-/*}*/
-
-/*!* selected link *!*/
-/*#nav-header > ul > li a:active {*/
-/*    background-color: var(--nav-left-active);*/
-/*}*/
 
 /*######################---CONTENT SECTION---########################################*/
 
@@ -286,10 +254,16 @@ header {
 
 }
 
-.active {
-    background-color: var( --nav-left-bg-active);
-    color:var(--font-color-light);
 
+
+.active {
+    background-color: var(--nav-left-bg-active);
+    color: var(--font-color-light);
+}
+
+a:link,a:visited {
+    color: var(--font-color-dark);
+    text-decoration: none;
 }
 
 /*######################---ARTICLE SECTION---########################################*/

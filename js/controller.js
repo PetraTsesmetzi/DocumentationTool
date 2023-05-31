@@ -11,15 +11,18 @@ navHeader.render();
 const controlArticles = async function (e) {
 
 
-    const id = parseInt(e.target.parentElement.dataset.articleid);
+    // const id = parseInt(e.target.parentElement.dataset.articleid);
+    // await model.loadArticle2(id);
+    const id=window.location.hash.slice(1);
+    if(!id) return;
+    console.log(id)
     await model.loadArticle2(id);
-
     articleView.render(model.state.subchapter);
     initializePrismScript();
 }
 
-const navLeftLinks = navLeft.getParentElement();
-navLeftLinks.addEventListener('click', controlArticles.bind(this));
+// const navLeftLinks = navLeft.getParentElement();
+// navLeftLinks.addEventListener('click', controlArticles.bind(this));
 
 const initializePrismScript=function(){
     let scriptElement = document.createElement("script");
@@ -28,3 +31,6 @@ const initializePrismScript=function(){
     scriptElement.setAttribute("async", true);
     document.body.appendChild(scriptElement);
 }
+
+window.addEventListener('hashchange',controlArticles);
+window.addEventListener('load',controlArticles);
