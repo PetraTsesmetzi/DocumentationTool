@@ -1,7 +1,6 @@
 class EditMode {
 
-    #parentElement = document.querySelector('.article-header');
-    #parentElement2 = document.querySelector('.button-nav-container');
+    #parentElement;
     #editmode=false;
 
 
@@ -26,6 +25,10 @@ class EditMode {
         return ` <button class="btn ${(this.#editmode==="true") ?'':'btn-hide'} btn-delete">Löschen</button>
                  <button class="btn ${(this.#editmode==="true") ?'':'btn-hide'} btn-update">Ändern</button>`;
 
+    }
+
+    get parentElement() {
+        return this.#parentElement;
     }
 }
 export default new EditMode();

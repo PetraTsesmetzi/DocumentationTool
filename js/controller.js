@@ -5,7 +5,7 @@ import editMode from "./views/EditMode.js";
 
 import * as model from './model.js';
 
-
+let deleteButtons="";
 /**
  * navigationleisten einbinden
  */
@@ -27,8 +27,9 @@ const loadArticles = async function (e) {
     initializePrismScript();
 }
 const loadEditMode=function(){
-
     editMode.render('true');
+    deleteButtons=editMode.parentElement;
+    console.log(deleteButtons);
 }
 
 const deleteArticle=function(e){
@@ -50,6 +51,6 @@ window.addEventListener('hashchange',loadArticles);
 window.addEventListener('load',loadArticles);
 const editBtn=document.querySelector('.btn-edit');
 editBtn.addEventListener('click',loadEditMode)
-const deleteButton=document.querySelector('.content-container');
-console.log('jkfjjfj');
-deleteButton.addEventListener('click',deleteArticle.bind(this));
+// const deleteButton=document.querySelector('.content-container');
+// console.log('jkfjjfj');
+// deleteButton.addEventListener('click',deleteArticle.bind(this));
