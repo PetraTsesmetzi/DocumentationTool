@@ -19,7 +19,7 @@ export const loadArticle2 = async (id) => {
         //data aufbereitung für stateObject
         let data = JSON.parse(await response.json());
 
-        console.log(data)
+        // console.log(data)
 
 
 
@@ -65,6 +65,22 @@ export const loadArticle2 = async (id) => {
         console.log(e.message);
         console.log(e.lineNumber);
         document.getElementById("console-error").innerHTML =e.message;
+    }
+}
+
+export const deleteArticle = async (id) => {
+    try{
+        console.log('delete this from db: '+id);
+    }catch($e){
+
+    }
+}
+
+export const editArticle = async (id) => {
+    try{
+        console.log('edit this from db: '+id);
+    }catch($e){
+
     }
 }
 

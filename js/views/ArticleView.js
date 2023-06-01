@@ -21,7 +21,7 @@ class ArticleView {
         for (const key in this.#subcapterArticles) {
 
             htmlObj+=`<article>
-                      <div class="article-header"><h2>${this.#subcapterArticles[key]['articleName']}</h2>
+                      <div class="article-header" data-articleid="${this.#subcapterArticles[key].id}"><h2>${this.#subcapterArticles[key]['articleName']}</h2>
                         <div class="button-container"></div></div>`;
             let articleElementArr=this.#subcapterArticles[key]['articleElementArr'];
 
@@ -29,11 +29,11 @@ class ArticleView {
                 // console.log(articleElementArr.length);
                 if(articleElementArr[i].hasOwnProperty('descriptionText')){
 
-                    htmlObj+=`<p>${articleElementArr[i]['descriptionText']}</p>`;
+                    htmlObj+=`<p data-descriptionid="${articleElementArr[i].id}">${articleElementArr[i]['descriptionText']}</p>`;
                 } if(articleElementArr[i].hasOwnProperty('codeText')){
 
                     htmlObj+=`<pre class="line-numbers">
-                                <code class="language-javascript">${articleElementArr[i]['codeText']}</code>
+                                <code data-codeid="${articleElementArr[i].id}" class="language-javascript">${articleElementArr[i]['codeText']}</code>
                               </pre>`;
                 }
             }

@@ -1,0 +1,43 @@
+Lastenheft
+Projektbeschreibung: 
+Das Ziel ist die Entwicklung einer Webseite, die eine Dokumentation des erlernten Programierstoffs bei BBQ als Tutorials und Ressourcen für die weitere Webentwicklung anbieten soll. 
+Die Webseite soll Informationen zu verschiedenen Programmiersprachen, Webtechnologien und kleinen Tutorials bereitstellen. Der Benutzer soll Zugriff auf Beispiele, Code-Snippets um ihre Fähigkeiten zu verbessern haben.
+
+Anforderungen
+die Seite soll eine Übersicht über die verfügbaren Kategorien der Programmiersprachen beinhalten und andereseits soll eine Auflistung in Kapitel,Unterkapitel, und Artikel der jeweiligen Kategorien erfolgen. 
+Die Webseite hat die  Kategorien HTML, CSS, JavaScript, PHP MYSQL und einen Abschnitt HOWTO. Da dieses  Projekt nur 2 wochen geht, sollen erstmal nur die Artikel zu einem Unterkapitel darstellbar und editbar sein.
+
+
+
+Pflichtenheft
+
+Navigation-Header
+ -Anzeige von Kategorien als statische Links in der oberen Navigations-Leiste
+ -Bearbeiten Button für den Bearbeitungsmodus
+
+Navigation-Left
+ -Anzeige von Kapitel, Unterkapitel in der linken Navigationsleiste
+
+Content
+- Im Content werden alle Artikel zu einem Unterkapitel geladen. 
+
+
+Anforderung Bearbeitungsmodus
+Über einen Button Bearbeiten gelangt man in den Bearbeitungsmodus.
+Dort hat man die Möglichkeit über die  Buttons Einfügen, Löschen und Ändern, neue Artikel zu erstellen, Artikel zu Löschen oder zu Ändern.
+
+
+Artikel Einfügen
+Über den Button Einfügen gelangt man zu einem Formular. Dort wird man aufgefordert einen Artikelnamen, Beschreibungen und Codeblock einzufügen. Ein Code und Beschreibungsblock sind Pflichbestandteil. Diese kann man nicht löschen.
+
+Weiterhin gibt es dort über 2 Buttons die Möglichkeit weitere Codeblöcke und Beschreibungsblöcke in unterschiedlicher Reihenfolge hinzuzufügen oder zu löschen.
+Um die Reihenfolge beizbehalten gibt es ein hidden Inputfeld. Dort wird die „elemetOrder‘
+Abgelegt und später mit übergeben.
+
+
+Artikel Löschen
+Durch das Drücken den Löschen Buttons wird der Artikel mit sämtlichen Code und Beschreibungsblöcken gelöscht.
+
+
+Artikel Ändern
+Durch das Drücken des Ändern Buttons erscheint wieder ein Formular. Dieses ist diesmal  vor ausgefüllt mit dem zuvor gewählten Artikel. Alle Code-Felder und Beschreibungsfelder bis auf die 2 obengenannten Pflichtfelder kann man aus dem ändern oder entfernen.

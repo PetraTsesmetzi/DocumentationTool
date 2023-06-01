@@ -5,7 +5,9 @@ import editMode from "./views/EditMode.js";
 
 import * as model from './model.js';
 
-let deleteButtons="";
+
+let editButtons="";
+let editModeFlag=false;
 /**
  * navigationleisten einbinden
  */
@@ -21,21 +23,40 @@ const loadArticles = async function (e) {
 
     let id=window.location.hash.slice(1);
     if(!id) id=1;
-    console.log(id)
+    // console.log(id)
     await model.loadArticle2(id);
     articleView.render(model.state.subchapter);
     initializePrismScript();
 }
 const loadEditMode=function(){
-    editMode.render('true');
-    deleteButtons=editMode.parentElement;
-    console.log(deleteButtons);
+    //toggle the editbutton
+    editModeFlag=(editModeFlag === true) ? false : true;
+
+    editMode.render(editModeFlag);
+    editButtons=editMode.parentElement;
+
+    for (let i = 0; i <editButtons.length; i++) {
+        //console.log(editButtons[i].children[0]);
+        editButtons[i].children[0].addEventListener('click',deleteArticles.bind(this));
+        editButtons[i].children[1].addEventListener('click',editArticles.bind(this));
+    }
+    console.log(editMode.parentElementInsert);
 }
 
-const deleteArticle=function(e){
-    console.log('jfhdjdjdsdjkdjk')
-    console.log(e)
+
+
+const deleteArticles=async function(e){
+    console.log(e.target.parentElement.parentElement);
+    let id=e.target.parentElement.parentElement.dataset.articleid;
+    model.deleteArticle(id);
 }
+
+const editArticles=async function(e){
+    console.log(e.target.parentElement.parentElement);
+    let id=e.target.parentElement.parentElement.dataset.articleid;
+    model.editArticle(id);
+}
+
 
 const initializePrismScript=function(){
     let scriptElement = document.createElement("script");
