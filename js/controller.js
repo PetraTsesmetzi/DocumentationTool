@@ -51,18 +51,17 @@ const loadEditMode=function(){
 const deleteArticles=async function(e){
     console.log(e.target.parentElement.parentElement);
     let id=e.target.parentElement.parentElement.dataset.articleid;
-    model.deleteArticle(id);
+   await model.deleteArticle(id);
 }
 
 const editArticles=async function(e){
     console.log(e.target.parentElement.parentElement);
     let id=e.target.parentElement.parentElement.dataset.articleid;
-    model.editArticle(id);
+    await model.editArticle(id);
 }
 
 const loadForm= function(e){
     console.log(e.target.parentElement.parentElement);
-
 
 }
 
