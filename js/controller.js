@@ -7,6 +7,7 @@ import * as model from './model.js';
 
 
 let editButtons="";
+let insertButton="";
 let editModeFlag=false;
 /**
  * navigationleisten einbinden
@@ -41,6 +42,8 @@ const loadEditMode=function(){
         editButtons[i].children[1].addEventListener('click',editArticles.bind(this));
     }
     console.log(editMode.parentElementInsert);
+    insertButton=editMode.parentElementInsert;
+    insertButton.addEventListener('click',loadForm.bind(this));
 }
 
 
@@ -56,6 +59,13 @@ const editArticles=async function(e){
     let id=e.target.parentElement.parentElement.dataset.articleid;
     model.editArticle(id);
 }
+
+const loadForm= function(e){
+    console.log(e.target.parentElement.parentElement);
+
+
+}
+
 
 
 const initializePrismScript=function(){

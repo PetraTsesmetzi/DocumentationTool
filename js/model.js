@@ -84,6 +84,8 @@ export const editArticle = async (id) => {
     }
 }
 
+
+
 //sortiert ein Array mit Objekten nach einem vorgegebenem Attribut
 const sortArrayOfObjects=(arr, propertyName, order='ascending')=>{
     const sortedArr=arr.sort((a,b)=>{
