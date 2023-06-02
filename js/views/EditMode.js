@@ -2,13 +2,15 @@ class EditMode {
 
     #parentElement;
     #parentElementInsert=document.querySelector('.button-container-right');
+
     #editmode=false;
 
 
     render(edit) {
 
         this.#editmode=edit;
-        this.#clearInsert();
+        // this.#clearInsert();
+        this.#clear();
         //für den einfügebutton
         const markupInsert= this.#generateMarkupInsert();
         this.#parentElementInsert.insertAdjacentHTML('beforeend', markupInsert);
@@ -20,26 +22,32 @@ class EditMode {
             const markup = this.#generateMarkupDelEd();
             this.#parentElement[i].insertAdjacentHTML('beforeend', markup);
         }
+    }
+    addHandlerRender(handler){
+        const editBtn=document.querySelector('.btn-edit');
+        editBtn.addEventListener('click',handler)
+    }
+
+    #clear(i=null){
+        if(i!=null){
+            this.#parentElement[i].innerHTML='';
+        }else{
+            this.#parentElementInsert.innerHTML='';
+        }
 
     }
-    #clear(i){
-        this.#parentElement[i].innerHTML='';
-    }
-    #clearInsert(){
-        this.#parentElementInsert.innerHTML='';
-    }
+
 
     #generateMarkupDelEd() {
-        console.log(this.#editmode)
+       // console.log(this.#editmode)
         return ` <button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-delete">Löschen</button>
                  <button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-update">Ändern</button>`;
 
     }
 
     #generateMarkupInsert() {
-        console.log(this.#editmode)
+        //console.log(this.#editmode)
         return `<button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-insert">Einfügen</button>`;
-
     }
 
     get parentElement() {

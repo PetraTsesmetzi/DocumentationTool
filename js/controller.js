@@ -2,6 +2,8 @@ import navLeft from "./views/NavLeft.js";
 import navHeader from "./views/NavHeader.js";
 import articleView from "./views/ArticleView.js";
 import editMode from "./views/EditMode.js";
+import form from "./views/Form.js";
+
 
 import * as model from './model.js';
 
@@ -41,7 +43,7 @@ const loadEditMode=function(){
         editButtons[i].children[0].addEventListener('click',deleteArticles.bind(this));
         editButtons[i].children[1].addEventListener('click',editArticles.bind(this));
     }
-    console.log(editMode.parentElementInsert);
+    //console.log(editMode.parentElementInsert);
     insertButton=editMode.parentElementInsert;
     insertButton.addEventListener('click',loadForm.bind(this));
 }
@@ -49,19 +51,20 @@ const loadEditMode=function(){
 
 
 const deleteArticles=async function(e){
-    console.log(e.target.parentElement.parentElement);
+   // console.log(e.target.parentElement.parentElement);
     let id=e.target.parentElement.parentElement.dataset.articleid;
    await model.deleteArticle(id);
 }
 
 const editArticles=async function(e){
-    console.log(e.target.parentElement.parentElement);
+    //console.log(e.target.parentElement.parentElement);
     let id=e.target.parentElement.parentElement.dataset.articleid;
     await model.editArticle(id);
 }
 
 const loadForm= function(e){
-    console.log(e.target.parentElement.parentElement);
+   // console.log(e.target.parentElement.parentElement);
+    form.render();
 
 }
 
@@ -74,13 +77,14 @@ const initializePrismScript=function(){
     scriptElement.setAttribute("async", true);
     document.body.appendChild(scriptElement);
 }
-/**
- * eventlistener
- */
-window.addEventListener('hashchange',loadArticles);
-window.addEventListener('load',loadArticles);
-const editBtn=document.querySelector('.btn-edit');
-editBtn.addEventListener('click',loadEditMode)
-// const deleteButton=document.querySelector('.content-container');
-// console.log('jkfjjfj');
-// deleteButton.addEventListener('click',deleteArticle.bind(this));
+
+
+
+
+
+
+const init=function(){
+    navLeft.addHandlerRender(loadArticles);
+    editMode.addHandlerRender(loadEditMode);
+}
+init();
