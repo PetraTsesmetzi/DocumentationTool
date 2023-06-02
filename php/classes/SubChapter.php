@@ -78,9 +78,22 @@ class SubChapter
 
     }
 
-    public function createNewObject(int $id, int $subchapterNumber, string $subchapterName, int $chapter_Id = null): Article
+    public function createNewObject(int $subchapterNumber, string $subchapterName, int $chapter_Id): int
     {
-        return new Article();
+        try {
+            $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+            $sql = "INSERT INTO subchapter(subchapterNumber,chapter_Id,subchapterName) VALUES(:subchapterNumber,:chapter_Id,:subchapterName)";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':subchapterNumber', $subchapterNumber, PDO::PARAM_STR);
+            $stmt->bindParam(':chapter_Id', $chapter_Id, PDO::PARAM_STR);
+            $stmt->bindParam(':subchapterName', $subchapterName, PDO::PARAM_INT);
+            $stmt->execute();
+            $lastId = $dbh->lastInsertId();
+            $dbh = null;
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
+        }
+        return $lastId;
     }
 
     /**

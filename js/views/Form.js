@@ -29,10 +29,14 @@ class Form{
         addCodeButton.addEventListener('click',this.#addElement.bind(this));
 
         const deleteBtns=document.querySelector('.addTextAreaFields');
-         deleteBtns.addEventListener('click',this.#deleteAddedElements.bind(this));
+        deleteBtns.addEventListener('click',this.#deleteAddedElements.bind(this));
 
     }
 
+    addHandlerRenderSend(handler){
+        const formular=document.querySelector('#createNewObjects');
+        formular.addEventListener('submit',handler.bind(this));
+    }
 
     #addElement(e){
         let toAdd=e.target;
@@ -61,7 +65,7 @@ class Form{
         return`<div data-id="${this.#addedBlockCounter}" class="addedDescription">
                 <div class="label-container"><label for="description_${this.#addedBlockCounter}">beschreibung</label>
                 <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button></div>
-                <textarea id="description_${this.#addedBlockCounter}" class="description"></textarea>
+                <textarea id="description_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" class="description"></textarea>
                </div>`;
     }
 
@@ -70,14 +74,14 @@ class Form{
         return `<div data-id="${this.#addedBlockCounter}" class="addedCode">
                 <div class="label-container"><label for="codeblock_${this.#addedBlockCounter}">Code</label>
                 <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button></div>
-                <textarea id="codeblock_${this.#addedBlockCounter}" class="code"></textarea>
+                <textarea id="codeblock_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" class="code"></textarea>
                 </div>`;
     }
 
     #generateMarkup() {
         let htmlObj = `<div class="form-container">
         <h1>Kapitel hinzufügen</h1>
-        <form action="#">
+        <form action="#" method="post" id="createNewObjects">
             <div class="input-container">
 <!--            <div class="inputFields">-->
 <!--                <label for="chapterTitle">Kapitel</label>-->
@@ -140,11 +144,11 @@ class Form{
         <div class="textAreaFields">
             <div class="textAreaFieldsDescription">
                 <label for="description">Beschreibung</label>
-                <textarea id="description_0" class="description"></textarea>
+                <textarea id="description_0" data-elementOrder="0" class="description"></textarea>
             </div>
             <div class="textAreaFieldsCode">
                 <label for="code">Code</label>
-                <textarea id="code_0" class="code"></textarea>
+                <textarea id="code_0" data-elementOrder="0" class="code"></textarea>
             </div>
         </div>
         <div class="addTextAreaFields">`;
@@ -162,7 +166,7 @@ class Form{
 
         <div class="btn-form-container">
             <button type="reset" class="btn-form btn-reset">Zurücketzen</button>
-            <button type="button" class="btn-form btn-send">Absenden</button>
+            <input type="submit" class="btn-form btn-send">Absenden</input>
         </div>
     </form>
     </div>`;

@@ -48,8 +48,6 @@ class Article
         } catch (PDOException $e) {
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().$e->getLine());
         }
-
-
         return $articleArr;
     }
 
@@ -74,6 +72,11 @@ class Article
 //        return $article;
         return $article->getJSONEncode();
     }
+
+
+
+
+
     public function getJSONEncode(): string
     {
         return json_encode(get_object_vars($this));
@@ -90,9 +93,23 @@ class Article
 
     }
 
-    public function createNewObject(int $id, int $articleNumber, string $articleName, int $subchapterId = null): Article
+    public function createNewObject(int $articleNumber, int $subchapterId , string $articleName): int
     {
-        return new Article();
+        try {
+            $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+            echo $articleName;
+            $sql = "INSERT INTO article(articleNumber,subchapter_Id,articleName) VALUES(:articleNumber,:subchapter_Id,:articleName)";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':articleNumber', $articleNumber, PDO::PARAM_STR);
+            $stmt->bindParam(':subchapter_Id', $subchapterId, PDO::PARAM_STR);
+            $stmt->bindParam(':articleName', $articleName, PDO::PARAM_STR);
+            $stmt->execute();
+            $lastId = $dbh->lastInsertId();
+            $dbh = null;
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
+        }
+        return $lastId;
     }
 
     /**

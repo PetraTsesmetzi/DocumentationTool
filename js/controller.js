@@ -27,7 +27,7 @@ const loadArticles = async function (e) {
     let id=window.location.hash.slice(1);
     if(!id) id=1;
     // console.log(id)
-    await model.loadArticle2(id);
+    await model.loadArticle(id);
     articleView.render(model.state.subchapter);
     initializePrismScript();
 }
@@ -39,12 +39,19 @@ const loadEditMode=function(){
     editMode.addHandlerRenderLoadForm(loadForm);
     editMode.addHandlerRenderDeleteArt(deleteArticles);
     editMode.addHandlerRenderUpdateArt(updateArticles);
-
-
+}
+const loadForm= function(e){
+    // console.log(e.target.parentElement.parentElement);
+    form.render();
+    form.addHandlerRenderSend(createArticles);
 }
 
 
-
+const createArticles=async function(submitEvent){
+    submitEvent.preventDefault();
+    // console.log(submitEvent);
+    await model.createArticle(submitEvent);
+}
 const deleteArticles=async function(e){
    // console.log(e.target.parentElement.parentElement);
     let id=e.target.parentElement.parentElement.dataset.articleid;
@@ -57,11 +64,7 @@ const updateArticles=async function(e){
     await model.updateArticle(id);
 }
 
-const loadForm= function(e){
-   // console.log(e.target.parentElement.parentElement);
-    form.render();
 
-}
 
 
 

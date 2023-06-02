@@ -1,29 +1,20 @@
+import {getJSONObj} from './helper.js';
+
 export const state={
     subchapter:{}
 }
-export const loadArticle2 = async (id) => {
+export const loadArticle = async (id) => {
     try {
 
-        // Build formData object.
+        // erstelle ein formdata object
         let formData = new FormData();
+        formData.append('action','loadArticles');
         formData.append('id', id);
-        const response = await fetch("http://localhost:63342/DocumentationsTool/php/controler.php",
-            {
-                body: formData,
-                method: "post"
-            });
 
-        //Wenn antwort nicht ok, dann Fehelermeldung
-        if(!response.ok) throw new Error(`${data.message} (${response.status}`);
+        //hole JSONObj aus DB über helper-methode
+        let data=await getJSONObj(formData);
 
-        //data aufbereitung für stateObject
-        let data = JSON.parse(await response.json());
-
-        // console.log(data)
-
-
-
-        //dataObject wird geparsed
+          //dataObject wird geparsed
         const articlesArr=data.articleArr;
         for (const key in articlesArr) {
             articlesArr[key]=JSON.parse(articlesArr[key]);
@@ -36,7 +27,10 @@ export const loadArticle2 = async (id) => {
                 articlesArr[key].codeArr[keyKey]=JSON.parse(articlesArr[key].codeArr[keyKey]);
             }
         }
+
+        //aufbereitung eine state.subchapter Object zu leichteren verarbeitung
         const articles2=[];
+
         //ein artikel Object wird erstellt und in das articles array gepushed
         for (const key in articlesArr) {
             //mergen des descriptionsArr und CodeArr
@@ -68,6 +62,51 @@ export const loadArticle2 = async (id) => {
     }
 }
 
+export const createArticle = async (submitEvent) => {
+    try{
+
+
+        const subChapterTitel=document.getElementById('subChapterTitel');
+        const subChapterNr=document.getElementById('subChapterNr');
+        const articleTitel=document.getElementById('articleTitel');
+        const articleNr=document.getElementById('articleNr');
+        const descriptions=document.getElementsByClassName('description');
+        const codes=document.getElementsByClassName('code');
+        const descriptionsArr=[];
+        for (let i = 0; i < descriptions.length; i++) {
+            let description={};
+            description.descriptionText=descriptions[i].value;
+            description.elementOrder=descriptions[i].dataset.elementorder;
+            descriptionsArr.push(description);
+        }
+        const codeArr=[];
+        for (let i = 0; i < codes.length; i++) {
+            let code={};
+            code.descriptionText=codes[i].value;
+            code.elementOrder=codes[i].dataset.elementorder;
+            codeArr.push(code);
+        }
+        console.log(codeArr);
+        let formData = new FormData();
+        formData.append('action','createArticle');
+        formData.append('subChapterTitel',subChapterTitel.value);
+        formData.append('subChapterNr',subChapterNr.value);
+
+        formData.append('articleTitel',articleTitel.value);
+        formData.append('articleNr',articleNr.value);
+
+        formData.append('descriptionsArr',JSON.stringify(descriptionsArr));
+        formData.append('codeArr',JSON.stringify(codeArr));
+
+        let data=await getJSONObj(formData);
+
+    }catch($e){
+
+    }
+}
+
+
+
 export const deleteArticle = async (id) => {
     try{
         console.log('delete this from db: '+id);
@@ -83,6 +122,12 @@ export const updateArticle = async (id) => {
 
     }
 }
+
+
+
+
+
+
 
 
 
@@ -106,51 +151,5 @@ const sortArrayOfObjects=(arr, propertyName, order='ascending')=>{
     return sortedArr;
 }
 
-
-// export const loadArticle = async (id) => {
-//     try {
-//         // Build formData object.
-//         let formData = new FormData();
-//         formData.append('id', id);
-//         const response = await fetch("http://localhost:63342/DocumentationsTool/php/controler.php",
-//                 {
-//                     body: formData,
-//                     method: "post"
-//                 });
-//         //Wenn antwort nicht ok, dann Fehelermeldung
-//         if(!response.ok) throw new Error(`${data.message} (${response.status}`);
-//
-//         //data aufbereitung für stateObject
-//         let data = JSON.parse(await response.json());
-//         console.log(data);
-//         for (const dataKey in data.descriptionArr) {
-//             data.descriptionArr[dataKey]=JSON.parse(data.descriptionArr[dataKey]);
-//         }
-//         for (const dataKey in data.codeArr) {
-//             data.codeArr[dataKey]=JSON.parse(data.codeArr[dataKey]);
-//         }
-//         //beide Arrays zusammen mergen
-//         let articleElementsArr=[...data.descriptionArr,...data.codeArr]
-//
-//
-//         //Array  nach dem Atribut 'elementOrder' sortieren
-//         articleElementsArr= sortArrayOfObjects(articleElementsArr,'elementOrder');
-//
-//
-//
-//         state.article={
-//             id:data.id,
-//             articleNumber:data.articleNumber,
-//             articleName:data.articleName,
-//             descriptionArr:data.descriptionArr,
-//             codeArr:data.codeArr,
-//             articleElementsArr:articleElementsArr
-//         }
-//         console.log(state.article);
-//
-//     } catch (e) {
-//         console.log(e);
-//     }
-// }
 
 
