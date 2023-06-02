@@ -32,20 +32,13 @@ const loadArticles = async function (e) {
     initializePrismScript();
 }
 const loadEditMode=function(){
-    //toggle the editbutton
+    //toggled den bearbeiten button
     editModeFlag=(editModeFlag === true) ? false : true;
-
+    if(!editModeFlag)loadArticles();
     editMode.render(editModeFlag);
-    editButtons=editMode.parentElement;
-
-    for (let i = 0; i <editButtons.length; i++) {
-        //console.log(editButtons[i].children[0]);
-        editButtons[i].children[0].addEventListener('click',deleteArticles.bind(this));
-        editButtons[i].children[1].addEventListener('click',editArticles.bind(this));
-    }
-    //console.log(editMode.parentElementInsert);
-    insertButton=editMode.parentElementInsert;
-    insertButton.addEventListener('click',loadForm.bind(this));
+    editMode.addHandlerRenderLoadForm(loadForm);
+    editMode.addHandlerRenderDeleteArt(deleteArticles);
+    editMode.addHandlerRenderUpdateArt(updateArticles);
 }
 
 
@@ -56,10 +49,10 @@ const deleteArticles=async function(e){
    await model.deleteArticle(id);
 }
 
-const editArticles=async function(e){
+const updateArticles=async function(e){
     //console.log(e.target.parentElement.parentElement);
     let id=e.target.parentElement.parentElement.dataset.articleid;
-    await model.editArticle(id);
+    await model.updateArticle(id);
 }
 
 const loadForm= function(e){
@@ -85,6 +78,7 @@ const initializePrismScript=function(){
 
 const init=function(){
     navLeft.addHandlerRender(loadArticles);
-    editMode.addHandlerRender(loadEditMode);
+    editMode.addHandlerRenderEdit(loadEditMode);
+
 }
 init();

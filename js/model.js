@@ -76,7 +76,7 @@ export const deleteArticle = async (id) => {
     }
 }
 
-export const editArticle = async (id) => {
+export const updateArticle = async (id) => {
     try{
         console.log('edit this from db: '+id);
     }catch($e){
