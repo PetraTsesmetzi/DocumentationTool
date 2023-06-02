@@ -39,6 +39,8 @@ const loadEditMode=function(){
     editMode.addHandlerRenderLoadForm(loadForm);
     editMode.addHandlerRenderDeleteArt(deleteArticles);
     editMode.addHandlerRenderUpdateArt(updateArticles);
+
+
 }
 
 
