@@ -73,9 +73,25 @@ class Description
 
     }
 
-    public function createNewObject(int $id, int $nummer, string $name, int $article_Id = null): Description
+    public function createNewObject($article_Id,$descriptionsArr): void
     {
-        return new Description();
+
+        foreach ($descriptionsArr as $desc) {
+            try{
+                if($desc->descriptionText==="")$desc->descriptionText="Bitte lösche dieses Feld!";
+                $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+                $sql = "INSERT INTO description(article_Id,elementOrder,descriptionText) VALUES(:article_Id,:elementOrder,:descriptionText)";
+                $stmt = $dbh->prepare($sql);
+                $stmt->bindParam(':article_Id', $article_Id, PDO::PARAM_INT);
+                $stmt->bindParam(':elementOrder',$desc->elementOrder, PDO::PARAM_INT);
+                $stmt->bindParam(':descriptionText', $desc->descriptionText, PDO::PARAM_STR);
+                $stmt->execute();
+                $dbh = null;
+            }catch(PDOException $e){
+                throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
+            }
+        }
+
     }
 
 }

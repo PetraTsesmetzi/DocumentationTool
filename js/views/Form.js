@@ -6,9 +6,9 @@ class Form{
 
 
 
-    render(){
+    render(subchapters){
         this.#clear();
-        const markup=this.#generateMarkup();
+        const markup=this.#generateMarkup(subchapters);
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
         console.log(this.#parentElement);
         this.#addTextAreaFields=document.querySelector('.addTextAreaFields');
@@ -17,7 +17,7 @@ class Form{
     }
     #clear(){
         this.#parentElement.innerHTML='';
-        this.#addedBlockCounter=0;
+        this.#addedBlockCounter=1;
     }
 
     #addHandlerRender(){
@@ -65,7 +65,7 @@ class Form{
         return`<div data-id="${this.#addedBlockCounter}" class="addedDescription">
                 <div class="label-container"><label for="description_${this.#addedBlockCounter}">beschreibung</label>
                 <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button></div>
-                <textarea id="description_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" class="description"></textarea>
+                <textarea id="description_${this.#addedBlockCounter}" name="description_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" class="description"></textarea>
                </div>`;
     }
 
@@ -74,13 +74,13 @@ class Form{
         return `<div data-id="${this.#addedBlockCounter}" class="addedCode">
                 <div class="label-container"><label for="codeblock_${this.#addedBlockCounter}">Code</label>
                 <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button></div>
-                <textarea id="codeblock_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" class="code"></textarea>
+                <textarea id="codeblock_${this.#addedBlockCounter}" name="codeblock_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" class="code"></textarea>
                 </div>`;
     }
 
-    #generateMarkup() {
+    #generateMarkup(subchapters) {
         let htmlObj = `<div class="form-container">
-        <h1>Kapitel hinzufügen</h1>
+        <h1>Elemente hinzufügen</h1>
         <form action="#" method="post" id="createNewObjects">
             <div class="input-container">
 <!--            <div class="inputFields">-->
@@ -103,27 +103,13 @@ class Form{
 <!--            </div>-->
         </div>
         <div class="input-container">
-            <div class="inputFields">
-                <label for="subChapterTitel">Unterkapitel</label>
-                <input list="subChapterTitels" type="text" id="subChapterTitel" name="subChapterTitel"
-                       autocomplete="off">
-                <datalist id="subChapterTitels">
-                    <option value="Values and Variables">
-                    <option value="Basic Operators & Math Operators">
-                </datalist>
-            </div>
-            <div class="inputFields">
-                <label for="subChapterNr">Unterkapitelnr.</label>
-                <select id="subChapterNr" name="subChapterNr">
-                    <option value="10">10</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="4">4</option>
-                </select>
-            </div>
+          
+            
         </div>
+      
         <div class="input-container">
-            <div class="inputFields">
+            
+                <div class="inputFields">
                 <label for="articleTitel">Artikel</label>
                 <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" autocomplete="off">
                 <datalist id="articleTitels">
@@ -140,15 +126,34 @@ class Form{
                     <option value="4">4</option>
                 </select>
             </div>
+            <div class="inputFields">
+<!--                <label for="subChapterTitel">Unterkapitel</label>-->
+<!--                <input list="subChapterTitels" type="text" id="subChapterTitel" name="subChapterTitel"-->
+<!--                       autocomplete="off">-->
+<!--                <datalist id="subChapterTitels">-->
+<!--                    <option value="Values and Variables">-->
+<!--                    <option value="Basic Operators & Math Operators">-->
+<!--                </datalist>-->
+             <label for="subChapterTitel">Unterkapitel</label>
+             <select name="subChapters" id="subChapterTitels">`;
+        for (let i = 0; i < subchapters.length; i++) {
+            console.log(subchapters[i]);
+            htmlObj+=`<option >${subchapters[i].subchapterName}</option>`;
+        }
+
+        htmlObj+=` </select>
+            
+            </div>
+       
         </div>
         <div class="textAreaFields">
             <div class="textAreaFieldsDescription">
                 <label for="description">Beschreibung</label>
-                <textarea id="description_0" data-elementOrder="0" class="description"></textarea>
+                <textarea id="description_0" name="description_0" data-elementOrder="0" class="description"></textarea>
             </div>
             <div class="textAreaFieldsCode">
                 <label for="code">Code</label>
-                <textarea id="code_0" data-elementOrder="0" class="code"></textarea>
+                <textarea id="code_0"  name="codeblock_1" data-elementOrder="1" class="code"></textarea>
             </div>
         </div>
         <div class="addTextAreaFields">`;

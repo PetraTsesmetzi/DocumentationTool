@@ -23,7 +23,7 @@ class Article
     }
 
 
-    public function getAllAsObjects(Subchapter $subchapter): array
+    public function getAllAsObjects(Subchapter $subchapter=null): array
     {
 
 
@@ -32,13 +32,14 @@ class Article
             if(!isset($subchapter)){
                 $sql = "SELECT * FROM article";
                 $result = $dbh->query($sql);
+            }else{
+                $sql = "SELECT * FROM article WHERE subchapter_Id=:subchapter_Id";
+                $stmt = $dbh->prepare($sql);
+                $id = $subchapter->getId();
+                $stmt->bindParam('subchapter_Id', $id);
+                $stmt->execute();
+                $result = $stmt;
             }
-            $sql = "SELECT * FROM article WHERE subchapter_Id=:subchapter_Id";
-            $stmt = $dbh->prepare($sql);
-            $id = $subchapter->getId();
-            $stmt->bindParam('subchapter_Id', $id);
-            $stmt->execute();
-            $result = $stmt;
             $articleArr = [];
             while ($article = $result->fetchObject(__CLASS__)) {
                 $article->descriptionArr = (new Description())->getAllAsObjects($article);
@@ -90,14 +91,14 @@ class Article
 
     public function delete(int $id)
     {
-
+        //todo: wenn du löscht sammelst du die glöschten aricleNumbers in einem Ararry
     }
 
     public function createNewObject(int $articleNumber, int $subchapterId , string $articleName): int
     {
         try {
             $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
-            echo $articleName;
+//            echo $articleName;
             $sql = "INSERT INTO article(articleNumber,subchapter_Id,articleName) VALUES(:articleNumber,:subchapter_Id,:articleName)";
             $stmt = $dbh->prepare($sql);
             $stmt->bindParam(':articleNumber', $articleNumber, PDO::PARAM_STR);

@@ -11,12 +11,11 @@ export const getJSONObj=async function(formData){
 
         //Wenn antwort nicht ok, dann Fehelermeldung
         if(!response.ok) throw new Error(`${data.message} (${response.status}`);
-
         //data aufbereitung für stateObject
-        let data = JSON.parse(await response.json());
+        let data = await response.json();
+        // let data = JSON.parse(await response.json());
         // let data = JSON.parse(await response.text());
 
-        console.log(data)
         return data;
     }catch(e){
 

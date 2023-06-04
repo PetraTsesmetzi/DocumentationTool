@@ -69,8 +69,22 @@ class Code
 
     }
 
-    public function createNewObject(int $id, int $nummer, string $name, int $article_Id = null): Code
+    public function createNewObject($article_Id,$codeArr)
     {
-        return new Code();
+        foreach ($codeArr as $code) {
+            try{
+                if($code->codeText==="")$code->codeText="Bitte lösche dieses Feld!";
+                $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+                $sql = "INSERT INTO code(article_Id,elementOrder,codeText) VALUES(:article_Id,:elementOrder,:codeText)";
+                $stmt = $dbh->prepare($sql);
+                $stmt->bindParam(':article_Id', $article_Id, PDO::PARAM_INT);
+                $stmt->bindParam(':elementOrder',$code->elementOrder, PDO::PARAM_INT);
+                $stmt->bindParam(':codeText', $code->codeText, PDO::PARAM_STR);
+                $stmt->execute();
+                $dbh = null;
+            }catch(PDOException $e){
+                throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
+            }
+        }
     }
 }

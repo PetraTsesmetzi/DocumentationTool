@@ -2,14 +2,14 @@
 
 class SubChapter
 {
-        private int $id;
-        private int $subchapterNumber;
+    private int $id;
+    private int $subchapterNumber;
 
-        private string $subchapterName;
+    private string $subchapterName;
 
-        private int $chapter_Id;
+    private int $chapter_Id;
 
-        private array $articleArr;
+    private array $articleArr;
 
     /**
      * @param int|null $id
@@ -17,45 +17,45 @@ class SubChapter
      * @param string|null $subchapterName
      */
 
-    public function __construct(?int $id=null, ?int $subchapterNumber=null, ?string $subchapterName=null)
+    public function __construct(?int $id = null, ?int $subchapterNumber = null, ?string $subchapterName = null)
     {
         if (isset($id) && isset($subchapterNumber) && isset($subchapterName)) {
-        $this->id = $id;
-        $this->subchapterNumber = $subchapterNumber;
-        $this->subchapterName = $subchapterName;
+            $this->id = $id;
+            $this->subchapterNumber = $subchapterNumber;
+            $this->subchapterName = $subchapterName;
         }
     }
 
-    public function getAllAsObjects(): array
+    public function getAllSubChapters(): array
     {
         try {
             $dbh = DB::connect();
             $sql = "SELECT * FROM subChapter";
             $result = $dbh->query($sql);
-            $subChapter = [];
+            $subChapters = [];
             while ($subChapter = $result->fetchObject(__CLASS__)) {
-                $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
-                $subChapter[] = $subChapter;
+                $subChapters[] = $subChapter->getJSONEncode();
             }
         } catch (PDOException $e) {
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
         }
-        return $subChapter;
+
+        return $subChapters;
     }
 
     public function getObjectById(int $id): string
 //    public function getObjectById(int $id): SubChapter
     {
-        try{
-            $dbh=DB::connect();
-            $sql="SELECT * FROM subChapter WHERE id=:id";
-            $stmt=$dbh->prepare($sql);
-            $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+        try {
+            $dbh = DB::connect();
+            $sql = "SELECT * FROM subChapter WHERE id=:id";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            $subChapter=$stmt->fetchObject(__CLASS__);
-            $subChapter->articleArr=(new Article())->getAllAsObjects($subChapter);
+            $subChapter = $stmt->fetchObject(__CLASS__);
+            $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
 
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
         }
 //        return $subChapter;
@@ -82,6 +82,7 @@ class SubChapter
     {
         try {
             $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+//            $dbh = DB::connect();
             $sql = "INSERT INTO subchapter(subchapterNumber,chapter_Id,subchapterName) VALUES(:subchapterNumber,:chapter_Id,:subchapterName)";
             $stmt = $dbh->prepare($sql);
             $stmt->bindParam(':subchapterNumber', $subchapterNumber, PDO::PARAM_STR);
@@ -102,5 +103,24 @@ class SubChapter
     public function getId(): int
     {
         return $this->id;
+    }
+
+
+    public function getAllAsObjects(): array
+    {
+        try {
+            $dbh = DB::connect();
+            $sql = "SELECT * FROM subChapter";
+            $result = $dbh->query($sql);
+            $subChapterArr = [];
+            while ($subChapter = $result->fetchObject(__CLASS__)) {
+                $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
+                $subChapterArr[] = $subChapter->getJSONEncode();
+            }
+
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+        }
+        return $subChapterArr;
     }
 }

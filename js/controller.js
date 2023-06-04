@@ -17,11 +17,12 @@ let editModeFlag=false;
 navLeft.render();
 navHeader.render();
 
-/**
- * 
- * @param e
- * @returns {Promise<void>}
- */
+const loadAllElementsForInputs=async function(){
+    console.log('lade elemente')
+    await model.loadElements();
+}
+
+
 const loadArticles = async function (e) {
 
     let id=window.location.hash.slice(1);
@@ -42,7 +43,9 @@ const loadEditMode=function(){
 }
 const loadForm= function(e){
     // console.log(e.target.parentElement.parentElement);
-    form.render();
+    console.log('in form')
+    console.log(model.state.subchapters)
+    form.render(model.state.subchapters);
     form.addHandlerRenderSend(createArticles);
 }
 
@@ -81,9 +84,10 @@ const initializePrismScript=function(){
 
 
 
-const init=function(){
+const init= function() {
+     loadAllElementsForInputs();
     navLeft.addHandlerRender(loadArticles);
     editMode.addHandlerRenderEdit(loadEditMode);
 
 }
-init();
+await init();
