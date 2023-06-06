@@ -1,3 +1,4 @@
+import {loadArticleNumbers} from "../controller.js";
 class Form{
     #updateFlag=false;
     #parentElement = document.querySelector('.content-container');
@@ -5,21 +6,27 @@ class Form{
     #addedBlockCounter;
 
 
-
-    render(subchapters){
+    /**
+     * initialisiert das markup(hängt die htmlObjekte in die Container)
+      * @param state
+     */
+    render(state){
         this.#clear();
-        const markup=this.#generateMarkup(subchapters);
+        const markup=this.#generateMarkup(state);
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
-        console.log(this.#parentElement);
         this.#addTextAreaFields=document.querySelector('.addTextAreaFields');
-        console.log(this.#addTextAreaFields);
         this.#addHandlerRender();
+
     }
     #clear(){
         this.#parentElement.innerHTML='';
         this.#addedBlockCounter=1;
     }
 
+    /**
+     * eventhandler für code hinzufügen, beschreibung hinzufügen und lösche buttons
+     * aufgurfen innerhalb des formulars
+     */
     #addHandlerRender(){
 
         const addDescButton=document.querySelector('.addDescArea');
@@ -31,13 +38,28 @@ class Form{
         const deleteBtns=document.querySelector('.addTextAreaFields');
         deleteBtns.addEventListener('click',this.#deleteAddedElements.bind(this));
 
+        const selectField= document.querySelector('#subChapterTitels');
+        // selectField.addEventListener('change',function(e){
+        //     console.log(e.target.options.selectedIndex);
+        // })
+        ///hier anpassen
+        selectField.addEventListener('change',loadArticleNumbers.bind(this));
+
     }
 
+    /**
+     * event handler für submit button vom formular
+     * @param handler
+     */
     addHandlerRenderSend(handler){
         const formular=document.querySelector('#createNewObjects');
         formular.addEventListener('submit',handler.bind(this));
     }
 
+    /**
+     * intialsiert codeblckfeld oder beschreibungsblock feld
+     * @param e
+     */
     #addElement(e){
         let toAdd=e.target;
         if(toAdd.classList.contains("addCodeArea")){
@@ -51,6 +73,11 @@ class Form{
         }
 
     }
+
+    /**
+     * löscht die hizugefügten code oder beschreibungsblöcke
+     * @param e
+     */
     #deleteAddedElements(e){
         console.log(e.target);
         let toDelete=e.target.parentElement.parentNode;
@@ -60,6 +87,10 @@ class Form{
         }
     }
 
+    /**
+     * html Objekt für beschreibungsblock
+     * @returns {string}
+     */
     #generateDescriptionBlock(){
         this.#addedBlockCounter++;
         return`<div data-id="${this.#addedBlockCounter}" class="addedDescription">
@@ -69,6 +100,10 @@ class Form{
                </div>`;
     }
 
+    /**
+     * html Objekt für codeblock
+     * @returns {string}
+     */
     #generateCodeBlock(){
         this.#addedBlockCounter++;
         return `<div data-id="${this.#addedBlockCounter}" class="addedCode">
@@ -78,7 +113,14 @@ class Form{
                 </div>`;
     }
 
-    #generateMarkup(subchapters) {
+    /**
+     * html Objekt für das gesamte formular
+     * @param state
+     * @returns {string}
+     */
+    #generateMarkup(state) {
+        console.log('in form')
+        console.log(state)
         let htmlObj = `<div class="form-container">
         <h1>Elemente hinzufügen</h1>
         <form action="#" method="post" id="createNewObjects">
@@ -102,30 +144,30 @@ class Form{
 <!--                </select>-->
 <!--            </div>-->
         </div>
-        <div class="input-container">
-          
-            
-        </div>
+      
       
         <div class="input-container">
             
                 <div class="inputFields">
                 <label for="articleTitel">Artikel</label>
-                <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" autocomplete="off">
-                <datalist id="articleTitels">
-                    <option value="Values">
-                    <option value="Variables">
-                </datalist>
+                <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" autocomplete="off">
+<!--                <datalist id="articleTitels">-->
+<!--                    <option value="Values">-->
+<!--                    <option value="Variables">-->
+<!--                </datalist>-->
             </div>
             <div class="inputFields">
                 <label for="articleNr">Artikelnr.</label>
-                <select id="articleNr" name="articleNr">
-                    <option value="10">10</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="4">4</option>
+                <select id="articleNr" name="articleNr">`;
+
+                for (let i = state.deletedArticles.length-1; i >=0 ; i--) {
+                    htmlObj+=`<option class="overlayNumbers" value=${state.deletedArticles[i]}>${state.deletedArticles[i]}</option>`;
+                }
+
+              htmlObj+=`
                 </select>
             </div>
+        
             <div class="inputFields">
 <!--                <label for="subChapterTitel">Unterkapitel</label>-->
 <!--                <input list="subChapterTitels" type="text" id="subChapterTitel" name="subChapterTitel"-->
@@ -135,17 +177,17 @@ class Form{
 <!--                    <option value="Basic Operators & Math Operators">-->
 <!--                </datalist>-->
              <label for="subChapterTitel">Unterkapitel</label>
-             <select name="subChapters" id="subChapterTitels">`;
-        for (let i = 0; i < subchapters.length; i++) {
-            console.log(subchapters[i]);
-            htmlObj+=`<option >${subchapters[i].subchapterName}</option>`;
-        }
+             <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
+                for (let i = 0; i < state.subchapters.length; i++) {
 
-        htmlObj+=` </select>
-            
-            </div>
-       
-        </div>
+                    console.log('in form')
+                    console.log(state.subchapters[i]);
+                    htmlObj+=`<option class="overlayContainer" selected=`; (state.id==i+1)?'selected':'';
+                        htmlObj+=`>${state.subchapters[i].subchapterName}</option>`;
+                }
+
+        htmlObj+=`</select></div></div>
+     
         <div class="textAreaFields">
             <div class="textAreaFieldsDescription">
                 <label for="description">Beschreibung</label>
@@ -170,15 +212,15 @@ class Form{
         </div>
 
         <div class="btn-form-container">
-            <button type="reset" class="btn-form btn-reset">Zurücketzen</button>
-            <input type="submit" class="btn-form btn-send">Absenden</input>
+<!--            <button type="reset" class="btn-form btn-reset">Zurücksetzen</button>-->
+             <button type="reset" class="btn-form btn-reset"  value="Zurücksetzen">Zurücksetzen</button>
+            <button type="submit" class="btn-form btn-send"  value="Absenden">Absenden</button>
         </div>
     </form>
     </div>`;
         return htmlObj;
 
     }
-
 
 }
 export default new Form();

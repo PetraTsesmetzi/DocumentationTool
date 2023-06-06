@@ -1,7 +1,10 @@
 class NavHeader{
     #parentElement=document.querySelector('.nav-links');
 
-
+    /**
+     * initialisiert das markup(hängt die htmlObjekte in die Container)
+     * und setzt ein eventlLister für das makieren der links in blau
+     */
     render(){
         const markup=this.#generateMarkup();
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
@@ -9,6 +12,11 @@ class NavHeader{
 
 
     }
+
+    /**
+     * html object für links in nav-header
+     * @returns {string}
+     */
     #generateMarkup() {
 
         return `<li class="nav-header-links"><span id="javascript">JAVASCRIPT</span></li>
@@ -18,6 +26,11 @@ class NavHeader{
                 <li class="nav-header-links"><span id="how">HOW TO</span></li>`;
 
     }
+
+    /**
+     * setzt den span auf aktiv(färbt blau)
+     * @param e
+     */
     setActiveClassOnNav(e){
         this.#removeAttributeActiveOnLink();
         if(e.target.tagName==='SPAN'){
@@ -26,6 +39,9 @@ class NavHeader{
 
     }
 
+    /**
+     * entfernt die css klasse aktiv auf span , spann wird wieder grau
+     */
 
     #removeAttributeActiveOnLink(){
         const allLinks=document.querySelectorAll('.nav-header-links');

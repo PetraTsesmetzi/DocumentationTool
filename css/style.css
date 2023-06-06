@@ -117,8 +117,9 @@ header {
 .btn-edit:hover {
     background-color: var(--btn-bg--dangerous-hover);
 }
-.btn-edit:active{
-    box-shadow: inset 0 0 0 1px rgba(247, 146, 83,0.7);
+
+.btn-edit:active {
+    box-shadow: inset 0 0 0 1px rgba(247, 146, 83, 0.7);
 }
 
 .btn-insert {
@@ -131,8 +132,9 @@ header {
     background-color: var(--btn-bg-light-hover);
 
 }
-.btn-insert:active{
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+
+.btn-insert:active {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
 #nav-header > ul {
@@ -146,35 +148,39 @@ header {
     /*border: 2px solid crimson;*/
 
 }
-.settings-container{
+
+.settings-container {
     position: relative;
-    width:10%;
-    display:flex;
+    width: 10%;
+    display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
 
 }
 
-.settings{
+.settings {
 
 }
-.themes{
-    color:var(--font-color-light);
+
+.themes {
+    color: var(--font-color-light);
     background-color: var(--nav-header-bg);
-    position:absolute;
+    position: absolute;
     font-size: 14px;
-    padding:15px;
-    top:35px;
-    width:100%;
+    padding: 15px;
+    top: 35px;
+    width: 100%;
     border-radius: 10px;
     /*border:1px solid #999999;*/
     display: none;
 }
-.themes li{
+
+.themes li {
     list-style: none;
     line-height: 20px;
     text-align: center;
 }
+
 #nav-header > ul > li {
     list-style: none;
     margin-left: 20px;
@@ -190,7 +196,6 @@ header {
     display: flex;
     align-items: center;
 }
-
 
 
 /*######################---CONTENT SECTION---########################################*/
@@ -255,13 +260,12 @@ header {
 }
 
 
-
 .active {
     background-color: var(--nav-left-bg-active);
     color: var(--font-color-light);
 }
 
-a:link,a:visited {
+a:link, a:visited {
     color: var(--font-color-dark);
     text-decoration: none;
 }
@@ -292,7 +296,7 @@ a:link,a:visited {
     margin: 60px 0 20px 0;
 }
 
-.content-container > article  h2 {
+.content-container > article h2 {
     font-size: 20px;
     color: var(--font-color-dark);
 }
@@ -342,16 +346,18 @@ pre[class*=language-] {
 .btn-delete:hover {
     background-color: var(--btn-bg--dangerous-hover);
 }
-.btn-delete:active{
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+
+.btn-delete:active {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
 .btn-update:hover {
     background-color: var(--btn-bg-light-hover);
 }
-.btn-update:active{
 
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+.btn-update:active {
+
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
 /*######################---FORMULAR SECTION---########################################*/
@@ -361,39 +367,47 @@ pre[class*=language-] {
     width: 800px;
     margin: 0 auto;
     padding: 0;
-    color: var( --font-color-form);
+    color: var(--font-color-form);
 
 }
-.form-container textarea, .form-container input{
+
+.form-container textarea, .form-container input, .form-container option, .form-container select {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 18px;
-    color: var( --font-color-form);
+    color: var(--font-color-form);
 }
 
 .form-container input:focus,
 .form-container select:focus,
-.form-container textarea:focus
-{
+.form-container textarea:focus {
     outline: none;
     border: 1px solid var(--border-dark);
 }
+
 .form-container > h1 {
-    font-size:28px;
-    padding:0;
-    margin-bottom:30px;
+    font-size: 28px;
+    padding: 0;
+    margin-bottom: 30px;
 
 }
+
 /* Inputs*/
-.input-container{
-    display:flex;
+.input-container {
+    display: flex;
 
 }
+
 .inputFields {
-    height:70px;
-    width:300px;
+    height: 70px;
+    width: 300px;
     /*border: 1px solid var(--btn-bg--dangerous-hover);*/
-
+    /*display:flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*border:1px solid red;*/
 }
+
+
 
 .form-container div > label {
     margin-bottom: 10px;
@@ -408,19 +422,29 @@ pre[class*=language-] {
     padding: 3px;
 
 }
-.form-container div > input[type=text]{
+
+
+.overlayHeadings{
     width: 220px;
     text-align: left;
 }
-.form-container select{
-    width: 90px;
-    text-align: right;
+.overlayNumbers{
+    width: 50px;
+    text-align: left;
 }
-
-/*.form-container div:nth-child(odd) > input {*/
-/*    text-align: right;*/
-/*}*/
-
+.overlayContainer{
+    width:250px;
+    border:2px solid green;
+    text-align: left;
+}
+.errorMessage{
+    width: auto;
+    height:20px;
+    line-height: 20px;
+    font-size: 12px;
+    border: 1px solid red;
+    color:crimson;
+}
 /*nunber Inputs ohne Pfeile*/
 /* Chrome, Safari, Edge, Opera */
 .form-container div:nth-child(odd) > input::-webkit-outer-spin-button,
@@ -428,92 +452,105 @@ pre[class*=language-] {
     -webkit-appearance: none;
     margin: 0;
 }
+
 /* Firefox */
 .form-container div:nth-child(odd) > input[type=number] {
     -moz-appearance: textfield;
 }
 
 /*Select Felder*/
-.form-container select{
+.form-container select {
     text-align: right;
 }
 
 /*Textareas*/
 
-.addTextAreaFields{
+.addTextAreaFields {
     border: 2px solid green;
 }
+
 .textAreaFields .textAreaFieldsDescription,
-.addTextAreaFields .addedDescription{
-    height:120px;
+.addTextAreaFields .addedDescription {
+    height: 120px;
     /*border: 2px solid green;*/
 }
+
 .textAreaFields .textAreaFieldsCode,
-.addTextAreaFields .addedCode
-{
-    height:160px;
+.addTextAreaFields .addedCode {
+    height: 160px;
     /*border: 2px solid crimson;*/
 }
+
 .form-container div > textarea {
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 5px;
     resize: none;
-    width:100%;
-    height:70px;
+    width: 100%;
+    height: 70px;
 }
-.form-container div > .description{
-    height:70px;
+
+.form-container div > .description {
+    height: 70px;
 }
-.form-container div > .code{
-    height:110px;
+
+.form-container div > .code {
+    height: 110px;
 }
-.addTextAreaFields .label-container{
-    display:flex;
+
+.addTextAreaFields .label-container {
+    display: flex;
     justify-content: space-between;
 }
+
 .label-container label::first-letter {
-    text-transform:capitalize;
+    text-transform: capitalize;
 }
+
 /*Buttons*/
-.addTextAreas{
-    height:60px;
+.addTextAreas {
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     /*border: 1px solid var(--btn-bg--dangerous-hover);*/
 }
 
-.btn-form-container{
-    height:50px;
-    display:flex;
+.btn-form-container {
+    height: 50px;
+    display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top:20px;
+    margin-top: 20px;
     /*border: 1px solid var(--btn-bg--dangerous-hover);*/
 }
-.form-container .btn-add,.form-container .btn-remove{
-    border:none;
-    border-radius: 5px;
-    width:48%;
-    padding:12px 0;
-    font-weight:600;
-    font-size:16px;
-    color:var(--btn-fc-dark);
-    background-color: var(--btn-bg-light);
-    cursor:pointer;
-}
-.form-container .btn-add:hover{
-    background-color: var( --btn-bg-light-hover);
-}
-.form-container .btn-add:active{
 
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+.form-container .btn-add, .form-container .btn-remove {
+    border: none;
+    border-radius: 5px;
+    width: 48%;
+    padding: 12px 0;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--btn-fc-dark);
+    background-color: var(--btn-bg-light);
+    cursor: pointer;
 }
-.form-container .btn-add:focus{
+
+.form-container .btn-add:hover {
+    background-color: var(--btn-bg-light-hover);
+}
+
+.form-container .btn-add:active {
+
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.form-container .btn-add:focus {
     outline: none;
     /*box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7);*/
 }
+/*submit and reset*/
 
 .btn-form {
     padding: 7px 20px;
@@ -524,50 +561,66 @@ pre[class*=language-] {
     font-size: 14px;
     cursor: pointer;
     border: none;
-    margin-right:15px;
+    margin-right: 15px;
 }
-.btn-reset{
+
+
+
+.btn-reset {
     background-color: var(--btn-bg-light);
-    color:var(--btn-fc-dark)
+    color: var(--btn-fc-dark);
+    border: none;
 }
-.btn-reset:hover{
+
+.btn-reset:hover {
     background-color: var(--btn-bg-light-hover);
 
 }
-.btn-reset:active{
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+
+.btn-reset:active {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
+
 .form-container .btn-reset:focus,
-.form-container .btn-send:focus{
+.form-container .btn-send:focus {
     outline: none;
     /*box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7);*/
 }
-.btn-send{
-    background-color:var(--btn-bg--dangerous);
-    color:var(--btn-fc-dangerous);
+
+
+
+.btn-send {
+
+    background-color: var(--btn-bg--dangerous);
+    color: var(--btn-fc-dangerous);
 }
 
-.btn-send:hover{
-    background-color:var(--btn-bg--dangerous-hover);
+
+.btn-send:hover {
+    background-color: var(--btn-bg--dangerous-hover);
+
 }
-.btn-send:active{
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+
+.btn-send:active {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
-footer{
-    position:fixed;
-    bottom:0px;
-    left:300px;
-    right:20px;
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 300px;
+    right: 20px;
     /*width: 900px;*/
-    height:60px;
-    border:2px solid crimson;
+    height: 60px;
+    border: 2px solid crimson;
     background-color: #fff;
-    z-index:100;
+    z-index: 100;
 }
-#console-error{
 
-    margin:0 auto;
-    width:1000px;
-    height:50px;
+#console-error {
+
+    margin: 0 auto;
+    width: 1000px;
+    height: 50px;
 
 }

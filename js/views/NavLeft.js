@@ -3,7 +3,10 @@ class NavLeft {
     #parentElement = document.querySelector('#nav-left');
     #id;
 
-
+    /**
+     * initialisiert das markup(hängt die htmlObjekte in die Container)
+     * und setzt ein eventlLister für das makieren der links in blau
+     */
     render() {
         const markup = this.#generateMarkup();
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
@@ -12,6 +15,10 @@ class NavLeft {
 
     }
 
+    /**
+     * html object für links in nav-left
+     * @returns {string}
+     */
     #generateMarkup() {
 
         return `<section>
@@ -26,6 +33,10 @@ class NavLeft {
 
     }
 
+    /**
+     * setzt den span auf aktiv(färbt blau)
+     * @param e
+     */
     #setActiveClassOnNav(e) {
         this.#removeAttributeActiveOnLink();
         if (e.target.tagName === 'A') {
@@ -35,13 +46,22 @@ class NavLeft {
 
     }
 
-    //publischer subscriber pattern- eventlister gehrören in die View,
-    //damit man die funktion des listeners im controller noch aufrufen kann wir diese als parameter übergeben
+  /****************
+   publischer subscriber pattern- eventlister gehrören in die View,
+   damit man die funktion des listeners im controller noch aufrufen kann wird diese als parameter übergeben********/
+
+    /**
+     * evetnhandler für die links in nav-left. hier wird allerdings auf veränderung in der url gehorcht
+     * @param handler
+     */
     addHandlerRender(handler) {
         window.addEventListener('hashchange', handler);
         window.addEventListener('load', handler);
     }
 
+    /**
+     * entfernt sytles an den links
+     */
     #removeAttributeActiveOnLink() {
         const allLinks = document.querySelectorAll('.nav-left-links');
         allLinks.forEach((element) => {

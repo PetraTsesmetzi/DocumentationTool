@@ -20,6 +20,11 @@ class Code
         }
     }
 
+    /**
+     * liest alle codeText aus der db
+     * @param Article|null $article
+     * @return array|null
+     */
     public function getAllAsObjects(Article $article = null): array|null
     {
         try {
@@ -48,28 +53,24 @@ class Code
 
         return $codeArr;
     }
+
+    /**
+     * gibt alle privaten attribute der klasse als json string zurück
+     * @return string
+     */
     public function getJSONEncode(): string
     {
         return json_encode(get_object_vars($this));
     }
 
-    public function getObjectById(int $id)
-    {
 
-    }
-
-
-    public function updateObject()
-    {
-
-    }
-
-    public function delete($id)
-    {
-
-    }
-
-    public function createNewObject($article_Id,$codeArr)
+    /**
+     * itireiert durch das codeArr und erstellt für jeden eintrag einen eintrag in die DB
+     * @param $article_Id
+     * @param $codeArr
+     * @return void
+     */
+    public function createNewObject($article_Id,$codeArr):void
     {
         foreach ($codeArr as $code) {
             try{
@@ -86,5 +87,21 @@ class Code
                 throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
             }
         }
+    }
+
+    public function getObjectById(int $id)
+    {
+
+    }
+
+
+    public function updateObject()
+    {
+
+    }
+
+    public function delete($id)
+    {
+
     }
 }

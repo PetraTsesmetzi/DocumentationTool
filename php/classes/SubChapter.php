@@ -11,6 +11,7 @@ class SubChapter
 
     private array $articleArr;
 
+
     /**
      * @param int|null $id
      * @param int|null $subchapterNumber
@@ -26,6 +27,10 @@ class SubChapter
         }
     }
 
+    /**
+     * liest alle subchapters aus der DB
+     * @return array
+     */
     public function getAllSubChapters(): array
     {
         try {
@@ -43,6 +48,13 @@ class SubChapter
         return $subChapters;
     }
 
+
+    /**
+     * liest das subchapter nach der id raus
+     * und befüllt das articleArray
+     * @param int $id
+     * @return string
+     */
     public function getObjectById(int $id): string
 //    public function getObjectById(int $id): SubChapter
     {
@@ -62,26 +74,98 @@ class SubChapter
         return $subChapter->getJSONEncode();
     }
 
+    /**
+     * gibt alle privaten attribute der klasse als json string zurück
+     * @return string
+     */
     public function getJSONEncode(): string
     {
         return json_encode(get_object_vars($this));
     }
 
-
-    public function updateObject()
+    /**
+     * liest alle subchapter aus der Datenbank raus
+     * @return array
+     */
+    public function getAllAsObjects(int $id=null): array
     {
+        try {
+            if(!isset($id)){
+
+                $dbh = DB::connect();
+                $sql = "SELECT * FROM subChapter";
+                $result = $dbh->query($sql);
+                $subChapterArr = [];
+                while ($subChapter = $result->fetchObject(__CLASS__)) {
+                    $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
+                    $subChapterArr[] = $subChapter->getJSONEncode();
+                }
+
+
+            }else{
+
+                $dbh = DB::connect();
+                $sql = "SELECT * FROM subChapter WHERE id=:id";
+                $stmt = $dbh->prepare($sql);
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                $stmt->execute();
+                while ($subChapter = $stmt->fetchObject(__CLASS__)) {
+                    $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
+                    $subChapterArr[] = $subChapter->getJSONEncode();
+                }
+
+            }
+
+
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+        }
+        return $subChapterArr;
+    }
+
+    /**
+     * liest subchapter nach id aus der datenbank raus
+     * @param $subChapterTitel
+     * @return int
+     */
+    public function getSubChapterId($subChapterTitel):int{
+        try {
+            echo $subChapterTitel;
+            $dbh = DB::connect();
+            $sql = "SELECT id FROM subChapter WHERE subchapterName=:subchapterName";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':subchapterName', $subChapterTitel, PDO::PARAM_STR);
+            $stmt->execute();
+            $subChapterId = $stmt->fetchObject(__CLASS__);
+
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+        }
+        return $subChapterId->id;
 
     }
 
-    public function delete(int $id)
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
-
+        return $this->id;
     }
 
+
+
+    /**
+     * erstellt ein subchapter objekt
+     * @param int $subchapterNumber
+     * @param string $subchapterName
+     * @param int $chapter_Id
+     * @return int
+     */
     public function createNewObject(int $subchapterNumber, string $subchapterName, int $chapter_Id): int
     {
         try {
-            $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+            $dbh=DB::connect();
 //            $dbh = DB::connect();
             $sql = "INSERT INTO subchapter(subchapterNumber,chapter_Id,subchapterName) VALUES(:subchapterNumber,:chapter_Id,:subchapterName)";
             $stmt = $dbh->prepare($sql);
@@ -97,30 +181,15 @@ class SubChapter
         return $lastId;
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+
+
+    public function updateObject()
     {
-        return $this->id;
+
     }
 
-
-    public function getAllAsObjects(): array
+    public function delete(int $id)
     {
-        try {
-            $dbh = DB::connect();
-            $sql = "SELECT * FROM subChapter";
-            $result = $dbh->query($sql);
-            $subChapterArr = [];
-            while ($subChapter = $result->fetchObject(__CLASS__)) {
-                $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
-                $subChapterArr[] = $subChapter->getJSONEncode();
-            }
 
-        } catch (PDOException $e) {
-            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
-        }
-        return $subChapterArr;
     }
 }

@@ -6,7 +6,10 @@ class EditMode {
     #editmode=false;
 
 
-
+    /**
+     * initialisiert das markup(hängt die htmlObjekte in die Container)
+     * @param edit
+     */
     render(edit) {
         //flag
         this.#editmode=edit;
@@ -28,28 +31,50 @@ class EditMode {
 
     }
     //-------------Eventhandlers Bearbeiten,Einfügen, Löschen und Ändern------------------------
+    /**
+     * eventhandler für den bearbeiten button
+     * @param handler
+     */
     addHandlerRenderEdit(handler){
         const editBtn=document.querySelector('.btn-edit');
         editBtn.addEventListener('click',handler);
     }
 
+    /**
+     * evetnhandler für den einfüge button
+     * @param handler
+     */
     addHandlerRenderLoadForm(handler){
         const insertButton=document.querySelector('.button-container-right');
         insertButton.addEventListener('click',handler.bind(this));
     }
+
+    /**
+     * eventhandler für löschen button an jedem artikel
+     * @param handler
+     */
     addHandlerRenderDeleteArt(handler){
-        console.log(this.#parentElement);
+
         for (let i = 0; i <this.#parentElement.length; i++) {
             this.#parentElement[i].children[0].addEventListener('click',handler.bind(this));
         }
     }
+
+    /**
+     * eventhandler für ändern button an jedem artikel
+     * @param handler
+     */
     addHandlerRenderUpdateArt(handler){
-        console.log(this.#parentElement);
+
         for (let i = 0; i <this.#parentElement.length; i++) {
             this.#parentElement[i].children[1].addEventListener('click',handler.bind(this));
         }
     }
 
+    /**
+     * löscht den Inhalt aus den containern
+     * @param i
+     */
     #clear(i=null){
         if(i!=null){
             this.#parentElement[i].innerHTML='';
@@ -58,13 +83,20 @@ class EditMode {
         }
     }
 
-
+    /**
+     * html Objekt für löschen und ändern buttons
+     * @returns {string}
+     */
     #generateMarkupDelEd() {
         return ` <button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-delete">Löschen</button>
                  <button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-update">Ändern</button>`;
 
     }
 
+    /**
+     * html Objekt für einfüge button
+     * @returns {string}
+     */
     #generateMarkupInsert() {
         return `<button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-insert">Einfügen</button>`;
     }

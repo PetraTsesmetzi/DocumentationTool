@@ -4,6 +4,10 @@ class ArticleView {
     #subchapterName;
     #subcapterArticles;
 
+    /**
+     * initialisiert markup
+     * @param data
+     */
     render(data) {
         this.#subchapterName=data.subchapterName;
         this.#subcapterArticles=data.articlesArr;
@@ -12,10 +16,17 @@ class ArticleView {
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
     }
 
+    /**
+     * loscht inhalt des containers
+     */
     #clear(){
         this.#parentElement.innerHTML='';
     }
 
+    /**
+     * erstellt das htmlObject für alle Artikel
+     * @returns {string}
+     */
     #generateMarkup() {
         let htmlObj = `<h1>${ this.#subchapterName}</h1>`;
         for (const key in this.#subcapterArticles) {

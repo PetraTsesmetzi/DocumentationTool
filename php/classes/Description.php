@@ -23,7 +23,11 @@ class Description
         }
     }
 
-
+    /**
+     * liest alle beschreibungsblöcke aus der datenbank raus
+     * @param Article|null $article
+     * @return array|null
+     */
     public function getAllAsObjects(Article $article = null): array|null
     {
 
@@ -53,26 +57,23 @@ class Description
         }
         return $descriptionArr;
     }
+
+    /**
+     * gibt alle privaten attribute der klasse als json string zurück
+     * @return string
+     */
     public function getJSONEncode(): string
     {
         return json_encode(get_object_vars($this));
     }
 
-    public function getObjectById(int $id)
-    {
 
-    }
-
-    public function updateObject()
-    {
-
-    }
-
-    public function delete($id)
-    {
-
-    }
-
+    /**
+     * erstellt anhand des descritptionsarray die einträge in der datenbank
+     * @param $article_Id
+     * @param $descriptionsArr
+     * @return void
+     */
     public function createNewObject($article_Id,$descriptionsArr): void
     {
 
@@ -91,6 +92,21 @@ class Description
                 throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
             }
         }
+
+    }
+
+    public function getObjectById(int $id)
+    {
+
+    }
+
+    public function updateObject()
+    {
+
+    }
+
+    public function delete($id)
+    {
 
     }
 

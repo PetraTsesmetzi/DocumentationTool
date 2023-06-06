@@ -2,11 +2,16 @@
 
 class Article
 {
+
     private int $id;
-    private int $articleNumber;
-    private string $articleName;
+    private  int $articleNumber;
+
+    private  string $articleName;
+
+
     private array $descriptionArr;
     private array $codeArr;
+
 
     /**
      * @param int|null $id
@@ -20,12 +25,17 @@ class Article
             $this->articleNumber = $articleNumber;
             $this->articleName = $articleName;
         }
+
     }
 
+    /**
+     * gibt alle artikel anhan des supchapterid zurück
+     * @param Subchapter|null $subchapter
+     * @return array
+     */
 
     public function getAllAsObjects(Subchapter $subchapter=null): array
     {
-
 
         try {
             $dbh = DB::connect();
@@ -52,6 +62,98 @@ class Article
         return $articleArr;
     }
 
+
+    /**
+     * gibt alle privaten attribute der klasse als json string zurück
+     * @return string
+     */
+    public function getJSONEncode(): string
+    {
+
+        return json_encode(get_object_vars($this));
+    }
+
+
+    /**
+     * löscht artikel und deren Inhalt anhand der id
+     * @param int $id
+     * @return void
+     * @throws Exception
+     */
+    public function deleteArticle(int $id)
+    {
+
+        try {
+            $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+            $sql = "DELETE from article WHERE id=:id";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $dbh = null;
+        } catch (PDOException $e) {
+            throw new Exception($e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getCode() . ' ' . $e->getLine());
+        }
+    }
+
+    /**
+     * erstellt ein neuen artikel in die db
+     * @param int $subchapterId
+     * @param string $articleName
+     * @param int|null $articleNumber
+     * @return int
+     */
+    public function createNewObject( int $subchapterId , string $articleName, ?int $articleNumber=null): int
+    {
+        if($articleNumber===null)$articleNumber=$this->getLastId()+1;
+       echo  $this->getLastId();
+//        if($articleNumber==null)$articleNumber= self::$lastArticleNumber;
+        try {
+            $dbh=DB::connect();
+//            echo $articleName;
+            $sql = "INSERT INTO article(articleNumber,subchapter_Id,articleName) VALUES(:articleNumber,:subchapter_Id,:articleName)";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':articleNumber', $articleNumber, PDO::PARAM_STR);
+            $stmt->bindParam(':subchapter_Id', $subchapterId, PDO::PARAM_STR);
+            $stmt->bindParam(':articleName', $articleName, PDO::PARAM_STR);
+            $stmt->execute();
+            $lastId = $dbh->lastInsertId();
+            $dbh = null;
+
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
+        }
+        return $lastId;
+    }
+
+    /**
+     * holt sich die letzt vergebene id...notwendig????
+     * @return int
+     */
+    private function getLastId():int{
+        try{
+            $dbh=DB::connect();
+            $sql = "SELECT MAX(id) FROM article";
+            $result = $dbh->query($sql);
+            $lastId=$result->fetchColumn();
+        }catch(PDOException $e){
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+        }
+        return $lastId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function updateObject()
+    {
+
+    }
+
     public function getObjectById(int $id): string
 //    public function getObjectById(int $id): Article
     {
@@ -76,49 +178,5 @@ class Article
 
 
 
-
-
-    public function getJSONEncode(): string
-    {
-        return json_encode(get_object_vars($this));
-    }
-
-
-    public function updateObject()
-    {
-
-    }
-
-    public function delete(int $id)
-    {
-        //todo: wenn du löscht sammelst du die glöschten aricleNumbers in einem Ararry
-    }
-
-    public function createNewObject(int $articleNumber, int $subchapterId , string $articleName): int
-    {
-        try {
-            $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
-//            echo $articleName;
-            $sql = "INSERT INTO article(articleNumber,subchapter_Id,articleName) VALUES(:articleNumber,:subchapter_Id,:articleName)";
-            $stmt = $dbh->prepare($sql);
-            $stmt->bindParam(':articleNumber', $articleNumber, PDO::PARAM_STR);
-            $stmt->bindParam(':subchapter_Id', $subchapterId, PDO::PARAM_STR);
-            $stmt->bindParam(':articleName', $articleName, PDO::PARAM_STR);
-            $stmt->execute();
-            $lastId = $dbh->lastInsertId();
-            $dbh = null;
-        } catch (PDOException $e) {
-            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
-        }
-        return $lastId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
 
 }

@@ -9,16 +9,11 @@ include './classes/Code.php';
 
 
 $action = $_POST['action'];
-
+//$action='loadArticleNumbers';
 switch ($action) {
     case 'loadElements':
-//        $subchapterById = (new Subchapter())->getObjectById(1);
-//        echo json_encode($subchapterById);
         $subchapters = (new Subchapter())->getAllAsObjects();
         echo json_encode($subchapters);
-//        echo "<pre>";
-//        print_r($subchapters);
-//        echo "</pre>"; ;
         break;
     case 'loadArticles':
         $articleId = $_POST['id'] ?? '';
@@ -27,19 +22,24 @@ switch ($action) {
         break;
     case 'createArticle':
         $subChapterTitel = $_POST['subChapterTitel'];
-        $subChapterNr = $_POST['subChapterNr'];
         $articleTitel = $_POST['articleTitel'];
         $articleNr = $_POST['articleNr'];
         $descriptionsArr = json_decode($_POST['descriptionsArr']);
         $codeArr = json_decode($_POST['codeArr']);
-        echo "<pre>";
-        print_r($codeArr);
-        echo "</pre>";
-
-        $articleId=(new Article())->createNewObject($articleNr,1,$articleTitel);
+        $subChapterId=(new SubChapter())->getSubChapterId($subChapterTitel);
+        $articleId=(new Article())->createNewObject($subChapterId,$articleTitel,$articleNr);
         (new Description())->createNewObject($articleId,$descriptionsArr);
         (new Code())->createNewObject($articleId,$codeArr);
-
+        break;
+    case 'deleteArticle':
+        $id = $_POST['id'];
+        (new Article())->deleteArticle($id);
+        break;
+    case 'loadArticleNumbers':
+        $id = (int)$_POST['id'];
+        $subchapters = (new Subchapter())->getAllAsObjects($id);
+        echo json_encode($subchapters);
+        break;
 
 }
 
