@@ -12,7 +12,7 @@ class Form{
      */
     render(state){
         this.#clear();
-        const markup=this.#generateMarkup(state);
+        const markup=this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
         this.#addTextAreaFields=document.querySelector('.addTextAreaFields');
         this.#addHandlerRender();
@@ -38,13 +38,17 @@ class Form{
         const deleteBtns=document.querySelector('.addTextAreaFields');
         deleteBtns.addEventListener('click',this.#deleteAddedElements.bind(this));
 
+
+
+    }
+
+    addHandlerRenderArticleNumbers(handler){
         const selectField= document.querySelector('#subChapterTitels');
         // selectField.addEventListener('change',function(e){
         //     console.log(e.target.options.selectedIndex);
         // })
         ///hier anpassen
-        selectField.addEventListener('change',loadArticleNumbers.bind(this));
-
+        selectField.addEventListener('change',handler.bind(this));
     }
 
     /**
@@ -118,9 +122,9 @@ class Form{
      * @param state
      * @returns {string}
      */
-    #generateMarkup(state) {
+    #generateMarkup(form) {
         console.log('in form')
-        console.log(state)
+        console.log(form)
         let htmlObj = `<div class="form-container">
         <h1>Elemente hinzufügen</h1>
         <form action="#" method="post" id="createNewObjects">
@@ -160,8 +164,8 @@ class Form{
                 <label for="articleNr">Artikelnr.</label>
                 <select id="articleNr" name="articleNr">`;
 
-                for (let i = state.deletedArticles.length-1; i >=0 ; i--) {
-                    htmlObj+=`<option class="overlayNumbers" value=${state.deletedArticles[i]}>${state.deletedArticles[i]}</option>`;
+                for (let i = form.deletedArticles.length-1; i >=0 ; i--) {
+                    htmlObj+=`<option class="overlayNumbers" value=${form.deletedArticles[i]}>${form.deletedArticles[i]}</option>`;
                 }
 
               htmlObj+=`
@@ -178,12 +182,10 @@ class Form{
 <!--                </datalist>-->
              <label for="subChapterTitel">Unterkapitel</label>
              <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
-                for (let i = 0; i < state.subchapters.length; i++) {
+                for (let i = 0; i < form.subchapters.length; i++) {
 
-                    console.log('in form')
-                    console.log(state.subchapters[i]);
-                    htmlObj+=`<option class="overlayContainer" selected=`; (state.id==i+1)?'selected':'';
-                        htmlObj+=`>${state.subchapters[i].subchapterName}</option>`;
+
+                    htmlObj+=`<option class="overlayContainer"  ${(form.subchapterId-1) === i ? 'selected' : ''} >${form.subchapters[i].subchapterName}</option>`;
                 }
 
         htmlObj+=`</select></div></div>

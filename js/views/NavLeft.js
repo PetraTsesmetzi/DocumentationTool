@@ -7,11 +7,15 @@ class NavLeft {
      * initialisiert das markup(hängt die htmlObjekte in die Container)
      * und setzt ein eventlLister für das makieren der links in blau
      */
-    render() {
-        const markup = this.#generateMarkup();
-        this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-        this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
+    render(start) {
+        if(start==='init'){
+            const markup = this.#generateMarkup();
+            this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+            const startLink=document.querySelector('#startLink');
+            this.#setActiveClassOnNav(startLink,start);
+        }
 
+        this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
 
     }
 
@@ -24,10 +28,9 @@ class NavLeft {
         return `<section>
                 <h1 data-titel="1">Javascript Fundamentals Part 1</h1>
                      <ul> 
-                            <li  class="nav-left-links" data-articleid="1"><span class="nav-span " id="white"><a href="#1">Values und Variables</a></span></li>
-                            <li  class="nav-left-links" data-articleid="2"><span class="nav-span "><a href="#2">Basic Operators Mathoperators</a></span></li>
-                            <li  class="nav-left-links" data-articleid="3"><span class="nav-span "><a href="#3">String und Template literals</a></span></li>
- 
+                            <li  class="nav-left-links" data-articleid="1"><span id="startLink" class="nav-span"><a href="#1">Values und Variables</a></span></li>
+                            <li  class="nav-left-links" data-articleid="2"><span class="nav-span"><a href="#2">Basic Operators Mathoperators</a></span></li>
+                            <li  class="nav-left-links" data-articleid="3"><span class="nav-span"><a href="#3">String und Template literals</a></span></li>
                      </ul>
                 </section>`;
 
@@ -37,11 +40,17 @@ class NavLeft {
      * setzt den span auf aktiv(färbt blau)
      * @param e
      */
-    #setActiveClassOnNav(e) {
+    #setActiveClassOnNav(e,start) {
         this.#removeAttributeActiveOnLink();
-        if (e.target.tagName === 'A') {
-            e.target.style.color = 'white';
-            e.target.parentElement.classList.add('active');
+
+        if(start==='init'){
+            e.children[0].style.color = 'white';
+            e.classList.add('active');
+        }else{
+            if (e.target.tagName === 'A') {
+                e.target.style.color = 'white';
+                e.target.parentElement.classList.add('active');
+            }
         }
 
     }

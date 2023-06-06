@@ -43,7 +43,7 @@ class Article
                 $sql = "SELECT * FROM article";
                 $result = $dbh->query($sql);
             }else{
-                $sql = "SELECT * FROM article WHERE subchapter_Id=:subchapter_Id";
+                $sql = "SELECT * FROM article WHERE subchapter_Id=:subchapter_Id ORDER BY articleNumber";
                 $stmt = $dbh->prepare($sql);
                 $id = $subchapter->getId();
                 $stmt->bindParam('subchapter_Id', $id);
@@ -105,7 +105,7 @@ class Article
     public function createNewObject( int $subchapterId , string $articleName, ?int $articleNumber=null): int
     {
         if($articleNumber===null)$articleNumber=$this->getLastId()+1;
-       echo  $this->getLastId();
+
 //        if($articleNumber==null)$articleNumber= self::$lastArticleNumber;
         try {
             $dbh=DB::connect();

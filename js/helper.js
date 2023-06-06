@@ -37,21 +37,26 @@ export const getJSONObj=async function(formData){
  * @returns {*[]}
  */
 export const findFreeArticleNumbers=function(arr){
-    console.log('find')
-    arr = arr.sort(function (a, b) {  return a - b;  });
-    console.log(arr);
+    // console.log(arr)
+    arr = arr.sort(function (a, b) {  return a - b;});
+
     let count=0;
     let freeArticleNumbers=[]
     for (let i = 1; i <arr[arr.length-1] ; i++) {
         if(arr[count]===i) {
             count++;
         }else{
-
             freeArticleNumbers.push(i);
         }
     }
     // console.log(freeArticleNumbers);
-    freeArticleNumbers.length? freeArticleNumbers.push(Math.max(...freeArticleNumbers)+2):freeArticleNumbers.push();
+
+    if(arr.length===0){
+        freeArticleNumbers.push(1);
+    }else{
+        freeArticleNumbers.push(Math.max(...arr)+1);
+    }
+
     console.log(freeArticleNumbers);
     return freeArticleNumbers;
 }

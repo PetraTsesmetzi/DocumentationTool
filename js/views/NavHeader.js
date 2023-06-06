@@ -5,10 +5,20 @@ class NavHeader{
      * initialisiert das markup(hängt die htmlObjekte in die Container)
      * und setzt ein eventlLister für das makieren der links in blau
      */
-    render(){
-        const markup=this.#generateMarkup();
-        this.#parentElement.insertAdjacentHTML('afterbegin',markup);
-        this.#parentElement.addEventListener('click',this.setActiveClassOnNav.bind(this));
+    render(start){
+        if(start==='init'){
+            const markup = this.#generateMarkup();
+            this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+            const startLink=document.querySelector('.startLink');
+
+            this.#setActiveClassOnNav(startLink,start);
+        }
+        this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
+
+
+        // const markup=this.#generateMarkup();
+        // this.#parentElement.insertAdjacentHTML('afterbegin',markup);
+        // this.#parentElement.addEventListener('click',this.setActiveClassOnNav.bind(this));
 
 
     }
@@ -19,7 +29,7 @@ class NavHeader{
      */
     #generateMarkup() {
 
-        return `<li class="nav-header-links"><span id="javascript">JAVASCRIPT</span></li>
+        return `<li class="nav-header-links"><span class="startLink" id="javascript">JAVASCRIPT</span></li>
                 <li class="nav-header-links"><span id="php">PHP</span></li>
                 <li class="nav-header-links"><span id="mysql">MSQL</span></li>
                 <li class="nav-header-links"><span id="html">HTML/CSS</span></li>
@@ -31,11 +41,26 @@ class NavHeader{
      * setzt den span auf aktiv(färbt blau)
      * @param e
      */
-    setActiveClassOnNav(e){
+    #setActiveClassOnNav(e,start){
+
         this.#removeAttributeActiveOnLink();
-        if(e.target.tagName==='SPAN'){
-            e.target.classList.add('active');
+
+        if(start==='init'){
+            e.style.color = 'white';
+            e.classList.add('active');
+        }else{
+            if(e.target.tagName==='SPAN'){
+                e.target.classList.add('active');
+            }
         }
+
+
+
+
+        // this.#removeAttributeActiveOnLink();
+        // if(e.target.tagName==='SPAN'){
+        //     e.target.classList.add('active');
+        // }
 
     }
 

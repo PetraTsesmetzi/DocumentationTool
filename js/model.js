@@ -2,58 +2,18 @@ import {findFreeArticleNumbers, getJSONObj} from './helper.js';
 
 export const state = {
     subchapter: {},
-    subchapters:[],
-    articles:[],
-    deletedArticles:[],
-    id:''
-}
-export const loadElements = async () => {
-    try {
-
-        let formData = new FormData();
-        formData.append('action', 'loadElements');
-        // console.log('model sendet');
-        let data = await getJSONObj(formData);
-        // console.log(JSON.parse(data[0]).articleArr);
-        state.subchapters=[];
-        for (let i = 0; i <data.length; i++) {
-            let subchapters=JSON.parse(data[i]);
-            state.subchapters[i]=subchapters;
-        }
-        state.deletedArticles=[];
-        state.articles=[];
-        let formDataArticles = new FormData();
-        // console.log(id)
-        formDataArticles.append('action', 'loadArticleNumbers');
-        formDataArticles.append('id', '1');
-        // console.log('model sendet');
-        let dataArr = await getJSONObj(formDataArticles);
-        console.log(JSON.parse(dataArr));
-        for (let i = 0; i <dataArr.length; i++) {
-            let subchapters=JSON.parse(dataArr[i]);
-            for (let j = 0; j <subchapters.articleArr.length ; j++) {
-
-                state.articles[j]=JSON.parse(subchapters.articleArr[j]);
-                // console.log(state.articles[j]);
-                let articleArr=JSON.parse(subchapters.articleArr[j]);
-                //console.log(articleArr.articleNumber);
-                state.deletedArticles[j]=articleArr.articleNumber;
-            }
-        }
-        //console.log(state.deletedArticles)
-        state.deletedArticles=findFreeArticleNumbers(state.deletedArticles);
-
-
-    } catch (e) {
-        console.log(e.name);
-        console.log(e.message);
-        console.log(e.lineNumber);
-        document.getElementById("console-error").innerHTML = e.message;
+    form:{
+        subchapters:[],
+        deletedArticles:[],
+        articles:[],
+        subchapterId:''
     }
 }
 // export const loadElements = async () => {
 //     try {
-//
+//         state.form.subchapters=[];
+//         state.form.deletedArticles=[];
+//         state.form.articles=[];
 //         let formData = new FormData();
 //         formData.append('action', 'loadElements');
 //         // console.log('model sendet');
@@ -62,20 +22,34 @@ export const loadElements = async () => {
 //
 //         for (let i = 0; i <data.length; i++) {
 //             let subchapters=JSON.parse(data[i]);
-//             state.subchapters[i]=subchapters;
+//             state.form.subchapters[i]=subchapters;
+//         }
 //
-//             // console.log(subchapters.articleArr.length)
+//
+//
+//
+//         let formDataArticles = new FormData();
+//         formDataArticles.append('action', 'loadArticleNumbers');
+//         formDataArticles.append('id', '1');
+//         let dataArr = await getJSONObj(formDataArticles);
+//
+//
+//
+//         for (let i = 0; i <dataArr.length; i++) {
+//             let subchapters=JSON.parse(dataArr[i]);
 //             for (let j = 0; j <subchapters.articleArr.length ; j++) {
-//                 state.articles[j]=JSON.parse(subchapters.articleArr[j]);
+//
+//                 state.form.articles[j]=JSON.parse(subchapters.articleArr[j]);
+//                 // console.log(state.articles[j]);
 //                 let articleArr=JSON.parse(subchapters.articleArr[j]);
-//
-//                 state.deletedArticles[j]=articleArr.articleNumber;
-//
+//                 //console.log(articleArr.articleNumber);
+//                 state.form.deletedArticles[j]=articleArr.articleNumber;
 //             }
 //         }
-//         // state.deletedArticles=findFreeArticleNumbers(state.deletedArticles);
-//         // console.log(state.subchapters[0])
-//         // console.log(state.deletedArticles);
+//         //console.log(state.deletedArticles)
+//         state.form.deletedArticles=findFreeArticleNumbers(state.form.deletedArticles);
+//
+//
 //     } catch (e) {
 //         console.log(e.name);
 //         console.log(e.message);
@@ -83,33 +57,43 @@ export const loadElements = async () => {
 //         document.getElementById("console-error").innerHTML = e.message;
 //     }
 // }
-export const loadArticleNumbersFromSub=async (id)=>{
+
+export const loadVariablesForForm=async (id)=>{
+
     try {
-        console.log('+++++++++++'+id);
+        state.form.subchapters=[];
+        state.form.deletedArticles=[];
+        state.form.articles=[];
+
+        //alle subchapters
         let formData = new FormData();
         formData.append('action', 'loadElements');
-        // console.log('model sendet');
         let data = await getJSONObj(formData);
-        // console.log(JSON.parse(data[0]).articleArr);
-        state.subchapters=[];
-        state.id=id;
-        console.log('fsdfsdfsdfs'+state.id);
+
         for (let i = 0; i <data.length; i++) {
             let subchapters=JSON.parse(data[i]);
-            state.subchapters[i]=subchapters;
+            state.form.subchapters[i]=subchapters;
+        }
+        // console.log(state.form.subchapters);
+
+
+
+
+        //Fallunterscheidung beim starten des docutools und beim klicken eines Unterkapittels im formular
+        let formDataArr = new FormData();
+        formDataArr.append('action', 'loadArticleNumbers');
+        if(id!==undefined){
+            console.log('beim klicken auf unterkapitel'+id);
+            console.log('id ist nicht null'+id);
+            formDataArr.append('id', id);
+            state.form.subchapterId=id;
+        }else{
+
+            formDataArr.append('id', '1');
         }
 
-        let formDataArr = new FormData();
-        // console.log(id)
-        formDataArr.append('action', 'loadArticleNumbers');
-        formDataArr.append('id', id);
+        let dataArr = await getJSONObj(formDataArr);
 
-            let dataArr = await getJSONObj(formDataArr);
-            // console.log(JSON.parse(data));
-           // console.log(JSON.parse(data[0]).articleArr);
-
-            state.deletedArticles=[];
-            state.articles=[];
             for (let i = 0; i <dataArr.length; i++) {
                 let subchapters=JSON.parse(dataArr[i]);
                 //state.subchapters[i]=subchapters;
@@ -117,16 +101,17 @@ export const loadArticleNumbersFromSub=async (id)=>{
                  // console.log(subchapters)
                 for (let j = 0; j <subchapters.articleArr.length ; j++) {
 
-                    state.articles[j]=JSON.parse(subchapters.articleArr[j]);
+                    state.form.articles[j]=JSON.parse(subchapters.articleArr[j]);
                     // console.log(state.articles[j]);
                     let articleArr=JSON.parse(subchapters.articleArr[j]);
                     //console.log(articleArr.articleNumber);
-                    state.deletedArticles[j]=articleArr.articleNumber;
+                    state.form.deletedArticles[j]=articleArr.articleNumber;
 
                 }
             }
-            //console.log(state.deletedArticles)
-            state.deletedArticles=findFreeArticleNumbers(state.deletedArticles);
+
+        state.form.deletedArticles=findFreeArticleNumbers(state.form.deletedArticles);
+
 
     } catch (e) {
         console.log(e.name);
@@ -136,44 +121,6 @@ export const loadArticleNumbersFromSub=async (id)=>{
     }
 }
 
-// export const loadArticleNumbersFromSub=async (id)=>{
-//     try {
-//         let formData = new FormData();
-//         // console.log(id)
-//         formData.append('action', 'loadArticleNumbers');
-//         formData.append('id', id);
-//         // console.log('model sendet');
-//         let data = await getJSONObj(formData);
-//         // console.log(JSON.parse(data));
-//         // console.log(JSON.parse(data[0]).articleArr);
-//         state.subchapters=[];
-//         state.deletedArticles=[];
-//         state.articles=[];
-//         for (let i = 0; i <data.length; i++) {
-//             let subchapters=JSON.parse(data[i]);
-//             state.subchapters[i]=subchapters;
-//
-//             // console.log(subchapters)
-//             for (let j = 0; j <subchapters.articleArr.length ; j++) {
-//
-//                 state.articles[j]=JSON.parse(subchapters.articleArr[j]);
-//                 // console.log(state.articles[j]);
-//                 let articleArr=JSON.parse(subchapters.articleArr[j]);
-//                 //console.log(articleArr.articleNumber);
-//                 state.deletedArticles[j]=articleArr.articleNumber;
-//
-//             }
-//         }
-//         //console.log(state.deletedArticles)
-//         state.deletedArticles=findFreeArticleNumbers(state.deletedArticles);
-//
-//     } catch (e) {
-//         console.log(e.name);
-//         console.log(e.message);
-//         console.log(e.lineNumber);
-//         document.getElementById("console-error").innerHTML = e.message;
-//     }
-// }
 export const loadArticle = async (id) => {
     try {
 
@@ -237,8 +184,9 @@ export const loadArticle = async (id) => {
 export const createArticle = async (submitEvent) => {
     try {
 
-        const formular = submitEvent.target;
-        let formData = new FormData(formular);
+        const form = submitEvent.target;
+        console.log(form);
+        let formData = new FormData(form);
         const descriptionsArr = [];
         const codeArr = [];
         for (const keys of formData.entries()) {

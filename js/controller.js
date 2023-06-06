@@ -5,25 +5,20 @@ import editMode from "./views/EditMode.js";
 import form from "./views/Form.js";
 
 import * as model from './model.js';
-import {loadArticle, loadArticleNumbersFromSub, loadElements} from "./model.js";
+import {loadArticle, loadVariablesForForm} from "./model.js";
 
 
 let editButtons="";
 let insertButton="";
 let editModeFlag=false;
 
-/**
- * navigationleisten einbinden
- */
-navLeft.render();
-navHeader.render();
 
 /**
  * lädt alle elemente für input, selectfelder des formulars
  * @returns {Promise<void>}
  */
 const loadAllElementsForInputs=async function(){
-    await model.loadElements();
+    await model.loadVariablesForForm();
 }
 
 /**
@@ -60,9 +55,10 @@ const loadEditMode=function(){
  */
 const loadForm= function(e){
 
-    console.log(model.state.deletedArticles)
+    // console.log(model.state)
     form.render(model.state);
     form.addHandlerRenderSend(createArticles);
+    form.addHandlerRenderArticleNumbers(loadArticleNumbers);
 }
 
 /**
@@ -71,7 +67,7 @@ const loadForm= function(e){
  * @returns {Promise<void>}
  */
 const createArticles=async function(submitEvent){
-    submitEvent.preventDefault();
+    // submitEvent.preventDefault();
     console.log(submitEvent.target);
     await model.createArticle(submitEvent);
 }
@@ -110,12 +106,11 @@ const loadArticlesById=async function(id){
     articleView.render(model.state.subchapter);
     initializePrismScript();
 }
+
 export const loadArticleNumbers=async function(e){
-    console.log(e);
-    console.log('loadArticleNumbers')
     console.log(e.target.options.selectedIndex);
     const id=(e.target.options.selectedIndex)+1;
-    await model.loadArticleNumbersFromSub(id);
+    await model.loadVariablesForForm(id);
     loadForm();
 }
 
@@ -135,7 +130,13 @@ const initializePrismScript=function(){
  * startet alles
  */
 const init= function() {
-     loadAllElementsForInputs();
+    /**
+     * navigationleisten einbinden
+     */
+    navLeft.render('init');
+    navHeader.render('init');
+
+    loadAllElementsForInputs();
     navLeft.addHandlerRender(loadArticles);
     editMode.addHandlerRenderEdit(loadEditMode);
 
