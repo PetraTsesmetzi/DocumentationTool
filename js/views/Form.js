@@ -11,11 +11,18 @@ class Form{
       * @param state
      */
     render(state){
+        console.log('in form')
+        console.log(state.form.articleName)
         this.#clear();
         const markup=this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
         this.#addTextAreaFields=document.querySelector('.addTextAreaFields');
         this.#addHandlerRender();
+        if(state.form.articleName) {
+            console.log('hello')
+            document.getElementById('articleTitel').value=state.form.articleName;
+            document.getElementsByClassName('errorMessage')[0].classList.add('show');
+        }
 
     }
     #clear(){
@@ -123,8 +130,7 @@ class Form{
      * @returns {string}
      */
     #generateMarkup(form) {
-        console.log('in form')
-        console.log(form)
+
         let htmlObj = `<div class="form-container">
         <h1>Elemente hinzufügen</h1>
         <form action="#" method="post" id="createNewObjects">
@@ -154,12 +160,13 @@ class Form{
             
                 <div class="inputFields">
                 <label for="articleTitel">Artikel</label>
-                <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" autocomplete="off">
+                <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" autocomplete="off" required>
 <!--                <datalist id="articleTitels">-->
 <!--                    <option value="Values">-->
 <!--                    <option value="Variables">-->
 <!--                </datalist>-->
             </div>
+           
             <div class="inputFields">
                 <label for="articleNr">Artikelnr.</label>
                 <select id="articleNr" name="articleNr">`;
@@ -185,19 +192,19 @@ class Form{
                 for (let i = 0; i < form.subchapters.length; i++) {
 
 
-                    htmlObj+=`<option class="overlayContainer"  ${(form.subchapterId-1) === i ? 'selected' : ''} >${form.subchapters[i].subchapterName}</option>`;
+                    htmlObj+=`<option class="overlayContainer" value="${form.subchapters[i].subchapterName}"  ${(form.subchapterId-1) === i ? 'selected' : ''} >${form.subchapters[i].subchapterName}</option>`;
                 }
 
         htmlObj+=`</select></div></div>
-     
+      <div class="errorMessage">Artikel ist schon vergeben, wähle einen anderen Bezeichner</div>
         <div class="textAreaFields">
             <div class="textAreaFieldsDescription">
                 <label for="description">Beschreibung</label>
-                <textarea id="description_0" name="description_0" data-elementOrder="0" class="description"></textarea>
+                <textarea id="description_0" name="description_0" data-elementOrder="0" class="description" required></textarea>
             </div>
             <div class="textAreaFieldsCode">
                 <label for="code">Code</label>
-                <textarea id="code_0"  name="codeblock_1" data-elementOrder="1" class="code"></textarea>
+                <textarea id="code_0"  name="codeblock_1" data-elementOrder="1" class="code" required></textarea>
             </div>
         </div>
         <div class="addTextAreaFields">`;

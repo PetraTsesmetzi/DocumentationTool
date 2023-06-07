@@ -59,6 +59,7 @@ class Article
         } catch (PDOException $e) {
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().$e->getLine());
         }
+
         return $articleArr;
     }
 
@@ -109,7 +110,6 @@ class Article
 //        if($articleNumber==null)$articleNumber= self::$lastArticleNumber;
         try {
             $dbh=DB::connect();
-//            echo $articleName;
             $sql = "INSERT INTO article(articleNumber,subchapter_Id,articleName) VALUES(:articleNumber,:subchapter_Id,:articleName)";
             $stmt = $dbh->prepare($sql);
             $stmt->bindParam(':articleNumber', $articleNumber, PDO::PARAM_STR);

@@ -438,13 +438,19 @@ pre[class*=language-] {
     text-align: left;
 }
 .errorMessage{
+
     width: auto;
-    height:20px;
+    height:30px;
     line-height: 20px;
     font-size: 12px;
-    border: 1px solid red;
     color:crimson;
+    opacity: 0;
+    transition: opacity 3s;
 }
+.show {
+    opacity: 1;
+}
+
 /*nunber Inputs ohne Pfeile*/
 /* Chrome, Safari, Edge, Opera */
 .form-container div:nth-child(odd) > input::-webkit-outer-spin-button,

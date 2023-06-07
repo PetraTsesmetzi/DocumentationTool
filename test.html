@@ -4,11 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type='module' src="./js/test.js"></script>
+    <style>
+        .errorMessage{
+
+            width: auto;
+            height:30px;
+            line-height: 20px;
+            font-size: 12px;
+            color:crimson;
+            opacity: 0;
+            transition: opacity 3s;
+        }
+        .show {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
 <article>
 <div>testhtml</div>
 
+    <div class="errorMessage">help</div>
+    <button id="fadebutton">fade</button>
 </article>
 </body>
 </html>

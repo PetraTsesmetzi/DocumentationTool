@@ -130,7 +130,7 @@ class SubChapter
      */
     public function getSubChapterId($subChapterTitel):int{
         try {
-            echo $subChapterTitel;
+//            echo $subChapterTitel;
             $dbh = DB::connect();
             $sql = "SELECT id FROM subChapter WHERE subchapterName=:subchapterName";
             $stmt = $dbh->prepare($sql);

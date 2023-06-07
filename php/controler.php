@@ -11,11 +11,15 @@ include './classes/Code.php';
 $action = $_POST['action'];
 //$action='loadArticleNumbers';
 switch ($action) {
+    case 'loadArticles':
+        $articles=(new Article())->getAllAsObjects();
+        echo json_encode($articles);
+        break;
     case 'loadElements':
         $subchapters = (new Subchapter())->getAllAsObjects();
         echo json_encode($subchapters);
         break;
-    case 'loadArticles':
+    case 'loadArticlesById':
         $articleId = $_POST['id'] ?? '';
         $subchapterById = (new Subchapter())->getObjectById($articleId);
         echo json_encode($subchapterById);
@@ -30,6 +34,7 @@ switch ($action) {
         $articleId=(new Article())->createNewObject($subChapterId,$articleTitel,$articleNr);
         (new Description())->createNewObject($articleId,$descriptionsArr);
         (new Code())->createNewObject($articleId,$codeArr);
+        echo json_encode('neuer artikel wurde erstellt');;
         break;
     case 'deleteArticle':
         $id = $_POST['id'];

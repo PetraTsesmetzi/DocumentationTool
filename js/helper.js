@@ -39,7 +39,7 @@ export const getJSONObj=async function(formData){
 export const findFreeArticleNumbers=function(arr){
     // console.log(arr)
     arr = arr.sort(function (a, b) {  return a - b;});
-
+    console.log(arr);
     let count=0;
     let freeArticleNumbers=[]
     for (let i = 1; i <arr[arr.length-1] ; i++) {
@@ -59,4 +59,19 @@ export const findFreeArticleNumbers=function(arr){
 
     console.log(freeArticleNumbers);
     return freeArticleNumbers;
+}
+
+export const ifNotExistsElements =(action,args,searchStr)=>{
+    if(action==='checkArtikels'){
+        console.log('hello im check')
+        console.log(args);
+        let checkArticles=args.find((arg)=>arg.articleName===searchStr);
+        console.log(checkArticles)
+        return checkArticles === undefined ? true : false;
+    }else if(action==='checkSubchapter'){
+        console.log(args);
+        let checkSubchapter=args.find((arg)=>arg.subchapterName===searchStr);
+        return checkSubchapter === undefined ? true : false;
+    }
+
 }

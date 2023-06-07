@@ -5,7 +5,7 @@ import editMode from "./views/EditMode.js";
 import form from "./views/Form.js";
 
 import * as model from './model.js';
-import {loadArticle, loadVariablesForForm} from "./model.js";
+import {loadArticle, loadVariablesForForm, validateForm} from "./model.js";
 
 
 let editButtons="";
@@ -67,9 +67,15 @@ const loadForm= function(e){
  * @returns {Promise<void>}
  */
 const createArticles=async function(submitEvent){
-    // submitEvent.preventDefault();
+    submitEvent.preventDefault();
     console.log(submitEvent.target);
+    let valide=await model.validateForm();
+    if(!valide){
+        console.log('ladt form')
+        form.render(model.state);
+    }
     await model.createArticle(submitEvent);
+
 }
 
 /**
