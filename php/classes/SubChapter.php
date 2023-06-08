@@ -59,6 +59,7 @@ class SubChapter
 //    public function getObjectById(int $id): SubChapter
     {
         try {
+
             $dbh = DB::connect();
             $sql = "SELECT * FROM subChapter WHERE id=:id";
             $stmt = $dbh->prepare($sql);

@@ -46,6 +46,23 @@ export const loadArticles=async()=>{
     return articles;
 }
 
+export const loadArticleById=async(id)=>{
+
+    //const article={};
+    let formData = new FormData();
+
+    formData.append('action', 'loadArticleById');
+    formData.append('id',id);
+    let article = await getJSONObj(formData);
+    // for (let i = 0; i < data.length; i++) {
+    //     let article=JSON.parse(data[i]);
+    //     articles[i]=article;
+    // }
+    console.log(article);
+    return article;
+}
+
+
 /**
  * zuordnung unterkapitel zu gelöschten artikeln
  * @param id
@@ -99,18 +116,17 @@ export const loadVariablesForForm=async (id)=>{
  * @param id
  * @returns {Promise<void>}
  */
-export const loadArticle = async (id) => {
+export const loadSubchapter = async (id) => {
     try {
         console.log('loadarticles in model')
         // erstelle ein formdata object
         let formData = new FormData();
-        formData.append('action', 'loadArticlesById');
+        formData.append('action', 'loadSubchapterById');
         formData.append('id', id);
         console.log(formData)
         //hole JSONObj aus DB über helper-methode
         let dataRaw = await getJSONObj(formData);
         let data=JSON.parse(dataRaw);
-        console.log(data)
         //dataObject wird geparsed
         const articlesArr = data.articleArr;
 
@@ -212,6 +228,9 @@ export const deleteArticle = async (id) => {
 
 export const updateArticle = async (id) => {
     try {
+
+        let article=loadArticleById(id);
+        // console.log(subchapter);
 
     } catch (e) {
         errorMessage(e);

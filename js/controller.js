@@ -5,7 +5,7 @@ import editMode from "./views/EditMode.js";
 import form from "./views/Form.js";
 
 import * as model from './model.js';
-import {loadArticle, loadVariablesForForm, validateForm} from "./model.js";
+import { loadVariablesForForm, validateForm} from "./model.js";
 
 
 let editButtons="";
@@ -38,7 +38,7 @@ const loadArticles = async function () {
         model.state.form.subchapterId=id;
     }
 
-    await model.loadArticle(id);
+    await model.loadSubchapter(id);
     articleView.render(model.state.subchapter);
     initializePrismScript();
     await model.loadVariablesForForm(model.state.form.subchapterId);
@@ -58,7 +58,7 @@ const loadEditMode=function(){
     model.state.editModeFlag=(model.state.editModeFlag === true) ? false : true;
     if(!model.state.editModeFlag){
         console.log(model.state.form.subchapterId)
-        loadArticlesById(model.state.form.subchapterId)
+        loadSubchapterById(model.state.form.subchapterId)
         // loadArticles();
     }
     editMode.render(model.state.editModeFlag);
@@ -105,7 +105,7 @@ const createArticles=async function(submitEvent){
         let formdata=new FormData(submitEvent.target);
         await model.createArticle(submitEvent);
         console.log(model.state.form.subchapterId)
-        await loadArticlesById(model.state.form.subchapterId);
+        await loadSubchapterById(model.state.form.subchapterId);
         await model.loadVariablesForForm(model.state.form.subchapterId);
         console.log(model.state)
         refreshEditMode();
@@ -126,7 +126,7 @@ const deleteArticles=async function(e){
     await model.deleteArticle(id);
     console.log(model.state.form.subchapterId);
     await model.loadVariablesForForm(model.state.form.subchapterId);
-    await loadArticlesById(model.state.form.subchapterId);
+    await loadSubchapterById(model.state.form.subchapterId);
     refreshEditMode();
 }
 
@@ -146,10 +146,10 @@ const updateArticles=async function(e){
  * @param id
  * @returns {Promise<void>}
  */
-const loadArticlesById=async function(id){
+const loadSubchapterById=async function(id){
     console.log(model.state)
     console.log('loadArticlesById')
-    await model.loadArticle(id);
+    await model.loadSubchapter(id);
 
     articleView.render(model.state.subchapter);
     editMode.render(model.state.editModeFlag)

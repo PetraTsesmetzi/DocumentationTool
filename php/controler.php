@@ -15,11 +15,16 @@ switch ($action) {
         $articles=(new Article())->getAllAsObjects();
         echo json_encode($articles);
         break;
+    case'loadArticleById':
+        $articleId = $_POST['id'] ?? '';
+        $article=(new Article())->getObjectById($articleId);
+        echo json_encode($article);
+        break;
     case 'loadElements':
         $subchapters = (new Subchapter())->getAllAsObjects();
         echo json_encode($subchapters);
         break;
-    case 'loadArticlesById':
+    case 'loadSubchapterById':
         $articleId = $_POST['id'] ?? '';
         $subchapterById = (new Subchapter())->getObjectById($articleId);
         echo json_encode($subchapterById);
