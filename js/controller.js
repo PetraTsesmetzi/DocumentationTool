@@ -41,8 +41,9 @@ const loadArticles = async function () {
     await model.loadArticle(id);
     articleView.render(model.state.subchapter);
     initializePrismScript();
-    // await model.loadVariablesForForm(model.state.form.subchapterId);
+    await model.loadVariablesForForm(model.state.form.subchapterId);
     if(model.state.editModeFlag===true)loadEditMode();
+
 
 }
 
