@@ -14,10 +14,10 @@ class NavLeft {
             const startLink=document.querySelector('#startLink');
             this.#setActiveClassOnNav(startLink,start);
         }
-
         this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
 
     }
+
 
     /**
      * html object für links in nav-left
@@ -28,14 +28,33 @@ class NavLeft {
         return `<section>
                 <h1 data-titel="1">Javascript Fundamentals Part 1</h1>
                      <ul> 
-                            <li  class="nav-left-links" data-articleid="1"><span id="startLink" class="nav-span"><a href="#1">Values und Variables</a></span></li>
-                            <li  class="nav-left-links" data-articleid="2"><span class="nav-span"><a href="#2">Basic Operators Mathoperators</a></span></li>
-                            <li  class="nav-left-links" data-articleid="3"><span class="nav-span"><a href="#3">String und Template literals</a></span></li>
-                     </ul>
+                            <li  class="nav-left-links" data-articleid="1"><span id="startLink" class="nav-span"><a data-linkid="1" class='nav-link' href="#1">Values und Variables</a></span></li>
+                            <li  class="nav-left-links" data-articleid="2"><span class="nav-span"><a data-linkid="2" class='nav-link' href="#2">Basic Operators Mathoperators</a></span></li>
+                            <li  class="nav-left-links" data-articleid="3"><span class="nav-span"><a data-linkid="3" class='nav-link' href="#3">String und Template literals</a></span></li>
+                     </ul3
                 </section>`;
 
     }
+    setActiveClass(id){
 
+        const links=document.getElementsByClassName('nav-link');
+
+        this.#removeAttributeActiveOnLink();
+        for (let i = 0; i <links.length; i++) {
+
+
+            console.log(id)
+            console.log(i+1)
+            if(id==i+1) {
+                console.log();
+
+                links[i].style.color = 'white';
+                links[i].parentElement.classList.add('active');
+            }
+
+
+        }
+    }
     /**
      * setzt den span auf aktiv(färbt blau)
      * @param e

@@ -34,11 +34,12 @@ switch ($action) {
         $articleId=(new Article())->createNewObject($subChapterId,$articleTitel,$articleNr);
         (new Description())->createNewObject($articleId,$descriptionsArr);
         (new Code())->createNewObject($articleId,$codeArr);
-        echo json_encode('neuer artikel wurde erstellt');;
+        echo json_encode('neuer artikel wurde erstellt');
         break;
     case 'deleteArticle':
         $id = $_POST['id'];
         (new Article())->deleteArticle($id);
+        echo json_encode('neuer artikel wurde erstellt');
         break;
     case 'loadArticleNumbers':
         $id = (int)$_POST['id'];

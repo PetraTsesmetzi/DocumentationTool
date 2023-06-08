@@ -11,19 +11,12 @@ class Form{
       * @param state
      */
     render(state){
-        console.log('in form')
-        console.log(state.form.articleName)
+
         this.#clear();
         const markup=this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
         this.#addTextAreaFields=document.querySelector('.addTextAreaFields');
         this.#addHandlerRender();
-        if(state.form.articleName) {
-            console.log('hello')
-            document.getElementById('articleTitel').value=state.form.articleName;
-            document.getElementsByClassName('errorMessage')[0].classList.add('show');
-        }
-
     }
     #clear(){
         this.#parentElement.innerHTML='';
@@ -44,8 +37,6 @@ class Form{
 
         const deleteBtns=document.querySelector('.addTextAreaFields');
         deleteBtns.addEventListener('click',this.#deleteAddedElements.bind(this));
-
-
 
     }
 
@@ -224,12 +215,19 @@ class Form{
 <!--            <button type="reset" class="btn-form btn-reset">Zurücksetzen</button>-->
              <button type="reset" class="btn-form btn-reset"  value="Zurücksetzen">Zurücksetzen</button>
             <button type="submit" class="btn-form btn-send"  value="Absenden">Absenden</button>
+         
         </div>
     </form>
     </div>`;
         return htmlObj;
 
     }
+    activateErrorMessage(){
 
+            console.log('hello')
+            // document.getElementById('articleTitel').value=state.form.articleName;
+            document.getElementsByClassName('errorMessage')[0].classList.add('show');
+
+    }
 }
 export default new Form();

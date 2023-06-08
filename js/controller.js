@@ -18,6 +18,7 @@ let editModeFlag=false;
  * @returns {Promise<void>}
  */
 const loadAllElementsForInputs=async function(){
+    console.log('loadAllElementsForInputs')
     await model.loadVariablesForForm();
 }
 
@@ -26,24 +27,49 @@ const loadAllElementsForInputs=async function(){
  * @param e
  * @returns {Promise<void>}
  */
-const loadArticles = async function (e) {
+const loadArticles = async function () {
+    console.log('loadArticles')
     let id=window.location.hash.slice(1);
-    if(!id) id=1;
-    // console.log(id)
+    model.state.form.subchapterId=id;
+    console.log('id')
+    console.log(id);
+    if(!id) {
+        id = 1;
+        model.state.form.subchapterId=id;
+    }
+
     await model.loadArticle(id);
     articleView.render(model.state.subchapter);
     initializePrismScript();
-    if(editModeFlag===true)loadEditMode();
+    // await model.loadVariablesForForm(model.state.form.subchapterId);
+    if(model.state.editModeFlag===true)loadEditMode();
+
 }
 
 /**
  * lädt den bearbeitungsmodus
  */
 const loadEditMode=function(){
+    console.log('loadEditMode')
+    console.log(model.state)
+    console.log(model.state.editModeFlag)
     //toggled den bearbeiten button
-    editModeFlag=(editModeFlag === true) ? false : true;
-    if(!editModeFlag)loadArticles();
-    editMode.render(editModeFlag);
+    model.state.editModeFlag=(model.state.editModeFlag === true) ? false : true;
+    if(!model.state.editModeFlag){
+        console.log(model.state.form.subchapterId)
+        loadArticlesById(model.state.form.subchapterId)
+        // loadArticles();
+    }
+    editMode.render(model.state.editModeFlag);
+    editMode.addHandlerRenderLoadForm(loadForm);
+    editMode.addHandlerRenderDeleteArt(deleteArticles);
+    editMode.addHandlerRenderUpdateArt(updateArticles);
+    console.log(model.state)
+    console.log(model.state.editModeFlag)
+
+}
+const refreshEditMode=function(){
+    editMode.render(model.state.editModeFlag);
     editMode.addHandlerRenderLoadForm(loadForm);
     editMode.addHandlerRenderDeleteArt(deleteArticles);
     editMode.addHandlerRenderUpdateArt(updateArticles);
@@ -53,9 +79,8 @@ const loadEditMode=function(){
  * lädt das Formular
  * @param e
  */
-const loadForm= function(e){
-
-    // console.log(model.state)
+const loadForm= async function(e){
+    console.log('loadForm')
     form.render(model.state);
     form.addHandlerRenderSend(createArticles);
     form.addHandlerRenderArticleNumbers(loadArticleNumbers);
@@ -67,14 +92,25 @@ const loadForm= function(e){
  * @returns {Promise<void>}
  */
 const createArticles=async function(submitEvent){
+    console.log('createArticles')
     submitEvent.preventDefault();
-    console.log(submitEvent.target);
     let valide=await model.validateForm();
+    console.log(valide)
     if(!valide){
-        console.log('ladt form')
-        form.render(model.state);
+        console.log('solnage nicht valide render the form')
+        form.activateErrorMessage();
     }
-    await model.createArticle(submitEvent);
+    if(valide){
+        let formdata=new FormData(submitEvent.target);
+        await model.createArticle(submitEvent);
+        console.log(model.state.form.subchapterId)
+        await loadArticlesById(model.state.form.subchapterId);
+        await model.loadVariablesForForm(model.state.form.subchapterId);
+        console.log(model.state)
+        refreshEditMode();
+    }
+
+
 
 }
 
@@ -84,10 +120,13 @@ const createArticles=async function(submitEvent){
  * @returns {Promise<void>}
  */
 const deleteArticles=async function(e){
-   // console.log(e.target.parentElement.parentElement);
+    console.log('deleteArticles')
     let id=e.target.parentElement.parentElement.dataset.articleid;
-   await model.deleteArticle(id);
-   await loadArticlesById(3);
+    await model.deleteArticle(id);
+    console.log(model.state.form.subchapterId);
+    await model.loadVariablesForForm(model.state.form.subchapterId);
+    await loadArticlesById(model.state.form.subchapterId);
+    refreshEditMode();
 }
 
 /**
@@ -96,7 +135,7 @@ const deleteArticles=async function(e){
  * @returns {Promise<void>}
  */
 const updateArticles=async function(e){
-    //console.log(e.target.parentElement.parentElement);
+    console.log('updateArticles')
     let id=e.target.parentElement.parentElement.dataset.articleid;
     await model.updateArticle(id);
 }
@@ -107,17 +146,22 @@ const updateArticles=async function(e){
  * @returns {Promise<void>}
  */
 const loadArticlesById=async function(id){
-    console.log(id)
+    console.log(model.state)
+    console.log('loadArticlesById')
     await model.loadArticle(id);
+
     articleView.render(model.state.subchapter);
+    editMode.render(model.state.editModeFlag)
     initializePrismScript();
 }
 
 export const loadArticleNumbers=async function(e){
-    console.log(e.target.options.selectedIndex);
+    console.log('loadArticleNumbers')
     const id=(e.target.options.selectedIndex)+1;
     await model.loadVariablesForForm(id);
+    navLeft.setActiveClass(model.state.form.subchapterId);
     loadForm();
+
 }
 
 /**
@@ -136,6 +180,7 @@ const initializePrismScript=function(){
  * startet alles
  */
 const init= function() {
+    console.log('init')
     /**
      * navigationleisten einbinden
      */
