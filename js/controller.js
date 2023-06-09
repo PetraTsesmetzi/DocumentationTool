@@ -5,12 +5,10 @@ import editMode from "./views/EditMode.js";
 import form from "./views/Form.js";
 
 import * as model from './model.js';
-import { loadVariablesForForm, validateForm} from "./model.js";
+import {loadVariablesForForm, state, validateForm} from "./model.js";
 
 
-let editButtons="";
-let insertButton="";
-let editModeFlag=false;
+
 
 
 /**
@@ -18,8 +16,8 @@ let editModeFlag=false;
  * @returns {Promise<void>}
  */
 const loadAllElementsForInputs=async function(){
-    console.log('loadAllElementsForInputs')
-    await model.loadVariablesForForm();
+    console.log('###################### loadAllElementsForInputs')
+    await model.loadVariablesForForm('create');
 }
 
 /**
@@ -28,20 +26,17 @@ const loadAllElementsForInputs=async function(){
  * @returns {Promise<void>}
  */
 const loadArticles = async function () {
-    console.log('loadArticles')
+    console.log('####################### loadArticles')
     let id=window.location.hash.slice(1);
     model.state.form.subchapterId=id;
-    console.log('id')
-    console.log(id);
     if(!id) {
         id = 1;
         model.state.form.subchapterId=id;
     }
-
     await model.loadSubchapter(id);
     articleView.render(model.state.subchapter);
     initializePrismScript();
-    await model.loadVariablesForForm(model.state.form.subchapterId);
+    await model.loadVariablesForForm(model.state.form.subchapterId,'create');
     if(model.state.editModeFlag===true)loadEditMode();
 
 
@@ -51,37 +46,35 @@ const loadArticles = async function () {
  * lädt den bearbeitungsmodus
  */
 const loadEditMode=function(){
-    console.log('loadEditMode')
-    console.log(model.state)
-    console.log(model.state.editModeFlag)
-    //toggled den bearbeiten button
+    console.log('#################### loadEditMode')
+
+    //toggled den bearbeiten button zwischen forumlar und anzeige des subchapters mit seinen artikeln
     model.state.editModeFlag=(model.state.editModeFlag === true) ? false : true;
     if(!model.state.editModeFlag){
-        console.log(model.state.form.subchapterId)
-        loadSubchapterById(model.state.form.subchapterId)
-        // loadArticles();
+
+        loadSubchapterById(model.state.form.subchapterId);
     }
+
+
+    // refreshEditMode();
     editMode.render(model.state.editModeFlag);
-    editMode.addHandlerRenderLoadForm(loadForm);
-    editMode.addHandlerRenderDeleteArt(deleteArticles);
-    editMode.addHandlerRenderUpdateArt(updateArticles);
-    console.log(model.state)
-    console.log(model.state.editModeFlag)
 
 }
 const refreshEditMode=function(){
     editMode.render(model.state.editModeFlag);
-    editMode.addHandlerRenderLoadForm(loadForm);
-    editMode.addHandlerRenderDeleteArt(deleteArticles);
-    editMode.addHandlerRenderUpdateArt(updateArticles);
 }
 
 /**
  * lädt das Formular
  * @param e
  */
-const loadForm= async function(e){
-    console.log('loadForm')
+ export const loadForm= async function(e){
+    console.log('############################ loadForm');
+    console.log('delet event lister');
+    // editMode.removeHandlerLoadForm(loadForm);
+    //hier vom insert button
+    console.log('stöst das rendern des form s an');
+    await model.loadVariablesForForm(state.form.subchapterId,'create');
     form.render(model.state);
     form.addHandlerRenderSend(createArticles);
     form.addHandlerRenderArticleNumbers(loadArticleNumbers);
@@ -93,22 +86,20 @@ const loadForm= async function(e){
  * @returns {Promise<void>}
  */
 const createArticles=async function(submitEvent){
-    console.log('createArticles')
+    console.log('############################## createArticles')
     submitEvent.preventDefault();
     let valide=await model.validateForm();
-    console.log(valide)
+
     if(!valide){
-        console.log('solnage nicht valide render the form')
         form.activateErrorMessage();
     }
     if(valide){
-        let formdata=new FormData(submitEvent.target);
+        // let formdata=new FormData(submitEvent.target);
         await model.createArticle(submitEvent);
-        console.log(model.state.form.subchapterId)
         await loadSubchapterById(model.state.form.subchapterId);
-        await model.loadVariablesForForm(model.state.form.subchapterId);
-        console.log(model.state)
-        refreshEditMode();
+        await model.loadVariablesForForm(model.state.form.subchapterId,'create');
+        // refreshEditMode();
+        editMode.render(model.state.editModeFlag);
     }
 
 
@@ -121,13 +112,14 @@ const createArticles=async function(submitEvent){
  * @returns {Promise<void>}
  */
 const deleteArticles=async function(e){
-    console.log('deleteArticles')
+    console.log('######################## deleteArticles')
     let id=e.target.parentElement.parentElement.dataset.articleid;
     await model.deleteArticle(id);
-    console.log(model.state.form.subchapterId);
-    await model.loadVariablesForForm(model.state.form.subchapterId);
+
+    await model.loadVariablesForForm(model.state.form.subchapterId,'create');
     await loadSubchapterById(model.state.form.subchapterId);
-    refreshEditMode();
+    // refreshEditMode();
+    editMode.render(model.state.editModeFlag);
 }
 
 /**
@@ -136,9 +128,13 @@ const deleteArticles=async function(e){
  * @returns {Promise<void>}
  */
 const updateArticles=async function(e){
-    console.log('updateArticles')
+    console.log('##############################    updateArticles')
     let id=e.target.parentElement.parentElement.dataset.articleid;
     await model.updateArticle(id);
+    await model.loadVariablesForForm(id,'update');
+
+
+    await loadForm();
 }
 
 /**
@@ -147,8 +143,8 @@ const updateArticles=async function(e){
  * @returns {Promise<void>}
  */
 const loadSubchapterById=async function(id){
-    console.log(model.state)
-    console.log('loadArticlesById')
+
+    console.log('##############      loadArticlesById')
     await model.loadSubchapter(id);
 
     articleView.render(model.state.subchapter);
@@ -157,12 +153,13 @@ const loadSubchapterById=async function(id){
 }
 
 export const loadArticleNumbers=async function(e){
-    console.log('loadArticleNumbers')
+    console.log('#############     loadArticleNumbers')
     const id=(e.target.options.selectedIndex)+1;
-    await model.loadVariablesForForm(id);
+    await model.loadVariablesForForm(id,'create');
     navLeft.setActiveClass(model.state.form.subchapterId);
-    loadForm();
 
+    await loadForm();
+s
 }
 
 /**
@@ -180,17 +177,20 @@ const initializePrismScript=function(){
 /**
  * startet alles
  */
-const init= function() {
+const init=  function() {
     console.log('init')
+
     /**
      * navigationleisten einbinden
      */
     navLeft.render('init');
     navHeader.render('init');
 
-    loadAllElementsForInputs();
+     loadAllElementsForInputs();
+
     navLeft.addHandlerRender(loadArticles);
     editMode.addHandlerRenderEdit(loadEditMode);
+    editMode.addHandlerRenderLoadForm(loadForm);
 
 }
-await init();
+  init();

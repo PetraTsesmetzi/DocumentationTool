@@ -5,13 +5,16 @@ class Form{
     #addTextAreaFields="";
     #addedBlockCounter;
 
+    #formular=document.querySelector('#createNewObjects');
+    #selectField= document.querySelector('#subChapterTitels');
 
     /**
      * initialisiert das markup(hängt die htmlObjekte in die Container)
       * @param state
      */
     render(state){
-
+        console.log('inform');
+        console.log(state.form);
         this.#clear();
         const markup=this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
@@ -41,21 +44,27 @@ class Form{
     }
 
     addHandlerRenderArticleNumbers(handler){
-        const selectField= document.querySelector('#subChapterTitels');
-        // selectField.addEventListener('change',function(e){
-        //     console.log(e.target.options.selectedIndex);
-        // })
-        ///hier anpassen
-        selectField.addEventListener('change',handler.bind(this));
+        this.#selectField= document.querySelector('#subChapterTitels');
+        this.#selectField.removeEventListener('change',handler);
     }
-
+    // addHandlerRenderArticleNumbers(handler){
+    //     const selectField= document.querySelector('#subChapterTitels');
+    //     selectField.addEventListener('change',handler.bind(this));
+    // }
     /**
      * event handler für submit button vom formular
      * @param handler
      */
     addHandlerRenderSend(handler){
-        const formular=document.querySelector('#createNewObjects');
-        formular.addEventListener('submit',handler.bind(this));
+        this.#formular=document.querySelector('#createNewObjects');
+        this.#formular.addEventListener('submit',handler.bind(this));
+    }
+    // addHandlerRenderSend(handler){
+    //     const formular=document.querySelector('#createNewObjects');
+    //     formular.addEventListener('submit',handler.bind(this));
+    // }
+    removeHandlerRenderSend(handler){
+       this.#formular.removeEventListener('submit',handler);
     }
 
     /**
@@ -121,9 +130,11 @@ class Form{
      * @returns {string}
      */
     #generateMarkup(form) {
-
+        console.log(form.action)
         let htmlObj = `<div class="form-container">
-        <h1>Elemente hinzufügen</h1>
+       
+        ${form.action==='update'?'<h1>Elemente ändern</h1>': '<h1>Elemente hinzufügen</h1>'}
+
         <form action="#" method="post" id="createNewObjects">
             <div class="input-container">
 <!--            <div class="inputFields">-->

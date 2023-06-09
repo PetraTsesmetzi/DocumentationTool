@@ -1,17 +1,22 @@
 import {findFreeArticleNumbers, getJSONObj, ifNotExistsElements} from './helper.js';
 
 export const state = {
-    subchapter: {},
+    subchapter: {
+        subchapterName: '',
+        articlesArr: []
+    },
     editModeFlag:'false',
     form:{
+        action:'',
         articleName:'',
         subchapters:[],
         deletedArticles:[],
         articles:[],
+        articleElementArr: [],
         subchapterId:1
     }
 }
-console.log(state)
+
 /**
  * holt alle Subchapters als objekte aus der db
  * @returns {Promise<*[]>}
@@ -54,61 +59,7 @@ export const loadArticleById=async(id)=>{
     formData.append('action', 'loadArticleById');
     formData.append('id',id);
     let article = await getJSONObj(formData);
-    // for (let i = 0; i < data.length; i++) {
-    //     let article=JSON.parse(data[i]);
-    //     articles[i]=article;
-    // }
-    console.log(article);
-    return article;
-}
-
-
-/**
- * zuordnung unterkapitel zu gelöschten artikeln
- * @param id
- * @returns {Promise<void>}
- */
-export const loadVariablesForForm=async (id)=>{
-
-    try {
-        state.form.subchapters=[];
-        state.form.deletedArticles=[];
-        state.form.articles=[];
-        state.form.subchapters= await loadSubchapters();
-
-        //Fallunterscheidung beim starten des docutools und beim klicken eines Unterkapittels im formular
-        let formDataArr = new FormData();
-        formDataArr.append('action', 'loadArticleNumbers');
-
-        if(id!==undefined){
-            formDataArr.append('id', id);
-            state.form.subchapterId=id;
-        }else{
-            formDataArr.append('id', '1');
-        }
-
-        let dataArr = await getJSONObj(formDataArr);
-
-            for (let i = 0; i <dataArr.length; i++) {
-                let subchapters=JSON.parse(dataArr[i]);
-                //state.subchapters[i]=subchapters;
-
-                for (let j = 0; j <subchapters.articleArr.length ; j++) {
-
-                    state.form.articles[j]=JSON.parse(subchapters.articleArr[j]);
-
-                    let articleArr=JSON.parse(subchapters.articleArr[j]);
-
-                    state.form.deletedArticles[j]=articleArr.articleNumber;
-
-                }
-            }
-
-        state.form.deletedArticles=findFreeArticleNumbers(state.form.deletedArticles);
-
-    } catch (e) {
-        errorMessage(e);
-    }
+     return JSON.parse(article);
 }
 /**
  *
@@ -118,12 +69,12 @@ export const loadVariablesForForm=async (id)=>{
  */
 export const loadSubchapter = async (id) => {
     try {
-        console.log('loadarticles in model')
+        console.log('################loadsupchapter with his articles in model')
         // erstelle ein formdata object
         let formData = new FormData();
         formData.append('action', 'loadSubchapterById');
         formData.append('id', id);
-        console.log(formData)
+
         //hole JSONObj aus DB über helper-methode
         let dataRaw = await getJSONObj(formData);
         let data=JSON.parse(dataRaw);
@@ -160,19 +111,76 @@ export const loadSubchapter = async (id) => {
             articles2.push(article);
 
         }
+
         //ein subchapter wird erstellt
         state.subchapter =
             {
                 subchapterName: data.subchapterName,
                 articlesArr: articles2
             }
+
     } catch (e) {
         errorMessage(e);
     }
 }
+
+/**
+ * zuordnung unterkapitel zu gelöschten artikeln
+ * @param id
+ * @returns {Promise<void>}
+ */
+export const loadVariablesForForm=async (id,action)=>{
+    console.log('#############  loadvariables for form')
+    try {
+        if(action==='create'){
+
+        state.form.action='create';
+        state.form.subchapters=[];
+        state.form.deletedArticles=[];
+        state.form.articles=[];
+        state.form.subchapters= await loadSubchapters();
+
+        //Fallunterscheidung beim starten des docutools und beim klicken eines Unterkapittels im formular
+        let formDataArr = new FormData();
+        formDataArr.append('action', 'loadArticleNumbers');
+
+        if(id!==undefined){
+            formDataArr.append('id', id);
+            state.form.subchapterId=id;
+        }else{
+            formDataArr.append('id', '1');
+        }
+
+        let dataArr = await getJSONObj(formDataArr);
+
+            for (let i = 0; i <dataArr.length; i++) {
+                let subchapters=JSON.parse(dataArr[i]);
+                //state.subchapters[i]=subchapters;
+
+                for (let j = 0; j <subchapters.articleArr.length ; j++) {
+
+                    state.form.articles[j]=JSON.parse(subchapters.articleArr[j]);
+
+                    let articleArr=JSON.parse(subchapters.articleArr[j]);
+
+                    state.form.deletedArticles[j]=articleArr.articleNumber;
+                }
+            }
+        state.form.deletedArticles=findFreeArticleNumbers(state.form.deletedArticles);
+        }else if(action==='update'){
+            let article=await loadArticleById(id);
+            state.form.action='update';
+            state.form.articleName=article.articleName;
+            state.form.articleElementArr=sortArrayOfObjects([...article.descriptionArr, ...article.codeArr],'elementOrder');
+            state.form.subchapterId=article.subchapter_Id;
+        }
+    } catch (e) {
+        errorMessage(e);
+    }
+}
+
 export const validateForm=async () => {
     const searchStr = document.getElementById('articleTitel').value;
-
     state.form.articleName=searchStr;
     let articles= await loadArticles();
     return ifNotExistsElements('checkArtikels',articles,searchStr);
@@ -180,7 +188,6 @@ export const validateForm=async () => {
 
 export const createArticle = async (submitEvent) => {
     try {
-
         const form = submitEvent.target;
         let formData = new FormData(form);
         const descriptionsArr = [];
@@ -214,7 +221,6 @@ export const createArticle = async (submitEvent) => {
         errorMessage(e);
     }
 }
-
 export const deleteArticle = async (id) => {
     try {
         let formData = new FormData();
@@ -229,8 +235,7 @@ export const deleteArticle = async (id) => {
 export const updateArticle = async (id) => {
     try {
 
-        let article=loadArticleById(id);
-        // console.log(subchapter);
+        console.log('updateArticle');
 
     } catch (e) {
         errorMessage(e);
@@ -264,4 +269,6 @@ const errorMessage=function(e){
     console.log(e.lineNumber);
     document.getElementById("console-error").innerHTML = e.message;
 }
+
+
 

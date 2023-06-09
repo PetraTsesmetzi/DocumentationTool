@@ -1,3 +1,6 @@
+
+// import * as controller  from "../controller.js";
+
 class EditMode {
 
     #parentElement;
@@ -6,6 +9,9 @@ class EditMode {
     #editmode=false;
 
 
+    constructor() {
+        // this.#insertButton.addEventListener('click',controller.loadForm);
+    }
     /**
      * initialisiert das markup(hängt die htmlObjekte in die Container)
      * @param edit
@@ -42,14 +48,19 @@ class EditMode {
         editBtn.addEventListener('click',handler);
     }
 
+
     /**
      * evetnhandler für den einfüge button
      * @param handler
      */
+
     addHandlerRenderLoadForm(handler){
         const insertButton=document.querySelector('.button-container-right');
+        console.log('insertbutton add event')
         insertButton.addEventListener('click',handler.bind(this));
     }
+
+
 
     /**
      * eventhandler für löschen button an jedem artikel
@@ -93,6 +104,7 @@ class EditMode {
 
         return ` <button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-delete">Löschen</button>
                  <button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-update">Ändern</button>`;
+
 
     }
 
