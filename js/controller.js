@@ -1,7 +1,7 @@
 import navLeft from "./views/NavLeft.js";
 import navHeader from "./views/NavHeader.js";
 import articleView from "./views/ArticleView.js";
-import editMode from "./views/EditMode.js";
+
 import form from "./views/Form.js";
 
 import * as model from './model.js';
@@ -34,10 +34,10 @@ const loadArticles = async function () {
         model.state.form.subchapterId=id;
     }
     await model.loadSubchapter(id);
-    articleView.render(model.state.subchapter);
+    refreshArtikelView();
     initializePrismScript();
     await model.loadVariablesForForm(model.state.form.subchapterId,'create');
-    if(model.state.editModeFlag===true)loadEditMode();
+    if(model.state.editModeFlag===true)await loadEditMode();
 
 
 }
@@ -45,23 +45,33 @@ const loadArticles = async function () {
 /**
  * lädt den bearbeitungsmodus
  */
-const loadEditMode=function(){
+const loadEditMode= async function(){
     console.log('#################### loadEditMode')
 
     //toggled den bearbeiten button zwischen forumlar und anzeige des subchapters mit seinen artikeln
     model.state.editModeFlag=(model.state.editModeFlag === true) ? false : true;
     if(!model.state.editModeFlag){
 
-        loadSubchapterById(model.state.form.subchapterId);
+        await loadSubchapterById(model.state.form.subchapterId);
+        navHeader.renderInsert(model.state.editModeFlag);
+
+
+
+    }else{
+        navHeader.renderInsert(model.state.editModeFlag)
+        refreshArtikelView();
+        initializePrismScript();
     }
 
 
     // refreshEditMode();
-    editMode.render(model.state.editModeFlag);
+    // editMode.render(model.state.editModeFlag);
 
 }
-const refreshEditMode=function(){
-    editMode.render(model.state.editModeFlag);
+const refreshArtikelView=function(){
+    articleView.render(model.state.subchapter,model.state.editModeFlag);
+    articleView.addHandlerDeleteArt(deleteArticles);
+    articleView.addHandlerUpdateArt(updateArticles);
 }
 
 /**
@@ -69,15 +79,12 @@ const refreshEditMode=function(){
  * @param e
  */
  export const loadForm= async function(e){
-    console.log('############################ loadForm');
-    console.log('delet event lister');
-    // editMode.removeHandlerLoadForm(loadForm);
-    //hier vom insert button
-    console.log('stöst das rendern des form s an');
+    console.log('############################++++++++++++++++++++++++++++++++++++++++++++++ loadForm');
     await model.loadVariablesForForm(state.form.subchapterId,'create');
     form.render(model.state);
     form.addHandlerRenderSend(createArticles);
     form.addHandlerRenderArticleNumbers(loadArticleNumbers);
+    console.log('hier sollte vorher article numbers ercheinen')
 }
 
 /**
@@ -99,7 +106,7 @@ const createArticles=async function(submitEvent){
         await loadSubchapterById(model.state.form.subchapterId);
         await model.loadVariablesForForm(model.state.form.subchapterId,'create');
         // refreshEditMode();
-        editMode.render(model.state.editModeFlag);
+        // editMode.render(model.state.editModeFlag);
     }
 
 
@@ -119,7 +126,7 @@ const deleteArticles=async function(e){
     await model.loadVariablesForForm(model.state.form.subchapterId,'create');
     await loadSubchapterById(model.state.form.subchapterId);
     // refreshEditMode();
-    editMode.render(model.state.editModeFlag);
+    // editMode.render(model.state.editModeFlag);
 }
 
 /**
@@ -144,22 +151,25 @@ const updateArticles=async function(e){
  */
 const loadSubchapterById=async function(id){
 
+
     console.log('##############      loadArticlesById')
     await model.loadSubchapter(id);
 
-    articleView.render(model.state.subchapter);
-    editMode.render(model.state.editModeFlag)
+    articleView.render(model.state.subchapter,model.state.editModeFlag);
+    articleView.addHandlerDeleteArt(deleteArticles);
+    articleView.addHandlerUpdateArt(updateArticles);
     initializePrismScript();
 }
 
 export const loadArticleNumbers=async function(e){
-    console.log('#############     loadArticleNumbers')
+    console.log('################################################################################loadArticleNumbers')
     const id=(e.target.options.selectedIndex)+1;
+    console.log(id)
     await model.loadVariablesForForm(id,'create');
     navLeft.setActiveClass(model.state.form.subchapterId);
 
     await loadForm();
-s
+
 }
 
 /**
@@ -189,8 +199,10 @@ const init=  function() {
      loadAllElementsForInputs();
 
     navLeft.addHandlerRender(loadArticles);
-    editMode.addHandlerRenderEdit(loadEditMode);
-    editMode.addHandlerRenderLoadForm(loadForm);
+    // editMode.addHandlerRenderEdit(loadEditMode);
+    // editMode.addHandlerRenderLoadForm(loadForm);
+    navHeader.addHandlerEdit(loadEditMode);
+    navHeader.addHandlerInsert(loadForm);
 
 }
   init();

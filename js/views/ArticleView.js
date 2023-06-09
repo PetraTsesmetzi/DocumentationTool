@@ -3,17 +3,21 @@ class ArticleView {
     #parentElement = document.querySelector('.content-container');
     #subchapterName;
     #subcapterArticles;
+    #editmode=false;
 
     /**
      * initialisiert markup
      * @param data
      */
-    render(data) {
+    render(data,editmode) {
+
+        this.#editmode=editmode;
         this.#subchapterName=data.subchapterName;
         this.#subcapterArticles=data.articlesArr;
         this.#clear();
         const markup=this.#generateMarkup();
         this.#parentElement.insertAdjacentHTML('afterbegin',markup);
+
     }
 
     /**
@@ -21,6 +25,30 @@ class ArticleView {
      */
     #clear(){
         this.#parentElement.innerHTML='';
+    }
+
+    /**
+     * eventhandler für löschen button an jedem artikel
+     * @param handler
+     */
+    addHandlerDeleteArt(handler){
+        console.log('deleteArt');
+        const buttonDel=document.querySelectorAll('.btn-delete');
+        for (let i = 0; i <buttonDel.length; i++) {
+            buttonDel[i].addEventListener('click',handler.bind(this));
+        }
+    }
+
+    /**
+     * eventhandler für ändern button an jedem artikel
+     * @param handler
+     */
+    addHandlerUpdateArt(handler){
+        console.log('updateArt');
+        const buttonUp=document.querySelectorAll('.btn-update');
+        for (let i = 0; i <buttonUp.length; i++) {
+            buttonUp[i].addEventListener('click',handler.bind(this));
+        }
     }
 
     /**
@@ -33,7 +61,10 @@ class ArticleView {
 
             htmlObj+=`<article>
                       <div class="article-header" data-articleid="${this.#subcapterArticles[key].id}"><h2>${this.#subcapterArticles[key]['articleName']}</h2>
-                        <div class="button-container"></div></div>`;
+                        <div class="button-container">
+                        <button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-delete">Löschen</button>
+                        <button class="btn ${(this.#editmode===true) ?'':'btn-hide'} btn-update">Ändern</button>
+                        </div></div>`;
             let articleElementArr=this.#subcapterArticles[key]['articleElementArr'];
 
             for (let i = 0; i <articleElementArr.length ; i++) {

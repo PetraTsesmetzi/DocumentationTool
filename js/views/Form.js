@@ -44,8 +44,9 @@ class Form{
     }
 
     addHandlerRenderArticleNumbers(handler){
+        console.log('article numbers')
         this.#selectField= document.querySelector('#subChapterTitels');
-        this.#selectField.removeEventListener('change',handler);
+        this.#selectField.addEventListener('change',handler);
     }
     // addHandlerRenderArticleNumbers(handler){
     //     const selectField= document.querySelector('#subChapterTitels');

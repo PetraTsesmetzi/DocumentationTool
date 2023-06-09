@@ -1,5 +1,8 @@
 class NavHeader{
     #parentElement=document.querySelector('.nav-links');
+    #editBtn=document.querySelector('.btn-edit');
+    #insertBtn=document.querySelector('.btn-insert');
+
 
     /**
      * initialisiert das markup(hängt die htmlObjekte in die Container)
@@ -15,12 +18,23 @@ class NavHeader{
         }
         this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
 
-
-        // const markup=this.#generateMarkup();
-        // this.#parentElement.insertAdjacentHTML('afterbegin',markup);
-        // this.#parentElement.addEventListener('click',this.setActiveClassOnNav.bind(this));
-
-
+    }
+    renderInsert(editMode){
+        console.log('renderInsert')
+        console.log(editMode)
+        if(editMode===true){
+            console.log(this.#editBtn)
+            this.#insertBtn.classList.remove('btn-hide')
+            console.log(this.#editBtn)
+        }else{
+            this.#insertBtn.classList.add('btn-hide');
+        }
+    }
+    addHandlerEdit(handler){
+        this.#editBtn.addEventListener('click',handler);
+    }
+    addHandlerInsert(handler){
+        this.#insertBtn.addEventListener('click',handler.bind(this));
     }
 
     /**
