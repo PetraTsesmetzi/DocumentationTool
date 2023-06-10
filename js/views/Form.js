@@ -7,7 +7,7 @@ class Form{
 
     #formular=document.querySelector('#createNewObjects');
     #selectField= document.querySelector('#subChapterTitels');
-
+    #closeButton;
     /**
      * initialisiert das markup(hängt die htmlObjekte in die Container)
       * @param state
@@ -48,10 +48,7 @@ class Form{
         this.#selectField= document.querySelector('#subChapterTitels');
         this.#selectField.addEventListener('change',handler);
     }
-    // addHandlerRenderArticleNumbers(handler){
-    //     const selectField= document.querySelector('#subChapterTitels');
-    //     selectField.addEventListener('change',handler.bind(this));
-    // }
+
     /**
      * event handler für submit button vom formular
      * @param handler
@@ -60,12 +57,10 @@ class Form{
         this.#formular=document.querySelector('#createNewObjects');
         this.#formular.addEventListener('submit',handler.bind(this));
     }
-    // addHandlerRenderSend(handler){
-    //     const formular=document.querySelector('#createNewObjects');
-    //     formular.addEventListener('submit',handler.bind(this));
-    // }
-    removeHandlerRenderSend(handler){
-       this.#formular.removeEventListener('submit',handler);
+    addHandleRenderClose(handler){
+        console.log('renderclose')
+        this.#closeButton=document.querySelector('.close-outline');
+        this.#closeButton.addEventListener('click',handler.bind(this));
     }
 
     /**
@@ -131,11 +126,16 @@ class Form{
      * @returns {string}
      */
     #generateMarkup(form) {
-        console.log(form.action)
+        console.log(form)
+        console.log(form.freeArticleNumbers)
+        console.log(form.freeArticleNumbers[0])
+        console.log(form.freeArticleNumbers.length)
         let htmlObj = `<div class="form-container">
-       
-        ${form.action==='update'?'<h1>Elemente ändern</h1>': '<h1>Elemente hinzufügen</h1>'}
-
+        <div class="form-header">
+        ${form.actionForm==='update'?'<h1>Elemente ändern</h1>': '<h1>Elemente hinzufügen</h1>'}
+        <ion-icon class="close-outline" name="close-outline"></ion-icon>
+        
+        </div>
         <form action="#" method="post" id="createNewObjects">
             <div class="input-container">
 <!--            <div class="inputFields">-->
@@ -174,8 +174,8 @@ class Form{
                 <label for="articleNr">Artikelnr.</label>
                 <select id="articleNr" name="articleNr">`;
 
-                for (let i = form.deletedArticles.length-1; i >=0 ; i--) {
-                    htmlObj+=`<option class="overlayNumbers" value=${form.deletedArticles[i]}>${form.deletedArticles[i]}</option>`;
+                for (let i = form.freeArticleNumbers.length-1; i >=0 ; i--) {
+                    htmlObj+=`<option class="overlayNumbers" value=${form.freeArticleNumbers[i]}>${form.freeArticleNumbers[i]}</option>`;
                 }
 
               htmlObj+=`

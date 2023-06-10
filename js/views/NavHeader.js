@@ -21,7 +21,7 @@ class NavHeader{
     }
     renderInsert(editMode){
         console.log('renderInsert')
-        console.log(editMode)
+        console.log('editflag',editMode)
         if(editMode===true){
             console.log(this.#editBtn)
             this.#insertBtn.classList.remove('btn-hide')

@@ -43,8 +43,8 @@ class NavLeft {
         for (let i = 0; i <links.length; i++) {
 
 
-            console.log(id)
-            console.log(i+1)
+            // console.log(id)
+            // console.log(i+1)
             if(id==i+1) {
                 console.log();
 

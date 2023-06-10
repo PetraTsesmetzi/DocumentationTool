@@ -384,17 +384,33 @@ pre[class*=language-] {
     border: 1px solid var(--border-dark);
 }
 
-.form-container > h1 {
+.form-container > .form-header > h1 {
     font-size: 28px;
     padding: 0;
-    margin-bottom: 30px;
-
 }
-
+.form-header{
+    /*border:1px solid green;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
 /* Inputs*/
 .input-container {
     display: flex;
 
+}
+.close-outline{
+    font-size: 24px;
+    color:white;
+    border-radius: 3px;
+    background-color:var( --btn-bg--dangerous);
+}
+.close-outline:hover{
+    font-size: 24px;
+    color:white;
+    border-radius: 3px;
+    background-color:var( --btn-bg--dangerous-hover);
 }
 
 .inputFields {
@@ -628,5 +644,8 @@ footer {
     margin: 0 auto;
     width: 1000px;
     height: 50px;
+
+}
+.formheader h1{
 
 }

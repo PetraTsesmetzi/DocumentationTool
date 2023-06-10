@@ -37,7 +37,7 @@ export const getJSONObj=async function(formData){
  * @returns {*[]}
  */
 export const findFreeArticleNumbers=function(arr){
-    // console.log(arr)
+    console.log('in free args',arr)
     arr = arr.sort(function (a, b) {  return a - b;});
     // console.log(arr);
     let count=0;
@@ -57,7 +57,7 @@ export const findFreeArticleNumbers=function(arr){
         freeArticleNumbers.push(Math.max(...arr)+1);
     }
 
-    // console.log(freeArticleNumbers);
+    console.log('return free: ',freeArticleNumbers);
     return freeArticleNumbers;
 }
 
