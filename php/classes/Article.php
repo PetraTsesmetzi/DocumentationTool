@@ -4,10 +4,10 @@ class Article
 {
 
     private int $id;
-    private  int $articleNumber;
+    private int $articleNumber;
 
-    private  string $articleName;
-
+    private string $articleName;
+    private int $subchapterId;
 
     private array $descriptionArr;
     private array $codeArr;
@@ -18,11 +18,12 @@ class Article
      * @param int|null $articleNumber
      * @param string|null $articleName
      */
-    public function __construct(?int $id = null, ?int $articleNumber = null, ?string $articleName = null)
+    public function __construct(?int $id = null, ?int $articleNumber = null, ?int $subchapterId = null, ?string $articleName = null)
     {
-        if (isset($id) && isset($articleNumber) && isset($articleName)) {
+        if (isset($id) && isset($articleNumber) && isset($subchapterId) && isset($articleName)) {
             $this->id = $id;
             $this->articleNumber = $articleNumber;
+            $this->subchapterId = $subchapterId;
             $this->articleName = $articleName;
         }
 
@@ -34,15 +35,15 @@ class Article
      * @return array
      */
 
-    public function getAllAsObjects(Subchapter $subchapter=null): array
+    public function getAllAsObjects(Subchapter $subchapter = null): array
     {
 
         try {
             $dbh = DB::connect();
-            if(!isset($subchapter)){
+            if (!isset($subchapter)) {
                 $sql = "SELECT * FROM article";
                 $result = $dbh->query($sql);
-            }else{
+            } else {
                 $sql = "SELECT * FROM article WHERE subchapter_Id=:subchapter_Id ORDER BY articleNumber";
                 $stmt = $dbh->prepare($sql);
                 $id = $subchapter->getId();
@@ -57,7 +58,7 @@ class Article
                 $articleArr[] = $article->getJSONEncode();
             }
         } catch (PDOException $e) {
-            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().$e->getLine());
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . $e->getLine());
         }
 
         return $articleArr;
@@ -81,7 +82,7 @@ class Article
      * @return void
      * @throws Exception
      */
-    public function deleteArticle(int $id)
+    public function deleteObject(int $id)
     {
 
         try {
@@ -103,13 +104,13 @@ class Article
      * @param int|null $articleNumber
      * @return int
      */
-    public function createNewObject( int $subchapterId , string $articleName, ?int $articleNumber=null): int
+    public function createNewObject(int $subchapterId, string $articleName, ?int $articleNumber = null): int
     {
-        if($articleNumber===null)$articleNumber=$this->getLastId()+1;
+        if ($articleNumber === null) $articleNumber = $this->getLastId() + 1;
 
 //        if($articleNumber==null)$articleNumber= self::$lastArticleNumber;
         try {
-            $dbh=DB::connect();
+            $dbh = DB::connect();
             $sql = "INSERT INTO article(articleNumber,subchapter_Id,articleName) VALUES(:articleNumber,:subchapter_Id,:articleName)";
             $stmt = $dbh->prepare($sql);
             $stmt->bindParam(':articleNumber', $articleNumber, PDO::PARAM_STR);
@@ -129,13 +130,14 @@ class Article
      * holt sich die letzt vergebene id...notwendig????
      * @return int
      */
-    private function getLastId():int{
-        try{
-            $dbh=DB::connect();
+    private function getLastId(): int
+    {
+        try {
+            $dbh = DB::connect();
             $sql = "SELECT MAX(id) FROM article";
             $result = $dbh->query($sql);
-            $lastId=$result->fetchColumn();
-        }catch(PDOException $e){
+            $lastId = $result->fetchColumn();
+        } catch (PDOException $e) {
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
         }
         return $lastId;
@@ -149,25 +151,41 @@ class Article
         return $this->id;
     }
 
-    public function updateObject()
+    public function updateObject(): void
     {
+        try {
+            $dbh = DB::connect();
+            $sql = "UPDATE article SET  articleNumber=:articleNumber, 
+                    subchapter_id=:subchapterId,
+                    articleName=:articleName WHERE id=:id";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':articleNumber', $this->articleNumber, PDO::PARAM_INT);
+            $stmt->bindParam(':subchapterId', $this->subchapterId, PDO::PARAM_INT);
+            $stmt->bindParam(':articleName', $this->articleName, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $dbh = null;
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().'--'.$e->getLine());
+        }
 
     }
 
     public function getObjectById(int $id): string
 //    public function getObjectById(int $id): Article
     {
-        try{
-            $dbh=DB::connect();
-            $sql="SELECT * FROM article WHERE id=:id";
-            $stmt=$dbh->prepare($sql);
-            $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+        try {
+            $dbh = DB::connect();
+            $sql = "SELECT * FROM article WHERE id=:id";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
-            $article=$stmt->fetchObject(__CLASS__);
-            $article->descriptionArr=(new Description())->getAllAsObjects($article);
-            $article->codeArr=(new Code())->getAllAsObjects($article);
+            $article = $stmt->fetchObject(__CLASS__);
+            $article->descriptionArr = (new Description())->getAllAsObjects($article);
+            $article->codeArr = (new Code())->getAllAsObjects($article);
 
-        }catch(PDOException $e){
+        } catch (PDOException $e) {
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
         }
 
@@ -175,8 +193,6 @@ class Article
 //        return $article;
         return $article->getJSONEncode();
     }
-
-
 
 
 }

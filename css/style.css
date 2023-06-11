@@ -428,6 +428,7 @@ pre[class*=language-] {
 .form-container div > label {
     margin-bottom: 10px;
     display: block;
+    vertical-align: center;
     width: 100px;
     /*border: 1px solid var(--btn-bg--dangerous-hover);*/
 }
@@ -450,7 +451,7 @@ pre[class*=language-] {
 }
 .overlayContainer{
     width:250px;
-    border:2px solid green;
+    /*border:2px solid green;*/
     text-align: left;
 }
 .errorMessage{
@@ -488,16 +489,16 @@ pre[class*=language-] {
 /*Textareas*/
 
 .addTextAreaFields {
-    border: 2px solid green;
+    /*border: 2px solid green;*/
 }
 
-.textAreaFields .textAreaFieldsDescription,
+.textAreaFields,
 .addTextAreaFields .addedDescription {
     height: 120px;
     /*border: 2px solid green;*/
 }
 
-.textAreaFields .textAreaFieldsCode,
+.textAreaFields,
 .addTextAreaFields .addedCode {
     height: 160px;
     /*border: 2px solid crimson;*/
@@ -528,7 +529,9 @@ pre[class*=language-] {
 .label-container label::first-letter {
     text-transform: capitalize;
 }
-
+.label-container {
+    margin-bottom: 10px;
+}
 /*Buttons*/
 .addTextAreas {
     height: 60px;

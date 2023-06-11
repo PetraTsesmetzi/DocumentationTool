@@ -20,12 +20,12 @@ class NavHeader{
 
     }
     renderInsert(editMode){
-        console.log('renderInsert')
-        console.log('editflag',editMode)
+        // console.log('renderInsert')
+        // console.log('editflag',editMode)
         if(editMode===true){
-            console.log(this.#editBtn)
+            // console.log(this.#editBtn)
             this.#insertBtn.classList.remove('btn-hide')
-            console.log(this.#editBtn)
+            // console.log(this.#editBtn)
         }else{
             this.#insertBtn.classList.add('btn-hide');
         }

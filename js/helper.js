@@ -1,4 +1,5 @@
 import {API_URL} from './config.js';
+import {state} from "./model.js";
 
 /**
  * ajax sendet per post method daten an controler.php
@@ -38,6 +39,7 @@ export const getJSONObj=async function(formData){
  */
 export const findFreeArticleNumbers=function(arr){
     console.log('in free args',arr)
+    console.log( state.form.actionForm)
     arr = arr.sort(function (a, b) {  return a - b;});
     // console.log(arr);
     let count=0;
@@ -61,6 +63,14 @@ export const findFreeArticleNumbers=function(arr){
     return freeArticleNumbers;
 }
 
+/**
+ * suchfunktion ob articel schon in der Db vorhanden ist.
+ * ergebnisse der db werden vorher in args abgelegt
+ * @param action
+ * @param args
+ * @param searchStr
+ * @returns {boolean}
+ */
 export const ifNotExistsElements =(action,args,searchStr)=>{
     if(action==='checkArtikels'){
 
@@ -72,5 +82,25 @@ export const ifNotExistsElements =(action,args,searchStr)=>{
         let checkSubchapter=args.find((arg)=>arg.subchapterName===searchStr);
         return checkSubchapter === undefined ? true : false;
     }
+}
 
+
+//sortiert ein Array mit Objekten nach einem vorgegebenem Attribut
+export const sortArrayOfObjects = (arr, propertyName, order = 'ascending') => {
+    const sortedArr = arr.sort((a, b) => {
+
+        if (a[propertyName] < b[propertyName]) {
+            return -1;
+
+        }
+        if (a[propertyName] > b[propertyName]) {
+            return 1;
+
+        }
+        return 0;
+    })
+    if (order === 'descending') {
+        return sortedArr.reverse();
+    }
+    return sortedArr;
 }

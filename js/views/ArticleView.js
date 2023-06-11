@@ -32,7 +32,7 @@ class ArticleView {
      * @param handler
      */
     addHandlerDeleteArt(handler){
-        console.log('deleteArt');
+        // console.log('deleteArt');
         const buttonDel=document.querySelectorAll('.btn-delete');
         for (let i = 0; i <buttonDel.length; i++) {
             buttonDel[i].addEventListener('click',handler.bind(this));
@@ -44,7 +44,7 @@ class ArticleView {
      * @param handler
      */
     addHandlerUpdateArt(handler){
-        console.log('updateArt');
+        // console.log('updateArt');
         const buttonUp=document.querySelectorAll('.btn-update');
         for (let i = 0; i <buttonUp.length; i++) {
             buttonUp[i].addEventListener('click',handler.bind(this));

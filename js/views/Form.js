@@ -1,80 +1,85 @@
 import {loadArticleNumbers} from "../controller.js";
-class Form{
-    #updateFlag=false;
+import {sortArrayOfObjects} from '../helper.js';
+
+class Form {
+    #updateFlag = false;
     #parentElement = document.querySelector('.content-container');
-    #addTextAreaFields="";
+    #addTextAreaFields = "";
     #addedBlockCounter;
 
-    #formular=document.querySelector('#createNewObjects');
-    #selectField= document.querySelector('#subChapterTitels');
+    #formular = document.querySelector('#createAndUpdateObjects');
+    #selectField = document.querySelector('#subChapterTitels');
     #closeButton;
+
     /**
      * initialisiert das markup(hängt die htmlObjekte in die Container)
-      * @param state
+     * @param state
      */
-    render(state){
+    render(state) {
         console.log('inform');
-        console.log(state.form);
+        // console.log(state.form);
         this.#clear();
-        const markup=this.#generateMarkup(state.form);
-        this.#parentElement.insertAdjacentHTML('afterbegin',markup);
-        this.#addTextAreaFields=document.querySelector('.addTextAreaFields');
+        const markup = this.#generateMarkup(state.form);
+        this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+        this.#addTextAreaFields = document.querySelector('.addTextAreaFields');
         this.#addHandlerRender();
     }
-    #clear(){
-        this.#parentElement.innerHTML='';
-        this.#addedBlockCounter=1;
+
+    #clear() {
+        this.#parentElement.innerHTML = '';
+        this.#addedBlockCounter = 1;
     }
 
     /**
      * eventhandler für code hinzufügen, beschreibung hinzufügen und lösche buttons
      * aufgurfen innerhalb des formulars
      */
-    #addHandlerRender(){
+    #addHandlerRender() {
 
-        const addDescButton=document.querySelector('.addDescArea');
-        addDescButton.addEventListener('click',this.#addElement.bind(this));
+        const addDescButton = document.querySelector('.addDescArea');
+        addDescButton.addEventListener('click', this.#addElement.bind(this));
         //
-        const addCodeButton=document.querySelector('.addCodeArea');
-        addCodeButton.addEventListener('click',this.#addElement.bind(this));
+        const addCodeButton = document.querySelector('.addCodeArea');
+        addCodeButton.addEventListener('click', this.#addElement.bind(this));
 
-        const deleteBtns=document.querySelector('.addTextAreaFields');
-        deleteBtns.addEventListener('click',this.#deleteAddedElements.bind(this));
+        const deleteBtns = document.querySelector('.addTextAreaFields');
+        deleteBtns.addEventListener('click', this.#deleteAddedElements.bind(this));
 
     }
 
-    addHandlerRenderArticleNumbers(handler){
+    addHandlerRenderArticleNumbers(handler) {
         console.log('article numbers')
-        this.#selectField= document.querySelector('#subChapterTitels');
-        this.#selectField.addEventListener('change',handler);
+        this.#selectField = document.querySelector('#subChapterTitels');
+        this.#selectField.addEventListener('change', handler);
     }
 
     /**
      * event handler für submit button vom formular
      * @param handler
      */
-    addHandlerRenderSend(handler){
-        this.#formular=document.querySelector('#createNewObjects');
-        this.#formular.addEventListener('submit',handler.bind(this));
+    addHandlerRenderSend(handler) {
+        this.#formular = document.querySelector('#createAndUpdateObjects');
+        this.#formular.addEventListener('submit', handler.bind(this));
     }
-    addHandleRenderClose(handler){
+
+    addHandleRenderClose(handler) {
         console.log('renderclose')
-        this.#closeButton=document.querySelector('.close-outline');
-        this.#closeButton.addEventListener('click',handler.bind(this));
+        this.#closeButton = document.querySelector('.close-outline');
+        this.#closeButton.addEventListener('click', handler.bind(this));
     }
 
     /**
      * intialsiert codeblckfeld oder beschreibungsblock feld
      * @param e
      */
-    #addElement(e){
-        let toAdd=e.target;
-        if(toAdd.classList.contains("addCodeArea")){
-            const codeMarkup=this.#generateCodeBlock();
+    #addElement(e) {
+        let toAdd = e.target;
+        if (toAdd.classList.contains("addCodeArea")) {
+            const codeMarkup = this.#generateCodeBlock();
             this.#addTextAreaFields.insertAdjacentHTML("beforeend", codeMarkup);
 
         }
-        if(toAdd.classList.contains("addDescArea")) {
+        if (toAdd.classList.contains("addDescArea")) {
             const descMarkup = this.#generateDescriptionBlock();
             this.#addTextAreaFields.insertAdjacentHTML("beforeend", descMarkup);
         }
@@ -85,11 +90,11 @@ class Form{
      * löscht die hizugefügten code oder beschreibungsblöcke
      * @param e
      */
-    #deleteAddedElements(e){
+    #deleteAddedElements(e) {
         console.log(e.target);
-        let toDelete=e.target.parentElement.parentNode;
+        let toDelete = e.target.parentElement.parentNode;
         // console.log(toDelete);
-        if(toDelete.classList.contains("addedCode") ||toDelete.classList.contains("addedDescription")){
+        if (toDelete.classList.contains("addedCode") || toDelete.classList.contains("addedDescription")) {
             toDelete.remove();
         }
     }
@@ -98,9 +103,9 @@ class Form{
      * html Objekt für beschreibungsblock
      * @returns {string}
      */
-    #generateDescriptionBlock(){
+    #generateDescriptionBlock() {
         this.#addedBlockCounter++;
-        return`<div data-id="${this.#addedBlockCounter}" class="addedDescription">
+        return `<div data-id="${this.#addedBlockCounter}" class="addedDescription">
                 <div class="label-container"><label for="description_${this.#addedBlockCounter}">beschreibung</label>
                 <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button></div>
                 <textarea id="description_${this.#addedBlockCounter}" name="description_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" class="description"></textarea>
@@ -111,7 +116,7 @@ class Form{
      * html Objekt für codeblock
      * @returns {string}
      */
-    #generateCodeBlock(){
+    #generateCodeBlock() {
         this.#addedBlockCounter++;
         return `<div data-id="${this.#addedBlockCounter}" class="addedCode">
                 <div class="label-container"><label for="codeblock_${this.#addedBlockCounter}">Code</label>
@@ -127,93 +132,88 @@ class Form{
      */
     #generateMarkup(form) {
         console.log(form)
-        console.log(form.freeArticleNumbers)
-        console.log(form.freeArticleNumbers[0])
-        console.log(form.freeArticleNumbers.length)
+        console.log('form.actionForm', form.actionForm)
+
+
         let htmlObj = `<div class="form-container">
         <div class="form-header">
-        ${form.actionForm==='update'?'<h1>Elemente ändern</h1>': '<h1>Elemente hinzufügen</h1>'}
-        <ion-icon class="close-outline" name="close-outline"></ion-icon>
-        
+             ${form.actionForm === 'update' ? '<h1>Elemente ändern</h1>' : '<h1>Elemente hinzufügen</h1>'}
+            <ion-icon class="close-outline" name="close-outline"></ion-icon>
         </div>
-        <form action="#" method="post" id="createNewObjects">
-            <div class="input-container">
-<!--            <div class="inputFields">-->
-<!--                <label for="chapterTitle">Kapitel</label>-->
-<!--       -->
-<!--                <input list="chapterTitles" type="text" id="chapterTitle" name="chapterTitle" autocomplete="off">-->
-<!--                <datalist id="chapterTitles">-->
-<!--                    <option value="Javascript Fundamentals Part 1">-->
-<!--                    <option value="Javascript Fundamentals Part 2">-->
-<!--                </datalist>-->
-<!--            </div>-->
-<!--            <div class="inputFields">-->
-<!--                <label for="chapters">Kapitelnr.</label>-->
-<!--                <select id="chapters" name="chapters">-->
-<!--                    <option value="10">10</option>-->
-<!--                    <option value="1">1</option>-->
-<!--                    <option value="2">2</option>-->
-<!--                    <option value="4">4</option>-->
-<!--                </select>-->
-<!--            </div>-->
-        </div>
-      
-      
-        <div class="input-container">
-            
+        <form action="#" method="post" id="createAndUpdateObjects">
+        <!--  *****************************Artikelfeld (Artikel,Artikelnr,Unterkapitel************************************** -->
+          <div class="input-container">
                 <div class="inputFields">
                 <label for="articleTitel">Artikel</label>
-                <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" autocomplete="off" required>
-<!--                <datalist id="articleTitels">-->
-<!--                    <option value="Values">-->
-<!--                    <option value="Variables">-->
-<!--                </datalist>-->
+                <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" value="${form.actionForm === 'update' ? form.articleName : ''}" required>
             </div>
            
             <div class="inputFields">
                 <label for="articleNr">Artikelnr.</label>
-                <select id="articleNr" name="articleNr">`;
+                <select id="articleNr" name="articleNr" ${form.actionForm === 'update'?'disabled':''}>`;
+        if (form.actionForm === 'update') htmlObj += `<option class="overlayNumbers" >${form.articleId}</option>`;
+        for (let i = form.freeArticleNumbers.length - 1; i >= 0; i--) {
+            htmlObj += `<option class="overlayNumbers" value=${form.freeArticleNumbers[i]}>${form.freeArticleNumbers[i]}</option>`;
+        }
 
-                for (let i = form.freeArticleNumbers.length-1; i >=0 ; i--) {
-                    htmlObj+=`<option class="overlayNumbers" value=${form.freeArticleNumbers[i]}>${form.freeArticleNumbers[i]}</option>`;
-                }
-
-              htmlObj+=`
+        htmlObj += `
                 </select>
             </div>
-        
             <div class="inputFields">
-<!--                <label for="subChapterTitel">Unterkapitel</label>-->
-<!--                <input list="subChapterTitels" type="text" id="subChapterTitel" name="subChapterTitel"-->
-<!--                       autocomplete="off">-->
-<!--                <datalist id="subChapterTitels">-->
-<!--                    <option value="Values and Variables">-->
-<!--                    <option value="Basic Operators & Math Operators">-->
-<!--                </datalist>-->
              <label for="subChapterTitel">Unterkapitel</label>
              <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
-                for (let i = 0; i < form.subchapters.length; i++) {
-
-
-                    htmlObj+=`<option class="overlayContainer" value="${form.subchapters[i].subchapterName}"  ${(form.subchapterId-1) === i ? 'selected' : ''} >${form.subchapters[i].subchapterName}</option>`;
-                }
-
-        htmlObj+=`</select></div></div>
-      <div class="errorMessage">Artikel ist schon vergeben, wähle einen anderen Bezeichner</div>
-        <div class="textAreaFields">
-            <div class="textAreaFieldsDescription">
+        for (let i = 0; i < form.subchapters.length; i++) {
+            htmlObj += `<option class="overlayContainer" value="${form.subchapters[i].subchapterName}"  ${(form.subchapterId - 1) === i ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapters[i].subchapterName}</option>`;
+        }
+        // **********************************errormessage****************************************************************************
+        htmlObj += `</select></div></div>
+        <div class="errorMessage">Artikel ist schon vergeben, wähle einen anderen Bezeichner</div>`;
+        //*********************************code und beschreibungsblöcke**************************************************************
+        if (form.actionForm === 'create') {
+            htmlObj += ` <div class="addTextAreaFields">
+            <div data-id="0" class="addedDescription">
                 <label for="description">Beschreibung</label>
                 <textarea id="description_0" name="description_0" data-elementOrder="0" class="description" required></textarea>
             </div>
-            <div class="textAreaFieldsCode">
+            <div data-id="1" class="addedCode">
                 <label for="code">Code</label>
-                <textarea id="code_0"  name="codeblock_1" data-elementOrder="1" class="code" required></textarea>
+                <textarea id="code_1"  name="codeblock_1" data-elementOrder="1" class="code" required></textarea>
             </div>
-        </div>
-        <div class="addTextAreaFields">`;
+        </div>`;
+            this.#addedBlockCounter=1;
+        } else if (form.actionForm === 'update') {
+            htmlObj += `<div class="addTextAreaFields">`;
+            let articleElementArr = [];
+            //arrayelemente(code und descriptionblöcke) parsen, dann sortieren und anschließend darstellen
+            for (let i = 0; i < form.articleElementArr.length; i++) {
+                articleElementArr[i] = JSON.parse(form.articleElementArr[i]);
+            }
+            let sortedArticleElementArr = sortArrayOfObjects(articleElementArr, 'elementOrder')
+            console.log(sortedArticleElementArr)
+            console.log(sortedArticleElementArr)
+            //ausgabe der zu ändernden blöcke
+            for (let i = 0; i < sortedArticleElementArr.length; i++) {
+
+                if (sortedArticleElementArr[i].hasOwnProperty('descriptionText')) {
+                    htmlObj += `<div data-id="${i}" class="addedDescription">
+                    <div class="label-container"><label for="description_${i}">beschreibung</label>
+                    <button data-btnid="${i}" class="btn ${(i===0 || i===1)?'btn-hide':''} btn-delete">Delete</button></div>
+                    <textarea id="description_${i}" name="description_${i}" data-elementOrder="${i}" class="description">${sortedArticleElementArr[i].descriptionText}</textarea></div>`;
+
+                } else if (sortedArticleElementArr[i].hasOwnProperty('codeText')) {
+                    htmlObj += `<div data-id="${i}" class="addedCode">
+                        <div class="label-container"><label for="codeblock_${i}">Code</label>
+                        <button data-btnid="${i}" class="btn ${(i===0 || i===1)?'btn-hide':''} btn-delete">Delete</button></div>
+                        <textarea id="codeblock_${i}" name="codeblock_${i}" data-elementOrder="${i}" class="code">${sortedArticleElementArr[i].codeText}</textarea>
+                    </div>`;
+                }
+            }
+            htmlObj += `</div>`;
+            this.#addedBlockCounter=sortedArticleElementArr.length-1;
+        }
 
 
-        htmlObj+=`</div>
+        htmlObj += `<div class="addTextAreaFields"></div>
 
         <div class="addTextArea-container">
             <div class="addTextAreas">
@@ -234,12 +234,14 @@ class Form{
         return htmlObj;
 
     }
-    activateErrorMessage(){
 
-            console.log('hello')
-            // document.getElementById('articleTitel').value=state.form.articleName;
-            document.getElementsByClassName('errorMessage')[0].classList.add('show');
+    activateErrorMessage() {
+
+        console.log('hello')
+        // document.getElementById('articleTitel').value=state.form.articleName;
+        document.getElementsByClassName('errorMessage')[0].classList.add('show');
 
     }
 }
+
 export default new Form();

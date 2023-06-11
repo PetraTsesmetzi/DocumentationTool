@@ -45,46 +45,46 @@ INSERT INTO article(id, articleNumber,subchapter_Id, articleName)
 VALUES (NULL, 3,1, 'Datentypen');
 
 INSERT INTO code(id, article_Id,elementOrder, codeText)
-VALUES (NULL, 1,2, 'let firstName = "Matilda";console.log(firstName); //Matilda');
+VALUES (NULL, 1,1, 'let firstName = "Matilda";console.log(firstName); //Matilda');
 INSERT INTO code(id, article_Id,elementOrder, codeText)
-VALUES (NULL, 1,4, 'console.log(40 + 8 + 23 - 10); //61');
+VALUES (NULL, 1,3, 'console.log(40 + 8 + 23 - 10); //61');
 INSERT INTO code(id, article_Id,elementOrder, codeText)
-VALUES (NULL, 2,2, 'let jonas_matilda = "JM"; let person = "otto";');
+VALUES (NULL, 2,1, 'let jonas_matilda = "JM"; let person = "otto";');
 INSERT INTO code(id, article_Id,elementOrder, codeText)
-VALUES (NULL, 2,4, 'javascriptIsFun = "YES!";');
+VALUES (NULL, 2,3, 'javascriptIsFun = "YES!";');
 INSERT INTO code(id, article_Id,elementOrder, codeText)
-VALUES (NULL, 3,2, 'let age = 25;let price = 9.99;');
+VALUES (NULL, 3,1, 'let age = 25;let price = 9.99;');
 INSERT INTO code(id, article_Id,elementOrder, codeText)
-VALUES (NULL, 3,3, 'let name = "John";let message = ''Hello, World!'';');
+VALUES (NULL, 3,2, 'let name = "John";let message = ''Hello, World!'';');
 INSERT INTO code(id, article_Id,elementOrder, codeText)
-VALUES (NULL, 3,5, 'let person = {name: "John",age: 25,isStudent: true};');
+VALUES (NULL, 3,4, 'let person = {name: "John",age: 25,isStudent: true};');
 
 INSERT INTO description(id, article_Id,elementOrder, descriptionText)
-VALUES (NULL, 1,1,
+VALUES (NULL, 1,0,
         'Variablen in JavaScript ermöglichen es, Werte oder Objekte zu speichern und sie während der Laufzeit des Programms zu verändern. Sie werden mit dem Schlüsselwort "var", "let" oder "const" deklariert.');
 INSERT INTO description(id, article_Id,elementOrder, descriptionText)
-VALUES (NULL, 1,3,
+VALUES (NULL, 1,2,
         'Sie können verschiedene Datentypen wie Zahlen, Zeichenketten oder boolesche Werte enthalten. Die Verwendung von Variablen ermöglicht eine flexible und dynamische Programmierung in JavaScript.');
 INSERT INTO description(id, article_Id,elementOrder, descriptionText)
-VALUES (NULL, 1,5, 'Das Schlüsselwort var ist allerdings depricated und sollte nicht verwendet werden');
+VALUES (NULL, 1,4, 'Das Schlüsselwort var ist allerdings depricated und sollte nicht verwendet werden');
 INSERT INTO description(id, article_Id,elementOrder, descriptionText)
-VALUES (NULL, 2,1,
+VALUES (NULL, 2,0,
         'In JavaScript wird üblicherweise das sogenannte "camelCase" für die Namenskonvention verwendet. Dabei beginnt der Name mit einem Kleinbuchstaben und jeder folgende Wortteil wird mit einem Großbuchstaben gestartet, ohne Leerzeichen oder Sonderzeichen. Beispiel: myVariableName.');
 INSERT INTO description(id, article_Id,elementOrder, descriptionText)
-VALUES (NULL, 2,3,
+VALUES (NULL, 2,2,
         'Es wird empfohlen, aussagekräftige und beschreibende Namen für Variablen zu wählen, um den Code leichter lesbar und verständlich zu machen. Vermeiden Sie abgekürzte oder kryptische Bezeichnungen.');
 INSERT INTO description(id, article_Id, elementOrder,descriptionText)
-VALUES (NULL, 3,1,
+VALUES (NULL, 3,0,
         'JavaScript hat verschiedene Datentypen, darunter Zahlen, Zeichenketten, boolesche Werte, Arrays, Objekte, "null" und "undefined". ');
 INSERT INTO description(id, article_Id,elementOrder, descriptionText)
-VALUES (NULL, 3,4,
+VALUES (NULL, 3,3,
         'Der Datentyp "number" speichert numerische Werte, während der Datentyp "string" für Text verwendet wird. Boolesche Werte repräsentieren logische Aussagen wie "true" oder "false". Arrays sind geordnete Sammlungen von Werten, während Objekte Eigenschaften durch Schlüssel-Wert-Paare darstellen.');
 
 ALTER TABLE code
-    ADD FOREIGN KEY (article_Id) REFERENCES article(id) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD FOREIGN KEY (article_Id) REFERENCES article(id) ON DELETE CASCADE;
 
 ALTER TABLE description
-    ADD FOREIGN KEY (article_Id) REFERENCES article(id) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD FOREIGN KEY (article_Id) REFERENCES article(id) ON DELETE CASCADE;
 
 ALTER TABLE article
-    ADD FOREIGN KEY (subchapter_Id) REFERENCES subchapter(id) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD FOREIGN KEY (subchapter_Id) REFERENCES subchapter(id) ON DELETE CASCADE;
