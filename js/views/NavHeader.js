@@ -1,3 +1,12 @@
+/**
+ * Autorin: Petra Tsesmetzi
+ * Datum: 12.06.2023
+ *
+ * Die Klasse NavHeader generiert das Markup für die Navigationsleiste im Header und für die
+ * 2 Buttons Beartbeiten und Einfügen
+ * diese werden anschließenden in die jeweiligen Div -Containern eingehangen
+ *
+ */
 class NavHeader{
     #parentElement=document.querySelector('.nav-links');
     #editBtn=document.querySelector('.btn-edit');
@@ -5,27 +14,27 @@ class NavHeader{
 
 
     /**
-     * initialisiert das markup(hängt die htmlObjekte in die Container)
-     * und setzt ein eventlLister für das makieren der links in blau
+     * initialisiert das Markup (hängt die htmlObjekte in die Container)
+     * und setzt ein EventlLister für das Makieren der Links in blau
+     * @param start
      */
     render(start){
         if(start==='init'){
             const markup = this.#generateMarkup();
             this.#parentElement.insertAdjacentHTML('afterbegin', markup);
             const startLink=document.querySelector('.startLink');
-
             this.#setActiveClassOnNav(startLink,start);
         }
         this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
-
     }
+
+    /**
+     * Toggelt den Einfüge Button
+     * @param editMode
+     */
     renderInsert(editMode){
-        // console.log('renderInsert')
-        // console.log('editflag',editMode)
         if(editMode===true){
-            // console.log(this.#editBtn)
             this.#insertBtn.classList.remove('btn-hide')
-            // console.log(this.#editBtn)
         }else{
             this.#insertBtn.classList.add('btn-hide');
         }
@@ -38,7 +47,7 @@ class NavHeader{
     }
 
     /**
-     * html object für links in nav-header
+     * String für die Links in Nav-Header
      * @returns {string}
      */
     #generateMarkup() {
@@ -53,7 +62,8 @@ class NavHeader{
 
     /**
      * setzt den span auf aktiv(färbt blau)
-     * @param e
+     * @param e //element welches verändert wird
+     * @param start
      */
     #setActiveClassOnNav(e,start){
 
@@ -67,21 +77,11 @@ class NavHeader{
                 e.target.classList.add('active');
             }
         }
-
-
-
-
-        // this.#removeAttributeActiveOnLink();
-        // if(e.target.tagName==='SPAN'){
-        //     e.target.classList.add('active');
-        // }
-
     }
 
     /**
-     * entfernt die css klasse aktiv auf span , spann wird wieder grau
+     * entfernt die CSS Klasse active
      */
-
     #removeAttributeActiveOnLink(){
         const allLinks=document.querySelectorAll('.nav-header-links');
         allLinks.forEach((element)=>{

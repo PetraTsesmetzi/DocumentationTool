@@ -1,3 +1,5 @@
+/************************************ General *******************************************/
+/************ root: variablen deklaration  für die verwendeten farben ***********/
 :root {
     --font-color-dark: #444;
     --font-color-light: #fff;
@@ -16,9 +18,14 @@
     --btn-bg--dangerous: #F26E14FF;
     --btn-bg--dangerous-hover: #de6412;
     --border-dark: #9d9d9d;
-
+    --border-light:#D3D3D3FF;
     --font-color-form: #585858;
 
+    --errorMessage: #DC143C;
+
+    --boxshadow-light:rgba(255, 255, 255, 0.7);
+    --boxshadow-orange:rgba(247, 146, 83, 0.7);
+    --boxshadow-dark:rgba(0, 0, 0, 0.15);
 
 }
 
@@ -37,7 +44,6 @@ html {
     position: relative;
 }
 
-
 p {
     font-size: 16px;
     margin-bottom: 20px;
@@ -55,8 +61,8 @@ header {
     justify-content: flex-end;
     z-index: 10;
 }
+/*********************************** NAV-HEADER ******************************************/
 
-/*-----NAV-HEADER--------------*/
 #nav-header {
     background-color: var(--nav-header-bg);
     height: 70px;
@@ -66,7 +72,7 @@ header {
     justify-items: center;
     font-weight: 500;
     font-size: 18px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 5px 2px 5px var(--boxshadow-dark);
 }
 
 .button-nav-container {
@@ -119,22 +125,19 @@ header {
 }
 
 .btn-edit:active {
-    box-shadow: inset 0 0 0 1px rgba(247, 146, 83, 0.7);
+    box-shadow: inset 0 0 0 1px var( --boxshadow-orange);
 }
 
 .btn-insert {
-    /*margin-left:-500px;*/
     background-color: var(--btn-bg-light);
-
 }
 
 .btn-insert:hover {
     background-color: var(--btn-bg-light-hover);
-
 }
 
 .btn-insert:active {
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 0 0 1px var(--boxshadow-light);
 }
 
 #nav-header > ul {
@@ -145,8 +148,6 @@ header {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    /*border: 2px solid crimson;*/
-
 }
 
 .settings-container {
@@ -155,11 +156,6 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-
-}
-
-.settings {
-
 }
 
 .themes {
@@ -171,7 +167,6 @@ header {
     top: 35px;
     width: 100%;
     border-radius: 10px;
-    /*border:1px solid #999999;*/
     display: none;
 }
 
@@ -186,6 +181,7 @@ header {
     margin-left: 20px;
     height: inherit;
     text-decoration: none;
+    cursor:pointer;
 }
 
 #nav-header > ul > li span {
@@ -197,21 +193,15 @@ header {
     align-items: center;
 }
 
-
-/*######################---CONTENT SECTION---########################################*/
-
+/*********************************** CONTENT SECTION ******************************************/
 .content-all-container {
     top: 70px;
     width: 100%;
-    /*display: flex;*/
-    /*justify-content: space-between;*/
     position: relative;
     z-index: 1;
-    /*border:5px solid crimson;*/
 }
 
-
-/*-----NAV-LEFT--------------*/
+/*********************************** NAV-LEFT ******************************************/
 #nav-left {
     background-color: var(--nav-left-bg);
     position: fixed;
@@ -223,9 +213,7 @@ header {
 }
 
 #nav-left > section {
-    /*margin-bottom: 20px;*/
     padding: 0 5px;
-
 }
 
 #nav-left > section > h1 {
@@ -237,46 +225,43 @@ header {
 
 #nav-left > section > ul > li {
     height: auto;
-    /*border-bottom: 1px solid gray;*/
     list-style: none;
 }
 
 #nav-left > section > ul > li:hover {
-
     background-color: var(--nav-left-bg-hover);
-
-
 }
 
 .nav-span {
     color: var(--font-color-dark);
     line-height: 150%;
     vertical-align: middle;
-    padding: 5px 15px;
     height: inherit;
     width: 100%;
     display: inline-flex;
-
 }
 
+#nav-left a{
+    width:inherit;
+    height:inherit;
+    padding: 5px 15px;
+}
 
 .active {
     background-color: var(--nav-left-bg-active);
     color: var(--font-color-light);
 }
 
+
 a:link, a:visited {
     color: var(--font-color-dark);
     text-decoration: none;
 }
-
-/*######################---ARTICLE SECTION---########################################*/
+/*********************************** ARTICLE SECTION ******************************************/
 .content-container {
     position: relative;
-    /*top: 30px;*/
     left: 23%;
     width: 77%;
-    /*border: 5px solid green;*/
     padding: 30px 50px;
 }
 
@@ -284,11 +269,9 @@ a:link, a:visited {
     color: var(--font-color-dark);
     font-size: 28px;
     margin: 0 0 15px 0;
-
 }
 
 .article-header {
-    /*border: 1px solid gray;*/
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -315,7 +298,6 @@ code {
 pre[class*=language-] {
     background-color: var(--pre-content);
     padding: 20px 30px;
-    /*margin: 20px 0;*/
     overflow: hidden;
     border-radius: 10px;
     display: flex;
@@ -324,7 +306,6 @@ pre[class*=language-] {
 }
 
 .button-container {
-    /*border:1px solid red;*/
     display: flex;
     justify-content: flex-end;
 }
@@ -348,7 +329,7 @@ pre[class*=language-] {
 }
 
 .btn-delete:active {
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 0 0 1px var(--boxshadow-light);
 }
 
 .btn-update:hover {
@@ -357,13 +338,12 @@ pre[class*=language-] {
 
 .btn-update:active {
 
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 0 0 1px var(--boxshadow-light);
 }
+/*********************************** FORMULAR SECTION ******************************************/
 
-/*######################---FORMULAR SECTION---########################################*/
-/*General*/
+/************ General *****************/
 .form-container {
-    /*border: 3px solid crimson;*/
     width: 800px;
     margin: 0 auto;
     padding: 0;
@@ -371,7 +351,7 @@ pre[class*=language-] {
 }
 
 .requiredAsterisk{
-    color:crimson;
+    color:var(--errorMessage);
     margin-left: 5px;
 }
 .form-container textarea, .form-container input, .form-container option, .form-container select {
@@ -392,26 +372,25 @@ pre[class*=language-] {
     padding: 0;
 }
 .form-header{
-    /*border:1px solid green;*/
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
 }
-/* Inputs*/
+/************ Inputs *****************/
 .input-container {
     display: flex;
 
 }
 .close-outline{
     font-size: 24px;
-    color:white;
+    color:var( --btn-bg-light);
     border-radius: 3px;
     background-color:var( --btn-bg--dangerous);
 }
 .close-outline:hover{
     font-size: 24px;
-    color:white;
+    color:var( --btn-bg-light);
     border-radius: 3px;
     background-color:var( --btn-bg--dangerous-hover);
 }
@@ -419,30 +398,20 @@ pre[class*=language-] {
 .inputFields {
     height: 70px;
     width: 300px;
-    /*border: 1px solid var(--btn-bg--dangerous-hover);*/
-    /*display:flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*border:1px solid red;*/
 }
-
-
 
 .form-container div > label {
     margin-bottom: 10px;
     display: block;
     vertical-align: center;
     width: 100px;
-    /*border: 1px solid var(--btn-bg--dangerous-hover);*/
 }
 
 .form-container select, .form-container div > input {
-    border: 1px solid lightgray;
+    border: 1px solid var(--border-light);
     border-radius: 5px;
     padding: 3px;
-
 }
-
 
 .overlayHeadings{
     width: 220px;
@@ -454,7 +423,6 @@ pre[class*=language-] {
 }
 .overlayContainer{
     width:250px;
-    /*border:2px solid green;*/
     text-align: left;
 }
 .errorMessage{
@@ -463,15 +431,14 @@ pre[class*=language-] {
     height:30px;
     line-height: 20px;
     font-size: 12px;
-    color:crimson;
+    color:var( --errorMessage);
     opacity: 0;
     transition: opacity 3s;
 }
 .show {
     opacity: 1;
 }
-
-/*nunber Inputs ohne Pfeile*/
+/************ *Number Inputs ohne Pfeil *****************/
 /* Chrome, Safari, Edge, Opera */
 .form-container div:nth-child(odd) > input::-webkit-outer-spin-button,
 .form-container div:nth-child(odd) > input::-webkit-inner-spin-button {
@@ -488,8 +455,7 @@ pre[class*=language-] {
 .form-container select {
     text-align: right;
 }
-
-/*Textareas*/
+/***********************Textareas ***********************/
 
 .addTextAreaFields {
     /*border: 2px solid green;*/
@@ -498,17 +464,15 @@ pre[class*=language-] {
 .textAreaFields,
 .addTextAreaFields .addedDescription {
     height: 120px;
-    /*border: 2px solid green;*/
 }
 
 .textAreaFields,
 .addTextAreaFields .addedCode {
     height: 160px;
-    /*border: 2px solid crimson;*/
 }
 
 .form-container div > textarea {
-    border: 1px solid lightgray;
+    border: 1px solid var(--border-light);
     border-radius: 5px;
     padding: 5px;
     resize: none;
@@ -532,16 +496,17 @@ pre[class*=language-] {
 .label-container label::first-letter {
     text-transform: capitalize;
 }
+
 .label-container {
     margin-bottom: 10px;
 }
-/*Buttons*/
+/***********************Textareas ***********************/
+/***** Buttons ***********/
 .addTextAreas {
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*border: 1px solid var(--btn-bg--dangerous-hover);*/
 }
 
 .btn-form-container {
@@ -550,7 +515,6 @@ pre[class*=language-] {
     justify-content: flex-end;
     align-items: center;
     margin-top: 20px;
-    /*border: 1px solid var(--btn-bg--dangerous-hover);*/
 }
 
 .form-container .btn-add, .form-container .btn-remove {
@@ -571,15 +535,14 @@ pre[class*=language-] {
 
 .form-container .btn-add:active {
 
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 0 0 1px var(--boxshadow-light);
 }
 
 .form-container .btn-add:focus {
     outline: none;
-    /*box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7);*/
 }
-/*submit and reset*/
 
+/***** submit and reset ***********/
 .btn-form {
     padding: 7px 20px;
     border-radius: 7px;
@@ -592,8 +555,6 @@ pre[class*=language-] {
     margin-right: 15px;
 }
 
-
-
 .btn-reset {
     background-color: var(--btn-bg-light);
     color: var(--btn-fc-dark);
@@ -602,56 +563,33 @@ pre[class*=language-] {
 
 .btn-reset:hover {
     background-color: var(--btn-bg-light-hover);
-
 }
 
 .btn-reset:active {
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 0 0 1px var(--boxshadow-light);
 }
 
 .form-container .btn-reset:focus,
 .form-container .btn-send:focus {
     outline: none;
-    /*box-shadow: inset 0 0 0 2px rgba(255,255,255,0.7);*/
 }
 
-
-
 .btn-send {
-
     background-color: var(--btn-bg--dangerous);
     color: var(--btn-fc-dangerous);
 }
 
-
 .btn-send:hover {
     background-color: var(--btn-bg--dangerous-hover);
-
 }
 
 .btn-send:active {
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 0 0 1px var(--boxshadow-light);
 }
-
-footer {
-    position: fixed;
-    bottom: 0px;
-    left: 300px;
-    right: 20px;
-    /*width: 900px;*/
-    height: 60px;
-    border: 2px solid crimson;
-    background-color: #fff;
-    z-index: 100;
-}
+/************************sonstiges ******************************/
 
 #console-error {
-
     margin: 0 auto;
     width: 1000px;
     height: 50px;
-
-}
-.formheader h1{
-
 }

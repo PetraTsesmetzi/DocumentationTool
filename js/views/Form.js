@@ -91,12 +91,17 @@ class Form {
      * @param e
      */
     #deleteAddedElements(e) {
+        console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++dletetAddedElements');
         console.log(e.target);
-        let toDelete = e.target.parentElement.parentNode;
-        // console.log(toDelete);
-        if (toDelete.classList.contains("addedCode") || toDelete.classList.contains("addedDescription")) {
-            toDelete.remove();
+        console.log();
+        if(e.target.classList.contains("btn-delete")){
+            let toDelete = e.target.parentElement.parentNode;
+            // console.log(toDelete);
+            if (toDelete.classList.contains("addedCode") || toDelete.classList.contains("addedDescription")) {
+                toDelete.remove();
+            }
         }
+
     }
 
     /**
@@ -146,25 +151,28 @@ class Form {
                 <div class="inputFields">
                 <label for="articleTitel">Artikel<span class="requiredAsterisk">*</span></label>
                 <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" value="${form.actionForm === 'update' ? form.articleName : ''}" required>
-            </div>
-           
-            <div class="inputFields">
-                <label for="articleNr">Artikelnr.</label>
-                <select id="articleNr" name="articleNr" ${form.actionForm === 'update'?'disabled':''}>`;
-        if (form.actionForm === 'update') htmlObj += `<option class="overlayNumbers" >${form.articleId}</option>`;
-        for (let i = form.freeArticleNumbers.length - 1; i >= 0; i--) {
-            htmlObj += `<option class="overlayNumbers" value=${form.freeArticleNumbers[i]}>${form.freeArticleNumbers[i]}</option>`;
-        }
+            </div>`;
 
-        htmlObj += `
-                </select>
-            </div>
-            <div class="inputFields">
-             <label for="subChapterTitel">Unterkapitel</label>
-             <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
-        for (let i = 0; i < form.subchapters.length; i++) {
-            htmlObj += `<option class="overlayContainer" value="${form.subchapters[i].subchapterName}"  ${(form.subchapterId - 1) === i ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapters[i].subchapterName}</option>`;
-        }
+
+            htmlObj += `<div class="inputFields">
+         
+                    <label for="articleNr">${form.actionForm === 'create'?'Artikelnr.':'Artikel_Id'}</label>
+                    <select id="articleNr" name="articleNr" ${form.actionForm === 'update'?'disabled':''}>`;
+            if (form.actionForm === 'update') htmlObj += `<option class="overlayNumbers" >${form.articleId}</option>`;
+            for (let i = form.freeArticleNumbers.length - 1; i >= 0; i--) {
+                htmlObj += `<option class="overlayNumbers" value=${form.freeArticleNumbers[i]}>${form.freeArticleNumbers[i]}</option>`;
+            }
+
+            htmlObj += `
+                    </select>
+                </div>
+                <div class="inputFields">
+                 <label for="subChapterTitel">Unterkapitel</label>
+                 <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
+            for (let i = 0; i < form.subchapters.length; i++) {
+                htmlObj += `<option class="overlayContainer" value="${form.subchapters[i].subchapterName}"  ${(form.subchapterId - 1) === i ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapters[i].subchapterName}</option>`;
+            }
+
         // **********************************errormessage****************************************************************************
         htmlObj += `</select></div></div>
         <div class="errorMessage">Artikel ist schon vergeben, wähle einen anderen Bezeichner</div>`;
