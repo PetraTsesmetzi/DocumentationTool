@@ -54,14 +54,24 @@ try {
             break;
         case'updateArticle';
             $id=(int)$_POST['articleId'];
-            $articleNumber = (int)$_POST['articleNumber'];
+            $articleNr = (int)$_POST['articleNr'];
             $subchapter_Id = (int)$_POST['subchapterId'];
-            $articleName = $_POST['articleTitel'];
+            $subChapterTitel = $_POST['subChapterTitel'];
+            $articleTitel = $_POST['articleTitel'];
+            $descriptionsArr = json_decode($_POST['descriptionsArr']);
+            $codeArr = json_decode($_POST['codeArr']);
             $echoFile='echoFile.txt';
             $message=file_get_contents($echoFile);
-            $message=$id."\n".$articleNumber."\n".$subchapter_Id."\n".$articleName."\n";
+            $message="id: ".$id."\n"."articleNr: ".$articleNr."\n".'$subchapter_Id'.$subchapter_Id."\n".'$articleTitel:'.$articleTitel."\n";
             file_put_contents($echoFile,$message);
-            (new Article($id,$articleNumber, $subchapter_Id, $articleName))->updateObject();
+
+            (new Article())->deleteObject($id);
+            //$subChapterId = (new SubChapter())->getSubChapterId($subChapterTitel);
+            $articleId = (new Article())->createNewObject($subchapter_Id, $articleTitel, $articleNr);
+            (new Description())->createNewObject($articleId, $descriptionsArr);
+            (new Code())->createNewObject($articleId, $codeArr);
+
+            //            (new Article($id,$articleNumber, $subchapter_Id, $articleName))->updateObject();
             echo json_encode('artikel wurde upgedatet');
             break;
 

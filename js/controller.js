@@ -84,22 +84,30 @@ const loadEditMode= async function(){
 const createAndUpdateArticles=async function(submitEvent){
     console.log('############################## createAndUpdateArticles')
     console.log(state.form.actionForm);
+    console.log(state.form.articleName);
     if(state.form.actionForm==='create') {
         submitEvent.preventDefault();
         let valide = await model.validateForm();
+        console.log('valide: ',valide);
         if (valide) {
             // let formdata=new FormData(submitEvent.target);
             await model.createAndUpdateArticle(submitEvent);
             await loadSubchapterById(model.state.form.subchapterId);
             await model.setVariablesForForm(model.state.form.subchapterId, 'create');
         } else {
-
             form.activateErrorMessage();
         }
     }else if(state.form.actionForm==='update'){
         submitEvent.preventDefault();
-        await model.createAndUpdateArticle(submitEvent);
-        await loadSubchapterById(model.state.form.subchapterId);
+        let valide=await model.validateForm();
+        if(valide){
+            await model.createAndUpdateArticle(submitEvent);
+            await loadSubchapterById(model.state.form.subchapterId);
+            await model.setVariablesForForm(model.state.form.subchapterId, 'update');
+        }else {
+            form.activateErrorMessage();
+        }
+
     }
 }
 

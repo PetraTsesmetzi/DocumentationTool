@@ -9,6 +9,7 @@ export const state = {
     form: {
         actionForm: '',
         articleId:'',
+        articleNr:'',
         articleName: '',
         subchapters: [],
         freeArticleNumbers: [],
@@ -153,6 +154,7 @@ export const setVariablesForForm = async (actionForm,event) => {
             state.form.actionForm = 'update';
             state.form.articleId=articleId;
             state.form.articleName = article.articleName;
+            state.form.articleNr=article.articleNumber;
             state.form.articleElementArr = sortArrayOfObjects([...article.descriptionArr, ...article.codeArr], 'elementOrder');
             state.form.subchapters = await loadSubchapters();
             state.form.subchapterId=state.form.subchapterId;
@@ -200,10 +202,28 @@ export const loadAllArticleNumbers = async function (subchapterId) {
 
 
 export const validateForm = async () => {
-    const searchStr = document.getElementById('articleTitel').value;
-    state.form.articleName = searchStr;
-    let articles = await loadArticles();
-    return ifNotExistsElements('checkArtikels', articles, searchStr);
+    console.log('validateForm')
+    if(state.form.actionForm==='create'){
+        const searchStr = document.getElementById('articleTitel').value;
+        state.form.articleName = searchStr;
+        let articles = await loadArticles();
+        return ifNotExistsElements('checkArtikels', articles, searchStr);
+    }else if(state.form.actionForm==='update'){
+        const orginalStr=state.form.articleName;
+        console.log(orginalStr)
+        const searchStr = document.getElementById('articleTitel').value;
+        if(orginalStr!==searchStr){
+            console.log('validate')
+            console.log(orginalStr)
+            console.log(searchStr)
+            state.form.articleName = searchStr;
+            let articles = await loadArticles();
+            return ifNotExistsElements('checkArtikels', articles, searchStr);
+        }else{
+            return true;
+        }
+
+    }
 }
 
 export const createAndUpdateArticle = async (submitEvent) => {
@@ -236,10 +256,11 @@ export const createAndUpdateArticle = async (submitEvent) => {
         if(state.form.actionForm==='create') formData.append('action', 'createArticle');
         if(state.form.actionForm==='update') {
             formData.append('action', 'updateArticle');
-            formData.append('articleName',state.form.articleName);
+            // formData.append('articleName',state.form.articleName);
             formData.append('subchapterId',state.form.subchapterId);
             formData.append('articleId',state.form.articleId);
-            formData.append('articleNumber',state.form.articleNumber);
+            formData.append('articleNr',state.form.articleNr);
+            // formData.append('articleNumber',state.form.articleNumber);
         }
         formData.append('descriptionsArr', JSON.stringify(descriptionsArr));
         formData.append('codeArr', JSON.stringify(codeArr));

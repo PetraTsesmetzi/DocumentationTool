@@ -1,0 +1,1 @@
+Fehler in der Datenbank: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'docutool.article2' doesn't exist C:\xampp\htdocs\DocumentationsTool\php\classes\Article.php 119

@@ -1,0 +1,4 @@
+id: 4
+articleNr: 1
+$subchapter_Id1
+$articleTitel:Variables22222

@@ -144,7 +144,7 @@ class Form {
         <!--  *****************************Artikelfeld (Artikel,Artikelnr,Unterkapitel************************************** -->
           <div class="input-container">
                 <div class="inputFields">
-                <label for="articleTitel">Artikel</label>
+                <label for="articleTitel">Artikel<span class="requiredAsterisk">*</span></label>
                 <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" value="${form.actionForm === 'update' ? form.articleName : ''}" required>
             </div>
            
@@ -172,11 +172,11 @@ class Form {
         if (form.actionForm === 'create') {
             htmlObj += ` <div class="addTextAreaFields">
             <div data-id="0" class="addedDescription">
-                <label for="description">Beschreibung</label>
+                <label for="description">Beschreibung<span class="requiredAsterisk">*</span></label>
                 <textarea id="description_0" name="description_0" data-elementOrder="0" class="description" required></textarea>
             </div>
             <div data-id="1" class="addedCode">
-                <label for="code">Code</label>
+                <label for="code">Code<span class="requiredAsterisk">*</span></label>
                 <textarea id="code_1"  name="codeblock_1" data-elementOrder="1" class="code" required></textarea>
             </div>
         </div>`;
@@ -196,13 +196,15 @@ class Form {
 
                 if (sortedArticleElementArr[i].hasOwnProperty('descriptionText')) {
                     htmlObj += `<div data-id="${i}" class="addedDescription">
-                    <div class="label-container"><label for="description_${i}">beschreibung</label>
+                    <div class="label-container"><label for="description_${i}">beschreibung ${(i===0 || i===1)?
+                        '<span class="requiredAsterisk">*</span>':''}</label>
                     <button data-btnid="${i}" class="btn ${(i===0 || i===1)?'btn-hide':''} btn-delete">Delete</button></div>
                     <textarea id="description_${i}" name="description_${i}" data-elementOrder="${i}" class="description">${sortedArticleElementArr[i].descriptionText}</textarea></div>`;
 
                 } else if (sortedArticleElementArr[i].hasOwnProperty('codeText')) {
                     htmlObj += `<div data-id="${i}" class="addedCode">
-                        <div class="label-container"><label for="codeblock_${i}">Code</label>
+                        <div class="label-container"><label for="codeblock_${i}">Code${(i===0 || i===1)?
+                        '<span class="requiredAsterisk">*</span>':''}</label>
                         <button data-btnid="${i}" class="btn ${(i===0 || i===1)?'btn-hide':''} btn-delete">Delete</button></div>
                         <textarea id="codeblock_${i}" name="codeblock_${i}" data-elementOrder="${i}" class="code">${sortedArticleElementArr[i].codeText}</textarea>
                     </div>`;
