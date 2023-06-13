@@ -20,42 +20,34 @@ $codeArr =$_POST['codeArr'] ?? '';
 
 $articleId=$_POST['articleId'] ?? '';
 $subchapter_Id = $_POST['subchapterId'] ?? '';
+$request=$_REQUEST;
 
-$args=[$action,$id,$subChapterTitel,$articleTitel,$articleNr,$descriptionsArr,$codeArr,$articleId,$subchapter_Id];
-
+$args=[$action,$id,$articleId,$subChapterTitel,$articleTitel,$articleNr,$descriptionsArr,$codeArr,$subchapter_Id];
 try {
 
     switch ($action) {
         case 'loadArticles':
-            setVariables($args);
+//            setVariables();
             $articles = (new Article())->getAllAsObjects();
             echo json_encode($articles);
             break;
         case'loadArticleById':
-            setVariables($args);
+//            setVariables();
             $article = (new Article())->getObjectById((int)$id);
             echo json_encode($article);
             break;
         case 'loadElements':
-            setVariables($args);
+//            setVariables();
             $subchapters = (new Subchapter())->getAllAsObjects();
             echo json_encode($subchapters);
             break;
         case 'loadSubchapterById':
-            setVariables($args);
+//            setVariables();
             $subchapterById = (new Subchapter())->getObjectById((int)$id);
             echo json_encode($subchapterById);
             break;
         case 'createArticle':
-            setVariables($args);
-            $echoFile='echoFile.txt';
-            $message=file_get_contents($echoFile);
-            $message= "action: " . $args[0] . "\n"."id:". $args[1]."\n"."articleId: ".$args[2]."\n"."subChapterTitel: ".$args[3]."\n".
-                "articleTitel: " . $args[4] . "\n". "articleNr: " . $args[5] . "\n".
-                "descriptionsArr: " . $args[6] . "\n". "codeArr: " . $args[7] . "\n".
-                "subchapter_Id: " . $args[8] . "\n";
-            file_put_contents($echoFile,$message);
-
+            setVariables();
             $subChapterId = (new SubChapter())->getSubChapterId($subChapterTitel);
             $articleId = (new Article())->createNewObject($subChapterId, $articleTitel, $articleNr);
             (new Description())->createNewObject($articleId, json_decode($descriptionsArr));
@@ -63,47 +55,52 @@ try {
             echo json_encode('neuer artikel wurde erstellt');
             break;
         case 'deleteArticle':
-            setVariables($args);
+//            setVariables();
             (new Article())->deleteObject((int)$id);
-            echo json_encode('neuer artikel wurde erstellt');
+            echo json_encode(' artikel wurde geloescht');
             break;
         case 'loadArticleNumbers':
-            setVariables($args);
+//            setVariables();
             $subchapters = (new Subchapter())->getAllAsObjects((int)$id);
             echo json_encode($subchapters);
             break;
         case'updateArticle';
-            setVariables($args);
+//          setVariables();
             (new Article())->deleteObject((int)$articleId);
             $article_Id = (new Article())->createNewObject((int)$subchapter_Id, $articleTitel, (int)$articleNr);
             (new Description())->createNewObject($article_Id, json_decode($descriptionsArr));
             (new Code())->createNewObject($article_Id, json_decode($codeArr));
 
-            //            (new Article($id,$articleNumber, $subchapter_Id, $articleName))->updateObject();
+            //(new Article($id,$articleNumber, $subchapter_Id, $articleName))->updateObject();
             echo json_encode('artikel wurde upgedatet');
             break;
 
     }
 
 
-
-
-
 }catch(Exception $e){
+    //Erstellt eine errorFile.txt mit Error Message
     $errorFile='errorFile.txt';
     $message=file_get_contents($errorFile);
-    $message=$e->getMessage()."\n";
+    $message="Message: ".$e->getMessage()."\n"."LineNumber: ".$e->getLine()."\n";
     file_put_contents($errorFile,$message);
 }
 
+/**
+ * schreibt in einem File alle $_POST Variablen die ankommen
+ * @param $args
+ * @return void
+ */
+function setVariables():void{
 
-function setVariables($args):void{
     $echoFile='echoFile.txt';
     $message=file_get_contents($echoFile);
-    $message= "action: " . $args[0] . "\n"."id:". $args[1]."\n"."articleId: ".$args[2]."\n"."subChapterTitel: ".$args[3]."\n".
-        "articleTitel: " . $args[4] . "\n". "articleNr: " . $args[5] . "\n".
-        "descriptionsArr: " . $args[6] . "\n". "codeArr: " . $args[7] . "\n".
-         "subchapter_Id: " . $args[8] . "\n";
+
+    foreach ($_POST as $key => $value) {
+        $message .= $key . " : " . $value . "\n";
+    }
+
+    $message .= "\n". "\n";
     file_put_contents($echoFile,$message);
 }
 

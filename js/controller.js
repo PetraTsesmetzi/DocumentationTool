@@ -28,7 +28,6 @@ export const loadArticleNumbers=async function(e){
     const subchapterId=e.target.options.selectedIndex+1;
     window.location.href = "#"+subchapterId;
     window.removeEventListener('hashchange', loadSubchapterById);
-    console.log(subchapterId);
     await model.loadAllArticleNumbers(subchapterId);
     navLeft.setActiveClass(model.state.form.subchapterId);
     showForm();
@@ -62,7 +61,7 @@ const loadEditMode= async function(){
     //toggled den bearbeiten button zwischen forumlar und anzeige des subchapters mit seinen artikeln
     model.state.editModeFlag=(model.state.editModeFlag === true) ? false : true;
     navHeader.renderInsert(model.state.editModeFlag)
-    console.log('loadEditMode',state.form)
+
     await loadSubchapter(state.form.subchapterId)
     showArticleView();
 }
@@ -108,7 +107,7 @@ const createAndUpdateArticles=async function(submitEvent){
  */
 const deleteArticles=async function(e){
     let id=e.target.parentElement.parentElement.dataset.articleid;
-    await model.deleteArticle(id);
+    await model.deleteArticle(id,'deleteArticle');
     await model.setVariablesForForm(model.state.form.subchapterId,'create');
     await loadSubchapterById(model.state.form.subchapterId);
 }
@@ -138,9 +137,7 @@ const loadSubchapterById=async function(element){
  }
 
 const showArticleView=function(){
-    //todo
-    // articleView.render(model.state.subchapter,model.state.editModeFlag);
-    console.log('show Artikel',state.form)
+
     articleView.render(model.state.form,model.state.editModeFlag);
     articleView.addHandlerDeleteArt(deleteArticles);
     articleView.addHandlerUpdateArt(loadForm);
@@ -156,9 +153,7 @@ const initializePrismScript=function(){
     let prismScript=document.querySelector('.prismScript');
     if(prismScript!=null) {
         let body=document.getElementsByTagName('body');
-        console.log(body)
         let prismScript=document.querySelector('.prismScript');
-
         body[0].removeChild(prismScript);
     }
 

@@ -37,8 +37,8 @@ Durch das Drücken des Löschen Buttons wird der Artikel mit sämtlichen Code un
 
 
 Artikel Ändern
-Durch das Drücken des Ändern Buttons erscheint wieder ein Formular. Dieses ist diesmal vor ausgefüllt mit dem zuvor gewählten Artikel. Alle Code-Felder und Beschreibungsfelder bis auf die 2 obengenannten Pflichtfelder kann man aus dem ändern oder entfernen.
+Durch das Drücken des Ändern Buttons erscheint wieder ein Formular. Dieses ist diesmal vor ausgefüllt mit dem zuvor gewählten Artikel. Alle Code-Felder und Beschreibungsfelder bis auf die 2 obengenannten Pflichtfelder kann man  ändern oder entfernen.
 
 
 
-Das Projekt wird mit Javascript(Frontend) und PHP(Backend) realisiert. Zur Kommunikation zwischen Frontend und Backend wird Ajax verwendet. Die gewählte Datenbank ist Maria Db
+Das Projekt wird mit Javascript(Frontend) und PHP 8.2(Backend) realisiert. Zur Kommunikation zwischen Frontend und Backend wird Ajax verwendet. Die gewählte Datenbank ist Maria DB

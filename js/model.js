@@ -30,7 +30,9 @@ export const state = {
         articles: [],
         articleElementArr: [],
         articlesArr:[],
-        subchapterId: 1
+        subchapterId: 1,
+        descriptionArr:[],
+        codeArr:[]
     }
 }
 
@@ -135,7 +137,7 @@ export const loadSubchapter = async (id) => {
 
         state.form.articles=articlesTemp;
         state.form.subchapterId=id;
-        console.log('in sub',state.form.articles)
+
 
     } catch (e) {
         errorMessage(e);
@@ -166,6 +168,8 @@ export const setVariablesForForm = async (actionForm,event) => {
             state.form.articleName = article.articleName;
             state.form.articleNr=article.articleNumber;
             state.form.articleElementArr = sortArrayOfObjects([...article.descriptionArr, ...article.codeArr], 'elementOrder');
+            state.form.descriptionArr=article.descriptionArr;
+            state.form.codeArr=article.codeArr;
             state.form.subchapters = await loadSubchapters();
             state.form.subchapterId=state.form.subchapterId;
         }
@@ -250,7 +254,7 @@ export const createAndUpdateArticle = async (submitEvent) => {
         let formData = new FormData(form);
         const descriptionsArr = [];
         const codeArr = [];
-        //daten vom formular aufbereiten
+        //daten für formular aufbereiten
         for (const keys of formData.entries()) {
             if (keys[0].includes('description')) {
                 let elementOrder = keys[0].split('_');
@@ -291,14 +295,15 @@ export const createAndUpdateArticle = async (submitEvent) => {
 
 
 /**
- * löscht Artikel aus der DB
+ * löscht Artikel
  * @param id
+ * @param action
  * @returns {Promise<void>}
  */
-export const deleteArticle = async (id) => {
+export const deleteArticle = async (id, action) => {
     try {
         let formData = new FormData();
-        formData.append('action', 'deleteArticle');
+        formData.append('action', 'deleteArticle')
         formData.append('id', id);
         let data = await getJSONObj(formData);
     } catch (e) {

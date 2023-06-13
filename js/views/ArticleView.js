@@ -23,7 +23,6 @@ class ArticleView {
      */
     render(data, editmode) {
 
-        console.log('in article',data)
         this.#editmode = editmode;
         this.#subchapterName = data.subchapterName;
         this.#subcapterArticles = data.articles;

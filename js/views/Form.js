@@ -19,17 +19,19 @@ class Form {
     #formular = document.querySelector('#createAndUpdateObjects');
     #selectField = document.querySelector('#subChapterTitels');
     #closeButton;
+    #deleteBtns;
 
     /**
      * initialisiert das Markup(hängt die htmlObjekte in die Container)
      * @param state
      */
     render(state) {
-        console.log('in form',state);
+        // console.log('in form',state);
         this.#clear();
         const markup = this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
         this.#addTextAreaFields = document.querySelector('.addTextAreaFields');
+         this.#deleteBtns = document.querySelector('.addTextAreaFields');
         this.#addHandlerRender();
     }
 
@@ -49,8 +51,8 @@ class Form {
         const addCodeButton = document.querySelector('.addCodeArea');
         addCodeButton.addEventListener('click', this.#addElement.bind(this));
 
-        const deleteBtns = document.querySelector('.addTextAreaFields');
-        deleteBtns.addEventListener('click', this.#deleteAddedElements.bind(this));
+        // const deleteBtns = document.querySelector('.addTextAreaFields');
+        this.#deleteBtns.addEventListener('click', this.#deleteAddedElements.bind(this));
 
     }
 
@@ -79,11 +81,13 @@ class Form {
      * @param handler
      */
     addHandleRenderClose(handler) {
-
         this.#closeButton = document.querySelector('.close-outline');
         this.#closeButton.addEventListener('click', handler.bind(this));
     }
 
+    deleteHandleRenderFields(handler){
+        this.#deleteBtns.addEventListener('click',handler.bind(this));
+    }
     /**
      * fügt nach einem Click auf den jeweiligen Button einen  Code-Feld oder Beschreibung-Feld hinzu
      */
@@ -215,18 +219,19 @@ class Form {
             for (let i = 0; i < sortedArticleElementArr.length; i++) {
 
                 if (sortedArticleElementArr[i].hasOwnProperty('descriptionText')) {
+
                     htmlObj += `<div data-id="${i}" class="addedDescription">
                     <div class="label-container"><label for="description_${i}">beschreibung ${(i===0 || i===1)?
                         '<span class="requiredAsterisk">*</span>':''}</label>
                     <button data-btnid="${i}" class="btn ${(i===0 || i===1)?'btn-hide':''} btn-delete">Delete</button></div>
-                    <textarea id="description_${i}" name="description_${i}" data-elementOrder="${i}" class="description">${sortedArticleElementArr[i].descriptionText}</textarea></div>`;
+                    <textarea id="description_${i}" name="description_${i}" data-elementOrder="${i}" data-id="${sortedArticleElementArr[i].id}" class="description">${sortedArticleElementArr[i].descriptionText}</textarea></div>`;
 
                 } else if (sortedArticleElementArr[i].hasOwnProperty('codeText')) {
                     htmlObj += `<div data-id="${i}" class="addedCode">
                         <div class="label-container"><label for="codeblock_${i}">Code${(i===0 || i===1)?
                         '<span class="requiredAsterisk">*</span>':''}</label>
                         <button data-btnid="${i}" class="btn ${(i===0 || i===1)?'btn-hide':''} btn-delete">Delete</button></div>
-                        <textarea id="codeblock_${i}" name="codeblock_${i}" data-elementOrder="${i}" class="code">${sortedArticleElementArr[i].codeText}</textarea>
+                        <textarea id="codeblock_${i}" name="codeblock_${i}" data-elementOrder="${i}" data-id="${sortedArticleElementArr[i].id}" class="code">${sortedArticleElementArr[i].codeText}</textarea>
                     </div>`;
                 }
             }
