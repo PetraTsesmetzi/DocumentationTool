@@ -6,70 +6,70 @@ import * as model from './model.js';
 import {loadSubchapter, setVariablesForForm, state, validateForm} from "./model.js";
 
 
-
-
 /**
- * lädt das Formular
+ * Lädt das Formular für Create und Update
  * @param e
  */
 export const loadForm= async function(e){
-    console.log('*******************************************************************loadForm');
-    // console.log(e)
     let actionForm='';
     if(e.target.classList.contains('btn-insert'))  actionForm='create';
     if(e.target.classList.contains('btn-update'))   actionForm='update';
-    console.log(actionForm)
-    // await model.setVariablesForForm(state.form.subchapterId,actionForm);
     await model.setVariablesForForm(actionForm,e);
-    console.log('++++++++++++++++++++model.state.form.subchapterId:',model.state.form.subchapterId)
     showForm();
-
-
 }
 
 /**
- * lädt articlenummer beim klicken eines Unterkapitels
+ * lädt im Formular die noch freien Artikelnummern beim klicken eines Unterkapitels
+ * wird nichts ausgewählt wird die größte Zahl genommen
  * @param e
  * @returns {Promise<void>}
  */
 export const loadArticleNumbers=async function(e){
-    // console.log('###############################loadArticleNumbers')
-    const subchapterId=(e.target.options.selectedIndex)+1;
-    // console.log(subchapterId)
+    const subchapterId=e.target.options.selectedIndex+1;
+    //todo:
+
+    // window.location.href = "#"+subchapterId;
+    // window.removeEventListener('hashchange', loadSubchapterById);
+    console.log(subchapterId);
 
     await model.loadAllArticleNumbers(subchapterId);
-    // console.log('actionform in loadArticles: '+state.form.actionForm)
-    // await model.setVariablesForForm(id,state.form.actionForm);
     navLeft.setActiveClass(model.state.form.subchapterId);
     showForm();
 
 }
+/**
+ * rendert das Formular für das Erstellen und Updaten von Artikel
+ */
 const showForm=function (){
-    // console.log('###########################show form')
+    //todo:
+    console.log('show form');
+
     form.render(model.state);
     form.addHandlerRenderSend(createAndUpdateArticles);
     form.addHandlerRenderArticleNumbers(loadArticleNumbers);
     form.addHandleRenderClose(closeForm);
+   // navLeft.addHandlerRender(loadSubchapterById);
+
+
 }
+
+/**
+ * schließt das Formular, wenn auf den Close Button (das X oben rechts) gedrückt wird
+ * @returns {Promise<void>}
+ */
 export const closeForm= async function(){
-    console.log('close')
-    console.log('+++++++++++++++++++++++++model.state.form.subchapterId: ',model.state.form.subchapterId)
     await loadSubchapterById(model.state.form.subchapterId);
 }
 
 /**
- * lädt den bearbeitungsmodus
+ * Der Bearbeiten Button toggelt den Bearbeitungsmodus
  */
 const loadEditMode= async function(){
-    // console.log('#################### loadEditMode')
-    // console.log( model.state.form.subchapterId)
-    // console.log('editflag',model.state.editModeFlag)
     //toggled den bearbeiten button zwischen forumlar und anzeige des subchapters mit seinen artikeln
     model.state.editModeFlag=(model.state.editModeFlag === true) ? false : true;
     // if(!model.state.editModeFlag){
     //     await loadSubchapterById(model.state.form.subchapterId);
     // }
-    // console.log('editflag',model.state.editModeFlag)
     navHeader.renderInsert(model.state.editModeFlag)
     showArticleView();
 }
@@ -77,20 +77,18 @@ const loadEditMode= async function(){
 
 
 /**
- * initialisiert die erstellung der neuen artikels
+ * Intialsiert das Erstellen und Ändern eines Artikel Eintrages
+ * Wird über den Submit Button des Formulars aufgerufen.
+ * Gilt für beide Modi Einfügen, Ändern
+ *
  * @param submitEvent
  * @returns {Promise<void>}
  */
 const createAndUpdateArticles=async function(submitEvent){
-    console.log('############################## createAndUpdateArticles')
-    console.log(state.form.actionForm);
-    console.log(state.form.articleName);
     if(state.form.actionForm==='create') {
         submitEvent.preventDefault();
         let valide = await model.validateForm();
-        console.log('valide: ',valide);
         if (valide) {
-            // let formdata=new FormData(submitEvent.target);
             await model.createAndUpdateArticle(submitEvent);
             await loadSubchapterById(model.state.form.subchapterId);
             await model.setVariablesForForm(model.state.form.subchapterId, 'create');
@@ -107,51 +105,44 @@ const createAndUpdateArticles=async function(submitEvent){
         }else {
             form.activateErrorMessage();
         }
-
     }
 }
 
 /**
- * initialisiert das löschen eines artikels
+ * Initialisiert das Löschen eines Artikels
  * @param e
  * @returns {Promise<void>}
  */
 const deleteArticles=async function(e){
-    // console.log('######################## deleteArticles')
     let id=e.target.parentElement.parentElement.dataset.articleid;
     await model.deleteArticle(id);
     await model.setVariablesForForm(model.state.form.subchapterId,'create');
     await loadSubchapterById(model.state.form.subchapterId);
-
-
 }
 
-/**
- * initialisiert das updaten eines artikels
- * @param e
- * @returns {Promise<void>}
- */
-const updateArticles=async function(e){
-    // console.log('##############################    updateArticles')
-    let id=e.target.parentElement.parentElement.dataset.articleid;
-    await model.updateArticle(id);
-
-
-}
+// /**
+//  * initialisiert das Updaten eines artikels
+//  * @param e
+//  * @returns {Promise<void>}
+//  */
+// const updateArticles=async function(e){
+//     // console.log('##############################    updateArticles')
+//     let id=e.target.parentElement.parentElement.dataset.articleid;
+//     await model.updateArticle(id);
+// }
 
 
 /**
- * lädt ein vollständiges subchpter mit seinen artikel bei übergebener id
- * @param id
+ * Lädt ein gewähltes Unterkapitel mit seinen Artikel
+ * @param element
  * @returns {Promise<void>}
  */
 const loadSubchapterById=async function(element){
-    // console.log('loadSubchapterById')
+
     if(!(element instanceof Event)) element=Number(element);
 
     if(element instanceof Event){
         let id=window.location.hash.slice(1);
-        // console.log(id);
         model.state.form.subchapterId=id;
         await model.loadSubchapter(id);
     }
@@ -160,13 +151,8 @@ const loadSubchapterById=async function(element){
         await model.loadSubchapter(element);
     }
     showArticleView();
-    // console.log('model.state.form.subchapterId',model.state.form.subchapterId)
     await model.setVariablesForForm(model.state.form.subchapterId,'create');
-    // if(model.state.editModeFlag===true)await loadEditMode();
-
-
-}
-
+ }
 
 const showArticleView=function(){
     articleView.render(model.state.subchapter,model.state.editModeFlag);
@@ -177,7 +163,7 @@ const showArticleView=function(){
 
 
 /**
- * initialisiert die libary prism
+ * Initialisiert die Libary prism
  */
 const initializePrismScript=function(){
     let scriptElement = document.createElement("script");
@@ -192,15 +178,11 @@ const initializePrismScript=function(){
  * startet alles
  */
 const init=  async function() {
-    console.log('init')
     window.location.href = "#";
     await loadSubchapterById(1);
     navLeft.render('init');
     navHeader.render('init');
 
-     // loadAllElementsForInputs();
-
-    // navLeft.addHandlerRender(loadArticles);
     navLeft.addHandlerRender(loadSubchapterById);
     navHeader.addHandlerEdit(loadEditMode);
     navHeader.addHandlerInsert(loadForm);

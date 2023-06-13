@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Autorin: Petra Tsesmetzi
+ * Datum: 12.06.2023
+ *
+ * Die Klasse Description erstellt und liest die Beschreibungsblöcke
+ *
+ */
+
+
+
 class Description
 
 {
@@ -24,7 +34,7 @@ class Description
     }
 
     /**
-     * liest alle beschreibungsblöcke aus der datenbank raus
+     * liest alle Beschreibungsblöcke aus der DB raus
      * @param Article|null $article
      * @return array|null
      */
@@ -59,7 +69,7 @@ class Description
     }
 
     /**
-     * gibt alle privaten attribute der klasse als json string zurück
+     * gibt alle privaten Attribute der klasse als json string zurück
      * @return string
      */
     public function getJSONEncode(): string
@@ -95,19 +105,5 @@ class Description
 
     }
 
-    public function getObjectById(int $id)
-    {
-
-    }
-
-    public function updateObject()
-    {
-
-    }
-
-    public function delete($id)
-    {
-
-    }
 
 }

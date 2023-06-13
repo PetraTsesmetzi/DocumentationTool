@@ -1,4 +1,11 @@
 <?php
+/**
+ * Autorin: Petra Tsesmetzi
+ * Datum: 12.06.2023
+ *
+ * Die Klasse Code erstellt und liest die Code-Felder
+ *
+ */
 
 class Code
 {
@@ -21,7 +28,7 @@ class Code
     }
 
     /**
-     * liest alle codeText aus der db
+     * liest alle codeTexte aus der db
      * @param Article|null $article
      * @return array|null
      */
@@ -55,7 +62,7 @@ class Code
     }
 
     /**
-     * gibt alle privaten attribute der klasse als json string zurück
+     * gibt alle privaten Attribute der Klasse als json String zurück
      * @return string
      */
     public function getJSONEncode(): string
@@ -65,7 +72,7 @@ class Code
 
 
     /**
-     * itireiert durch das codeArr und erstellt für jeden eintrag einen eintrag in die DB
+     * itireiert durch das codeArr und erstellt für jeden Eintrag einen Eintrag in die DB
      * @param $article_Id
      * @param $codeArr
      * @return void
@@ -89,19 +96,4 @@ class Code
         }
     }
 
-    public function getObjectById(int $id)
-    {
-
-    }
-
-
-    public function updateObject()
-    {
-
-    }
-
-    public function delete($id)
-    {
-
-    }
 }

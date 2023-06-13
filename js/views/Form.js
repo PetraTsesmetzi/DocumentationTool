@@ -1,8 +1,17 @@
 import {loadArticleNumbers} from "../controller.js";
 import {sortArrayOfObjects} from '../helper.js';
 
+/**
+ * Autorin: Petra Tsesmetzi
+ * Datum: 12.06.2023
+ *
+ * Die Klasse FormView generiert das Markup für das Formular
+ * durch Flags wird hier zwischen Create und Update unterschieden
+ *
+ */
+
 class Form {
-    #updateFlag = false;
+    // #updateFlag = false;
     #parentElement = document.querySelector('.content-container');
     #addTextAreaFields = "";
     #addedBlockCounter;
@@ -12,12 +21,11 @@ class Form {
     #closeButton;
 
     /**
-     * initialisiert das markup(hängt die htmlObjekte in die Container)
+     * initialisiert das Markup(hängt die htmlObjekte in die Container)
      * @param state
      */
     render(state) {
-        console.log('inform');
-        // console.log(state.form);
+        console.log('in form');
         this.#clear();
         const markup = this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
@@ -31,8 +39,7 @@ class Form {
     }
 
     /**
-     * eventhandler für code hinzufügen, beschreibung hinzufügen und lösche buttons
-     * aufgurfen innerhalb des formulars
+     * Eventhandler für Code hinzufügen, Beschreibung hinzufügen und Lösche buttons
      */
     #addHandlerRender() {
 
@@ -47,14 +54,19 @@ class Form {
 
     }
 
+    /**
+     * Eventhandler für Artikelnummer
+     * lädt die richtigen artikelnummern je nachdem auf welches Unterkapitel man geklickt hat
+     * @param handler
+     */
     addHandlerRenderArticleNumbers(handler) {
-        console.log('article numbers')
+
         this.#selectField = document.querySelector('#subChapterTitels');
         this.#selectField.addEventListener('change', handler);
     }
 
     /**
-     * event handler für submit button vom formular
+     * Eventhandler für submit Button
      * @param handler
      */
     addHandlerRenderSend(handler) {
@@ -62,23 +74,26 @@ class Form {
         this.#formular.addEventListener('submit', handler.bind(this));
     }
 
+    /**
+     * Eventhandler für den Close Button
+     * @param handler
+     */
     addHandleRenderClose(handler) {
-        console.log('renderclose')
+
         this.#closeButton = document.querySelector('.close-outline');
         this.#closeButton.addEventListener('click', handler.bind(this));
     }
 
     /**
-     * intialsiert codeblckfeld oder beschreibungsblock feld
-     * @param e
+     * fügt nach einem Click auf den jeweiligen Button einen  Code-Feld oder Beschreibung-Feld hinzu
      */
     #addElement(e) {
         let toAdd = e.target;
         if (toAdd.classList.contains("addCodeArea")) {
             const codeMarkup = this.#generateCodeBlock();
             this.#addTextAreaFields.insertAdjacentHTML("beforeend", codeMarkup);
-
         }
+
         if (toAdd.classList.contains("addDescArea")) {
             const descMarkup = this.#generateDescriptionBlock();
             this.#addTextAreaFields.insertAdjacentHTML("beforeend", descMarkup);
@@ -87,25 +102,21 @@ class Form {
     }
 
     /**
-     * löscht die hizugefügten code oder beschreibungsblöcke
+     * Löscht die hinzugefügten Code -und Beschreibungsfelder
      * @param e
      */
     #deleteAddedElements(e) {
-        console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++dletetAddedElements');
-        console.log(e.target);
-        console.log();
         if(e.target.classList.contains("btn-delete")){
             let toDelete = e.target.parentElement.parentNode;
-            // console.log(toDelete);
+
             if (toDelete.classList.contains("addedCode") || toDelete.classList.contains("addedDescription")) {
                 toDelete.remove();
             }
         }
-
     }
 
     /**
-     * html Objekt für beschreibungsblock
+     * Markup für Beschreibungsfeld
      * @returns {string}
      */
     #generateDescriptionBlock() {
@@ -118,7 +129,7 @@ class Form {
     }
 
     /**
-     * html Objekt für codeblock
+     * Markup für Codefeld
      * @returns {string}
      */
     #generateCodeBlock() {
@@ -136,70 +147,73 @@ class Form {
      * @returns {string}
      */
     #generateMarkup(form) {
-        console.log(form)
-        console.log('form.actionForm', form.actionForm)
-
-
-        let htmlObj = `<div class="form-container">
-        <div class="form-header">
-             ${form.actionForm === 'update' ? '<h1>Elemente ändern</h1>' : '<h1>Elemente hinzufügen</h1>'}
-            <ion-icon class="close-outline" name="close-outline"></ion-icon>
-        </div>
+       // ***************************** Überschrift und form  *************************************
+        let htmlObj = `
+        <div class="form-container">
+            <div class="form-header">
+                 ${form.actionForm === 'update' ? '<h1>Elemente ändern</h1>' : '<h1>Elemente hinzufügen</h1>'}
+                <ion-icon class="close-outline" name="close-outline"></ion-icon>
+            </div>
         <form action="#" method="post" id="createAndUpdateObjects">
-        <!--  *****************************Artikelfeld (Artikel,Artikelnr,Unterkapitel************************************** -->
+        
+        <!--  ***************************** Artikelname ************************************** -->
           <div class="input-container">
                 <div class="inputFields">
                 <label for="articleTitel">Artikel<span class="requiredAsterisk">*</span></label>
                 <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" value="${form.actionForm === 'update' ? form.articleName : ''}" required>
             </div>`;
+        //  ***************************** Artikelnr bei create Selectfeld /ArtikelId bei update **************************************
 
-
-            htmlObj += `<div class="inputFields">
-         
+            htmlObj += `
+                    <div class="inputFields">
                     <label for="articleNr">${form.actionForm === 'create'?'Artikelnr.':'Artikel_Id'}</label>
                     <select id="articleNr" name="articleNr" ${form.actionForm === 'update'?'disabled':''}>`;
             if (form.actionForm === 'update') htmlObj += `<option class="overlayNumbers" >${form.articleId}</option>`;
             for (let i = form.freeArticleNumbers.length - 1; i >= 0; i--) {
-                htmlObj += `<option class="overlayNumbers" value=${form.freeArticleNumbers[i]}>${form.freeArticleNumbers[i]}</option>`;
+                    htmlObj += `<option class="overlayNumbers" value=${form.freeArticleNumbers[i]}>${form.freeArticleNumbers[i]}</option>`;
             }
-
+        //  ***************************** Unterkapitel -Selectfeld  **************************************
             htmlObj += `
-                    </select>
-                </div>
-                <div class="inputFields">
-                 <label for="subChapterTitel">Unterkapitel</label>
-                 <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
+                   </select>
+                   </div>
+                   <div class="inputFields">
+                   <label for="subChapterTitel">Unterkapitel</label>
+                   <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
             for (let i = 0; i < form.subchapters.length; i++) {
                 htmlObj += `<option class="overlayContainer" value="${form.subchapters[i].subchapterName}"  ${(form.subchapterId - 1) === i ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapters[i].subchapterName}</option>`;
             }
 
-        // **********************************errormessage****************************************************************************
+        // ********************************** Errormessage ****************************************************************************
         htmlObj += `</select></div></div>
         <div class="errorMessage">Artikel ist schon vergeben, wähle einen anderen Bezeichner</div>`;
-        //*********************************code und beschreibungsblöcke**************************************************************
+
+        //********************************* Pflicht Code und Beschreibungsfelder Create ***********************************************
         if (form.actionForm === 'create') {
-            htmlObj += ` <div class="addTextAreaFields">
-            <div data-id="0" class="addedDescription">
-                <label for="description">Beschreibung<span class="requiredAsterisk">*</span></label>
-                <textarea id="description_0" name="description_0" data-elementOrder="0" class="description" required></textarea>
-            </div>
-            <div data-id="1" class="addedCode">
-                <label for="code">Code<span class="requiredAsterisk">*</span></label>
-                <textarea id="code_1"  name="codeblock_1" data-elementOrder="1" class="code" required></textarea>
-            </div>
-        </div>`;
+            htmlObj += ` 
+            <div class="addTextAreaFields">
+                <div data-id="0" class="addedDescription">
+                    <label for="description">Beschreibung<span class="requiredAsterisk">*</span></label>
+                    <textarea id="description_0" name="description_0" data-elementOrder="0" class="description" required></textarea>
+                </div>
+                <div data-id="1" class="addedCode">
+                    <label for="code">Code<span class="requiredAsterisk">*</span></label>
+                    <textarea id="code_1"  name="codeblock_1" data-elementOrder="1" class="code" required></textarea>
+                </div>
+            </div>`;
             this.#addedBlockCounter=1;
+
+            //********************************* Alle Code und Beschreibungsfelder Update ***********************************************
         } else if (form.actionForm === 'update') {
             htmlObj += `<div class="addTextAreaFields">`;
             let articleElementArr = [];
-            //arrayelemente(code und descriptionblöcke) parsen, dann sortieren und anschließend darstellen
+
+            //**************************  Arrayelemente(code und descriptionblöcke) parsen, dann sortieren und anschließend darstellen *******
             for (let i = 0; i < form.articleElementArr.length; i++) {
                 articleElementArr[i] = JSON.parse(form.articleElementArr[i]);
             }
             let sortedArticleElementArr = sortArrayOfObjects(articleElementArr, 'elementOrder')
-            console.log(sortedArticleElementArr)
-            console.log(sortedArticleElementArr)
-            //ausgabe der zu ändernden blöcke
+
+            //******************* Ausgabe der zu ändernden Blöcke ***************************************************************************
             for (let i = 0; i < sortedArticleElementArr.length; i++) {
 
                 if (sortedArticleElementArr[i].hasOwnProperty('descriptionText')) {
@@ -221,23 +235,19 @@ class Form {
             htmlObj += `</div>`;
             this.#addedBlockCounter=sortedArticleElementArr.length-1;
         }
-
-
-        htmlObj += `<div class="addTextAreaFields"></div>
-
+        //******************* Code hizufügen und Beschreibung hinzufügen Button *********************************************
+        htmlObj += `
+        <div class="addTextAreaFields"></div>
         <div class="addTextArea-container">
             <div class="addTextAreas">
                 <button type="button" class="btn-add addCodeArea">Code hinzufügen</button>
                 <button type="button" class="btn-add addDescArea">Beschreibung hinzufügen</button>
             </div>
-            
         </div>
-
+        <!-- ****************** Reset und Submit Button *********************************************-->
         <div class="btn-form-container">
-<!--            <button type="reset" class="btn-form btn-reset">Zurücksetzen</button>-->
-             <button type="reset" class="btn-form btn-reset"  value="Zurücksetzen">Zurücksetzen</button>
+            <button type="reset" class="btn-form btn-reset"  value="Zurücksetzen">Zurücksetzen</button>
             <button type="submit" class="btn-form btn-send"  value="Absenden">Absenden</button>
-         
         </div>
     </form>
     </div>`;
@@ -245,10 +255,10 @@ class Form {
 
     }
 
+    /**
+     * Nachricht wird angezeigt wenn Artikelname schon vergeben ist
+     */
     activateErrorMessage() {
-
-        console.log('hello')
-        // document.getElementById('articleTitel').value=state.form.articleName;
         document.getElementsByClassName('errorMessage')[0].classList.add('show');
 
     }

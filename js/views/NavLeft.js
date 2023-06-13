@@ -1,11 +1,20 @@
+/**
+ * Autorin: Petra Tsesmetzi
+ * Datum: 12.06.2023
+ *
+ * Die Klasse NavLeft generiert das Markup für die linksgerichtete Navigationsleiste
+ *
+ *
+ */
 class NavLeft {
 
     #parentElement = document.querySelector('#nav-left');
     #id;
 
     /**
-     * initialisiert das markup(hängt die htmlObjekte in die Container)
-     * und setzt ein eventlLister für das makieren der links in blau
+     * initialisiert das Markup (hängt die htmlObjekte in die Container)
+     * und setzt ein EventListener für das Markieren der Links in blau
+     * @param start
      */
     render(start) {
         if(start==='init'){
@@ -15,12 +24,11 @@ class NavLeft {
             this.#setActiveClassOnNav(startLink,start);
         }
         this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
-
     }
 
 
     /**
-     * html object für links in nav-left
+     * string für Links in nav-left
      * @returns {string}
      */
     #generateMarkup() {
@@ -35,24 +43,22 @@ class NavLeft {
                 </section>`;
 
     }
+
+    //todo: zusammenfasen?
+    /**
+     * setzt die li auf aktiv (färbt blau)
+     * @param id
+     */
+
     setActiveClass(id){
 
         const links=document.getElementsByClassName('nav-link');
-
         this.#removeAttributeActiveOnLink();
         for (let i = 0; i <links.length; i++) {
-
-
-            // console.log(id)
-            // console.log(i+1)
-            if(id==i+1) {
-                console.log();
-
+            if(id===i+1) {
                 links[i].style.color = 'white';
                 links[i].parentElement.classList.add('active');
             }
-
-
         }
     }
     /**
@@ -71,15 +77,10 @@ class NavLeft {
                 e.target.parentElement.classList.add('active');
             }
         }
-
     }
 
-  /****************
-   publischer subscriber pattern- eventlister gehrören in die View,
-   damit man die funktion des listeners im controller noch aufrufen kann wird diese als parameter übergeben********/
-
     /**
-     * evetnhandler für die links in nav-left. hier wird allerdings auf veränderung in der url gehorcht
+     * Evetnhandler für die links in nav-left. hier wird allerdings auf veränderung in der url gehorcht
      * @param handler
      */
     addHandlerRender(handler) {
@@ -88,7 +89,7 @@ class NavLeft {
     }
 
     /**
-     * entfernt sytles an den links
+     * entfernt sytles von den Links
      */
     #removeAttributeActiveOnLink() {
         const allLinks = document.querySelectorAll('.nav-left-links');
@@ -100,9 +101,9 @@ class NavLeft {
         })
     }
 
-    getParentElement() {
-        return this.#parentElement;
-    }
+    // getParentElement() {
+    //     return this.#parentElement;
+    // }
 
 }
 

@@ -1,4 +1,11 @@
 <?php
+/**
+ * Autorin: Petra Tsesmetzi
+ * Datum: 12.06.2023
+ *
+ * Die Klasse Subchapter erstellt und liest die Unterkapitel
+ *
+ */
 
 class SubChapter
 {
@@ -125,7 +132,7 @@ class SubChapter
     }
 
     /**
-     * liest subchapter nach id aus der datenbank raus
+     * liest subchapter nach id aus der Datenbank raus
      * @param $subChapterTitel
      * @return int
      */
@@ -182,15 +189,4 @@ class SubChapter
         return $lastId;
     }
 
-
-
-    public function updateObject()
-    {
-
-    }
-
-    public function delete(int $id)
-    {
-
-    }
 }

@@ -1,4 +1,4 @@
-id: 7
-articleNr: 1
+id: 25
+articleNr: 7
 $subchapter_Id1
-$articleTitel:Variables
+$articleTitel:vcbvcbxcvbvbcvbxcbxcbvb

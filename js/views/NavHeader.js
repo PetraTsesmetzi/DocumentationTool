@@ -4,7 +4,7 @@
  *
  * Die Klasse NavHeader generiert das Markup für die Navigationsleiste im Header und für die
  * 2 Buttons Beartbeiten und Einfügen
- * diese werden anschließenden in die jeweiligen Div -Containern eingehangen
+ * diese werden anschließend in die jeweiligen Div -Containern eingehangen
  *
  */
 class NavHeader{
@@ -61,7 +61,7 @@ class NavHeader{
     }
 
     /**
-     * setzt den span auf aktiv(färbt blau)
+     * setzt die spans auf aktiv(färbt blau)
      * @param e //element welches verändert wird
      * @param start
      */

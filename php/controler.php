@@ -56,7 +56,6 @@ try {
             $id=(int)$_POST['articleId'];
             $articleNr = (int)$_POST['articleNr'];
             $subchapter_Id = (int)$_POST['subchapterId'];
-            $subChapterTitel = $_POST['subChapterTitel'];
             $articleTitel = $_POST['articleTitel'];
             $descriptionsArr = json_decode($_POST['descriptionsArr']);
             $codeArr = json_decode($_POST['codeArr']);
@@ -66,7 +65,6 @@ try {
             file_put_contents($echoFile,$message);
 
             (new Article())->deleteObject($id);
-            //$subChapterId = (new SubChapter())->getSubChapterId($subChapterTitel);
             $articleId = (new Article())->createNewObject($subchapter_Id, $articleTitel, $articleNr);
             (new Description())->createNewObject($articleId, $descriptionsArr);
             (new Code())->createNewObject($articleId, $codeArr);

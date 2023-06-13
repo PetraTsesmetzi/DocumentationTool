@@ -21,7 +21,7 @@ export const state = {
 
 
 /**
- * holt alle Subchapters als objekte aus der db
+ * Holt alle Unterkapitel als Objekte aus der DB
  * @returns {Promise<*[]>}
  */
 export const loadSubchapters = async () => {
@@ -37,7 +37,7 @@ export const loadSubchapters = async () => {
     return subchapters;
 }
 /**
- * holt alle artikel als objekte aus der db
+ * Holt alle Artikel als Objekte aus der DB
  * @returns {Promise<*[]>}
  */
 export const loadArticles = async () => {
@@ -54,11 +54,13 @@ export const loadArticles = async () => {
     return articles;
 }
 
+/**
+ * Holt einen Artikel mit gewählter ID
+ * @param id
+ * @returns {Promise<any>}
+ */
 export const loadArticleById = async (id) => {
-    console.log('loadArticleById',id)
-    //const article={};
     let formData = new FormData();
-
     formData.append('action', 'loadArticleById');
     formData.append('id', id);
     let article = await getJSONObj(formData);
@@ -66,22 +68,18 @@ export const loadArticleById = async (id) => {
 }
 /**
  *
- * holt article nach id übergabe-id von subchapter
+ * Holt alle Artikel eines Unterkapitels aus der DB
  * @param id
  * @returns {Promise<void>}
  */
 export const loadSubchapter = async (id) => {
     try {
-        // console.log('################loadsupchapter with his articles in model')
-        // erstelle ein formdata object
         let formData = new FormData();
         formData.append('action', 'loadSubchapterById');
         formData.append('id', id);
 
-        //hole JSONObj aus DB über helper-methode
         let dataRaw = await getJSONObj(formData);
         let data = JSON.parse(dataRaw);
-        //dataObject wird geparsed
         const articlesArr = data.articleArr;
 
         for (const key in articlesArr) {
@@ -111,7 +109,6 @@ export const loadSubchapter = async (id) => {
             article.descriptionArr = articlesArr[key].descriptionArr;
             article.codeArr = articlesArr[key].codeArr;
             article.articleElementArr = articleElementsArr;
-
             articles2.push(article);
 
         }
@@ -126,17 +123,14 @@ export const loadSubchapter = async (id) => {
 }
 
 /**
- *
+ *setzt die stateAtribute für das Formular
  * @param actionForm
  * @param event
  * @returns {Promise<void>}
  */
 export const setVariablesForForm = async (actionForm,event) => {
-    console.log('#############  setVariablesForForm for form')
-    console.log( state.form.subchapterId)
     try {
         if (actionForm === 'create') {
-
             state.form.actionForm = 'create';
             state.form.subchapters = [];
             state.form.freeArticleNumbers = [];
@@ -144,11 +138,7 @@ export const setVariablesForForm = async (actionForm,event) => {
             state.form.subchapters = await loadSubchapters();
             await loadAllArticleNumbers( state.form.subchapterId);
 
-
         } else if (actionForm === 'update' && event) {
-            console.log('****************************************event.target',event.target)
-            console.log('****************************************actionForm: ',actionForm)
-            console.log('++++++++++++++++++++model.state.form.subchapterId:',event.target.parentElement.parentElement.dataset.articleid)
             let articleId=event.target.parentElement.parentElement.dataset.articleid;
             let article = await loadArticleById(articleId);
             state.form.actionForm = 'update';
@@ -158,19 +148,20 @@ export const setVariablesForForm = async (actionForm,event) => {
             state.form.articleElementArr = sortArrayOfObjects([...article.descriptionArr, ...article.codeArr], 'elementOrder');
             state.form.subchapters = await loadSubchapters();
             state.form.subchapterId=state.form.subchapterId;
-            //beim verschieben von artikeln wirds wichtig
-            //await loadAllArticleNumbers( state.form.subchapterId);
         }
     } catch (e) {
         errorMessage(e);
     }
 }
-
+/**
+ * lädt alle Artikel Nummern aus der DB um anschließend die freien Nummer über die Helpermethode
+ * findFreeArticleNumbers zu ermitteln
+ * dient dazu Artikel in einer gewissen Reihenfolge zu platzieren
+ * @param subchapterId
+ * @returns {Promise<void>}
+ */
 export const loadAllArticleNumbers = async function (subchapterId) {
     //Fallunterscheidung beim starten des docutools und beim klicken eines Unterkapittels im formular
-    // console.log('#############  loadAllArticleNumbers for form')
-    // console.log(subchapterId)
-
     let formDataArr = new FormData();
     formDataArr.append('action', 'loadArticleNumbers');
     if (subchapterId !== undefined) {
@@ -179,12 +170,11 @@ export const loadAllArticleNumbers = async function (subchapterId) {
     } else {
         formDataArr.append('id', '1');
     }
-    // console.log('fordata',formDataArr.get('id'))
+
     let dataArr = await getJSONObj(formDataArr);
     let takenArticleNumbers=[];
     for (let i = 0; i < dataArr.length; i++) {
         let subchapters = JSON.parse(dataArr[i]);
-        //state.subchapters[i]=subchapters;
 
         for (let j = 0; j < subchapters.articleArr.length; j++) {
 
@@ -199,35 +189,42 @@ export const loadAllArticleNumbers = async function (subchapterId) {
 }
 
 
-
+/**
+ * Validiert das Formular
+ * Schaut ein Artikelname existiert
+ * Aussnahme stellt das Update eines Artikels
+ * @returns {Promise<boolean>}
+ */
 
 export const validateForm = async () => {
-    console.log('validateForm')
+
     if(state.form.actionForm==='create'){
+
         const searchStr = document.getElementById('articleTitel').value;
         state.form.articleName = searchStr;
         let articles = await loadArticles();
         return ifNotExistsElements('checkArtikels', articles, searchStr);
+
     }else if(state.form.actionForm==='update'){
         const orginalStr=state.form.articleName;
-        console.log(orginalStr)
         const searchStr = document.getElementById('articleTitel').value;
         if(orginalStr!==searchStr){
-            console.log('validate')
-            console.log(orginalStr)
-            console.log(searchStr)
             state.form.articleName = searchStr;
             let articles = await loadArticles();
             return ifNotExistsElements('checkArtikels', articles, searchStr);
         }else{
             return true;
         }
-
     }
 }
-
+/**
+ * Bereitet die übergebenen Daten des Formulars auf,
+ * erstellt ein Formdata object
+ * @param submitEvent
+ * @returns {Promise<void>}
+ */
 export const createAndUpdateArticle = async (submitEvent) => {
-    console.log('in create')
+
     try {
         const form = submitEvent.target;
         let formData = new FormData(form);
@@ -251,8 +248,7 @@ export const createAndUpdateArticle = async (submitEvent) => {
                 codeArr.push(code);
             }
         }
-        console.log('modelCreateUpdate')
-        console.log(state.form.actionForm);
+
         if(state.form.actionForm==='create') formData.append('action', 'createArticle');
         if(state.form.actionForm==='update') {
             formData.append('action', 'updateArticle');
@@ -272,6 +268,13 @@ export const createAndUpdateArticle = async (submitEvent) => {
         errorMessage(e);
     }
 }
+
+
+/**
+ * löscht Artikel aus der DB
+ * @param id
+ * @returns {Promise<void>}
+ */
 export const deleteArticle = async (id) => {
     try {
         let formData = new FormData();
@@ -283,43 +286,43 @@ export const deleteArticle = async (id) => {
     }
 }
 
-export const updateArticle = async (submitEvent) => {
-    console.log(submitEvent.target)
-    console.log('update modell')
-    try {
-        const form = submitEvent.target;
-        let formData = new FormData(form);
-        const descriptionsArr = [];
-        const codeArr = [];
-        //daten vom formular aufbereiten
-        for (const keys of formData.entries()) {
-            if (keys[0].includes('description')) {
-                let elementOrder = keys[0].split('_');
-                let description = {};
-                description.descriptionText = keys[1];
-                description.elementOrder = elementOrder[1];
-                descriptionsArr.push(description);
-
-            }
-            if (keys[0].includes('codeblock')) {
-                let elementOrder = keys[0].split('_');
-                let code = {};
-                code.codeText = keys[1];
-                code.elementOrder = elementOrder[1];
-                codeArr.push(code);
-            }
-        }
-        formData.append('action', 'updateArticle');
-        formData.append('descriptionsArr', JSON.stringify(descriptionsArr));
-        formData.append('codeArr', JSON.stringify(codeArr));
-
-        let data = await getJSONObj(formData);
-        console.log(data);
-
-    } catch (e) {
-        errorMessage(e);
-    }
-}
+//
+// export const updateArticle = async (submitEvent) => {
+//     console.log(submitEvent.target)
+//     console.log('update modell')
+//     try {
+//         const form = submitEvent.target;
+//         let formData = new FormData(form);
+//         const descriptionsArr = [];
+//         const codeArr = [];
+//         //daten vom formular aufbereiten
+//         for (const keys of formData.entries()) {
+//             if (keys[0].includes('description')) {
+//                 let elementOrder = keys[0].split('_');
+//                 let description = {};
+//                 description.descriptionText = keys[1];
+//                 description.elementOrder = elementOrder[1];
+//                 descriptionsArr.push(description);
+//             }
+//             if (keys[0].includes('codeblock')) {
+//                 let elementOrder = keys[0].split('_');
+//                 let code = {};
+//                 code.codeText = keys[1];
+//                 code.elementOrder = elementOrder[1];
+//                 codeArr.push(code);
+//             }
+//         }
+//         formData.append('action', 'updateArticle');
+//         formData.append('descriptionsArr', JSON.stringify(descriptionsArr));
+//         formData.append('codeArr', JSON.stringify(codeArr));
+//
+//         let data = await getJSONObj(formData);
+//         console.log(data);
+//
+//     } catch (e) {
+//         errorMessage(e);
+//     }
+// }
 
 
 const errorMessage = function (e) {

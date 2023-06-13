@@ -1,4 +1,14 @@
 <?php
+/**
+ * Autorin: Petra Tsesmetzi
+ * Datum: 12.06.2023
+ *
+ * Die Klasse Artikel dient dazu einen Artikel zu erstellen
+ * beinhaltet 2 Arrays-
+ * codeArr -alle Codefleder
+ * descriptionArr --alle Beschreibungsfelder
+ *
+ */
 
 class Article
 {
@@ -30,7 +40,7 @@ class Article
     }
 
     /**
-     * gibt alle artikel anhan des supchapterid zurück
+     * gibt alle Artikel anhand der Supchapterid zurück
      * @param Subchapter|null $subchapter
      * @return array
      */
@@ -66,7 +76,7 @@ class Article
 
 
     /**
-     * gibt alle privaten attribute der klasse als json string zurück
+     * gibt alle privaten Attribute der Klasse als json String zurück
      * @return string
      */
     public function getJSONEncode(): string
@@ -77,7 +87,7 @@ class Article
 
 
     /**
-     * löscht artikel und deren Inhalt anhand der id
+     * löscht Artikel und deren Inhalt anhand der id
      * @param int $id
      * @return void
      * @throws Exception
@@ -98,7 +108,7 @@ class Article
     }
 
     /**
-     * erstellt ein neuen artikel in die db
+     * erstellt ein neuen Artikel in die db
      * @param int $subchapterId
      * @param string $articleName
      * @param int|null $articleNumber
@@ -108,7 +118,6 @@ class Article
     {
         if ($articleNumber === null) $articleNumber = $this->getLastId() + 1;
 
-//        if($articleNumber==null)$articleNumber= self::$lastArticleNumber;
         try {
             $dbh = DB::connect();
             $sql = "INSERT INTO article(articleNumber,subchapter_Id,articleName) VALUES(:articleNumber,:subchapter_Id,:articleName)";
@@ -127,7 +136,7 @@ class Article
     }
 
     /**
-     * holt sich die letzt vergebene id...notwendig????
+     * holt sich die letzt vergebene id
      * @return int
      */
     private function getLastId(): int
@@ -169,11 +178,9 @@ class Article
         } catch (PDOException $e) {
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().'--'.$e->getLine());
         }
-
     }
 
     public function getObjectById(int $id): string
-//    public function getObjectById(int $id): Article
     {
         try {
             $dbh = DB::connect();
@@ -189,8 +196,6 @@ class Article
             throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
         }
 
-
-//        return $article;
         return $article->getJSONEncode();
     }
 
