@@ -1,4 +1,9 @@
-id: 25
-articleNr: 7
-$subchapter_Id1
-$articleTitel:vcbvcbxcvbvbcvbxcbxcbvb
+action: loadSubchapterById
+id:1
+articleId: 
+subChapterTitel: 
+articleTitel: 
+articleNr: 
+descriptionsArr: 
+codeArr: 
+subchapter_Id: 

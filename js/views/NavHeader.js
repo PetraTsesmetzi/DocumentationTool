@@ -39,9 +39,19 @@ class NavHeader{
             this.#insertBtn.classList.add('btn-hide');
         }
     }
+
+    /**
+     * Eventlistener für den Bearbeiten Buttton
+     * @param handler
+     */
     addHandlerEdit(handler){
         this.#editBtn.addEventListener('click',handler);
     }
+
+    /**
+     * EventListener für den EinfügeButton
+     * @param handler
+     */
     addHandlerInsert(handler){
         this.#insertBtn.addEventListener('click',handler.bind(this));
     }

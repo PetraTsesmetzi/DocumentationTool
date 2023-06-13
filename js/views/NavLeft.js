@@ -21,9 +21,9 @@ class NavLeft {
             const markup = this.#generateMarkup();
             this.#parentElement.insertAdjacentHTML('afterbegin', markup);
             const startLink=document.querySelector('#startLink');
-            this.#setActiveClassOnNav(startLink,start);
+            this.setActiveClass(1)
         }
-        this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
+        this.#parentElement.addEventListener('click', this.setActiveClass.bind(this));
     }
 
 
@@ -44,40 +44,27 @@ class NavLeft {
 
     }
 
-    //todo: zusammenfasen?
     /**
-     * setzt die li auf aktiv (färbt blau)
+     * setzt eine class active auf die links, so dass sie ihre Farbe verändern werden beim anklicken
+     * wird auch benutzt wenn aus dem Formular die Unterkapitel verändert werden
      * @param id
      */
+    setActiveClass(element){
 
-    setActiveClass(id){
-
+        if(element instanceof Event ){
+            element=Number(element.target.dataset.linkid);
+        }
         const links=document.getElementsByClassName('nav-link');
         this.#removeAttributeActiveOnLink();
         for (let i = 0; i <links.length; i++) {
-            if(id===i+1) {
+            if(element===i+1) {
                 links[i].style.color = 'white';
                 links[i].parentElement.classList.add('active');
             }
         }
-    }
-    /**
-     * setzt den span auf aktiv(färbt blau)
-     * @param e
-     */
-    #setActiveClassOnNav(e,start) {
-        this.#removeAttributeActiveOnLink();
 
-        if(start==='init'){
-            e.children[0].style.color = 'white';
-            e.classList.add('active');
-        }else{
-            if (e.target.tagName === 'A') {
-                e.target.style.color = 'white';
-                e.target.parentElement.classList.add('active');
-            }
-        }
     }
+
 
     /**
      * Evetnhandler für die links in nav-left. hier wird allerdings auf veränderung in der url gehorcht
@@ -101,9 +88,7 @@ class NavLeft {
         })
     }
 
-    // getParentElement() {
-    //     return this.#parentElement;
-    // }
+
 
 }
 

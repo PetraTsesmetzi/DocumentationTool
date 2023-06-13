@@ -21,7 +21,6 @@ Navigation-Left
 Content
 - Im Content werden alle Artikel zu einem Unterkapitel geladen.
 
-
 Anforderung Bearbeitungsmodus
 
 Über einen Button Bearbeiten gelangt man in den Bearbeitungsmodus.
@@ -31,7 +30,6 @@ Dort hat man die Möglichkeit über die Buttons Einfügen, Löschen und Ändern,
 Artikel Einfügen
 Über den Button Einfügen gelangt man zu einem Formular. Dort wird man aufgefordert einen Artikelnamen, Beschreibungen und Codeblock einzufügen. Ein Code und Beschreibungsblock sind Pflichtbestandteil. Diese kann man nicht löschen.
 Weiterhin gibt es dort über 2 Buttons die Möglichkeit weitere Codeblöcke und Beschreibungsblöcke in unterschiedlicher Reihenfolge hinzuzufügen oder zu löschen.
-
 
 
 Artikel Löschen

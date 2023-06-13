@@ -1,10 +1,24 @@
 import {findFreeArticleNumbers, getJSONObj, ifNotExistsElements,sortArrayOfObjects } from './helper.js';
 
+// export const state = {
+//     subchapter: {
+//         subchapterName: '',
+//         articlesArr: []
+//     },
+//     editModeFlag: 'false',
+//     form: {
+//         actionForm: '',
+//         articleId:'',
+//         articleNr:'',
+//         articleName: '',
+//         subchapters: [],
+//         freeArticleNumbers: [],
+//         articles: [],
+//         articleElementArr: [],
+//         subchapterId: 1
+//     }
+// }
 export const state = {
-    subchapter: {
-        subchapterName: '',
-        articlesArr: []
-    },
     editModeFlag: 'false',
     form: {
         actionForm: '',
@@ -15,6 +29,7 @@ export const state = {
         freeArticleNumbers: [],
         articles: [],
         articleElementArr: [],
+        articlesArr:[],
         subchapterId: 1
     }
 }
@@ -93,7 +108,7 @@ export const loadSubchapter = async (id) => {
         }
 
         //aufbereitung eine state.subchapter Object zu leichteren verarbeitung
-        const articles2 = [];
+        const articlesTemp = [];
 
         //ein artikel Object wird erstellt und in das articles2 array gepushed
         for (const key in articlesArr) {
@@ -109,13 +124,18 @@ export const loadSubchapter = async (id) => {
             article.descriptionArr = articlesArr[key].descriptionArr;
             article.codeArr = articlesArr[key].codeArr;
             article.articleElementArr = articleElementsArr;
-            articles2.push(article);
+            articlesTemp.push(article);
 
         }
 
         //ein subchapter wird erstellt
-        state.subchapter.subchapterName = data.subchapterName;
-        state.subchapter.articlesArr = articles2;
+        // state.subchapter.subchapterName = data.subchapterName;
+        // state.subchapter.articlesArr = articlesTemp;
+        state.form.subchapterName=data.subchapterName;
+
+        state.form.articles=articlesTemp;
+        state.form.subchapterId=id;
+        console.log('in sub',state.form.articles)
 
     } catch (e) {
         errorMessage(e);
@@ -286,43 +306,7 @@ export const deleteArticle = async (id) => {
     }
 }
 
-//
-// export const updateArticle = async (submitEvent) => {
-//     console.log(submitEvent.target)
-//     console.log('update modell')
-//     try {
-//         const form = submitEvent.target;
-//         let formData = new FormData(form);
-//         const descriptionsArr = [];
-//         const codeArr = [];
-//         //daten vom formular aufbereiten
-//         for (const keys of formData.entries()) {
-//             if (keys[0].includes('description')) {
-//                 let elementOrder = keys[0].split('_');
-//                 let description = {};
-//                 description.descriptionText = keys[1];
-//                 description.elementOrder = elementOrder[1];
-//                 descriptionsArr.push(description);
-//             }
-//             if (keys[0].includes('codeblock')) {
-//                 let elementOrder = keys[0].split('_');
-//                 let code = {};
-//                 code.codeText = keys[1];
-//                 code.elementOrder = elementOrder[1];
-//                 codeArr.push(code);
-//             }
-//         }
-//         formData.append('action', 'updateArticle');
-//         formData.append('descriptionsArr', JSON.stringify(descriptionsArr));
-//         formData.append('codeArr', JSON.stringify(codeArr));
-//
-//         let data = await getJSONObj(formData);
-//         console.log(data);
-//
-//     } catch (e) {
-//         errorMessage(e);
-//     }
-// }
+
 
 
 const errorMessage = function (e) {

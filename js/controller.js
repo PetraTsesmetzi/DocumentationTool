@@ -26,12 +26,9 @@ export const loadForm= async function(e){
  */
 export const loadArticleNumbers=async function(e){
     const subchapterId=e.target.options.selectedIndex+1;
-    //todo:
-
-    // window.location.href = "#"+subchapterId;
-    // window.removeEventListener('hashchange', loadSubchapterById);
+    window.location.href = "#"+subchapterId;
+    window.removeEventListener('hashchange', loadSubchapterById);
     console.log(subchapterId);
-
     await model.loadAllArticleNumbers(subchapterId);
     navLeft.setActiveClass(model.state.form.subchapterId);
     showForm();
@@ -41,14 +38,11 @@ export const loadArticleNumbers=async function(e){
  * rendert das Formular für das Erstellen und Updaten von Artikel
  */
 const showForm=function (){
-    //todo:
-    console.log('show form');
-
     form.render(model.state);
     form.addHandlerRenderSend(createAndUpdateArticles);
     form.addHandlerRenderArticleNumbers(loadArticleNumbers);
     form.addHandleRenderClose(closeForm);
-   // navLeft.addHandlerRender(loadSubchapterById);
+    navLeft.addHandlerRender(loadSubchapterById);
 
 
 }
@@ -67,10 +61,9 @@ export const closeForm= async function(){
 const loadEditMode= async function(){
     //toggled den bearbeiten button zwischen forumlar und anzeige des subchapters mit seinen artikeln
     model.state.editModeFlag=(model.state.editModeFlag === true) ? false : true;
-    // if(!model.state.editModeFlag){
-    //     await loadSubchapterById(model.state.form.subchapterId);
-    // }
     navHeader.renderInsert(model.state.editModeFlag)
+    console.log('loadEditMode',state.form)
+    await loadSubchapter(state.form.subchapterId)
     showArticleView();
 }
 
@@ -120,17 +113,6 @@ const deleteArticles=async function(e){
     await loadSubchapterById(model.state.form.subchapterId);
 }
 
-// /**
-//  * initialisiert das Updaten eines artikels
-//  * @param e
-//  * @returns {Promise<void>}
-//  */
-// const updateArticles=async function(e){
-//     // console.log('##############################    updateArticles')
-//     let id=e.target.parentElement.parentElement.dataset.articleid;
-//     await model.updateArticle(id);
-// }
-
 
 /**
  * Lädt ein gewähltes Unterkapitel mit seinen Artikel
@@ -150,12 +132,16 @@ const loadSubchapterById=async function(element){
         model.state.form.subchapterId=element;
         await model.loadSubchapter(element);
     }
-    showArticleView();
+
     await model.setVariablesForForm(model.state.form.subchapterId,'create');
+    showArticleView();
  }
 
 const showArticleView=function(){
-    articleView.render(model.state.subchapter,model.state.editModeFlag);
+    //todo
+    // articleView.render(model.state.subchapter,model.state.editModeFlag);
+    console.log('show Artikel',state.form)
+    articleView.render(model.state.form,model.state.editModeFlag);
     articleView.addHandlerDeleteArt(deleteArticles);
     articleView.addHandlerUpdateArt(loadForm);
     initializePrismScript();
@@ -166,7 +152,18 @@ const showArticleView=function(){
  * Initialisiert die Libary prism
  */
 const initializePrismScript=function(){
+
+    let prismScript=document.querySelector('.prismScript');
+    if(prismScript!=null) {
+        let body=document.getElementsByTagName('body');
+        console.log(body)
+        let prismScript=document.querySelector('.prismScript');
+
+        body[0].removeChild(prismScript);
+    }
+
     let scriptElement = document.createElement("script");
+    scriptElement.setAttribute('class','prismScript');
     scriptElement.setAttribute("src", "prism/prism.js");
     scriptElement.setAttribute("type", "text/javascript");
     scriptElement.setAttribute("async", true);
@@ -186,6 +183,7 @@ const init=  async function() {
     navLeft.addHandlerRender(loadSubchapterById);
     navHeader.addHandlerEdit(loadEditMode);
     navHeader.addHandlerInsert(loadForm);
+
 
 }
   await init();

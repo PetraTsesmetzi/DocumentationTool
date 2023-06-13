@@ -22,9 +22,12 @@ class ArticleView {
      * @param editmode
      */
     render(data, editmode) {
+
+        console.log('in article',data)
         this.#editmode = editmode;
         this.#subchapterName = data.subchapterName;
-        this.#subcapterArticles = data.articlesArr;
+        this.#subcapterArticles = data.articles;
+
         this.#clear();
         const markup = this.#generateMarkup();
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
@@ -66,7 +69,7 @@ class ArticleView {
     #generateMarkup() {
         let htmlObj = `<h1>${this.#subchapterName}</h1>`;
         for (const key in this.#subcapterArticles) {
-
+            // console.log('this.#subcapterArticles',this.#subcapterArticles)
             htmlObj += `<article>
                         <div class="article-header" data-articleid="${this.#subcapterArticles[key].id}"><h2>${this.#subcapterArticles[key]['articleName']}</h2>
                             <div class="button-container">
@@ -75,7 +78,8 @@ class ArticleView {
                             </div>
                         </div>`;
             let articleElementArr = this.#subcapterArticles[key]['articleElementArr'];
-
+            // console.log('articleElementArr',articleElementArr)
+            // console.log('articleElementArr.length',articleElementArr.length)
             for (let i = 0; i < articleElementArr.length; i++) {
 
                 if (articleElementArr[i].hasOwnProperty('descriptionText')) {

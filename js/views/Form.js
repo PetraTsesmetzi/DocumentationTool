@@ -25,7 +25,7 @@ class Form {
      * @param state
      */
     render(state) {
-        console.log('in form');
+        console.log('in form',state);
         this.#clear();
         const markup = this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
@@ -93,12 +93,10 @@ class Form {
             const codeMarkup = this.#generateCodeBlock();
             this.#addTextAreaFields.insertAdjacentHTML("beforeend", codeMarkup);
         }
-
         if (toAdd.classList.contains("addDescArea")) {
             const descMarkup = this.#generateDescriptionBlock();
             this.#addTextAreaFields.insertAdjacentHTML("beforeend", descMarkup);
         }
-
     }
 
     /**
