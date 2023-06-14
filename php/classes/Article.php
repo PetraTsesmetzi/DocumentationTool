@@ -160,6 +160,10 @@ class Article
         return $this->id;
     }
 
+    /**
+     * //todo: improvisiertes Update umbauen!
+     * @return void
+     */
     public function updateObject(): void
     {
         try {

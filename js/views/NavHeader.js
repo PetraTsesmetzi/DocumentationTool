@@ -42,18 +42,18 @@ class NavHeader{
 
     /**
      * Eventlistener für den Bearbeiten Buttton
-     * @param handler
+     * @param loadEditMode
      */
-    addHandlerEdit(handler){
-        this.#editBtn.addEventListener('click',handler);
+    addHandlerEdit(loadEditMode){
+        this.#editBtn.addEventListener('click',loadEditMode);
     }
 
     /**
      * EventListener für den EinfügeButton
-     * @param handler
+     * @param loadForm
      */
-    addHandlerInsert(handler){
-        this.#insertBtn.addEventListener('click',handler.bind(this));
+    addHandlerInsert(loadForm){
+        this.#insertBtn.addEventListener('click',loadForm.bind(this));
     }
 
     /**

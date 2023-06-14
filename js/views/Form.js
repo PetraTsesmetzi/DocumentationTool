@@ -59,34 +59,33 @@ class Form {
     /**
      * Eventhandler für Artikelnummer
      * lädt die richtigen artikelnummern je nachdem auf welches Unterkapitel man geklickt hat
-     * @param handler
+     * @param loadArticleNumbers
      */
-    addHandlerRenderArticleNumbers(handler) {
-
+    addHandlerRenderArticleNumbers(loadArticleNumbers) {
         this.#selectField = document.querySelector('#subChapterTitels');
-        this.#selectField.addEventListener('change', handler);
+        this.#selectField.addEventListener('change', loadArticleNumbers);
     }
 
     /**
      * Eventhandler für submit Button
-     * @param handler
+     * @param createAndUpdateArticles
      */
-    addHandlerRenderSend(handler) {
+    addHandlerRenderSend(createAndUpdateArticles) {
         this.#formular = document.querySelector('#createAndUpdateObjects');
-        this.#formular.addEventListener('submit', handler.bind(this));
+        this.#formular.addEventListener('submit', createAndUpdateArticles.bind(this));
     }
 
     /**
      * Eventhandler für den Close Button
-     * @param handler
+     * @param closeForm
      */
-    addHandleRenderClose(handler) {
+    addHandleRenderClose(closeForm) {
         this.#closeButton = document.querySelector('.close-outline');
-        this.#closeButton.addEventListener('click', handler.bind(this));
+        this.#closeButton.addEventListener('click', closeForm.bind(this));
     }
 
-    deleteHandleRenderFields(handler){
-        this.#deleteBtns.addEventListener('click',handler.bind(this));
+    deleteHandleRenderFields(deleteFields){
+        this.#deleteBtns.addEventListener('click',deleteFields.bind(this));
     }
     /**
      * fügt nach einem Click auf den jeweiligen Button einen  Code-Feld oder Beschreibung-Feld hinzu

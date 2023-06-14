@@ -87,6 +87,7 @@ try {
 }
 
 /**
+ * zum leichteren debuggen neben dem Enwicklertool vom Browser
  * schreibt in einem File alle $_POST Variablen die ankommen
  * @param $args
  * @return void

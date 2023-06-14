@@ -1,23 +1,6 @@
 import {findFreeArticleNumbers, getJSONObj, ifNotExistsElements,sortArrayOfObjects } from './helper.js';
 
-// export const state = {
-//     subchapter: {
-//         subchapterName: '',
-//         articlesArr: []
-//     },
-//     editModeFlag: 'false',
-//     form: {
-//         actionForm: '',
-//         articleId:'',
-//         articleNr:'',
-//         articleName: '',
-//         subchapters: [],
-//         freeArticleNumbers: [],
-//         articles: [],
-//         articleElementArr: [],
-//         subchapterId: 1
-//     }
-// }
+
 export const state = {
     editModeFlag: 'false',
     form: {

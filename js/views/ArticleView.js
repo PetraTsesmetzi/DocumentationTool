@@ -41,23 +41,23 @@ class ArticleView {
 
     /**
      * Eventhandler für den Delete Button an jedem Artikel
-     * @param handler
+     * @param deleteArticles
      */
-    addHandlerDeleteArt(handler) {
+    addHandlerDeleteArt(deleteArticles) {
         const buttonDel = document.querySelectorAll('.btn-delete');
         for (let i = 0; i < buttonDel.length; i++) {
-            buttonDel[i].addEventListener('click', handler.bind(this));
+            buttonDel[i].addEventListener('click', deleteArticles.bind(this));
         }
     }
 
     /**
      * eventhandler für den Ändern Button an jedem Artikel
-     * @param handler
+     * @param loadForm
      */
-    addHandlerUpdateArt(handler) {
+    addHandlerUpdateArt(loadForm) {
         const buttonUp = document.querySelectorAll('.btn-update');
         for (let i = 0; i < buttonUp.length; i++) {
-            buttonUp[i].addEventListener('click', handler.bind(this));
+            buttonUp[i].addEventListener('click', loadForm.bind(this));
         }
     }
 

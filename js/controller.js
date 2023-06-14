@@ -122,12 +122,14 @@ const loadSubchapterById=async function(element){
 
     if(!(element instanceof Event)) element=Number(element);
 
+    // Unterscheidung ob ich die url auslese oder ob ich aus dem Formular
+    // beim anklicken eines Unterkapitels die Id übertrage
     if(element instanceof Event){
         let id=window.location.hash.slice(1);
         model.state.form.subchapterId=id;
         await model.loadSubchapter(id);
     }
-    if(typeof element=='number'){
+    if(typeof element==='number'){
         model.state.form.subchapterId=element;
         await model.loadSubchapter(element);
     }

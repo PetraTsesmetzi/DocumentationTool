@@ -68,11 +68,11 @@ class NavLeft {
 
     /**
      * Evetnhandler für die links in nav-left. hier wird allerdings auf veränderung in der url gehorcht
-     * @param handler
+     * @param loadSubchapterById
      */
-    addHandlerRender(handler) {
-        window.addEventListener('hashchange', handler);
-        window.addEventListener('load', handler);
+    addHandlerRender(loadSubchapterById) {
+        window.addEventListener('hashchange', loadSubchapterById);
+        window.addEventListener('load', loadSubchapterById);
     }
 
     /**
