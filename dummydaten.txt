@@ -1,0 +1,88 @@
+Beispiel
+
+1)Zeige deine linke Navigation wie sich die url verändert
+
+2) Zeige den Bearbeitungsmodus wie der sich toggeln lässt
+
+
+3) Zeige das Formular 
+	-zeige die Beschreibungsfelder und codefelder wie sie sich dazu adden und deleten ohne inhalt
+
+
+
+
+4) Füge ein neuen Artikel ein im 2 Subchapter          Variables
+1)
+Logische Operatoren
+	
+	
+	
+2)
+In JavaScript gibt es drei logische Operatoren: "&&" (AND), "||" (OR) und "!" (NOT). 
+Diese Operatoren werden verwendet, um logische Ausdrücke zu kombinieren und Entscheidungen zu treffen.
+	
+	
+	
+3)
+let age = 25;
+let hasLicense = true;
+
+if (age >= 18 && hasLicense) {
+	console.log("Du bist alt genug und hast einen Führerschein.");
+} else {
+	console.log("Du bist entweder zu jung oder hast keinen Führerschein.");
+}
+	
+	
+4)
+Der logische "&&" (AND)-Operator gibt "true" zurück, wenn beide Operanden wahr sind, ansonsten gibt 
+er "false" zurück. Der logische "||" (OR)-Operator gibt "true" zurück, wenn mindestens einer der Operanden wahr ist, 
+ansonsten gibt er "false" zurück. Der logische "!" (NOT)-Operator kehrt den Wert eines Operanden um,
+d.h. er gibt "true" zurück, wenn der Operand falsch ist, und umgekehrt.
+
+Nachdem der eingefügt wurde gleich updaten
+
+1.Logische Operatoren
+
+//*************UPDATE******************
+
+
+
+
+
+
+
+
+
+Dann unter Subchapter 1 kapitel 2 löschen und an 2 stelle wieder einfügen
+
+
+
+Namenskonvention löschen dann wieder einfügen unter nr 2
+
+1)
+2.Namenskonvention
+
+
+2)
+In JavaScript wird üblicherweise das sogenannte "camelCase" für die Namenskonvention verwendet.
+Dabei beginnt der Name mit einem Kleinbuchstaben und jeder folgende Wortteil wird mit einem Großbuchstaben gestartet,
+ohne Leerzeichen oder Sonderzeichen.
+
+
+3)
+let myPerson = "otto";
+let jonas_matilda = "JM";
+
+
+4)
+Es wird empfohlen, aussagekräftige und beschreibende Namen für Variablen zu wählen, um den Code leichter lesbar und verständlich zu machen.
+Vermeiden Sie abgekürzte oder kryptische Bezeichnungen.
+
+
+5)
+javascriptIsFun = "YES!";
+
+
+
+Zeige das artikel schon vergeben sind

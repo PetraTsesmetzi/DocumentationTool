@@ -28,6 +28,7 @@ class Form {
     render(state) {
         // console.log('in form',state);
         this.#clear();
+        console.log(state.form)
         const markup = this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
         this.#addTextAreaFields = document.querySelector('.addTextAreaFields');
@@ -125,7 +126,7 @@ class Form {
         return `<div data-id="${this.#addedBlockCounter}" class="addedDescription">
                 <div class="label-container"><label for="description_${this.#addedBlockCounter}">beschreibung</label>
                 <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button></div>
-                <textarea id="description_${this.#addedBlockCounter}" name="description_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" class="description"></textarea>
+                <textarea id="description_${this.#addedBlockCounter}" name="description_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" data-id="noId"  class="description"></textarea>
                </div>`;
     }
 
@@ -138,7 +139,7 @@ class Form {
         return `<div data-id="${this.#addedBlockCounter}" class="addedCode">
                 <div class="label-container"><label for="codeblock_${this.#addedBlockCounter}">Code</label>
                 <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button></div>
-                <textarea id="codeblock_${this.#addedBlockCounter}" name="codeblock_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" class="code"></textarea>
+                <textarea id="codeblock_${this.#addedBlockCounter}" name="codeblock_${this.#addedBlockCounter}"  data-elementOrder="${this.#addedBlockCounter}" data-id="noId" class="code"></textarea>
                 </div>`;
     }
 
@@ -201,6 +202,9 @@ class Form {
                     <textarea id="code_1"  name="codeblock_1" data-elementOrder="1" class="code" required></textarea>
                 </div>
             </div>`;
+
+
+
             this.#addedBlockCounter=1;
 
             //********************************* Alle Code und Beschreibungsfelder Update ***********************************************
@@ -233,6 +237,11 @@ class Form {
                         <textarea id="codeblock_${i}" name="codeblock_${i}" data-elementOrder="${i}" data-id="${sortedArticleElementArr[i].id}" class="code">${sortedArticleElementArr[i].codeText}</textarea>
                     </div>`;
                 }
+
+
+
+
+
             }
             htmlObj += `</div>`;
             this.#addedBlockCounter=sortedArticleElementArr.length-1;

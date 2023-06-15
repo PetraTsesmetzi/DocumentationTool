@@ -3,7 +3,7 @@ import navHeader from "./views/NavHeader.js";
 import articleView from "./views/ArticleView.js";
 import form from "./views/Form.js";
 import * as model from './model.js';
-import {loadSubchapter, setVariablesForForm, state, validateForm} from "./model.js";
+import {deleteField, loadSubchapter, setVariablesForForm, state, validateForm} from "./model.js";
 
 
 /**
@@ -41,6 +41,7 @@ const showForm=function (){
     form.addHandlerRenderSend(createAndUpdateArticles);
     form.addHandlerRenderArticleNumbers(loadArticleNumbers);
     form.addHandleRenderClose(closeForm);
+    form.deleteHandleRenderFields(deleteFields);
     navLeft.addHandlerRender(loadSubchapterById);
 
 
@@ -112,7 +113,16 @@ const deleteArticles=async function(e){
     await loadSubchapterById(model.state.form.subchapterId);
 }
 
-
+const deleteFields=async function(e){
+    console.log(e.target.parentElement.parentElement.lastElementChild.className);
+    let id=e.target.parentElement.parentElement.lastElementChild.dataset.id;
+    let field=e.target.parentElement.parentElement.lastElementChild.className;
+    field=field.charAt(0).toUpperCase()+field.slice(1);
+    console.log(field)
+    if(id!=='noId'){
+        model.deleteField(id,field);
+    }
+}
 /**
  * Lädt ein gewähltes Unterkapitel mit seinen Artikel
  * @param element
@@ -176,11 +186,9 @@ const init=  async function() {
     await loadSubchapterById(1);
     navLeft.render('init');
     navHeader.render('init');
-
     navLeft.addHandlerRender(loadSubchapterById);
     navHeader.addHandlerEdit(loadEditMode);
     navHeader.addHandlerInsert(loadForm);
-
 
 }
   await init();

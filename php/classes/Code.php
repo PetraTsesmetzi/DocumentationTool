@@ -96,4 +96,24 @@ class Code
         }
     }
 
+    /**
+     * löscht einen code Datensatz
+     * @param int $id
+     * @return void
+     * @throws Exception
+     */
+    public function deleteObject(int $id):void
+    {
+        try{
+            $dbh=new PDO(DB_DSN,DB_USER,DB_PASSWD);
+            $sql ="DELETE from code WHERE id=:id";
+            $stmt=$dbh->prepare($sql);
+            $stmt->bindParam(':id',$id,PDO::PARAM_INT);
+            $stmt->execute();
+            $dbh=null;
+          } catch (PDOException $e) {
+            throw new Exception($e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getCode() . ' ' . $e->getLine());
+        }
+    }
+
 }

@@ -59,6 +59,16 @@ try {
             (new Article())->deleteObject((int)$id);
             echo json_encode(' artikel wurde geloescht');
             break;
+        case 'deleteDescription':
+            setVariables();
+            (new Description())->deleteObject((int)$id);
+            echo json_encode('Description wurde geloescht');
+            break;
+        case 'deleteCode':
+            setVariables();
+            (new Code())->deleteObject((int)$id);
+            echo json_encode('Code wurde geloescht');
+            break;
         case 'loadArticleNumbers':
 //            setVariables();
             $subchapters = (new Subchapter())->getAllAsObjects((int)$id);

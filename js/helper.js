@@ -9,13 +9,11 @@ import {state} from "./model.js";
  */
 export const getJSONObj=async function(formData){
     try{
-
         const response = await fetch(`${API_URL}`,
             {
                 body: formData,
                 method: "post"
             });
-
         if(!response.ok) throw new Error(`${data.message} (${response.status}`);
 
         return await response.json();

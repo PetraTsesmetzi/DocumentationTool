@@ -92,7 +92,7 @@ export const loadSubchapter = async (id) => {
             }
         }
 
-        //aufbereitung eine state.subchapter Object zu leichteren verarbeitung
+
         const articlesTemp = [];
 
         //ein artikel Object wird erstellt und in das articles2 array gepushed
@@ -113,11 +113,8 @@ export const loadSubchapter = async (id) => {
 
         }
 
-        //ein subchapter wird erstellt
-        // state.subchapter.subchapterName = data.subchapterName;
-        // state.subchapter.articlesArr = articlesTemp;
+        //ein state Object wird beschrieben
         state.form.subchapterName=data.subchapterName;
-
         state.form.articles=articlesTemp;
         state.form.subchapterId=id;
 
@@ -155,6 +152,7 @@ export const setVariablesForForm = async (actionForm,event) => {
             state.form.codeArr=article.codeArr;
             state.form.subchapters = await loadSubchapters();
             state.form.subchapterId=state.form.subchapterId;
+            console.log(state.form)
         }
     } catch (e) {
         errorMessage(e);
@@ -294,7 +292,19 @@ export const deleteArticle = async (id, action) => {
     }
 }
 
+export const deleteField=async (id,field)=>{
+    console.log('in model')
+    console.log(field)
 
+    try{
+        let formData=new FormData();
+        formData.append('action','delete'+field)
+        formData.append('id', id);
+        let data = await getJSONObj(formData);
+    }catch(e){
+        errorMessage(e)
+    }
+}
 
 
 const errorMessage = function (e) {

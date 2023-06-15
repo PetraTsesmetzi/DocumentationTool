@@ -1,57 +1,13 @@
-articleTitel : Variables1
-articleNr : 4
-subChapterTitel : Values und Variables
-description_0 : fgdf
-codeblock_1 : gfgdfg
-description_2 : fgdfg
-codeblock_3 : fgdfg
-action : createArticle
-descriptionsArr : [{"descriptionText":"fgdf","elementOrder":"0"},{"descriptionText":"fgdfg","elementOrder":"2"}]
-codeArr : [{"codeText":"gfgdfg","elementOrder":"1"},{"codeText":"fgdfg","elementOrder":"3"}]
+
+action : deleteCode
+id : 2
 
 
-articleTitel : Variables1
-articleNr : 4
-subChapterTitel : Values und Variables
-description_0 : dfsdf
-codeblock_1 : dfsdfd
-codeblock_2 : dsfsdfsdf
-description_3 : dfsdfsdf
-action : createArticle
-descriptionsArr : [{"descriptionText":"dfsdf","elementOrder":"0"},{"descriptionText":"dfsdfsdf","elementOrder":"3"}]
-codeArr : [{"codeText":"dfsdfd","elementOrder":"1"},{"codeText":"dsfsdfsdf","elementOrder":"2"}]
+action : deleteDescription
+id : 2
 
 
-articleTitel : Variables 2
-articleNr : 4
-subChapterTitel : Values und Variables
-description_0 : dfdsf
-codeblock_1 : dsfsdfsd
-description_3 : sdfsdfdfsdf
-action : createArticle
-descriptionsArr : [{"descriptionText":"dfdsf","elementOrder":"0"},{"descriptionText":"sdfsdfdfsdf","elementOrder":"3"}]
-codeArr : [{"codeText":"dsfsdfsd","elementOrder":"1"}]
-
-
-articleTitel : dcsfdfdsf
-articleNr : 4
-subChapterTitel : Values und Variables
-description_0 : dfsdf
-codeblock_1 : dfsdfsdf
-description_2 : dfsdfsdf
-codeblock_3 : dsfsdfdf
-action : createArticle
-descriptionsArr : [{"descriptionText":"dfsdf","elementOrder":"0"},{"descriptionText":"dfsdfsdf","elementOrder":"2"}]
-codeArr : [{"codeText":"dfsdfsdf","elementOrder":"1"},{"codeText":"dsfsdfdf","elementOrder":"3"}]
-
-
-articleTitel : Variables1
-articleNr : 2
-subChapterTitel : Values und Variables
-description_0 : fggd
-codeblock_1 : fgdfgdf
-action : createArticle
-descriptionsArr : [{"descriptionText":"fggd","elementOrder":"0"}]
-codeArr : [{"codeText":"fgdfgdf","elementOrder":"1"}]
+action : deleteDescription
+id : 3
 
 
