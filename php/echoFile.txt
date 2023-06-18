@@ -1,13 +1,396 @@
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 2
+
+
+action : loadElements
+
+
+articleTitel : Namenskonvention5
+description_0 : In JavaScript wird üblicherweise das sogenannte "camelCase" für die Namenskonvention verwendet. Dabei beginnt der Name mit einem Kleinbuchstaben und jeder folgende Wortteil wird mit einem Großbuchstaben gestartet, ohne Leerzeichen oder Sonderzeichen.
+------update-----
+------update-----
+------update-----
+------update-----
+------update-----
+codeblock_1 : let myPerson = "otto";
+let jonas_matilda = "JM";
+------update-----
+------update-----
+description_2 : Es wird empfohlen, aussagekräftige und beschreibende Namen für Variablen zu wählen, um den Code leichter lesbar und verständlich zu machen. Vermeiden Sie abgekürzte oder kryptische Bezeichnungen.
+
+------update-----
+------update-----
+------update-----
+------update-----
+------update-----
+codeblock_3 : javascriptIsFun = "YES!";
+------update-----
+------update-----
+------update-----
+action : updateArticle
+subchapterId : 1
+articleId : 2
+articleNr : 2
+newDescObj : []
+newCodeArr : []
+descriptionsArr : [{"descriptionId":"4","descriptionText":"In JavaScript wird üblicherweise das sogenannte \"camelCase\" für die Namenskonvention verwendet. Dabei beginnt der Name mit einem Kleinbuchstaben und jeder folgende Wortteil wird mit einem Großbuchstaben gestartet, ohne Leerzeichen oder Sonderzeichen.\n------update-----\n------update-----\n------update-----\n------update-----\n------update-----","elementOrder":"0"},{"descriptionId":"5","descriptionText":"Es wird empfohlen, aussagekräftige und beschreibende Namen für Variablen zu wählen, um den Code leichter lesbar und verständlich zu machen. Vermeiden Sie abgekürzte oder kryptische Bezeichnungen.\n\n------update-----\n------update-----\n------update-----\n------update-----\n------update-----","elementOrder":"2"}]
+codeArr : [{"codeId":"3","codeText":"let myPerson = \"otto\";\nlet jonas_matilda = \"JM\";\n------update-----\n------update-----","elementOrder":"1"},{"codeId":"4","codeText":"javascriptIsFun = \"YES!\";\n------update-----\n------update-----\n------update-----","elementOrder":"3"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a4
+articleNr : 4
+subChapterTitel : Values und Variables
+description_0 : dfsdf
+codeblock_1 : dfsdf
+codeblock_2 : sdfsdf
+description_3 : dsfdf
+action : createArticle
+descriptionsArr : [{"descriptionText":"dfsdf","elementOrder":"0"}]
+codeArr : [{"codeText":"dfsdf","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a5
+articleNr : 5
+subChapterTitel : Values und Variables
+description_0 : dfsdfdsf
+codeblock_1 : sdfsdf
+codeblock_2 : q
+description_3 : q
+action : createArticle
+descriptionsArr : [{"descriptionText":"dfsdfdsf","elementOrder":"0"}]
+codeArr : [{"codeText":"sdfsdf","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 3
+
+
+action : loadElements
+
+
+action : loadArticles
+
+
+articleTitel : Datentypen 3
+description_0 : JavaScript hat verschiedene Datentypen, darunter Zahlen, Zeichenketten, boolesche Werte, Arrays, Objekte, "null" und "undefined".
+UPDATE 
+codeblock_1 : let age = 25;
+let price = 9.99;
+UPDATE 
+codeblock_2 : let name = "John";
+let message = 'Hello, World!';
+UPDATE 
+codeblock_3 : UPDATE  c1
+description_4 : UPDATE  c2
+action : updateArticle
+subchapterId : 1
+articleId : 3
+articleNr : 3
+newDescObj : [{"descriptionText":"UPDATE  c2","elementOrder":"4"}]
+newCodeArr : [{"codeText":"UPDATE  c1","elementOrder":"3"}]
+descriptionsArr : [{"descriptionId":"6","descriptionText":"JavaScript hat verschiedene Datentypen, darunter Zahlen, Zeichenketten, boolesche Werte, Arrays, Objekte, \"null\" und \"undefined\".\nUPDATE ","elementOrder":"0"}]
+codeArr : [{"codeId":"5","codeText":"let age = 25;\nlet price = 9.99;\nUPDATE ","elementOrder":"1"},{"codeId":"6","codeText":"let name = \"John\";\nlet message = 'Hello, World!';\nUPDATE ","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 3
+
+
+action : loadElements
+
 
 action : deleteCode
-id : 2
+id : 6
+
+
+action : deleteCode
+id : 13
 
 
 action : deleteDescription
-id : 2
+id : 13
+
+
+articleTitel : Datentypen 3
+description_0 : JavaScript hat verschiedene Datentypen, darunter Zahlen, Zeichenketten, boolesche Werte, Arrays, Objekte, "null" und "undefined".
+
+codeblock_1 : let age = 25;
+let price = 9.99;
+
+codeblock_5 : update code 2
+description_6 : update desc 2
+action : updateArticle
+subchapterId : 1
+articleId : 3
+articleNr : 3
+newDescObj : [{"descriptionText":"update desc 2","elementOrder":"6"}]
+newCodeArr : [{"codeText":"update code 2","elementOrder":"5"}]
+descriptionsArr : [{"descriptionId":"6","descriptionText":"JavaScript hat verschiedene Datentypen, darunter Zahlen, Zeichenketten, boolesche Werte, Arrays, Objekte, \"null\" und \"undefined\".\n","elementOrder":"0"}]
+codeArr : [{"codeId":"5","codeText":"let age = 25;\nlet price = 9.99;\n","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a6
+articleNr : 6
+subChapterTitel : Values und Variables
+description_0 : dfsdfsdff
+codeblock_1 : sdfdfsfsdf
+codeblock_2 : dsfsdfsdfs
+description_3 : sdfsfsfsfs
+action : createArticle
+descriptionsArr : [{"descriptionText":"dfsdfsdff","elementOrder":"0"}]
+codeArr : [{"codeText":"sdfdfsfsdf","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 1
+
+
+action : loadElements
 
 
 action : deleteDescription
-id : 3
+id : 10
+
+
+action : deleteCode
+id : 10
+
+
+action : loadArticles
+
+
+articleTitel : Variables2
+description_0 : Variablen in JavaScript ermöglichen es, Werte oder Objekte zu speichern und sie während der Laufzeit des Programms zu verändern. Sie werden mit dem Schlüsselwort "var", "let" oder "const" deklariert.
+neu
+codeblock_1 : let firstName = "Matilda";
+console.log(firstName); //Matilda
+neu
+codeblock_4 : neuer code
+description_5 : neuer text
+action : updateArticle
+subchapterId : 1
+articleId : 1
+articleNr : 1
+newDescObj : [{"descriptionText":"neuer text","elementOrder":"5"}]
+newCodeArr : [{"codeText":"neuer code","elementOrder":"4"}]
+descriptionsArr : [{"descriptionId":"1","descriptionText":"Variablen in JavaScript ermöglichen es, Werte oder Objekte zu speichern und sie während der Laufzeit des Programms zu verändern. Sie werden mit dem Schlüsselwort \"var\", \"let\" oder \"const\" deklariert.\nneu","elementOrder":"0"}]
+codeArr : [{"codeId":"1","codeText":"let firstName = \"Matilda\";\nconsole.log(firstName); //Matilda\nneu","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a7
+articleNr : 7
+subChapterTitel : Values und Variables
+description_0 : a7b
+codeblock_1 : a7c
+codeblock_2 : code1
+description_3 : desc1
+action : createArticle
+descriptionsArr : [{"descriptionText":"a7b","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"desc1","elementOrder":"3"}]
+codeArr : [{"codeText":"a7c","elementOrder":"1"},{"codeId":"noId","codeText":"code1","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 7
+
+
+action : loadElements
+
+
+action : deleteCode
+id : 18
+
+
+action : deleteDescription
+id : 18
+
+
+action : loadArticles
+
+
+articleTitel : artikel 7
+description_0 : Dies ist die erste Beschreibung für artikel 7
+codeblock_1 : console.log('die ersten Zielen code');
+
+action : updateArticle
+subchapterId : 1
+articleId : 7
+articleNr : 7
+newDescObj : []
+newCodeArr : []
+descriptionsArr : [{"descriptionId":"17","descriptionText":"Dies ist die erste Beschreibung für artikel 7","elementOrder":"0"}]
+codeArr : [{"codeId":"17","codeText":"console.log('die ersten Zielen code');\n","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 7
+
+
+action : loadElements
+
+
+articleTitel : artikel 7
+description_0 : Dies ist die erste Beschreibung für artikel 7
+mein upgrade
+codeblock_1 : console.log('die ersten Zielen code');
+mein upgrade
+
+codeblock_2 : mein upgrade
+description_3 : mein upgrade
+action : updateArticle
+subchapterId : 1
+articleId : 7
+articleNr : 7
+newDescObj : [{"descriptionText":"mein upgrade","elementOrder":"3"}]
+newCodeArr : [{"codeText":"mein upgrade","elementOrder":"2"}]
+descriptionsArr : [{"descriptionId":"17","descriptionText":"Dies ist die erste Beschreibung für artikel 7\nmein upgrade","elementOrder":"0"}]
+codeArr : [{"codeId":"17","codeText":"console.log('die ersten Zielen code');\nmein upgrade\n","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : artikel 8
+articleNr : 8
+subChapterTitel : Values und Variables
+description_0 : 8
+codeblock_1 : 8
+codeblock_2 : 88
+description_3 : 88
+codeblock_4 : 888
+description_5 : 888
+action : createArticle
+descriptionsArr : [{"descriptionText":"8","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"88","elementOrder":"3"},{"descriptionId":"noId","descriptionText":"888","elementOrder":"5"}]
+codeArr : [{"codeText":"8","elementOrder":"1"},{"codeId":"noId","codeText":"88","elementOrder":"2"},{"codeId":"noId","codeText":"888","elementOrder":"4"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 8
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
 
 

@@ -9,7 +9,6 @@
  */
 
 
-
 class Description
 
 {
@@ -84,24 +83,24 @@ class Description
      * @param $descriptionsArr
      * @return void
      */
-    public function createNewObject($article_Id,$descriptionsArr): void
+    public function createNewObject($article_Id, $descriptionsArr): void
     {
-
-        foreach ($descriptionsArr as $desc) {
-            try{
-                if($desc->descriptionText==="")$desc->descriptionText="Bitte lösche dieses Feld!";
-                $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+        try {
+            $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+            foreach ($descriptionsArr as $desc) {
+                if ($desc->descriptionText === "") $desc->descriptionText = "Bitte lösche dieses Feld!";
                 $sql = "INSERT INTO description(article_Id,elementOrder,descriptionText) VALUES(:article_Id,:elementOrder,:descriptionText)";
                 $stmt = $dbh->prepare($sql);
                 $stmt->bindParam(':article_Id', $article_Id, PDO::PARAM_INT);
-                $stmt->bindParam(':elementOrder',$desc->elementOrder, PDO::PARAM_INT);
+                $stmt->bindParam(':elementOrder', $desc->elementOrder, PDO::PARAM_INT);
                 $stmt->bindParam(':descriptionText', $desc->descriptionText, PDO::PARAM_STR);
                 $stmt->execute();
-                $dbh = null;
-            }catch(PDOException $e){
-                throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
             }
+            $dbh = null;
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine());
         }
+
 
     }
 
@@ -125,6 +124,32 @@ class Description
         }
     }
 
+    /**
+     * aktualisiert die vorhandenen description Felder
+     * @param $article_Id
+     * @param $descriptionsArr
+     * @return void
+     */
+    public function updateObject($article_Id, $descriptionsArr): void
+    {
+        try {
+            $dbh = DB::connect();
+            foreach ($descriptionsArr as $desc) {
+                $sql = "UPDATE description SET  article_Id=:article_Id, 
+                    elementOrder=:elementOrder,
+                    descriptionText=:descriptionText WHERE id=:id";
+                $stmt = $dbh->prepare($sql);
+                $stmt->bindParam(':article_Id', $article_Id, PDO::PARAM_INT);
+                $stmt->bindParam(':elementOrder', $desc->elementOrder, PDO::PARAM_INT);
+                $stmt->bindParam(':descriptionText', $desc->descriptionText, PDO::PARAM_STR);
+                $stmt->bindParam(':id', $desc->descriptionId, PDO::PARAM_INT);
+                $stmt->execute();
+            }
+            $dbh = null;
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage() . '--' . $e->getLine());
+        }
+    }
 
 
 }

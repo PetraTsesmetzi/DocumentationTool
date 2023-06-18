@@ -120,7 +120,7 @@ class Article
 
         try {
             $dbh = DB::connect();
-            $sql = "INSERT INTO article2(articleNumber,subchapter_Id,articleName) VALUES(:articleNumber,:subchapter_Id,:articleName)";
+            $sql = "INSERT INTO article(articleNumber,subchapter_Id,articleName) VALUES(:articleNumber,:subchapter_Id,:articleName)";
             $stmt = $dbh->prepare($sql);
             $stmt->bindParam(':articleNumber', $articleNumber, PDO::PARAM_STR);
             $stmt->bindParam(':subchapter_Id', $subchapterId, PDO::PARAM_STR);

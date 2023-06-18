@@ -92,6 +92,7 @@ const createAndUpdateArticles=async function(submitEvent){
         submitEvent.preventDefault();
         let valide=await model.validateForm();
         if(valide){
+
             await model.createAndUpdateArticle(submitEvent);
             await loadSubchapterById(model.state.form.subchapterId);
             await model.setVariablesForForm(model.state.form.subchapterId, 'update');
@@ -114,13 +115,16 @@ const deleteArticles=async function(e){
 }
 
 const deleteFields=async function(e){
-    console.log(e.target.parentElement.parentElement.lastElementChild.className);
-    let id=e.target.parentElement.parentElement.lastElementChild.dataset.id;
-    let field=e.target.parentElement.parentElement.lastElementChild.className;
-    field=field.charAt(0).toUpperCase()+field.slice(1);
-    console.log(field)
-    if(id!=='noId'){
-        model.deleteField(id,field);
+    if(e.target.classList.contains("btn-delete")) {
+        console.log(e.target)
+        console.log(e.target.parentElement.parentElement.lastElementChild.className);
+        let id = e.target.parentElement.parentElement.lastElementChild.dataset.id;
+        let field = e.target.parentElement.parentElement.lastElementChild.className;
+        field = field.charAt(0).toUpperCase() + field.slice(1);
+        console.log(field)
+        if (id !== 'noId') {
+            model.deleteField(id, field);
+        }
     }
 }
 /**

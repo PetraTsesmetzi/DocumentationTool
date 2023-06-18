@@ -116,4 +116,31 @@ class Code
         }
     }
 
+    /**
+     * * aktualisiert die vorhandenen code Felder
+     * @param $article_Id
+     * @param $codeArr
+     * @return void
+     */
+    public function updateObject($article_Id,$codeArr): void
+    {
+        try {
+            $dbh = DB::connect();
+            foreach ($codeArr as $code) {
+                $sql = "UPDATE code SET  article_Id=:article_Id, 
+                    elementOrder=:elementOrder,
+                    codeText=:codeText WHERE id=:id";
+                $stmt = $dbh->prepare($sql);
+                $stmt->bindParam(':article_Id', $article_Id, PDO::PARAM_INT);
+                $stmt->bindParam(':elementOrder', $code->elementOrder, PDO::PARAM_INT);
+                $stmt->bindParam(':codeText', $code->codeText, PDO::PARAM_STR);
+                $stmt->bindParam(':id', $code->codeId, PDO::PARAM_INT);
+                $stmt->execute();
+            }
+            $dbh = null;
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().'--'.$e->getLine());
+        }
+    }
+
 }

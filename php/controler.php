@@ -15,34 +15,35 @@ $subChapterTitel = $_POST['subChapterTitel'] ?? '';
 $articleTitel = $_POST['articleTitel'] ?? '';
 $articleNr = $_POST['articleNr'] ?? '';
 $descriptionsArr = $_POST['descriptionsArr'] ?? '';
-$codeArr =$_POST['codeArr'] ?? '';
+$codeArr = $_POST['codeArr'] ?? '';
+$newDescObj = $_POST['newDescObj'] ?? '';
+$newCodeArr = $_POST['newCodeArr'] ?? '';
 
-
-$articleId=$_POST['articleId'] ?? '';
+$articleId = $_POST['articleId'] ?? '';
 $subchapter_Id = $_POST['subchapterId'] ?? '';
-$request=$_REQUEST;
+$request = $_REQUEST;
 
-$args=[$action,$id,$articleId,$subChapterTitel,$articleTitel,$articleNr,$descriptionsArr,$codeArr,$subchapter_Id];
+$args = [$action, $id, $articleId, $subChapterTitel, $articleTitel, $articleNr, $descriptionsArr, $codeArr, $subchapter_Id];
 try {
 
     switch ($action) {
         case 'loadArticles':
-//            setVariables();
+            setVariables();
             $articles = (new Article())->getAllAsObjects();
             echo json_encode($articles);
             break;
         case'loadArticleById':
-//            setVariables();
-            $article = (new Article())->getObjectById((int)$id);
+            setVariables();
+            $article = (new Article())->getObjectById((int)$articleId);
             echo json_encode($article);
             break;
         case 'loadElements':
-//            setVariables();
+            setVariables();
             $subchapters = (new Subchapter())->getAllAsObjects();
             echo json_encode($subchapters);
             break;
         case 'loadSubchapterById':
-//            setVariables();
+            setVariables();
             $subchapterById = (new Subchapter())->getObjectById((int)$id);
             echo json_encode($subchapterById);
             break;
@@ -51,11 +52,11 @@ try {
             $subChapterId = (new SubChapter())->getSubChapterId($subChapterTitel);
             $articleId = (new Article())->createNewObject($subChapterId, $articleTitel, $articleNr);
             (new Description())->createNewObject($articleId, json_decode($descriptionsArr));
-            (new Code())->createNewObject($articleId,json_decode($codeArr));
+            (new Code())->createNewObject($articleId, json_decode($codeArr));
             echo json_encode('neuer artikel wurde erstellt');
             break;
         case 'deleteArticle':
-//            setVariables();
+            setVariables();
             (new Article())->deleteObject((int)$id);
             echo json_encode(' artikel wurde geloescht');
             break;
@@ -70,30 +71,35 @@ try {
             echo json_encode('Code wurde geloescht');
             break;
         case 'loadArticleNumbers':
-//            setVariables();
+            setVariables();
             $subchapters = (new Subchapter())->getAllAsObjects((int)$id);
             echo json_encode($subchapters);
             break;
         case'updateArticle';
-//          setVariables();
-            (new Article())->deleteObject((int)$articleId);
-            $article_Id = (new Article())->createNewObject((int)$subchapter_Id, $articleTitel, (int)$articleNr);
-            (new Description())->createNewObject($article_Id, json_decode($descriptionsArr));
-            (new Code())->createNewObject($article_Id, json_decode($codeArr));
+            setVariables();
 
-            //(new Article($id,$articleNumber, $subchapter_Id, $articleName))->updateObject();
+            if ($newCodeArr != '') {
+                (new Code())->createNewObject($articleId, json_decode($newCodeArr));
+            }
+            if ($newDescObj != '') {
+                (new Description())->createNewObject($articleId, json_decode($newDescObj));
+            }
+            (new Article($articleId, $articleNr, $subchapter_Id, $articleTitel))->updateObject();
+            (new Description())->updateObject($articleId, json_decode($descriptionsArr));
+            (new Code())->updateObject($articleId, json_decode($codeArr));
+
             echo json_encode('artikel wurde upgedatet');
             break;
 
     }
 
 
-}catch(Exception $e){
+} catch (Exception $e) {
     //Erstellt eine errorFile.txt mit Error Message
-    $errorFile='errorFile.txt';
-    $message=file_get_contents($errorFile);
-    $message="Message: ".$e->getMessage()."\n"."LineNumber: ".$e->getLine()."\n";
-    file_put_contents($errorFile,$message);
+    $errorFile = 'errorFile.txt';
+    $message = file_get_contents($errorFile);
+    $message = "Message: " . $e->getMessage() . "\n" . "LineNumber: " . $e->getLine() . "\n";
+    file_put_contents($errorFile, $message);
 }
 
 /**
@@ -102,17 +108,18 @@ try {
  * @param $args
  * @return void
  */
-function setVariables():void{
+function setVariables(): void
+{
 
-    $echoFile='echoFile.txt';
-    $message=file_get_contents($echoFile);
+    $echoFile = 'echoFile.txt';
+    $message = file_get_contents($echoFile);
 
     foreach ($_POST as $key => $value) {
         $message .= $key . " : " . $value . "\n";
     }
 
-    $message .= "\n". "\n";
-    file_put_contents($echoFile,$message);
+    $message .= "\n" . "\n";
+    file_put_contents($echoFile, $message);
 }
 
 
