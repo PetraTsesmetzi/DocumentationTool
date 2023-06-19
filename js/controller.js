@@ -78,27 +78,43 @@ const loadEditMode= async function(){
  * @returns {Promise<void>}
  */
 const createAndUpdateArticles=async function(submitEvent){
-    if(state.form.actionForm==='create') {
-        submitEvent.preventDefault();
-        let valide = await model.validateForm();
-        if (valide) {
-            await model.createAndUpdateArticle(submitEvent);
-            await loadSubchapterById(model.state.form.subchapterId);
-            await model.setVariablesForForm(model.state.form.subchapterId, 'create');
-        } else {
-            form.activateErrorMessage();
-        }
-    }else if(state.form.actionForm==='update'){
-        submitEvent.preventDefault();
-        let valide=await model.validateForm();
-        if(valide){
+    // if(state.form.actionForm==='create') {
+    //     submitEvent.preventDefault();
+    //     let valide = await model.validateForm();
+    //     if (valide) {
+    //         await model.createAndUpdateArticle(submitEvent);
+    //         await loadSubchapterById(model.state.form.subchapterId);
+    //         await model.setVariablesForForm(model.state.form.subchapterId, 'create');
+    //     } else {
+    //         form.activateErrorMessage();
+    //     }
+    // }else if(state.form.actionForm==='update'){
+    //     submitEvent.preventDefault();
+    //     let valide=await model.validateForm();
+    //     if(valide){
+    //
+    //         await model.createAndUpdateArticle(submitEvent);
+    //         await loadSubchapterById(model.state.form.subchapterId);
+    //         await model.setVariablesForForm(model.state.form.subchapterId, 'update');
+    //     }else {
+    //         form.activateErrorMessage();
+    //     }
+    // }
 
-            await model.createAndUpdateArticle(submitEvent);
-            await loadSubchapterById(model.state.form.subchapterId);
+
+    submitEvent.preventDefault();
+    let valide = await model.validateForm();
+    if (valide) {
+        await model.createAndUpdateArticle(submitEvent);
+        await loadSubchapterById(model.state.form.subchapterId);
+
+        if(state.form.actionForm==='update'){
             await model.setVariablesForForm(model.state.form.subchapterId, 'update');
-        }else {
-            form.activateErrorMessage();
+        }else  if(state.form.actionForm==='create') {
+            await model.setVariablesForForm(model.state.form.subchapterId, 'create');
         }
+    } else {
+        form.activateErrorMessage();
     }
 }
 

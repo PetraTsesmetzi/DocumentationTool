@@ -394,3 +394,700 @@ action : loadSubchapterById
 id : 1
 
 
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a8
+articleNr : 8
+subChapterTitel : Values und Variables
+description_0 : a88
+codeblock_1 : a88
+codeblock_2 : a888
+description_3 : a888
+action : createArticle
+descriptionsArr : [{"descriptionText":"a88","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"a888","elementOrder":"3"}]
+codeArr : [{"codeText":"a88","elementOrder":"1"},{"codeId":"noId","codeText":"a888","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 9
+
+
+action : loadElements
+
+
+action : deleteCode
+id : 24
+
+
+action : deleteDescription
+id : 24
+
+
+articleTitel : a8
+description_0 : a88
+Update
+codeblock_1 : a88
+Update
+codeblock_4 : a99
+description_5 : a99
+action : updateArticle
+subchapterId : 1
+articleId : 9
+articleNr : 8
+newDescObj : [{"descriptionText":"a99","elementOrder":"5"}]
+newCodeArr : [{"codeText":"a99","elementOrder":"4"}]
+descriptionsArr : [{"descriptionId":"23","descriptionText":"a88\nUpdate","elementOrder":"0"}]
+codeArr : [{"codeId":"23","codeText":"a88\nUpdate","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 9
+
+
+action : loadElements
+
+
+articleTitel : a8
+description_0 : a88
+Update
+codeblock_1 : a88
+Update
+codeblock_2 : a99
+Update
+description_3 : a99
+Update
+action : updateArticle
+subchapterId : 1
+articleId : 9
+articleNr : 8
+newDescObj : []
+newCodeArr : []
+descriptionsArr : [{"descriptionId":"23","descriptionText":"a88\nUpdate","elementOrder":"0"},{"descriptionId":"25","descriptionText":"a99\nUpdate","elementOrder":"3"}]
+codeArr : [{"codeId":"23","codeText":"a88\nUpdate","elementOrder":"1"},{"codeId":"25","codeText":"a99\nUpdate","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 9
+
+
+action : loadElements
+
+
+action : deleteCode
+id : 25
+
+
+articleTitel : a8
+description_0 : a88
+Update
+codeblock_1 : a88
+Update
+description_3 : a99
+Update
+action : updateArticle
+subchapterId : 1
+articleId : 9
+articleNr : 8
+newDescObj : []
+newCodeArr : []
+descriptionsArr : [{"descriptionId":"23","descriptionText":"a88\nUpdate","elementOrder":"0"},{"descriptionId":"25","descriptionText":"a99\nUpdate","elementOrder":"3"}]
+codeArr : [{"codeId":"23","codeText":"a88\nUpdate","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 9
+
+
+action : loadElements
+
+
+articleTitel : a8
+description_0 : a88
+Update
+codeblock_1 : a88
+Update
+description_2 : a99
+Update
+codeblock_3 : a999
+Update
+action : updateArticle
+subchapterId : 1
+articleId : 9
+articleNr : 8
+newDescObj : []
+newCodeArr : [{"codeText":"a999\nUpdate","elementOrder":"3"}]
+descriptionsArr : [{"descriptionId":"23","descriptionText":"a88\nUpdate","elementOrder":"0"},{"descriptionId":"25","descriptionText":"a99\nUpdate","elementOrder":"2"}]
+codeArr : [{"codeId":"23","codeText":"a88\nUpdate","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a9
+articleNr : 9
+subChapterTitel : Values und Variables
+description_0 : jghjgghjhjg
+codeblock_1 : ghjghjgjgj
+codeblock_2 : ghjhgjhgh
+description_3 : ghjghjghj
+action : createArticle
+descriptionsArr : [{"descriptionText":"jghjgghjhjg","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"ghjghjghj","elementOrder":"3"}]
+codeArr : [{"codeText":"ghjghjgjgj","elementOrder":"1"},{"codeId":"noId","codeText":"ghjhgjhgh","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 10
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 9
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 7
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 6
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 5
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 4
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a4
+articleNr : 4
+subChapterTitel : Values und Variables
+description_0 : ddf
+codeblock_1 : sdfsdfsd
+codeblock_2 : sdfsdf
+description_3 : sdfsdfds
+action : createArticle
+descriptionsArr : [{"descriptionText":"ddf","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"sdfsdfds","elementOrder":"3"}]
+codeArr : [{"codeText":"sdfsdfsd","elementOrder":"1"},{"codeId":"noId","codeText":"sdfsdf","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a6
+articleNr : 5
+subChapterTitel : Values und Variables
+description_0 : gdfgdfg
+codeblock_1 : dfgdfgdfg
+action : createArticle
+descriptionsArr : [{"descriptionText":"gdfgdfg","elementOrder":"0"}]
+codeArr : [{"descriptionText":"dfgdfgdfg","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a4
+articleNr : 4
+subChapterTitel : Values und Variables
+description_0 : fdsf
+codeblock_1 : fdsfsdf
+action : createArticle
+descriptionsArr : [{"descText":"fdsf","elementOrder":"0"}]
+codeArr : [{"codeText":"fdsfsdf","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a6
+articleNr : 4
+subChapterTitel : Values und Variables
+description_0 : dsfsdf
+codeblock_1 : sdfsdfs
+action : createArticle
+descriptionsArr : [{"descriptionText":"dsfsdf","elementOrder":"0"}]
+codeArr : [{"codeText":"sdfsdfs","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a7
+articleNr : 5
+subChapterTitel : Values und Variables
+description_0 : dfg
+codeblock_1 : gdfgd
+codeblock_2 : dfgdfg
+description_3 : dfgdfgdfg
+action : createArticle
+descriptionsArr : [{"descriptionText":"dfg","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"dfgdfgdfg","elementOrder":"3"}]
+codeArr : [{"codeText":"gdfgd","elementOrder":"1"},{"codeId":"noId","codeText":"dfgdfg","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a8
+articleNr : 6
+subChapterTitel : Values und Variables
+description_0 : h
+codeblock_1 : fhfhf
+codeblock_2 : ghfgh
+description_3 : fghfghgh
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"h","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"fghfghgh","elementOrder":"3"}]
+codeArr : [{"codeId":null,"codeText":"fhfhf","elementOrder":"1"},{"codeId":"noId","codeText":"ghfgh","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 6
+
+
+action : loadElements
+
+
+action : loadArticles
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 6
+
+
+action : loadElements
+
+
+action : loadArticles
+
+
+articleTitel : artikel8
+description_0 : artikel8
+codeblock_1 : artikel8
+codeblock_2 : artikel8
+description_3 : artikel8
+action : updateArticle
+subchapterId : 1
+articleId : 6
+articleNr : 6
+newDescObj : []
+newCodeArr : []
+descriptionsArr : [{"descriptionId":"11","descriptionText":"artikel8","elementOrder":"0"},{"descriptionId":"12","descriptionText":"artikel8","elementOrder":"3"}]
+codeArr : [{"codeId":"11","codeText":"artikel8","elementOrder":"1"},{"codeId":"12","codeText":"artikel8","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : a9
+articleNr : 7
+subChapterTitel : Values und Variables
+description_0 : gjj
+codeblock_1 : jgjj
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"gjj","elementOrder":"0"}]
+codeArr : [{"codeId":null,"codeText":"jgjj","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 7
+
+
+action : loadElements
+
+
+action : loadArticles
+
+
+articleTitel : a9gjhj
+description_0 : gjjjgh
+codeblock_1 : jgjjjjgh
+codeblock_2 : ghjgj
+description_3 : jghhhhhhhhhj
+action : updateArticle
+subchapterId : 1
+articleId : 7
+articleNr : 7
+newDescObj : [{"descriptionText":"jghhhhhhhhhj","elementOrder":"3"}]
+newCodeArr : [{"codeText":"ghjgj","elementOrder":"2"}]
+descriptionsArr : [{"descriptionId":"13","descriptionText":"gjjjgh","elementOrder":"0"}]
+codeArr : [{"codeId":"13","codeText":"jgjjjjgh","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 7
+
+
+action : loadElements
+
+
+action : deleteCode
+id : 14
+
+
+articleTitel : a9gjhj
+description_0 : gjjjgh
+codeblock_1 : jgjjjjgh
+description_3 : jghhhhhhhhhj
+action : updateArticle
+subchapterId : 1
+articleId : 7
+articleNr : 7
+newDescObj : []
+newCodeArr : []
+descriptionsArr : [{"descriptionId":"13","descriptionText":"gjjjgh","elementOrder":"0"},{"descriptionId":"14","descriptionText":"jghhhhhhhhhj","elementOrder":"3"}]
+codeArr : [{"codeId":"13","codeText":"jgjjjjgh","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 7
+
+
+action : loadElements
+
+
+articleTitel : a9gjhj
+description_0 : gjjjgh
+codeblock_1 : jgjjjjgh
+description_2 : jghhhhhhhhhj
+codeblock_3 : ghjgjgj
+action : updateArticle
+subchapterId : 1
+articleId : 7
+articleNr : 7
+newDescObj : []
+newCodeArr : [{"codeText":"ghjgjgj","elementOrder":"3"}]
+descriptionsArr : [{"descriptionId":"13","descriptionText":"gjjjgh","elementOrder":"0"},{"descriptionId":"14","descriptionText":"jghhhhhhhhhj","elementOrder":"2"}]
+codeArr : [{"codeId":"13","codeText":"jgjjjjgh","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
