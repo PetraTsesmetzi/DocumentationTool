@@ -450,6 +450,7 @@ export const deleteField = async (id, field) => {
         let data = await getJSONObj(formData);
     } catch (e) {
         errorMessage(e)
+;
     }
 }
 
