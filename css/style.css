@@ -197,26 +197,45 @@ header {
 .content-all-container {
     top: 70px;
     width: 100%;
-    position: relative;
+    display: flex;
     z-index: 1;
 }
 
 /*********************************** NAV-LEFT ******************************************/
+/*#nav-left {*/
+/*    background-color: var(--nav-left-bg);*/
+/*    position: fixed;*/
+/*    top: 70px;*/
+/*    left: 0;*/
+/*    overflow-y: scroll;*/
+/*    height: calc(100vh - 70px);*/
+/*    width:300px;*/
+/*}*/
+.nav-left-container{
+    width:350px;
+    /*border:4px solid red;*/
+    height: calc(100vh - 70px);
+    margin:0;
+    padding:0;
+    position: relative;
+}
 #nav-left {
     background-color: var(--nav-left-bg);
+    top:70px;
     position: fixed;
-    top: 70px;
-    left: 0;
-    width: 23%;
     overflow-y: scroll;
     height: calc(100vh - 70px);
+    width:350px;
+    /*border:1px solid orange;*/
 }
+
 
 #nav-left > section {
     padding: 0 5px;
 }
 
 #nav-left > section > h1 {
+    width: 280px;
     color: var(--font-color-dark);
     font-size: 20px;
     margin: 30px 0 15px 0;
@@ -260,9 +279,11 @@ a:link, a:visited {
 /*********************************** ARTICLE SECTION ******************************************/
 .content-container {
     position: relative;
-    left: 23%;
-    width: 77%;
-    padding: 30px 50px;
+    width: 60%;
+    margin: 0 auto;
+    /*border:1px solid green;*/
+    /*padding: 30px 100px;*/
+
 }
 
 .content-container > h1 {
