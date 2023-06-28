@@ -1091,3 +1091,167 @@ action : loadSubchapterById
 id : 1
 
 
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 3
+
+
+action : loadElements
+
+
+action : loadArticles
+
+
+articleTitel : Grafikdesign mit css
+description_0 : JavaScript hat verschiedene Datentypen, darunter Zahlen, Zeichenketten, boolesche Werte, Arrays, Objekte, "null" und "undefined". 
+codeblock_1 : let age = 25;
+let price = 9.99;
+codeblock_2 : let name = "John";
+let message = 'Hello, World!';
+description_3 : Der Datentyp "number" speichert numerische Werte, während der Datentyp "string" für Text verwendet wird. Boolesche Werte repräsentieren logische Aussagen wie "true" oder "false". Arrays sind geordnete Sammlungen von Werten, während Objekte Eigenschaften durch Schlüssel-Wert-Paare darstellen.
+codeblock_4 : let person = {name: "John",age: 25,isStudent: true};
+action : updateArticle
+subchapterId : 1
+articleId : 3
+articleNr : 3
+newDescObj : []
+newCodeArr : []
+descriptionsArr : [{"descriptionId":"6","descriptionText":"JavaScript hat verschiedene Datentypen, darunter Zahlen, Zeichenketten, boolesche Werte, Arrays, Objekte, \"null\" und \"undefined\". ","elementOrder":"0"},{"descriptionId":"7","descriptionText":"Der Datentyp \"number\" speichert numerische Werte, während der Datentyp \"string\" für Text verwendet wird. Boolesche Werte repräsentieren logische Aussagen wie \"true\" oder \"false\". Arrays sind geordnete Sammlungen von Werten, während Objekte Eigenschaften durch Schlüssel-Wert-Paare darstellen.","elementOrder":"3"}]
+codeArr : [{"codeId":"5","codeText":"let age = 25;\nlet price = 9.99;","elementOrder":"1"},{"codeId":"6","codeText":"let name = \"John\";\nlet message = 'Hello, World!';","elementOrder":"2"},{"codeId":"7","codeText":"let person = {name: \"John\",age: 25,isStudent: true};","elementOrder":"4"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 3
+
+
+action : loadElements
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 4
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 5
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 6
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 7
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : deleteArticle
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
