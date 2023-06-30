@@ -12,7 +12,15 @@
 
 
 @media screen and (max-width: 1024px){
-
+    .settings{
+        display:block;
+    }
+   .nav-left-container{
+        display:none;
+    }
+   .content-container{
+       width: 90%;
+   }
 }
 
 

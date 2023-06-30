@@ -176,6 +176,11 @@ const showArticleView=function(){
     initializePrismScript();
 }
 
+const loadMobileMenu=function(e){
+    console.log(e);
+    console.log('clicki on mobile');
+
+}
 
 /**
  * Initialisiert die Libary prism
@@ -209,6 +214,7 @@ const init=  async function() {
     navLeft.addHandlerRender(loadSubchapterById);
     navHeader.addHandlerEdit(loadEditMode);
     navHeader.addHandlerInsert(loadForm);
+    navHeader.addHandlerMobileMenu(loadMobileMenu);
 
 }
   await init();

@@ -68,7 +68,7 @@ class ArticleView {
     #generateMarkup() {
         let htmlObj = `<h1>${this.#subchapterName}</h1>`;
         for (const key in this.#subcapterArticles) {
-            // console.log('this.#subcapterArticles',this.#subcapterArticles)
+            console.log('this.#subcapterArticles',this.#subcapterArticles)
             htmlObj += `<article>
                         <div class="article-header" data-articleid="${this.#subcapterArticles[key].id}"><h2>${this.#subcapterArticles[key]['articleName']}</h2>
                             <div class="button-container">
@@ -88,8 +88,10 @@ class ArticleView {
                 if (articleElementArr[i].hasOwnProperty('codeText')) {
 
                     htmlObj += `<pre class="line-numbers">
-                                     <code data-codeid="${articleElementArr[i].id}" class="language-javascript">${articleElementArr[i]['codeText']}</code>
-                                </pre>`;
+                                 
+                    <code data-codeid="${articleElementArr[i].id}" class="language-javascript">${articleElementArr[i]['codeText']}</code>
+                           
+                    </pre>`;
                 }
             }
             htmlObj += `</article>`;
