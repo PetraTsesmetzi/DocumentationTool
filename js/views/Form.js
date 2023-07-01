@@ -270,7 +270,7 @@ class Form {
      * Nachricht wird angezeigt wenn Artikelname schon vergeben ist
      */
     activateErrorMessage() {
-        document.getElementsByClassName('errorMessage')[0].classList.add('show');
+        document.getElementsByClassName('errorMessage')[0].classList.add('showMessage');
 
     }
 }

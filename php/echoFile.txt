@@ -1700,3 +1700,1690 @@ action : loadSubchapterById
 id : 1
 
 
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+action : loadArticles
+
+
+articleTitel : Variables1
+articleNr : 3
+subChapterTitel : Values und Variables
+description_0 : ggdg
+codeblock_1 : gfgdfg
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"ggdg","elementOrder":"0"}]
+codeArr : [{"codeId":null,"codeText":"gfgdfg","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 1
+
+
+action : loadElements
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 3
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadArticles
+
+
+articleTitel : vvbcvbcvb
+articleNr : 1
+subChapterTitel : Basic Operators Mathoperators
+description_0 : cvbcvbcv
+codeblock_1 : vcbcvbcv
+description_3 : vbcvbcvbcvbcv
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"cvbcvbcv","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"vbcvbcvbcvbcv","elementOrder":"3"}]
+codeArr : [{"codeId":null,"codeText":"vcbcvbcv","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : deleteArticle
+id : 9
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadArticles
+
+
+articleTitel : vbcvbcv
+articleNr : 1
+subChapterTitel : Basic Operators Mathoperators
+description_0 : vcbcvb
+codeblock_1 : bcvbcbvb
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"vcbcvb","elementOrder":"0"}]
+codeArr : [{"codeId":null,"codeText":"bcvbcbvb","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadArticleById
+articleId : 10
+
+
+action : loadElements
+
+
+action : loadArticles
+
+
+articleTitel : art1
+description_0 : hello
+codeblock_1 : hihihih
+action : updateArticle
+subchapterId : 2
+articleId : 10
+articleNr : 1
+newDescObj : []
+newCodeArr : []
+descriptionsArr : [{"descriptionId":"18","descriptionText":"hello","elementOrder":"0"}]
+codeArr : [{"codeId":"18","codeText":"hihihih","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : deleteArticle
+id : 10
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 3
+
+
+action : loadSubchapterById
+id : 1
+
+

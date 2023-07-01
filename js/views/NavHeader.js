@@ -11,9 +11,9 @@ class NavHeader{
     #parentElement=document.querySelector('.nav-links');
     #editBtn=document.querySelector('.btn-edit');
     #insertBtn=document.querySelector('.btn-insert');
-    #menuBtn=document.querySelector('.nav-mobile');
-    #menuBtn2=document.querySelector('.settings');
-    #iconBtn=document.querySelector('#hamburger');
+
+    #bookBtn=document.querySelector('.btn-book');
+
 
     /**
      * initialisiert das Markup (hängt die htmlObjekte in die Container)
@@ -58,19 +58,9 @@ class NavHeader{
         this.#insertBtn.addEventListener('click',loadForm.bind(this));
     }
     addHandlerMobileMenu(loadMobileMenu){
-        console.log(this.#menuBtn)
-        this.#menuBtn.addEventListener('click',function(e){
-            console.log(e.target);
-            // e.target.style.backgroundColor='red';
-        });
-        this.#menuBtn2.addEventListener('click',function(e){
-            console.log(e.target);
-            e.target.style.backgroundColor='orange';
-        });
-        this.#iconBtn.addEventListener('click',function(e){
-            console.log(e.target);
-            e.target.style.backgroundColor='green';
-        });
+
+        this.#bookBtn.addEventListener('click',loadMobileMenu);
+
     }
 
     /**

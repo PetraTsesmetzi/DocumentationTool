@@ -9,7 +9,8 @@
 
 class ArticleView {
 
-    #parentElement = document.querySelector('.content-container');
+    #contentContainer = document.querySelector('.content-container');
+    #bookletOverlay = document.querySelector('.booklet-overlay');
     #subchapterName;
     #subcapterArticles;
     #editmode = false;
@@ -29,14 +30,14 @@ class ArticleView {
 
         this.#clear();
         const markup = this.#generateMarkup();
-        this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+        this.#contentContainer.insertAdjacentHTML('afterbegin', markup);
     }
 
     /**
      * löscht den Inhalt des content-container
      */
     #clear() {
-        this.#parentElement.innerHTML = '';
+        this.#contentContainer.innerHTML = '';
     }
 
     /**
@@ -60,6 +61,9 @@ class ArticleView {
             buttonUp[i].addEventListener('click', loadForm.bind(this));
         }
     }
+    addHandlerBookletOverlay(loadMobileMenu){
+         this.#bookletOverlay.addEventListener('click',loadMobileMenu.bind(this));
+    }
 
     /**
      * erstellt das htmlObj als String für alle Artikel
@@ -68,7 +72,7 @@ class ArticleView {
     #generateMarkup() {
         let htmlObj = `<h1>${this.#subchapterName}</h1>`;
         for (const key in this.#subcapterArticles) {
-            console.log('this.#subcapterArticles',this.#subcapterArticles)
+
             htmlObj += `<article>
                         <div class="article-header" data-articleid="${this.#subcapterArticles[key].id}"><h2>${this.#subcapterArticles[key]['articleName']}</h2>
                             <div class="button-container">
@@ -98,6 +102,11 @@ class ArticleView {
         }
         return htmlObj;
     }
+
+    displayContentAll() {
+        this.#bookletOverlay.classList.toggle('showBlock');
+    }
+
 }
 
 export default new ArticleView();

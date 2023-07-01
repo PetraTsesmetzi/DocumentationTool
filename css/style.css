@@ -52,20 +52,20 @@ p {
 
 header {
     width: 100%;
-    height: 70px;
+    /*height: 70px;*/
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    z-index: 10;
+    z-index: 200;
 }
 /*********************************** NAV-HEADER ******************************************/
 
 #nav-header {
     background-color: var(--nav-header-bg);
-    height: 70px;
+
     color: var(--font-color-light);
     display: flex;
     align-items: center;
@@ -73,14 +73,32 @@ header {
     font-weight: 500;
     font-size: 18px;
     box-shadow: 5px 2px 5px var(--boxshadow-dark);
-}
 
+}
+.diverse{
+    height: 70px;
+    width: 50%;
+    /*border:3px solid crimson;*/
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+.category{
+    width: 50%;
+    /*border:4px solid darkgreen;*/
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
 .button-nav-container {
     height: 70px;
-    width: 46%;
+    width: 36%;
+    min-width:250px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+
 }
 
 .button-container-left {
@@ -140,43 +158,51 @@ header {
     box-shadow: inset 0 0 0 1px var(--boxshadow-light);
 }
 
-#nav-header > ul {
+.search-field{
+    width:20%;
+    min-width:180px;
+    /*border:4px solid darkgreen;*/
+}
+
+.category > ul {
     height: 70px;
     width: 44%;
+    min-width: 550px;
     list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+
 }
 
-.settings-container {
-    position: relative;
-    width: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/*.settings-container {*/
+/*    position: relative;*/
+/*    width: 10%;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
 
-.themes {
-    color: var(--font-color-light);
-    background-color: var(--nav-header-bg);
-    position: absolute;
-    font-size: 14px;
-    padding: 15px;
-    top: 35px;
-    width: 100%;
-    border-radius: 10px;
-    display: none;
-}
+/*.themes {*/
+/*    color: var(--font-color-light);*/
+/*    background-color: var(--nav-header-bg);*/
+/*    position: absolute;*/
+/*    font-size: 14px;*/
+/*    padding: 15px;*/
+/*    top: 35px;*/
+/*    width: 100%;*/
+/*    border-radius: 10px;*/
+/*    display: none;*/
+/*}*/
 
-.themes li {
-    list-style: none;
-    line-height: 20px;
-    text-align: center;
-}
+/*.themes li {*/
+/*    list-style: none;*/
+/*    line-height: 20px;*/
+/*    text-align: center;*/
+/*}*/
 
-#nav-header > ul > li {
+.category > ul > li {
     list-style: none;
     margin-left: 20px;
     height: inherit;
@@ -184,7 +210,7 @@ header {
     cursor:pointer;
 }
 
-#nav-header > ul > li span {
+.category > ul > li span {
     font-size: 16px;
     padding: 10px;
     height: inherit;
@@ -199,6 +225,7 @@ header {
     width: 100%;
     display: flex;
     z-index: 1;
+
 }
 
 /*********************************** NAV-LEFT ******************************************/
@@ -226,6 +253,7 @@ header {
     overflow-y: scroll;
     height: calc(100vh - 70px);
     width:350px;
+    z-index: 100;
     /*border:1px solid orange;*/
 }
 
@@ -281,10 +309,11 @@ a:link, a:visited {
     position: relative;
     width: 60%;
     margin: 100px auto;
+    z-index:2;
     /*border:1px solid green;*/
     /*padding: 30px 100px;*/
-
 }
+
 
 .content-container > h1 {
     color: var(--font-color-dark);
@@ -456,7 +485,7 @@ pre[class*=language-] {
     opacity: 0;
     transition: opacity 3s;
 }
-.show {
+.showMessage {
     opacity: 1;
 }
 /************ *Number Inputs ohne Pfeil *****************/
@@ -608,20 +637,31 @@ pre[class*=language-] {
     box-shadow: inset 0 0 0 1px var(--boxshadow-light);
 }
 /************************ Nav-Mobile ******************************/
-.nav-mobile{
-    border:2px solid orange;
-    width:100px;
+.booklet-mobile{
+    /*border:2px solid orange;*/
+    min-width:60px;
     height:70px;
-    margin-left:40px;
+    margin-left:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.settings{
-    border:2px solid green;
-    width:60px;
-    height:60px;
-    font-size: 32px;
-    /*align-items: center;*/
-    /*justify-content: center;*/
+.btn-book{
+    position: relative;
+    z-index:202;
+    /*border:2px solid green;*/
+    background-color: transparent;
+    width:40px;
+    height:40px;
     display:none;
+    align-items: center;
+    justify-content: center;
+}
+#book{
+    z-index:201;
+    color:#fff;
+    font-size: 24px;
+    cursor:pointer;
 }
 
 /************************sonstiges ******************************/

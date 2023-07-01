@@ -8,7 +8,8 @@
  */
 class NavLeft {
 
-    #parentElement = document.querySelector('#nav-left');
+    #navLeft = document.querySelector('#nav-left');
+    #navLeftContainer=document.querySelector('.nav-left-container');
     #id;
 
     /**
@@ -19,11 +20,11 @@ class NavLeft {
     render(start) {
         if(start==='init'){
             const markup = this.#generateMarkup();
-            this.#parentElement.insertAdjacentHTML('afterbegin', markup);
+            this.#navLeft.insertAdjacentHTML('afterbegin', markup);
             const startLink=document.querySelector('#startLink');
             this.setActiveClass(1)
         }
-        this.#parentElement.addEventListener('click', this.setActiveClass.bind(this));
+        this.#navLeft.addEventListener('click', this.setActiveClass.bind(this));
     }
 
 
@@ -86,6 +87,10 @@ class NavLeft {
                 element.firstChild.classList.remove('active');
             }
         })
+    }
+
+    display(e){
+        this.#navLeftContainer.classList.toggle('showBlock');
     }
 
 
