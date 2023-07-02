@@ -1,4 +1,4 @@
-#DocumentationTool
+# DocumentationTool
 Das Hauptziel der App ist es, den bisher behandelten Programmier- oder Unterrichtsstoff systematisch zu dokumentieren
 und einen geordneten Zugriff auf Codesnippets, Webtechnologien und Tutorials zu ermöglichen. Die Web-Anwendung ist auf
 Unterkapitel und deren zugehörige Artikel fokussiert. Die Artikelbearbeitung folgt dem CRUD-Prinzip und erlaubt das
