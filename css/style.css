@@ -307,11 +307,12 @@ a:link, a:visited {
 /*********************************** ARTICLE SECTION ******************************************/
 .content-container {
     position: relative;
-    width: 60%;
+    width: 65%;
     margin: 100px auto;
     z-index:2;
     /*border:1px solid green;*/
     /*padding: 30px 100px;*/
+    border:3px solid green;
 }
 
 
@@ -398,6 +399,7 @@ pre[class*=language-] {
     margin: 0 auto;
     padding: 0;
     color: var(--font-color-form);
+    border:3px solid darkorange;
 }
 
 .requiredAsterisk{
@@ -430,7 +432,6 @@ pre[class*=language-] {
 /************ Inputs *****************/
 .input-container {
     display: flex;
-
 }
 .close-outline{
     font-size: 24px;
@@ -446,6 +447,7 @@ pre[class*=language-] {
 }
 
 .inputFields {
+    border:2px solid red;
     height: 70px;
     width: 300px;
 }
