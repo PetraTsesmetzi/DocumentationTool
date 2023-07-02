@@ -160,14 +160,14 @@ class Form {
         
         <!--  ***************************** Artikelname ************************************** -->
           <div class="input-container">
-                <div class="inputFields">
+                <div class="inputFields artikel" >
                 <label for="articleTitel">Artikel<span class="requiredAsterisk">*</span></label>
                 <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" value="${form.actionForm === 'update' ? form.articleName : ''}" required>
             </div>`;
         //  ***************************** Artikelnr bei create Selectfeld /ArtikelId bei update **************************************
 
             htmlObj += `
-                    <div class="inputFields">
+                    <div class="inputFields ${form.actionForm === 'create'?'artikelnr':'artikelId'} ">
                     <label for="articleNr">${form.actionForm === 'create'?'Artikelnr.':'Artikel_Id'}</label>
                     <select id="articleNr" name="articleNr" ${form.actionForm === 'update'?'disabled':''}>`;
             if (form.actionForm === 'update') htmlObj += `<option class="overlayNumbers" >${form.articleId}</option>`;
@@ -178,7 +178,7 @@ class Form {
             htmlObj += `
                    </select>
                    </div>
-                   <div class="inputFields">
+                   <div class="inputFields unterkapitel">
                    <label for="subChapterTitel">Unterkapitel</label>
                    <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
             for (let i = 0; i < form.subchapters.length; i++) {

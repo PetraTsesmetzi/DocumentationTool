@@ -78,14 +78,12 @@ header {
 .diverse{
     height: 70px;
     width: 50%;
-    /*border:3px solid crimson;*/
     display: flex;
     align-items: center;
     justify-items: center;
 }
 .category{
     width: 50%;
-    /*border:4px solid darkgreen;*/
     display: flex;
     align-items: center;
     justify-items: center;
@@ -161,7 +159,6 @@ header {
 .search-field{
     width:20%;
     min-width:180px;
-    /*border:4px solid darkgreen;*/
 }
 
 .category > ul {
@@ -229,18 +226,9 @@ header {
 }
 
 /*********************************** NAV-LEFT ******************************************/
-/*#nav-left {*/
-/*    background-color: var(--nav-left-bg);*/
-/*    position: fixed;*/
-/*    top: 70px;*/
-/*    left: 0;*/
-/*    overflow-y: scroll;*/
-/*    height: calc(100vh - 70px);*/
-/*    width:300px;*/
-/*}*/
+
 .nav-left-container{
     width:350px;
-    /*border:4px solid red;*/
     height: calc(100vh - 70px);
     margin:0;
     padding:0;
@@ -254,7 +242,6 @@ header {
     height: calc(100vh - 70px);
     width:350px;
     z-index: 100;
-    /*border:1px solid orange;*/
 }
 
 
@@ -310,9 +297,6 @@ a:link, a:visited {
     width: 65%;
     margin: 100px auto;
     z-index:2;
-    /*border:1px solid green;*/
-    /*padding: 30px 100px;*/
-    border:3px solid green;
 }
 
 
@@ -399,7 +383,6 @@ pre[class*=language-] {
     margin: 0 auto;
     padding: 0;
     color: var(--font-color-form);
-    border:3px solid darkorange;
 }
 
 .requiredAsterisk{
@@ -431,7 +414,8 @@ pre[class*=language-] {
 }
 /************ Inputs *****************/
 .input-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
 }
 .close-outline{
     font-size: 24px;
@@ -447,9 +431,9 @@ pre[class*=language-] {
 }
 
 .inputFields {
-    border:2px solid red;
+
     height: 70px;
-    width: 300px;
+    /*width: 300px;*/
 }
 
 .form-container div > label {
@@ -462,20 +446,23 @@ pre[class*=language-] {
 .form-container select, .form-container div > input {
     border: 1px solid var(--border-light);
     border-radius: 5px;
-    padding: 3px;
+    padding:3px;
 }
 
 .overlayHeadings{
-    width: 220px;
+    width: 250px;
     text-align: left;
+    padding:3px 5px;
 }
 .overlayNumbers{
     width: 50px;
     text-align: left;
+    padding: 3px;
 }
 .overlayContainer{
     width:250px;
     text-align: left;
+    padding: 3px;
 }
 .errorMessage{
 
@@ -555,10 +542,13 @@ pre[class*=language-] {
 /***********************Textareas ***********************/
 /***** Buttons ***********/
 .addTextAreas {
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    height: auto;
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:50px;
 }
 
 .btn-form-container {
@@ -566,19 +556,20 @@ pre[class*=language-] {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .form-container .btn-add, .form-container .btn-remove {
     border: none;
     border-radius: 5px;
-    width: 48%;
+    /*width: 48%;*/
     padding: 12px 0;
     font-weight: 600;
     font-size: 16px;
     color: var(--btn-fc-dark);
     background-color: var(--btn-bg-light);
     cursor: pointer;
+
 }
 
 .form-container .btn-add:hover {
@@ -640,7 +631,6 @@ pre[class*=language-] {
 }
 /************************ Nav-Mobile ******************************/
 .booklet-mobile{
-    /*border:2px solid orange;*/
     min-width:60px;
     height:70px;
     margin-left:10px;
@@ -651,7 +641,6 @@ pre[class*=language-] {
 .btn-book{
     position: relative;
     z-index:202;
-    /*border:2px solid green;*/
     background-color: transparent;
     width:40px;
     height:40px;
