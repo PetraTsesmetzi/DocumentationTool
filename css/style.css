@@ -333,11 +333,14 @@ code {
 pre[class*=language-] {
     background-color: var(--pre-content);
     padding: 20px 30px;
-    overflow: hidden;
+    overflow: auto;
     border-radius: 10px;
     display: flex;
     align-items: center;
     margin: 0 0 30px 0;
+}
+.copy-to-clipboard-button{
+    margin: 10px 15px;
 }
 
 .button-container {

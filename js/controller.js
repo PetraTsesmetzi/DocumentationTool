@@ -192,7 +192,7 @@ const loadMobileMenu = function (e) {
 }
 
 /**
- * Initialisiert die Libary prism
+ * Initialisiert die Libary prism2
  */
 const initializePrismScript = function () {
 

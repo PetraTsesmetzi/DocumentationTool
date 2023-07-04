@@ -76,7 +76,7 @@ class SubChapter
             $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
 
         } catch (PDOException $e) {
-            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().$e->getFile());
         }
 //        return $subChapter;
         return $subChapter->getJSONEncode();

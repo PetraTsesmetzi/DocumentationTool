@@ -92,7 +92,7 @@ class ArticleView {
                 if (articleElementArr[i].hasOwnProperty('codeText')) {
 
                     htmlObj += `<pre class="line-numbers">
-                                 
+                               
                     <code data-codeid="${articleElementArr[i].id}" class="language-javascript">${articleElementArr[i]['codeText']}</code>
                            
                     </pre>`;
