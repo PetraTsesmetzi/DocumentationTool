@@ -7,11 +7,11 @@ Erstellen, Lesen, Aktualisieren und Löschen von Artikeln.
 
 # LandingPage
 ## Navigation-Header
--Anzeige von Kategorien als statische Links in der oberen Navigations-Leiste(ohne Funktionalität)
--Bearbeiten Button für den Bearbeitungsmodus
+- Anzeige von Kategorien als statische Links in der oberen Navigations-Leiste(ohne Funktionalität)
+- Bearbeiten Button für den Bearbeitungsmodus
 
 ## Navigation-Left
--Anzeige von Kapitel, Unterkapitel in der linken Navigationsleiste
+- Anzeige von Kapitel, Unterkapitel in der linken Navigationsleiste
 
 ## Content
 - Im Content werden alle Artikel zu einem Unterkapitel geladen.
@@ -19,7 +19,8 @@ Erstellen, Lesen, Aktualisieren und Löschen von Artikeln.
 ## Anforderung Bearbeitungsmodus
 Über einen Button Bearbeiten gelangt man in den Bearbeitungsmodus.
 Dort hat man die Möglichkeit über die Buttons Einfügen, Löschen und Ändern, neue Artikel zu erstellen, Artikel zu Löschen oder zu Ändern.
-Artikel Einfügen
+
+## Artikel Einfügen
 Über den Button Einfügen gelangt man zu einem Formular. Dort wird man aufgefordert einen Artikelnamen, Beschreibungen und Codeblock einzufügen. Ein Code und Beschreibungsblock sind Pflichtbestandteil. Diese kann man nicht löschen.
 Weiterhin gibt es dort über 2 Buttons die Möglichkeit weitere Codeblöcke und Beschreibungsblöcke in unterschiedlicher Reihenfolge hinzuzufügen oder zu löschen.
 
