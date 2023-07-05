@@ -31,7 +31,9 @@
     .content-container {
         width: 90%;
     }
-
+    #nav-left{
+        width:75%;
+    }
     .nav-left-container {
         width: 0;
     }

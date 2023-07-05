@@ -68,7 +68,7 @@ class SubChapter
         try {
 
             $dbh = DB::connect();
-            $sql = "SELECT * FROM subChapter WHERE id=:id";
+            $sql = "SELECT * FROM subchapter WHERE id=:id";
             $stmt = $dbh->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -101,7 +101,7 @@ class SubChapter
             if(!isset($id)){
 
                 $dbh = DB::connect();
-                $sql = "SELECT * FROM subChapter";
+                $sql = "SELECT * FROM subchapter";
                 $result = $dbh->query($sql);
                 $subChapterArr = [];
                 while ($subChapter = $result->fetchObject(__CLASS__)) {
@@ -113,7 +113,7 @@ class SubChapter
             }else{
 
                 $dbh = DB::connect();
-                $sql = "SELECT * FROM subChapter WHERE id=:id";
+                $sql = "SELECT * FROM subchapter WHERE id=:id";
                 $stmt = $dbh->prepare($sql);
                 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
                 $stmt->execute();
@@ -140,7 +140,7 @@ class SubChapter
         try {
 //            echo $subChapterTitel;
             $dbh = DB::connect();
-            $sql = "SELECT id FROM subChapter WHERE subchapterName=:subchapterName";
+            $sql = "SELECT id FROM subchapter WHERE subchapterName=:subchapterName";
             $stmt = $dbh->prepare($sql);
             $stmt->bindParam(':subchapterName', $subChapterTitel, PDO::PARAM_STR);
             $stmt->execute();

@@ -3863,3 +3863,59 @@ action : loadSubchapterById
 id : 1
 
 
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadArticles
+
+
+action : loadArticles
+
+
+action : loadArticles
+
+
+articleTitel : Variables12dfsdfsdf
+articleNr : 1
+subChapterTitel : Basic Operators Mathoperators
+description_0 : sdsd
+codeblock_1 : sdsdsd
+codeblock_2 : sdsds
+description_3 : sdsd
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"sdsd","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"sdsd","elementOrder":"3"}]
+codeArr : [{"codeId":null,"codeText":"sdsdsd","elementOrder":"1"},{"codeId":"noId","codeText":"sdsds","elementOrder":"2"}]
+
+
+action : loadSubchapterById
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
