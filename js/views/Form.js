@@ -62,9 +62,20 @@ class Form {
      * lädt die richtigen artikelnummern je nachdem auf welches Unterkapitel man geklickt hat
      * @param loadArticleNumbers
      */
+    /**
+     * todo:hiier weiter
+     * @param loadArticleNumbers
+     */
     addHandlerRenderArticleNumbers(loadArticleNumbers) {
         this.#selectField = document.querySelector('#subChapterTitels');
         this.#selectField.addEventListener('change', loadArticleNumbers);
+        this.#selectField.addEventListener('focus', function(){
+            console.log('gege');
+           const article=document.querySelector('#articleTitel');
+           const field=document.querySelector('.description')
+            console.log('article',article);
+            console.log('article',article.value);
+        });
     }
 
     /**

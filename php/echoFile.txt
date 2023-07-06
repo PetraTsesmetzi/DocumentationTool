@@ -3919,3 +3919,672 @@ action : loadSubchapterById
 id : 1
 
 
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : vcv
+articleNr : 4
+subChapterTitel : Values und Variables
+description_0 : xvxcv
+codeblock_1 : xcvxcv
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"xvxcv","elementOrder":"0"}]
+codeArr : [{"codeId":null,"codeText":"xcvxcv","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : cyxc
+articleNr : 5
+subChapterTitel : Values und Variables
+description_0 : yxcyxc
+codeblock_1 : yxcyxc
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"yxcyxc","elementOrder":"0"}]
+codeArr : [{"codeId":null,"codeText":"yxcyxc","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : sad
+articleNr : 6
+subChapterTitel : Values und Variables
+description_0 : asdasd
+codeblock_1 : sdasd
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"asdasd","elementOrder":"0"}]
+codeArr : [{"codeId":null,"codeText":"sdasd","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : yxcyxc
+articleNr : 7
+subChapterTitel : Values und Variables
+description_0 : yxcyxc
+codeblock_1 : xycyxc
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"yxcyxc","elementOrder":"0"}]
+codeArr : [{"codeId":null,"codeText":"xycyxc","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticleNumbers
+id : 2
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadElements
+
+
+action : loadArticleNumbers
+id : 1
+
+
+action : loadArticles
+
+
+articleTitel : ycxc
+articleNr : 8
+subChapterTitel : Values und Variables
+description_0 : yxcyxc
+codeblock_1 : yxc
+action : createArticle
+descriptionsArr : [{"descriptionId":null,"descriptionText":"yxcyxc","elementOrder":"0"}]
+codeArr : [{"codeId":null,"codeText":"yxc","elementOrder":"1"}]
+
+
+action : loadSubchapterById
+id : 1
+
+
+action : loadArticleById
+articleId : 2
+
+
+action : loadElements
+
+
+action : loadSubchapterById
+id : 1
+
+

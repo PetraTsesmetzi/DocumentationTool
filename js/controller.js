@@ -25,6 +25,7 @@ export const loadForm = async function (e) {
  * @returns {Promise<void>}
  */
 export const loadArticleNumbers = async function (e) {
+
     const subchapterId = e.target.options.selectedIndex + 1;
     window.location.href = "#" + subchapterId;
     window.removeEventListener('hashchange', loadSubchapterById);
@@ -76,29 +77,6 @@ const loadEditMode = async function () {
  * @returns {Promise<void>}
  */
 const createAndUpdateArticles = async function (submitEvent) {
-    // if(state.form.actionForm==='create') {
-    //     submitEvent.preventDefault();
-    //     let valide = await model.validateForm();
-    //     if (valide) {
-    //         await model.createAndUpdateArticle(submitEvent);
-    //         await loadSubchapterById(model.state.form.subchapterId);
-    //         await model.setVariablesForForm(model.state.form.subchapterId, 'create');
-    //     } else {
-    //         form.activateErrorMessage();
-    //     }
-    // }else if(state.form.actionForm==='update'){
-    //     submitEvent.preventDefault();
-    //     let valide=await model.validateForm();
-    //     if(valide){
-    //
-    //         await model.createAndUpdateArticle(submitEvent);
-    //         await loadSubchapterById(model.state.form.subchapterId);
-    //         await model.setVariablesForForm(model.state.form.subchapterId, 'update');
-    //     }else {
-    //         form.activateErrorMessage();
-    //     }
-    // }
-
 
     submitEvent.preventDefault();
     let valide = await model.validateForm();

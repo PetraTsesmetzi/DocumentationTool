@@ -222,121 +222,16 @@ export const validateForm = async () => {
         }
     }
 }
-/**
- * Bereitet die übergebenen Daten des Formulars auf,
- * erstellt ein Formdata object
- * @param submitEvent
- * @returns {Promise<void>}
- */
-// export const createAndUpdateArticle = async (submitEvent) => {
-//
-//     try {
-//
-//         const form2 = submitEvent.target;
-//         let formData2 = new FormData(form2);
-//
-//
-//         const descriptionsArr2 = [];
-//         const codeArr2 = [];
-//         const newDescriptionArr = [];
-//         const newCodeArr = [];
-//         let textareas = document.getElementsByTagName('textarea');
-//
-//
-//
-//         for (let i = 0; i < textareas.length; i++) {
-//             console.log(textareas[i]);
-//             if (state.form.actionForm === 'create') {
-//
-//                 if (textareas[i].classList.contains('description')) {
-//                     let description2 = {};
-//
-//                     description2.descriptionId = textareas[i].dataset.id;
-//                     description2.descriptionText = textareas[i].value;
-//                     description2.elementOrder = textareas[i].dataset.elementorder;
-//                     descriptionsArr2.push(description2)
-//                 }
-//                 if (textareas[i].classList.contains('code')) {
-//                     let code2 = {};
-//                     code2.codeId = textareas[i].dataset.id;
-//                     code2.codeText = textareas[i].value;
-//                     code2.elementOrder = textareas[i].dataset.elementorder;
-//                     codeArr2.push(code2)
-//                 }
-//
-//                 formData2.append('action', 'createArticle');
-//                 formData2.append('descriptionsArr', JSON.stringify(descriptionsArr2));
-//                 formData2.append('codeArr', JSON.stringify(codeArr2));
-//             }
-//
-//             if (state.form.actionForm === 'update') {
-//
-//
-//                 if (textareas[i].dataset.id !== 'noId') {
-//                     if (textareas[i].classList.contains('description')) {
-//                         let description2 = {};
-//                         description2.descriptionId = textareas[i].dataset.id;
-//                         description2.descriptionText = textareas[i].value;
-//                         description2.elementOrder = textareas[i].dataset.elementorder;
-//
-//
-//                         descriptionsArr2.push(description2)
-//                     }
-//                     if (textareas[i].classList.contains('code')) {
-//                         let code2 = {};
-//                         code2.codeId = textareas[i].dataset.id;
-//                         code2.codeText = textareas[i].value;
-//                         code2.elementOrder = textareas[i].dataset.elementorder;
-//                         codeArr2.push(code2)
-//                     }
-//                 } else {
-//
-//                     if (textareas[i].classList.contains('description')) {
-//                         let newDescObj = {};
-//                         newDescObj.descriptionText = textareas[i].value;
-//                         newDescObj.elementOrder = textareas[i].dataset.elementorder;
-//                         newDescriptionArr.push(newDescObj);
-//                     }
-//                     if (textareas[i].classList.contains('code')) {
-//                         let newCodeObj = {};
-//                         newCodeObj.codeText = textareas[i].value;
-//                         newCodeObj.elementOrder = textareas[i].dataset.elementorder;
-//                         newCodeArr.push(newCodeObj);
-//                     }
-//                 }
-//                 formData2.append('action', 'updateArticle');
-//                 formData2.append('subchapterId', state.form.subchapterId);
-//                 formData2.append('articleId', state.form.articleId);
-//                 formData2.append('articleNr', state.form.articleNr);
-//                 formData2.append('newDescObj', JSON.stringify(newDescriptionArr));
-//                 formData2.append('newCodeArr', JSON.stringify(newCodeArr));
-//                 formData2.append('descriptionsArr', JSON.stringify(descriptionsArr2));
-//                 formData2.append('codeArr', JSON.stringify(codeArr2));
-//             }
-//         }
-//
-//
-//
-//
-//         let data2 = await getJSONObj(formData2);
-//         console.log('descriptionsArr2',descriptionsArr2);
-//         console.log('descriptionsArr2',descriptionsArr2);
-//         // console.log('codeArr2',codeArr2)
-//         // console.log('newDescriptionArr',newDescriptionArr)
-//         // console.log('newCodeArr',newCodeArr)
-//
-//     } catch (e) {
-//         errorMessage(e);
-//     }
-// }
+
 
 export const createAndUpdateArticle = async (submitEvent) => {
 
     try {
-
+        console.log(submitEvent)
         const form = submitEvent.target;
+        console.log(form)
         let formData = new FormData(form);
-
+        console.log('formData',formData)
 
         const descriptionsArr = [];
         const codeArr = [];
@@ -419,6 +314,8 @@ const createFieldObjects=function(action,field,descText,elementOrder,id=null){
     fieldObject[field+'Text']=descText;
     fieldObject['elementOrder']=elementOrder;
     return fieldObject;
+}
+const cacheFormData=function(){
 
 }
 
