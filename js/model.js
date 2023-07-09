@@ -392,6 +392,7 @@ const errorMessage = function (e) {
 
 /**
  * setzt das state obj zurück
+ *
  */
 export const resetState=function(){
     state.form.articleId = '';
