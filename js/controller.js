@@ -197,7 +197,8 @@ const initializePrismScript = function () {
 
 
 /**
- * startet alles
+ * initialisiert alles
+ * @returns {Promise<void>}
  */
 const init = async function () {
     window.location.href = "#";

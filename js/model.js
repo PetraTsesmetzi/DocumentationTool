@@ -390,6 +390,9 @@ const errorMessage = function (e) {
     document.getElementById("console-error").innerHTML = e.message;
 }
 
+/**
+ * setzt das state obj zurück
+ */
 export const resetState=function(){
     state.form.articleId = '';
     state.form.articleNr = '';
