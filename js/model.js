@@ -133,10 +133,9 @@ export const loadSubchapter = async (id) => {
 export const setVariablesForForm = async (actionForm, event) => {
     try {
         if (actionForm === 'create') {
+
             state.form.actionForm = 'create';
-            state.form.subchapters = [];
-            state.form.freeArticleNumbers = [];
-            state.form.articles = [];
+            resetState();
             state.form.subchapters = await loadSubchapters();
             await loadAllArticleNumbers(state.form.subchapterId);
 
@@ -147,12 +146,14 @@ export const setVariablesForForm = async (actionForm, event) => {
             state.form.articleId = articleId;
             state.form.articleName = article.articleName;
             state.form.articleNr = article.articleNumber;
-            state.form.articleElementArr = sortArrayOfObjects([...article.descriptionArr, ...article.codeArr], 'elementOrder');
             state.form.descriptionArr = article.descriptionArr;
             state.form.codeArr = article.codeArr;
+            state.form.articleElementArr =[...article.descriptionArr, ...article.codeArr];
+            state.form.articleElementArr=state.form.articleElementArr.map(element=>JSON.parse(element));
+            state.form.articleElementArr=sortArrayOfObjects(state.form.articleElementArr,'elementOrder');
             state.form.subchapters = await loadSubchapters();
             state.form.subchapterId = state.form.subchapterId;
-            console.log(state.form)
+
         }
     } catch (e) {
         errorMessage(e);
@@ -350,7 +351,37 @@ export const deleteField = async (id, field) => {
 ;
     }
 }
+export const setFormDataForFocusSubChapter=function(){
+    const articleName=document.querySelector('#articleTitel');
+    const descriptionArr=document.querySelectorAll('.description');
+    const descArr=[...descriptionArr].map((desc)=> {
+        console.log(desc);
+        return {
+            "data-id":desc.dataset.id,
+            "descriptionText": desc.value,
+            "article_Id":'',
+            "elementOrder":desc.dataset.elementorder
 
+        }
+    });
+    const codeArray=document.querySelectorAll('.code');
+    const codeArr=[...codeArray].map((code)=>{
+        return {
+            "data-id":code.dataset.id,
+            "codeText": code.value,
+            "article_Id":'',
+            "elementOrder":code.dataset.elementorder
+        }
+    });
+
+
+    state.form.actionForm = 'focus';
+    state.form.articleName = articleName.value;
+    state.form.articleElementArr = sortArrayOfObjects([...descArr, ...codeArr], 'elementOrder');
+    state.form.descriptionArr = descArr;
+    state.form.codeArr = codeArr;
+
+}
 
 const errorMessage = function (e) {
     console.log(e.name);
@@ -359,5 +390,17 @@ const errorMessage = function (e) {
     document.getElementById("console-error").innerHTML = e.message;
 }
 
+export const resetState=function(){
+    state.form.articleId = '';
+    state.form.articleNr = '';
+    state.form.articleName = '';
+    state.form.freeArticleNumbers = [];
+    state.form.articles = [];
+    state.form.articleElementArr = [];
+    state.form.articlesArr = [];
+    state.form.descriptionArr = [];
+    state.form.codeArr = [];
+
+}
 
 

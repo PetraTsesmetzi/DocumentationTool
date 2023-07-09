@@ -1,4 +1,4 @@
-import {loadArticleNumbers} from "../controller.js";
+import {loadArticleNumbers, loadForm} from "../controller.js";
 import {sortArrayOfObjects} from '../helper.js';
 
 /**
@@ -28,7 +28,7 @@ class Form {
     render(state) {
         // console.log('in form',state);
         this.#clear();
-        console.log(state.form)
+        console.log(state.form);
         const markup = this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
         this.#addTextAreaFields = document.querySelector('.addTextAreaFields');
@@ -62,21 +62,24 @@ class Form {
      * lädt die richtigen artikelnummern je nachdem auf welches Unterkapitel man geklickt hat
      * @param loadArticleNumbers
      */
+
     /**
-     * todo:hiier weiter
+     * lädt artikelnummer bei wechseln des subchapters
      * @param loadArticleNumbers
      */
     addHandlerRenderArticleNumbers(loadArticleNumbers) {
         this.#selectField = document.querySelector('#subChapterTitels');
         this.#selectField.addEventListener('change', loadArticleNumbers);
-        this.#selectField.addEventListener('focus', function(){
-            console.log('gege');
-           const article=document.querySelector('#articleTitel');
-           const field=document.querySelector('.description')
-            console.log('article',article);
-            console.log('article',article.value);
-        });
+
     }
+
+    /**
+     * lädt die vorher eingetragenen werte der inputfelder beim wechseln des subchapters
+     * @param loadFormContent
+     */
+    addHandlerRenderChangeSubChapter(loadFormContent){
+        this.#selectField.addEventListener('focus', loadFormContent);
+      }
 
     /**
      * Eventhandler für submit Button
@@ -105,11 +108,12 @@ class Form {
     #addElement(e) {
         let toAdd = e.target;
         if (toAdd.classList.contains("addCodeArea")) {
-            const codeMarkup = this.#generateCodeBlock();
+
+            const codeMarkup = this.#generateBlock('code');
             this.#addTextAreaFields.insertAdjacentHTML("beforeend", codeMarkup);
         }
         if (toAdd.classList.contains("addDescArea")) {
-            const descMarkup = this.#generateDescriptionBlock();
+            const descMarkup = this.#generateBlock('description');
             this.#addTextAreaFields.insertAdjacentHTML("beforeend", descMarkup);
         }
     }
@@ -129,30 +133,46 @@ class Form {
     }
 
     /**
-     * Markup für Beschreibungsfeld
+     * markup für leere code oder beschreibungsfeld welches dynamisch zur laufzeit generiert wird
+     * @param type
      * @returns {string}
      */
-    #generateDescriptionBlock() {
+    #generateBlock(type) {
         this.#addedBlockCounter++;
-        return `<div data-id="${this.#addedBlockCounter}" class="addedDescription">
-                <div class="label-container"><label for="description_${this.#addedBlockCounter}">beschreibung</label>
-                <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button></div>
-                <textarea id="description_${this.#addedBlockCounter}" name="description_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" data-id="noId"  class="description"></textarea>
-               </div>`;
+        const blockType = type === 'description' ? 'addedDescription' : 'addedCode';
+        const blockLabel = type === 'description' ? 'Beschreibung' : 'Code';
+
+        return `
+        <div data-id="${this.#addedBlockCounter}" class="${blockType}">
+          <div class="label-container">
+            <label for="${type}_${this.#addedBlockCounter}">${blockLabel}</label>
+            <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button>
+          </div>
+          <textarea id="${type}_${this.#addedBlockCounter}" name="${type}_${this.#addedBlockCounter}" data-elementOrder="${this.#addedBlockCounter}" data-id="noId" class="${type}"></textarea>
+        </div>
+  `;
     }
 
     /**
-     * Markup für Codefeld
+     * markup für code und beschreibungsfelder die beim update oder bei focus über ein array ausgelesen werden
+     * @param arr
+     * @param i
+     * @param type
      * @returns {string}
      */
-    #generateCodeBlock() {
-        this.#addedBlockCounter++;
-        return `<div data-id="${this.#addedBlockCounter}" class="addedCode">
-                <div class="label-container"><label for="codeblock_${this.#addedBlockCounter}">Code</label>
-                <button data-btnid="${this.#addedBlockCounter}" class="btn btn-delete">Delete</button></div>
-                <textarea id="codeblock_${this.#addedBlockCounter}" name="codeblock_${this.#addedBlockCounter}"  data-elementOrder="${this.#addedBlockCounter}" data-id="noId" class="code"></textarea>
-                </div>`;
-    }
+    #generateBlocks(arr,i,type){
+        const blockType = type === 'description' ? 'addedDescription' : 'addedCode';
+        const blockLabel = type === 'description' ? 'Beschreibung' : 'Code';
+        let htmlObj='';
+        htmlObj += `<div data-id="${i}" class="${blockType}">
+                        <div class="label-container"><label for="${type}_${i}">${blockLabel} ${(i===0 || i===1)?
+                        '<span class="requiredAsterisk">*</span>':''}</label>
+                        <button data-btnid="${i}" class="btn ${(i===0 || i===1)?'btn-hide':''} btn-delete">Delete</button></div>
+                        <textarea id="${type}_${i}" name="${type}_${i}" data-elementOrder="${i}" data-id="${arr[i].id}" class="${type}">${arr[i][type+'Text']}</textarea></div>`;
+
+        return htmlObj;
+        }
+
 
     /**
      * html Objekt für das gesamte formular
@@ -173,18 +193,23 @@ class Form {
           <div class="input-container">
                 <div class="inputFields artikel" >
                 <label for="articleTitel">Artikel<span class="requiredAsterisk">*</span></label>
-                <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" value="${form.actionForm === 'update' ? form.articleName : ''}" required>
+                <input list="articleTitels" type="text" id="articleTitel" name="articleTitel" class="overlayHeadings" value="${form.actionForm === 'update' ? form.articleName : form.actionForm === 'focus' ? form.articleName:''}" required>
             </div>`;
         //  ***************************** Artikelnr bei create Selectfeld /ArtikelId bei update **************************************
-
+        if(form.actionForm === 'create'|| form.actionForm === 'focus') {
             htmlObj += `
-                    <div class="inputFields ${form.actionForm === 'create'?'artikelnr':'artikelId'} ">
-                    <label for="articleNr">${form.actionForm === 'create'?'Artikelnr.':'Artikel_Id'}</label>
-                    <select id="articleNr" name="articleNr" ${form.actionForm === 'update'?'disabled':''}>`;
-            if (form.actionForm === 'update') htmlObj += `<option class="overlayNumbers" >${form.articleId}</option>`;
+                    <div class="inputFields artikelnr">
+                    <label for="articleNr">Artikelnr.</label>
+                    <select id="articleNr" name="articleNr">`;
+            // if (form.actionForm === 'update') htmlObj += `<option class="overlayNumbers" >${form.articleId}</option>`;
             for (let i = form.freeArticleNumbers.length - 1; i >= 0; i--) {
-                    htmlObj += `<option class="overlayNumbers" value=${form.freeArticleNumbers[i]}>${form.freeArticleNumbers[i]}</option>`;
+                htmlObj += `<option class="overlayNumbers" value=${form.freeArticleNumbers[i]}>${form.freeArticleNumbers[i]}</option>`;
             }
+        }else{
+            htmlObj += `
+                    <div class="inputFields ">`;
+        }
+
         //  ***************************** Unterkapitel -Selectfeld  **************************************
             htmlObj += `
                    </select>
@@ -201,61 +226,38 @@ class Form {
         <div class="errorMessage">Artikel ist schon vergeben, wähle einen anderen Bezeichner</div>`;
 
         //********************************* Pflicht Code und Beschreibungsfelder Create ***********************************************
-        if (form.actionForm === 'create') {
+        if (form.actionForm === 'create' ) {
             htmlObj += ` 
             <div class="addTextAreaFields">
                 <div data-id="0" class="addedDescription">
                     <label for="description">Beschreibung<span class="requiredAsterisk">*</span></label>
-                    <textarea id="description_0" name="description_0" data-elementOrder="0" class="description" required></textarea>
+                    <textarea id="description_0" name="description_0" data-elementOrder="0" data-id="" class="description" required>${(form.articleElementArr.length>0)?form.articleElementArr[0].descriptionText:''}</textarea>
                 </div>
                 <div data-id="1" class="addedCode">
                     <label for="code">Code<span class="requiredAsterisk">*</span></label>
-                    <textarea id="code_1"  name="codeblock_1" data-elementOrder="1" class="code" required></textarea>
+                    <textarea id="code_1"  name="codeblock_1" data-elementOrder="1" data-id="" class="code" required>${(form.articleElementArr.length>0)?form.articleElementArr[1].codeText:''}</textarea>
                 </div>
             </div>`;
-
-
 
             this.#addedBlockCounter=1;
 
             //********************************* Alle Code und Beschreibungsfelder Update ***********************************************
-        } else if (form.actionForm === 'update') {
-            htmlObj += `<div class="addTextAreaFields">`;
-            let articleElementArr = [];
+        } else if (form.actionForm === 'update'||form.actionForm==='focus') {
 
-            //**************************  Arrayelemente(code und descriptionblöcke) parsen, dann sortieren und anschließend darstellen *******
-            for (let i = 0; i < form.articleElementArr.length; i++) {
-                articleElementArr[i] = JSON.parse(form.articleElementArr[i]);
-            }
-            let sortedArticleElementArr = sortArrayOfObjects(articleElementArr, 'elementOrder')
+            htmlObj += `<div class="addTextAreaFields">`;
 
             //******************* Ausgabe der zu ändernden Blöcke ***************************************************************************
-            for (let i = 0; i < sortedArticleElementArr.length; i++) {
+            for (let i = 0; i < form.articleElementArr.length; i++) {
+                console.log('forschleife',form.articleElementArr.length);
+                if (form.articleElementArr[i].hasOwnProperty('descriptionText')) {
+                    htmlObj += this.#generateBlocks(form.articleElementArr,i,'description');
 
-                if (sortedArticleElementArr[i].hasOwnProperty('descriptionText')) {
-
-                    htmlObj += `<div data-id="${i}" class="addedDescription">
-                    <div class="label-container"><label for="description_${i}">beschreibung ${(i===0 || i===1)?
-                        '<span class="requiredAsterisk">*</span>':''}</label>
-                    <button data-btnid="${i}" class="btn ${(i===0 || i===1)?'btn-hide':''} btn-delete">Delete</button></div>
-                    <textarea id="description_${i}" name="description_${i}" data-elementOrder="${i}" data-id="${sortedArticleElementArr[i].id}" class="description">${sortedArticleElementArr[i].descriptionText}</textarea></div>`;
-
-                } else if (sortedArticleElementArr[i].hasOwnProperty('codeText')) {
-                    htmlObj += `<div data-id="${i}" class="addedCode">
-                        <div class="label-container"><label for="codeblock_${i}">Code${(i===0 || i===1)?
-                        '<span class="requiredAsterisk">*</span>':''}</label>
-                        <button data-btnid="${i}" class="btn ${(i===0 || i===1)?'btn-hide':''} btn-delete">Delete</button></div>
-                        <textarea id="codeblock_${i}" name="codeblock_${i}" data-elementOrder="${i}" data-id="${sortedArticleElementArr[i].id}" class="code">${sortedArticleElementArr[i].codeText}</textarea>
-                    </div>`;
+                } else if (form.articleElementArr[i].hasOwnProperty('codeText')) {
+                    htmlObj += this.#generateBlocks(form.articleElementArr,i,'code');
                 }
-
-
-
-
-
             }
             htmlObj += `</div>`;
-            this.#addedBlockCounter=sortedArticleElementArr.length-1;
+            this.#addedBlockCounter=form.articleElementArr.length-1;
         }
         //******************* Code hizufügen und Beschreibung hinzufügen Button *********************************************
         htmlObj += `

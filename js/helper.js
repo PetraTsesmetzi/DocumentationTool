@@ -75,6 +75,7 @@ export const ifNotExistsElements =(action,args,searchStr)=>{
 
 //sortiert ein Array mit Objekten nach einem vorgegebenem Attribut
 export const sortArrayOfObjects = (arr, propertyName, order = 'ascending') => {
+
     const sortedArr = arr.sort((a, b) => {
 
         if (a[propertyName] < b[propertyName]) {
@@ -88,5 +89,6 @@ export const sortArrayOfObjects = (arr, propertyName, order = 'ascending') => {
     if (order === 'descending') {
         return sortedArr.reverse();
     }
+
     return sortedArr;
 }

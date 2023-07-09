@@ -3,7 +3,7 @@ import navHeader from "./views/NavHeader.js";
 import articleView from "./views/ArticleView.js";
 import form from "./views/Form.js";
 import * as model from './model.js';
-import {deleteField, loadSubchapter, setVariablesForForm, state, validateForm} from "./model.js";
+import {deleteField, loadSubchapter, resetState, setVariablesForForm, state, validateForm} from "./model.js";
 
 
 /**
@@ -25,14 +25,18 @@ export const loadForm = async function (e) {
  * @returns {Promise<void>}
  */
 export const loadArticleNumbers = async function (e) {
-
     const subchapterId = e.target.options.selectedIndex + 1;
     window.location.href = "#" + subchapterId;
     window.removeEventListener('hashchange', loadSubchapterById);
     await model.loadAllArticleNumbers(subchapterId);
     navLeft.setActiveClass(model.state.form.subchapterId);
+
+
     showForm();
 
+}
+const loadFormContent=function(e){
+   model.setFormDataForFocusSubChapter();
 }
 /**
  * rendert das Formular für das Erstellen und Updaten von Artikel
@@ -41,11 +45,10 @@ const showForm = function () {
     form.render(model.state);
     form.addHandlerRenderSend(createAndUpdateArticles);
     form.addHandlerRenderArticleNumbers(loadArticleNumbers);
+    form.addHandlerRenderChangeSubChapter(loadFormContent);
     form.addHandleRenderClose(closeForm);
     form.deleteHandleRenderFields(deleteFields);
     navLeft.addHandlerRender(loadSubchapterById);
-
-
 }
 
 /**
@@ -62,8 +65,9 @@ export const closeForm = async function () {
 const loadEditMode = async function () {
     //toggled den bearbeiten button zwischen forumlar und anzeige des subchapters mit seinen artikeln
     model.state.editModeFlag = (model.state.editModeFlag === true) ? false : true;
-    navHeader.renderInsert(model.state.editModeFlag)
-    await loadSubchapter(state.form.subchapterId)
+    navHeader.renderInsert(model.state.editModeFlag);
+    await loadSubchapter(state.form.subchapterId);
+
     showArticleView();
 }
 
@@ -77,7 +81,8 @@ const loadEditMode = async function () {
  * @returns {Promise<void>}
  */
 const createAndUpdateArticles = async function (submitEvent) {
-
+    console.log('state.form.actionForm',state.form.actionForm)
+    if(state.form.actionForm === 'focus')state.form.actionForm='create';
     submitEvent.preventDefault();
     let valide = await model.validateForm();
     if (valide) {
@@ -86,8 +91,9 @@ const createAndUpdateArticles = async function (submitEvent) {
 
         if (state.form.actionForm === 'update') {
             await model.setVariablesForForm(model.state.form.subchapterId, 'update');
-        } else if (state.form.actionForm === 'create') {
+        } else if (state.form.actionForm === 'create' ) {
             await model.setVariablesForForm(model.state.form.subchapterId, 'create');
+             model.resetState();
         }
     } else {
         form.activateErrorMessage();
