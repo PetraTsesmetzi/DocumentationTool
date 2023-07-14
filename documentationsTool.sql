@@ -1,13 +1,20 @@
 DROP DATABASE IF EXISTS docutool;
 CREATE DATABASE IF NOT EXISTS docutool;
 USE docutool;
-CREATE TABLE subchapter
+CREATE TABLE chapter
 (
     id            INT PRIMARY KEY AUTO_INCREMENT,
+    category_Id   INT,
+    chapterName   VARCHAR(100)
+);
+CREATE TABLE subchapter
+(
+    id               INT PRIMARY KEY AUTO_INCREMENT,
     subchapterNumber INT,
-    chapter_Id INT,
+    chapter_Id       INT,
     subchapterName   VARCHAR(100)
 );
+
 CREATE TABLE article
 (
     id            INT PRIMARY KEY AUTO_INCREMENT,
@@ -29,6 +36,13 @@ CREATE TABLE description
     elementOrder      INT,
     descriptionText   TEXT
 );
+
+INSERT INTO chapter(id,category_Id,chapterName)
+VALUES (Null,1,'JavaScript Fundamenetals Part1');
+INSERT INTO chapter(id,category_Id,chapterName)
+VALUES (Null,1,'JavaScript Fundamenetals Part2');
+INSERT INTO chapter(id,category_Id,chapterName)
+VALUES (Null,2,'PHP Fundamenetals');
 
 INSERT INTO subchapter(id, subchapterNumber,chapter_Id, subchapterName)
 VALUES (NULL, 1,1, 'Values und Variables');
