@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #fname{
+            height: 30px;
+            width: 200px;
+            border: 2px solid green;
+        }
+    </style>
+</head>
+<body>
+<h1>HTML DOM Events</h1>
+<h2>The blur Event</h2>
+
+<p>Use the addEventListener() method to attach a "blur" event to an input element.</p>
+
+<p>Write something in the input field, and then click outside the field to lose focus (blur).</p>
+
+<div id="fname">jhhekerkwjerkjwerjk</div>
+
+<script>
+    document.getElementById("fname").addEventListener("blur", myFunction);
+
+    function myFunction() {
+        console.log('hehehehe');
+    }
+</script>
+
+</body>
+</html>

@@ -5,6 +5,7 @@ include './classes/SubChapter.php';
 include './classes/Article.php';
 include './classes/Description.php';
 include './classes/Code.php';
+include './classes/Chapter.php';
 
 
 $action = $_POST['action'];
@@ -24,31 +25,33 @@ $subchapter_Id = $_POST['subchapterId'] ?? '';
 $request = $_REQUEST;
 
 $args = [$action, $id, $articleId, $subChapterTitel, $articleTitel, $articleNr, $descriptionsArr, $codeArr, $subchapter_Id];
+$chapterName=$_POST['chapterName']?? '';
+
 try {
 
     switch ($action) {
         case 'loadArticles':
-            setVariables();
+//            setVariables();
             $articles = (new Article())->getAllAsObjects();
             echo json_encode($articles);
             break;
         case'loadArticleById':
-            setVariables();
+//            setVariables();
             $article = (new Article())->getObjectById((int)$articleId);
             echo json_encode($article);
             break;
         case 'loadElements':
-            setVariables();
+//            setVariables();
             $subchapters = (new Subchapter())->getAllAsObjects();
             echo json_encode($subchapters);
             break;
         case 'loadSubchapterById':
-            setVariables();
+//            setVariables();
             $subchapterById = (new Subchapter())->getObjectById((int)$id);
             echo json_encode($subchapterById);
             break;
         case 'createArticle':
-            setVariables();
+//            setVariables();
             $subChapterId = (new SubChapter())->getSubChapterId($subChapterTitel);
             $articleId = (new Article())->createNewObject($subChapterId, $articleTitel, $articleNr);
             (new Description())->createNewObject($articleId, json_decode($descriptionsArr));
@@ -56,27 +59,27 @@ try {
             echo json_encode('neuer artikel wurde erstellt');
             break;
         case 'deleteArticle':
-            setVariables();
+//            setVariables();
             (new Article())->deleteObject((int)$id);
             echo json_encode(' artikel wurde geloescht');
             break;
         case 'deleteDescription':
-            setVariables();
+//            setVariables();
             (new Description())->deleteObject((int)$id);
             echo json_encode('Description wurde geloescht');
             break;
         case 'deleteCode':
-            setVariables();
+//            setVariables();
             (new Code())->deleteObject((int)$id);
             echo json_encode('Code wurde geloescht');
             break;
         case 'loadArticleNumbers':
-            setVariables();
+//            setVariables();
             $subchapters = (new Subchapter())->getAllAsObjects((int)$id);
             echo json_encode($subchapters);
             break;
-        case'updateArticle';
-            setVariables();
+        case'updateArticle':
+//            setVariables();
 
             if ($newCodeArr != '') {
                 (new Code())->createNewObject($articleId, json_decode($newCodeArr));
@@ -90,6 +93,12 @@ try {
 
             echo json_encode('artikel wurde upgedatet');
             break;
+        case 'loadSubChapterByChapter':
+            setVariables();
+
+            $chapterId=(new Chapter)->getChapterId($chapterName);
+            $subchapters = (new Subchapter())->getAllObjByChapterId($chapterId);
+            echo json_encode($subchapters);
 
     }
 

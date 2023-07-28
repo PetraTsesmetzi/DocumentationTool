@@ -28,7 +28,7 @@ class Form {
     render(state) {
         // console.log('in form',state);
         this.#clear();
-        console.log(state.form);
+
         const markup = this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
         this.#addTextAreaFields = document.querySelector('.addTextAreaFields');
@@ -248,7 +248,7 @@ class Form {
 
             //******************* Ausgabe der zu ändernden Blöcke ***************************************************************************
             for (let i = 0; i < form.articleElementArr.length; i++) {
-                console.log('forschleife',form.articleElementArr.length);
+
                 if (form.articleElementArr[i].hasOwnProperty('descriptionText')) {
                     htmlObj += this.#generateBlocks(form.articleElementArr,i,'description');
 

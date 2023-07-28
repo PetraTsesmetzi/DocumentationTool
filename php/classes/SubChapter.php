@@ -153,6 +153,31 @@ class SubChapter
 
     }
 
+    public function getAllObjByChapterId(int $chapterId=null): array
+    {
+        try {
+
+
+                $dbh = DB::connect();
+                $sql = "SELECT * FROM subchapter WHERE chapter_Id=:chapterId";
+                $stmt = $dbh->prepare($sql);
+                $stmt->bindParam(':chapterId', $chapterId, PDO::PARAM_INT);
+                $stmt->execute();
+                $subChapterArr=[];
+                while ($subChapter = $stmt->fetchObject(__CLASS__)) {
+                    $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
+                    $subChapterArr[] = $subChapter->getJSONEncode();
+                }
+
+
+
+
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+        }
+        return $subChapterArr;
+    }
+
     /**
      * @return int
      */

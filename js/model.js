@@ -36,6 +36,20 @@ export const loadSubchapters = async () => {
     }
     return subchapters;
 }
+export const loadSubChaptersByChapter = async (chapterName) => {
+
+    const subchapters = [];
+    let formData = new FormData();
+    formData.append('action', 'loadSubChapterByChapter');
+    formData.append('chapterName', chapterName);
+    let data = await getJSONObj(formData);
+    data.map(subchapter=> {
+        subchapters.push(JSON.parse(subchapter))
+
+    })
+
+    return subchapters;
+}
 /**
  * Holt alle Artikel als Objekte aus der DB
  * @returns {Promise<*[]>}
@@ -148,9 +162,9 @@ export const setVariablesForForm = async (actionForm, event) => {
             state.form.articleNr = article.articleNumber;
             state.form.descriptionArr = article.descriptionArr;
             state.form.codeArr = article.codeArr;
-            state.form.articleElementArr =[...article.descriptionArr, ...article.codeArr];
-            state.form.articleElementArr=state.form.articleElementArr.map(element=>JSON.parse(element));
-            state.form.articleElementArr=sortArrayOfObjects(state.form.articleElementArr,'elementOrder');
+            state.form.articleElementArr = [...article.descriptionArr, ...article.codeArr];
+            state.form.articleElementArr = state.form.articleElementArr.map(element => JSON.parse(element));
+            state.form.articleElementArr = sortArrayOfObjects(state.form.articleElementArr, 'elementOrder');
             state.form.subchapters = await loadSubchapters();
             state.form.subchapterId = state.form.subchapterId;
 
@@ -232,7 +246,7 @@ export const createAndUpdateArticle = async (submitEvent) => {
         const form = submitEvent.target;
         console.log(form)
         let formData = new FormData(form);
-        console.log('formData',formData)
+        console.log('formData', formData)
 
         const descriptionsArr = [];
         const codeArr = [];
@@ -247,12 +261,12 @@ export const createAndUpdateArticle = async (submitEvent) => {
                 if (textareas[i].classList.contains('description')) {
 
                     let description = {};
-                    description=createFieldObjects('containsId','description',textareas[i].value,textareas[i].dataset.elementorder,textareas[i].dataset.id);
+                    description = createFieldObjects('containsId', 'description', textareas[i].value, textareas[i].dataset.elementorder, textareas[i].dataset.id);
                     descriptionsArr.push(description);
                 }
                 if (textareas[i].classList.contains('code')) {
                     let code = {};
-                    code=createFieldObjects('containsId','code',textareas[i].value,textareas[i].dataset.elementorder,textareas[i].dataset.id);
+                    code = createFieldObjects('containsId', 'code', textareas[i].value, textareas[i].dataset.elementorder, textareas[i].dataset.id);
                     codeArr.push(code);
                 }
 
@@ -267,25 +281,25 @@ export const createAndUpdateArticle = async (submitEvent) => {
                 if (textareas[i].dataset.id !== 'noId') {
                     if (textareas[i].classList.contains('description')) {
                         let description = {};
-                        description=createFieldObjects('containsId','description',textareas[i].value,textareas[i].dataset.elementorder,textareas[i].dataset.id);
+                        description = createFieldObjects('containsId', 'description', textareas[i].value, textareas[i].dataset.elementorder, textareas[i].dataset.id);
                         descriptionsArr.push(description);
 
                     }
                     if (textareas[i].classList.contains('code')) {
                         let code = {};
-                        code=createFieldObjects('containsId','code',textareas[i].value,textareas[i].dataset.elementorder,textareas[i].dataset.id);
+                        code = createFieldObjects('containsId', 'code', textareas[i].value, textareas[i].dataset.elementorder, textareas[i].dataset.id);
                         codeArr.push(code);
                     }
                 } else {
 
                     if (textareas[i].classList.contains('description')) {
                         let newDescObj = {};
-                        newDescObj=createFieldObjects('noId','description',textareas[i].value,textareas[i].dataset.elementorder);
+                        newDescObj = createFieldObjects('noId', 'description', textareas[i].value, textareas[i].dataset.elementorder);
                         newDescriptionArr.push(newDescObj);
                     }
                     if (textareas[i].classList.contains('code')) {
                         let newCodeObj = {};
-                        newCodeObj=createFieldObjects('noId','code',textareas[i].value,textareas[i].dataset.elementorder);
+                        newCodeObj = createFieldObjects('noId', 'code', textareas[i].value, textareas[i].dataset.elementorder);
                         newCodeArr.push(newCodeObj);
                     }
                 }
@@ -306,17 +320,17 @@ export const createAndUpdateArticle = async (submitEvent) => {
         errorMessage(e);
     }
 }
-const createFieldObjects=function(action,field,descText,elementOrder,id=null){
+const createFieldObjects = function (action, field, descText, elementOrder, id = null) {
 
-    const fieldObject={};
-    if(action==='containsId'){
-        fieldObject[field+'Id']=id;
+    const fieldObject = {};
+    if (action === 'containsId') {
+        fieldObject[field + 'Id'] = id;
     }
-    fieldObject[field+'Text']=descText;
-    fieldObject['elementOrder']=elementOrder;
+    fieldObject[field + 'Text'] = descText;
+    fieldObject['elementOrder'] = elementOrder;
     return fieldObject;
 }
-const cacheFormData=function(){
+const cacheFormData = function () {
 
 }
 
@@ -348,29 +362,28 @@ export const deleteField = async (id, field) => {
         let data = await getJSONObj(formData);
     } catch (e) {
         errorMessage(e)
-;
+        ;
     }
 }
-export const setFormDataForFocusSubChapter=function(){
-    const articleName=document.querySelector('#articleTitel');
-    const descriptionArr=document.querySelectorAll('.description');
-    const descArr=[...descriptionArr].map((desc)=> {
-        console.log(desc);
+export const setFormDataForFocusSubChapter = function () {
+    const articleName = document.querySelector('#articleTitel');
+    const descriptionArr = document.querySelectorAll('.description');
+    const descArr = [...descriptionArr].map((desc) => {
         return {
-            "data-id":desc.dataset.id,
+            "data-id": desc.dataset.id,
             "descriptionText": desc.value,
-            "article_Id":'',
-            "elementOrder":desc.dataset.elementorder
+            "article_Id": '',
+            "elementOrder": desc.dataset.elementorder
 
         }
     });
-    const codeArray=document.querySelectorAll('.code');
-    const codeArr=[...codeArray].map((code)=>{
+    const codeArray = document.querySelectorAll('.code');
+    const codeArr = [...codeArray].map((code) => {
         return {
-            "data-id":code.dataset.id,
+            "data-id": code.dataset.id,
             "codeText": code.value,
-            "article_Id":'',
-            "elementOrder":code.dataset.elementorder
+            "article_Id": '',
+            "elementOrder": code.dataset.elementorder
         }
     });
 
@@ -394,7 +407,7 @@ const errorMessage = function (e) {
  * setzt das state obj zurück
  *
  */
-export const resetState=function(){
+export const resetState = function () {
     state.form.articleId = '';
     state.form.articleNr = '';
     state.form.articleName = '';

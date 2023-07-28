@@ -10,7 +10,6 @@ CREATE TABLE chapter
 CREATE TABLE subchapter
 (
     id               INT PRIMARY KEY AUTO_INCREMENT,
-    subchapterNumber INT,
     chapter_Id       INT,
     subchapterName   VARCHAR(100)
 );
@@ -38,18 +37,24 @@ CREATE TABLE description
 );
 
 INSERT INTO chapter(id,category_Id,chapterName)
-VALUES (Null,1,'JavaScript Fundamenetals Part1');
+VALUES (Null,1,'Javascript Fundamentals Part 1');
 INSERT INTO chapter(id,category_Id,chapterName)
-VALUES (Null,1,'JavaScript Fundamenetals Part2');
+VALUES (Null,1,'Javascript Fundamentals Part 2');
 INSERT INTO chapter(id,category_Id,chapterName)
 VALUES (Null,2,'PHP Fundamenetals');
 
-INSERT INTO subchapter(id, subchapterNumber,chapter_Id, subchapterName)
-VALUES (NULL, 1,1, 'Values und Variables');
-INSERT INTO subchapter(id, subchapterNumber,chapter_Id, subchapterName)
-VALUES (NULL, 2,1, 'Basic Operators Mathoperators');
-INSERT INTO subchapter(id, subchapterNumber,chapter_Id, subchapterName)
-VALUES (NULL, 3,1, 'String und Template literals');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,1, 'Values und Variables');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,1, 'Basic Operators Mathoperators');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,1, 'String und Template literals');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,2, 'Fundamentals Part 2_1');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,2, 'Fundamentals Part 2_2');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,2, 'Fundamentals Part 2_3');
 
 INSERT INTO article(id, articleNumber,subchapter_Id, articleName)
 VALUES (NULL, 1,1, 'Variables');
@@ -102,3 +107,4 @@ ALTER TABLE description
 
 ALTER TABLE article
     ADD FOREIGN KEY (subchapter_Id) REFERENCES subchapter(id) ON DELETE CASCADE;
+

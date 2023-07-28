@@ -3,7 +3,15 @@ import navHeader from "./views/NavHeader.js";
 import articleView from "./views/ArticleView.js";
 import form from "./views/Form.js";
 import * as model from './model.js';
-import {deleteField, loadSubchapter, resetState, setVariablesForForm, state, validateForm} from "./model.js";
+import {
+    deleteField,
+    loadSubchapter,
+    loadSubChaptersByChapter,
+    resetState,
+    setVariablesForForm,
+    state,
+    validateForm
+} from "./model.js";
 
 
 /**
@@ -30,8 +38,6 @@ export const loadArticleNumbers = async function (e) {
     window.removeEventListener('hashchange', loadSubchapterById);
     await model.loadAllArticleNumbers(subchapterId);
     navLeft.setActiveClass(model.state.form.subchapterId);
-
-
     showForm();
 
 }
@@ -194,7 +200,11 @@ const initializePrismScript = function () {
     scriptElement.setAttribute("async", true);
     document.body.appendChild(scriptElement);
 }
+export const loadSubchaptersForNav= async function(chapterName){
 
+    // console.log(await model.loadSubChaptersByChapter(chapterName));
+    return await model.loadSubChaptersByChapter(chapterName);
+}
 
 /**
  * initialisiert alles
