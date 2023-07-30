@@ -7020,3 +7020,7 @@ action : loadSubChapterByChapter
 chapterName : Javascript Fundamentals Part 2
 
 
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
