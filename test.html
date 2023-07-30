@@ -10,22 +10,27 @@
     </style>
 </head>
 <body>
-<h1>HTML DOM Events</h1>
-<h2>The blur Event</h2>
-
-<p>Use the addEventListener() method to attach a "blur" event to an input element.</p>
-
-<p>Write something in the input field, and then click outside the field to lose focus (blur).</p>
-
-<div id="fname">jhhekerkwjerkjwerjk</div>
+<h1>select</h1>
+<label for="cars">Choose a car:</label>
 
 <script>
-    document.getElementById("fname").addEventListener("blur", myFunction);
+    const cars=['volvo','saab','opel','audi'];
+</script>
+<select name="cars" id="cars">
+</select>
 
-    function myFunction() {
-        console.log('hehehehe');
+<script>
+    let htmlObj='';
+    for (let i = 0; i < cars.length; i++) {
+        htmlObj+=` <option value=${cars[i]}>${cars[i]}</option>`;
     }
+    document.getElementById('cars').insertAdjacentHTML('beforeend',htmlObj);
 </script>
 
+
+<script>
+
+
+</script>
 </body>
 </html>

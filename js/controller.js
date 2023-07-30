@@ -33,7 +33,13 @@ export const loadForm = async function (e) {
  * @returns {Promise<void>}
  */
 export const loadArticleNumbers = async function (e) {
-    const subchapterId = e.target.options.selectedIndex + 1;
+    console.log('loadArticleNumbers',e)
+
+    const subchapterId =e.target.options[e.target.options.selectedIndex].id;
+    model.setFormDataForFocusSubChapter(e);
+    // model.state.form.subchapterId=subchapterId;
+    // model.state.form.subchapterName=e.target.options[e.target.options.selectedIndex].innerText;
+
     window.location.href = "#" + subchapterId;
     window.removeEventListener('hashchange', loadSubchapterById);
     await model.loadAllArticleNumbers(subchapterId);
@@ -42,13 +48,26 @@ export const loadArticleNumbers = async function (e) {
 
 }
 const loadFormContent=function(e){
-   model.setFormDataForFocusSubChapter();
+
+    model.setFormDataForFocusSubChapter();
 }
+const loadFormContentByChapter=async function(chapterName){
+    console.log(model.state.editModeFlag)
+    if(model.state.editModeFlag===true){
+        await model.loadSubChaptersByChapter(chapterName);
+        showForm();
+    }
+
+}
+
+
 /**
  * rendert das Formular für das Erstellen und Updaten von Artikel
  */
 const showForm = function () {
+    console.log('showform',model.state.form.subchapterName)
     form.render(model.state);
+
     form.addHandlerRenderSend(createAndUpdateArticles);
     form.addHandlerRenderArticleNumbers(loadArticleNumbers);
     form.addHandlerRenderChangeSubChapter(loadFormContent);
@@ -87,6 +106,7 @@ const loadEditMode = async function () {
  * @returns {Promise<void>}
  */
 const createAndUpdateArticles = async function (submitEvent) {
+    console.log('createAndUpdateArticles')
     console.log('state.form.actionForm',state.form.actionForm)
     if(state.form.actionForm === 'focus')state.form.actionForm='create';
     submitEvent.preventDefault();
@@ -99,6 +119,7 @@ const createAndUpdateArticles = async function (submitEvent) {
             await model.setVariablesForForm(model.state.form.subchapterId, 'update');
         } else if (state.form.actionForm === 'create' ) {
             await model.setVariablesForForm(model.state.form.subchapterId, 'create');
+            console.log('vor reset')
              model.resetState();
         }
     } else {
@@ -203,6 +224,7 @@ const initializePrismScript = function () {
 export const loadSubchaptersForNav= async function(chapterName){
 
     // console.log(await model.loadSubChaptersByChapter(chapterName));
+
     return await model.loadSubChaptersByChapter(chapterName);
 }
 
@@ -213,8 +235,9 @@ export const loadSubchaptersForNav= async function(chapterName){
 const init = async function () {
     window.location.href = "#";
     await loadSubchapterById(1);
-    navLeft.render('init');
+    await navLeft.render('init');
     navHeader.render('init');
+    navLeft.addHandlerRenderChangeChapter(loadFormContentByChapter);
     navLeft.addHandlerRender(loadSubchapterById);
     navHeader.addHandlerEdit(loadEditMode);
     navHeader.addHandlerInsert(loadForm);

@@ -51,7 +51,7 @@ try {
             echo json_encode($subchapterById);
             break;
         case 'createArticle':
-//            setVariables();
+            setVariables();
             $subChapterId = (new SubChapter())->getSubChapterId($subChapterTitel);
             $articleId = (new Article())->createNewObject($subChapterId, $articleTitel, $articleNr);
             (new Description())->createNewObject($articleId, json_decode($descriptionsArr));

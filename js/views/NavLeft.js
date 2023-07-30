@@ -17,6 +17,8 @@ class NavLeft {
     #htmlObj = '';
     #id;
     subChapterObjects;
+#selectedOption;
+    #optionsList;
 
     /**
      * initialisiert das Markup (hängt die htmlObjekte in die Container)
@@ -45,9 +47,11 @@ class NavLeft {
         }
     }
 
+    /**
+     * setzt eventhandle auf navigations links
+     * @param event
+     */
     #setEventOnLinks(event=null){
-        console.log('setEventOnLinks',event);
-
         this.#navLeft = document.getElementById('nav-left');
         let firstLink=this.#navLeft.firstChild.dataset.subchapterid;
         this.setActiveClass(firstLink)
@@ -58,6 +62,11 @@ class NavLeft {
             }
         });
     }
+
+    /**
+     * erzeugt das markup für das kapitel dropdown menu
+     * @returns {string}
+     */
     #generateMarkupChapter() {
 
         this.#htmlObj = `<div class="custom-dropdown">
@@ -74,37 +83,51 @@ class NavLeft {
 
     }
 
+    /**
+     * custom dropdown
+     * setzt eventlistener auf 'optionen'
+     */
     #activateCustomDropdown() {
         const dropdown = document.querySelector('.custom-dropdown');
         const containerSelect = document.querySelector('.container-select');
-        const selectedOption = document.querySelector('.selected-option')
-        const optionsList = dropdown.querySelector('.options');
+        this.#selectedOption = document.querySelector('.selected-option')
+        this.#optionsList = dropdown.querySelector('.options');
 
         containerSelect.addEventListener('click', () => {
-            optionsList.style.display = (optionsList.style.display === '' || optionsList.style.display === 'none') ? 'flex' : 'none';
+            this.#optionsList.style.display = ( this.#optionsList.style.display === '' ||  this.#optionsList.style.display === 'none') ? 'flex' : 'none';
         });
 
-        optionsList.addEventListener('click', async(event) => {
-            selectedOption.textContent = event.target.textContent;
-            optionsList.style.display = 'none';
+        this.#optionsList.addEventListener('click', async(event) => {
+            this.#selectedOption.textContent = event.target.textContent;
+            this.#optionsList.style.display = 'none';
 
-            this.subChapterObjects = await loadSubchaptersForNav(selectedOption.textContent);
-            console.log( this.subChapterObjects);
+            this.subChapterObjects = await loadSubchaptersForNav(this.#selectedOption.textContent);
+
+
             this.#clear();
             const markup = this.#generateMarkup( this.subChapterObjects);
             this.#navLeftWrapper.insertAdjacentHTML('beforeend', markup);
-
             this.#setEventOnLinks();
 
 
         });
+
         window.addEventListener("click", (event) => {
             if(event.target.id!=='chapter'){
-                optionsList.style.display = 'none';
+                this.#optionsList.style.display = 'none';
             }
         });
 
 
+    }
+
+    addHandlerRenderChangeChapter(loadFormContentByChapter){
+        console.log('activate eventlistenern')
+
+        this.#optionsList.addEventListener('click', function(e){
+            console.log('e',e)
+            loadFormContentByChapter(e.target.innerText)
+        });
     }
 
     /**
@@ -128,11 +151,14 @@ class NavLeft {
 
     }
 
-
+    /**
+     * färbt nav links blau bein anklicken
+     * @param element
+     */
     setActiveClass(element) {
         this.#removeAttributeActiveOnLink();
-        console.log(' element',element)
-
+        console.log('element',element)
+        window.location.href = "#" + element;
         const links = document.getElementsByClassName('nav-link');
         //beim wechseln von kapitel
         let start=Number(links[0].dataset.linkid)-1;
@@ -142,7 +168,7 @@ class NavLeft {
         }
         for (let i = start-1; i < links.length; i++) {
             if (element === i + 1) {
-                console.log('drinn')
+
                 links[i].style.color = 'white';
                 links[i].parentElement.classList.add('active');
             }
@@ -159,7 +185,9 @@ class NavLeft {
         window.addEventListener('load', loadSubchapterById);
     }
 
-
+    /**
+     * entfernt blauen gefärbten bereich vom nav link
+     */
     #removeAttributeActiveOnLink() {
         const allLinks = document.querySelectorAll('.nav-left-links');
         allLinks.forEach((link) => {
@@ -176,6 +204,7 @@ class NavLeft {
         this.#navLeftContainer.classList.toggle('showBlock');
     }
 
+    //löscht den die nav-left-box
     #clear() {
         let box=document.querySelector('#nav-left-box');
         this.#navLeftWrapper.removeChild(box);

@@ -26,14 +26,22 @@ class Form {
      * @param state
      */
     render(state) {
-        // console.log('in form',state);
+
         this.#clear();
+        console.log('aktuelles',state);
+        console.log('aktuelles f',state.form);
+
+        console.log('subchapterByChapterName',state.form.subchapterByChapterName);
+        console.log('subchapterId',state.form.subchapterId);
+        console.log('subchapterName',state.form.subchapterName);
 
         const markup = this.#generateMarkup(state.form);
         this.#parentElement.insertAdjacentHTML('afterbegin', markup);
         this.#addTextAreaFields = document.querySelector('.addTextAreaFields');
          this.#deleteBtns = document.querySelector('.addTextAreaFields');
         this.#addHandlerRender();
+
+
     }
 
     #clear() {
@@ -57,11 +65,6 @@ class Form {
 
     }
 
-    /**
-     * Eventhandler für Artikelnummer
-     * lädt die richtigen artikelnummern je nachdem auf welches Unterkapitel man geklickt hat
-     * @param loadArticleNumbers
-     */
 
     /**
      * lädt artikelnummer bei wechseln des subchapters
@@ -79,6 +82,7 @@ class Form {
      */
     addHandlerRenderChangeSubChapter(loadFormContent){
         this.#selectField.addEventListener('focus', loadFormContent);
+
       }
 
     /**
@@ -176,10 +180,12 @@ class Form {
 
     /**
      * html Objekt für das gesamte formular
-     * @param state
+     * @param form
      * @returns {string}
      */
     #generateMarkup(form) {
+
+        console.log('generateMarkup',form.subchapterByChapterName)
        // ***************************** Überschrift und form  *************************************
         let htmlObj = `
         <div class="form-container">
@@ -217,10 +223,17 @@ class Form {
                    <div class="inputFields unterkapitel">
                    <label for="subChapterTitel">Unterkapitel</label>
                    <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
-            for (let i = 0; i < form.subchapters.length; i++) {
-                htmlObj += `<option class="overlayContainer" value="${form.subchapters[i].subchapterName}"  ${(form.subchapterId - 1) === i ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapters[i].subchapterName}</option>`;
+         let starterId=form.subchapterByChapterName[0].id
+
+            for (let i = 0; i < form.subchapterByChapterName.length; i++) {
+
+
+                // htmlObj += `<option class="overlayContainer" id=${form.subchapterByChapterName[i].id} value="${form.subchapterByChapterName[i].subchapterName}"  ${(form.subchapterId - starterId) === i ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapterByChapterName[i].subchapterName}</option>`;
+                htmlObj += `<option class="overlayContainer" id=${form.subchapterByChapterName[i].id} value="${form.subchapterByChapterName[i].subchapterName}"   ${(form.subchapterName) === form.subchapterByChapterName[i].subchapterName ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapterByChapterName[i].subchapterName}</option>`;
+
             }
 
+        console.log('generateMarkupform',form)
         // ********************************** Errormessage ****************************************************************************
         htmlObj += `</select></div></div>
         <div class="errorMessage">Artikel ist schon vergeben, wähle einen anderen Bezeichner</div>`;

@@ -9,6 +9,7 @@ export const state = {
         articleNr: '',
         articleName: '',
         subchapters: [],
+        subchapterByChapterName:[],
         freeArticleNumbers: [],
         articles: [],
         articleElementArr: [],
@@ -38,17 +39,20 @@ export const loadSubchapters = async () => {
 }
 export const loadSubChaptersByChapter = async (chapterName) => {
 
-    const subchapters = [];
+    const subchapterByChapterName = [];
     let formData = new FormData();
     formData.append('action', 'loadSubChapterByChapter');
     formData.append('chapterName', chapterName);
     let data = await getJSONObj(formData);
     data.map(subchapter=> {
-        subchapters.push(JSON.parse(subchapter))
+        subchapterByChapterName.push(JSON.parse(subchapter))
 
     })
 
-    return subchapters;
+    state.form.subchapterByChapterName=subchapterByChapterName;
+    state.form.subchapterId= state.form.subchapterByChapterName[0].id;
+    state.form.subchapterName= state.form.subchapterByChapterName[0].subchapterName;
+    return subchapterByChapterName;
 }
 /**
  * Holt alle Artikel als Objekte aus der DB
@@ -87,6 +91,7 @@ export const loadArticleById = async (articleId) => {
  * @returns {Promise<void>}
  */
 export const loadSubchapter = async (id) => {
+    console.log('loadsubchapter')
     try {
         let formData = new FormData();
         formData.append('action', 'loadSubchapterById');
@@ -365,7 +370,8 @@ export const deleteField = async (id, field) => {
         ;
     }
 }
-export const setFormDataForFocusSubChapter = function () {
+export const setFormDataForFocusSubChapter = function (e=null) {
+
     const articleName = document.querySelector('#articleTitel');
     const descriptionArr = document.querySelectorAll('.description');
     const descArr = [...descriptionArr].map((desc) => {
@@ -393,6 +399,11 @@ export const setFormDataForFocusSubChapter = function () {
     state.form.articleElementArr = sortArrayOfObjects([...descArr, ...codeArr], 'elementOrder');
     state.form.descriptionArr = descArr;
     state.form.codeArr = codeArr;
+    if(e) {
+        let subchapterId =e.target.options[e.target.options.selectedIndex].id;
+        state.form.subchapterId=subchapterId;
+        state.form.subchapterName=e.target.options[e.target.options.selectedIndex].innerText;
+    }
 
 }
 
@@ -408,6 +419,7 @@ const errorMessage = function (e) {
  *
  */
 export const resetState = function () {
+    console.log('reset')
     state.form.articleId = '';
     state.form.articleNr = '';
     state.form.articleName = '';
@@ -417,6 +429,7 @@ export const resetState = function () {
     state.form.articlesArr = [];
     state.form.descriptionArr = [];
     state.form.codeArr = [];
+
 
 }
 
