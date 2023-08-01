@@ -7024,3 +7024,893 @@ action : loadSubChapterByChapter
 chapterName : Javascript Fundamentals Part 1
 
 
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+articleTitel : gfgfdg
+articleNr : 2
+subChapterTitel : Fundamentals Part 2_3
+description_0 : gsdfgsf
+codeblock_1 : gsfgsfgsfg
+description_2 : sfgsgsfg
+action : createArticle
+descriptionsArr : [{"descriptionId":"","descriptionText":"gsdfgsf","elementOrder":"0"},{"descriptionId":"noId","descriptionText":"sfgsgsfg","elementOrder":"2"}]
+codeArr : [{"codeId":"","codeText":"gsfgsfgsfg","elementOrder":"1"}]
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : 
+               Javascript Fundamentals Part 1
+               Javascript Fundamentals Part 2
+              
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 2
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+
+action : loadSubChapterByChapter
+chapterName : Javascript Fundamentals Part 1
+
+

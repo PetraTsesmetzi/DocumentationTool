@@ -91,7 +91,7 @@ export const loadArticleById = async (articleId) => {
  * @returns {Promise<void>}
  */
 export const loadSubchapter = async (id) => {
-    console.log('loadsubchapter')
+
     try {
         let formData = new FormData();
         formData.append('action', 'loadSubchapterById');

@@ -235,6 +235,7 @@ export const loadSubchaptersForNav= async function(chapterName){
 const init = async function () {
     window.location.href = "#";
     await loadSubchapterById(1);
+    console.log('init');
     await navLeft.render('init');
     navHeader.render('init');
     navLeft.addHandlerRenderChangeChapter(loadFormContentByChapter);
@@ -243,7 +244,12 @@ const init = async function () {
     navHeader.addHandlerInsert(loadForm);
     navHeader.addHandlerMobileMenu(loadMobileMenu);
     articleView.addHandlerBookletOverlay(loadMobileMenu);
+    window.addEventListener("dblclick", (event) => {
+        console.log('keeee')
+        console.log(window.getSelection().toString())
+        console.log(window.getSelection())
 
+    });
 }
 await init();
 

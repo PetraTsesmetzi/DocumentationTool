@@ -13,7 +13,9 @@ class NavLeft {
 
     #navLeftWrapper = document.querySelector('#nav-left-wrapper');
     #navLeftContainer = document.querySelector('.nav-left-container');
+
     #navLeft;
+    #navLeftbox;
     #htmlObj = '';
     #id;
     subChapterObjects;
@@ -37,13 +39,25 @@ class NavLeft {
 
 
 
+
+            const markupBox = this.#generateMarkupBox();
+            this.#navLeftWrapper.insertAdjacentHTML('beforeend', markupBox);
+            let navLeftBox=document.getElementById('nav-left-box');
             const markup = this.#generateMarkup( this.subChapterObjects);
-            this.#navLeftWrapper.insertAdjacentHTML('beforeend', markup);
-            // this.#navLeft = document.getElementById('nav-left');
+            navLeftBox.insertAdjacentHTML('beforeend', markup);
+
+
+
+
             const startLink = document.querySelector('#startLink');
             this.setActiveClass(1);
             this.#setEventOnLinks();
+            console.log('render');
 
+            //todo: durch einen eventlister aktiveren raus hier oder stehen lassen dafür diplay none verwenden
+            let editSection=this.#generateMarkupForEditMode();
+            console.log('render2');
+            this.#navLeftWrapper.insertAdjacentHTML('beforeend',editSection);
         }
     }
 
@@ -106,7 +120,9 @@ class NavLeft {
 
             this.#clear();
             const markup = this.#generateMarkup( this.subChapterObjects);
-            this.#navLeftWrapper.insertAdjacentHTML('beforeend', markup);
+            // this.#navLeftWrapper.insertAdjacentHTML('beforeend', markup);
+            let box=document.querySelector('#nav-left-box');
+            box.insertAdjacentHTML('beforeend', markup);
             this.#setEventOnLinks();
 
 
@@ -115,21 +131,28 @@ class NavLeft {
         window.addEventListener("click", (event) => {
             if(event.target.id!=='chapter'){
                 this.#optionsList.style.display = 'none';
+                console.log('window click')
             }
         });
 
 
     }
 
+    /**
+     * eventlistener um die subchapters anhand der kapitel zu laden
+     * @param loadFormContentByChapter
+     */
     addHandlerRenderChangeChapter(loadFormContentByChapter){
-        console.log('activate eventlistenern')
-
         this.#optionsList.addEventListener('click', function(e){
             console.log('e',e)
             loadFormContentByChapter(e.target.innerText)
         });
     }
 
+    #generateMarkupBox(){
+        this.#htmlObj = `<section id="nav-left-box"></section>`;
+        return this.#htmlObj;
+    }
     /**
      * string für Links in nav-left
      * @returns {string}
@@ -137,18 +160,28 @@ class NavLeft {
     #generateMarkup(subChapterObjects) {
 
 
-        this.#htmlObj = `<section id="nav-left-box"> <ul id="nav-left">`;
+        this.#htmlObj = ` <ul id="nav-left">`;
         for (let i = 0; i < subChapterObjects.length; i++) {
             if (subChapterObjects.id === 1) {
                 this.#htmlObj += `<li  class="nav-left-links" data-subchapterid=${subChapterObjects[i].id}><span id="startLink" class="nav-span"><a data-linkid=${subChapterObjects[i].id} class='nav-link' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></li>`;
             } else {
-                this.#htmlObj += `<li  class="nav-left-links" data-subchapterid=${subChapterObjects[i].id}><span class="nav-span"><a data-linkid=${subChapterObjects[i].id} class='nav-link' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></li>`;
+                 this.#htmlObj += `<li  class="nav-left-links" data-subchapterid=${subChapterObjects[i].id}><span class="nav-left-link-container"><span class="nav-left-link-box"><span class="nav-span"><a data-linkid=${subChapterObjects[i].id} class='nav-link' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></span><span class="subchapter-edit-box nav-editmode"><ion-icon class="trash" name="trash-outline"></ion-icon><ion-icon class="update" name="create-outline"></ion-icon></span></li>`;
+
             }
         }
-
-        this.#htmlObj += ` </ul></section>`;
+        this.#htmlObj += ` </ul>`;
+        //this.#htmlObj += `<section class="createSubchapter-wrapper nav-editmode"><div class="createSubchapter-box"><input class="createSubchapter" type="text"></div> <div class="create-buttons"><button class="btn btn-nav-reset">Zurücksetzen</button><button class="btn btn-nav-send">Absenden</button></div><div><button class="btn btn-neu">neu</button></div></section>`;
         return this.#htmlObj;
 
+    }
+
+    /**
+     * generiert markup für den edetierbereich der subchapter
+     * @returns {string}
+     */
+    #generateMarkupForEditMode() {
+        this.#htmlObj = `<section class="create-subchapter-wrapper nav-editmode"><div class="create-subchapter-box"><input class="create-subchapter" type="text"></div> <div class="create-buttons"><button class="btn btn-nav-reset">Zurücksetzen</button><button class="btn btn-nav-send">Absenden</button></div><div><button class="btn btn-neu">neu</button></div></section>`;
+        return this.#htmlObj;
     }
 
     /**
@@ -157,7 +190,6 @@ class NavLeft {
      */
     setActiveClass(element) {
         this.#removeAttributeActiveOnLink();
-        console.log('element',element)
         window.location.href = "#" + element;
         const links = document.getElementsByClassName('nav-link');
         //beim wechseln von kapitel
@@ -190,13 +222,26 @@ class NavLeft {
      */
     #removeAttributeActiveOnLink() {
         const allLinks = document.querySelectorAll('.nav-left-links');
-        allLinks.forEach((link) => {
-            link.firstChild.firstChild.style.color = "#444444FF";
-            if (link.firstChild.classList.contains('active')) {
-                link.firstChild.classList.remove('active');
-            }
-        })
 
+        // allLinks.forEach((link) => {
+        //     // const navLink=document.getElementsByClassName('.nav-link');
+        //     // navLink.style.color= "#444444FF";
+        //     link.firstChild.firstChild.firstChild.firstChild.style.color = "#444444FF";
+        //     console.log( 'link---------------------',link.firstChild.firstChild.firstChild);
+        //     if (link.firstChild.firstChild.firstChild.classList.contains('active')) {
+        //         link.firstChild.firstChild.firstChild.classList.remove('active');
+        //     }
+        // })
+        for (let i = 0; i < allLinks.length; i++) {
+            const navLink = document.getElementsByClassName('nav-link');
+
+            navLink[i].style.color= "#444444FF";
+            const navSpan=document.getElementsByClassName('nav-span');
+
+            if (navSpan[i].classList.contains('active')) {
+                navSpan[i].classList.remove('active');
+            }
+        }
 
     }
 
@@ -206,8 +251,13 @@ class NavLeft {
 
     //löscht den die nav-left-box
     #clear() {
+        // let box=document.querySelector('#nav-left-box');
+        // this.#navLeftWrapper.removeChild(box);
+        //
         let box=document.querySelector('#nav-left-box');
-        this.#navLeftWrapper.removeChild(box);
+        let navLeft=document.querySelector('#nav-left');
+        box.removeChild(navLeft);
+
 
     }
 }
