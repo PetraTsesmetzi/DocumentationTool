@@ -10,15 +10,19 @@ export const state = {
         articleName: '',
         subchapters: [],
         subchapterByChapterName:[],
+        chapterByCategorieName:[],
         freeArticleNumbers: [],
         articles: [],
         articleElementArr: [],
         articlesArr: [],
         subchapterId: 1,
         descriptionArr: [],
-        codeArr: []
+        codeArr: [],
+        chapterId:'',
+        chapterName:''
     }
 }
+
 
 
 /**
@@ -54,6 +58,25 @@ export const loadSubChaptersByChapter = async (chapterName) => {
     state.form.subchapterName= state.form.subchapterByChapterName[0].subchapterName;
     return subchapterByChapterName;
 }
+export const loadChaptersByCategory = async (categoryName) => {
+
+    const chapterByCategorieName = [];
+    let formData = new FormData();
+    formData.append('action', 'loadChapterByCategory');
+    formData.append('categoryName', categoryName);
+    let data = await getJSONObj(formData);
+    data.map(chapter=> {
+        chapterByCategorieName.push(JSON.parse(chapter))
+
+    })
+
+    state.form.chapterByCategorieName=chapterByCategorieName;
+    state.form.chapterId= state.form.chapterByCategorieName[0].id;
+    state.form.chapterName= state.form.chapterByCategorieName[0].chapterName;
+    console.log(state.form.chapterByCategorieName);
+    return chapterByCategorieName;
+}
+
 /**
  * Holt alle Artikel als Objekte aus der DB
  * @returns {Promise<*[]>}

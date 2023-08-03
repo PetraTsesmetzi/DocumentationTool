@@ -4,7 +4,7 @@ import articleView from "./views/ArticleView.js";
 import form from "./views/Form.js";
 import * as model from './model.js';
 import {
-    deleteField,
+    deleteField, loadChaptersByCategory,
     loadSubchapter,
     loadSubChaptersByChapter,
     resetState,
@@ -228,6 +228,10 @@ export const loadSubchaptersForNav= async function(chapterName){
     return await model.loadSubChaptersByChapter(chapterName);
 }
 
+export const loadChapterForNav= async function(categoryName){
+    return await model.loadChaptersByCategory(categoryName);
+}
+
 /**
  * initialisiert alles
  * @returns {Promise<void>}
@@ -240,6 +244,10 @@ const init = async function () {
     navHeader.render('init');
     navLeft.addHandlerRenderChangeChapter(loadFormContentByChapter);
     navLeft.addHandlerRender(loadSubchapterById);
+
+    navLeft.addHandlerRenderChangeSubChapter();
+    await navLeft.addHandlerRenderChangCategory();
+
     navHeader.addHandlerEdit(loadEditMode);
     navHeader.addHandlerInsert(loadForm);
     navHeader.addHandlerMobileMenu(loadMobileMenu);

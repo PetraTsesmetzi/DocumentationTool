@@ -94,11 +94,17 @@ try {
             echo json_encode('artikel wurde upgedatet');
             break;
         case 'loadSubChapterByChapter':
-            setVariables();
-
+//            setVariables();
             $chapterId=(new Chapter)->getChapterId($chapterName);
             $subchapters = (new Subchapter())->getAllObjByChapterId($chapterId);
             echo json_encode($subchapters);
+            break;
+        case 'loadChapterByCategory':
+            setVariables();
+            $categoryId=1;
+            $chapters = (new Chapter())->getAllObjByCategoryId($categoryId);
+            echo json_encode($chapters);
+
 
     }
 

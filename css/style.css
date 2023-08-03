@@ -211,6 +211,7 @@ header {
     padding:0;
     position: relative;
 }
+
 #nav-left-wrapper {
     background-color: var(--nav-left-bg);
     top:70px;
@@ -222,47 +223,56 @@ header {
 }
 
 
-#nav-left-wrapper > section {
-     margin-left: 15px;
+/*#nav-left-wrapper > section {*/
+/*     margin-left: 15px;*/
+/*}*/
+#nav-left-box-chapters,#nav-left-box-subchapters,.create-subchapter-wrapper{
+    margin-left: 15px;
 }
 
-#nav-left-wrapper > section > h1 {
-    width: 280px;
-    color: var(--font-color-dark);
-    font-size: 20px;
-    margin: 30px 0 15px 0;
-    padding: 0 7px;
-}
+/*#nav-left-wrapper > section > h1 {*/
+/*    width: 280px;*/
+/*    color: var(--font-color-dark);*/
+/*    font-size: 20px;*/
+/*    margin: 30px 0 15px 0;*/
+/*    padding: 0 7px;*/
+/*}*/
 
-#nav-left-wrapper > section > ul > li {
+
+.nav-left-links-subchapter,.nav-left-links-chapters{
     height: auto;
     list-style: none;
 }
 
-
-
-.nav-left-link-container {
+.nav-left-link-container-subchapters,.nav-left-link-container-chapters {
     height: 30px;
     /*border: 1px solid green;*/
     display:inline-flex;
 }
-.nav-left-link-box{
+.nav-left-link-box-subchapter{
     width:260px;
     display:inline-flex;
     align-items: center;
     /*border: 1px solid red;*/
 }
-.nav-left-link-box:hover{
+
+.nav-left-link-box-subchapter:hover{
     width:260px;
     background-color: var(--nav-left-bg-hover);
 }
-.subchapter-edit-box{
+
+.nav-left-link-box-chapter{
+    width:260px;
+}
+
+.edit-box-subchapter{
     display:inline-flex;
     align-items: center;
     width:60px;
+    /*border: 1px solid green;*/
 }
 
-.nav-span {
+.nav-span-subchapter {
     color: var(--font-color-dark);
     line-height: 150%;
     vertical-align: middle;
@@ -270,6 +280,8 @@ header {
     width: 100%;
     display: inline-flex;
 }
+
+
 
 #nav-left-wrapper a{
     width:inherit;
@@ -314,6 +326,9 @@ a:link, a:visited {
 
 .nav-editmode{
 }
+.create-subchapter-wrapper{
+    margin-top:20px;
+}
 .create-subchapter{
     width:260px;
     height: 30px;
@@ -334,6 +349,16 @@ a:link, a:visited {
     color: var(--btn-fc-dangerous);
     padding:5px;
 }
+
+
+#nav-left-box-chapters{
+    margin-bottom: 30px;
+    border:1px solid green;
+}
+.nav-left-chapter-links{
+
+}
+
 /*#chapter{*/
 /*     background-color: #eee;*/
 /*     width: 300px;*/
