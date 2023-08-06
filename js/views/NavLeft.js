@@ -131,6 +131,7 @@ class NavLeft {
                     this.#setEventOnLinks();
                     console.log('custom')
                 }
+                this.addHandlerRenderChangeSubChapter()
             });
 
             window.addEventListener('click', (event) => {
@@ -141,6 +142,7 @@ class NavLeft {
                 }
             });
         });
+
 
 
     }
