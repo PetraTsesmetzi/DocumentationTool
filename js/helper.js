@@ -8,7 +8,7 @@ import {state} from "./model.js";
  * @returns {Promise<any>}
  */
 export const getJSONObj=async function(formData){
-    console.log('formData',formData);
+
     try{
         const response = await fetch(`${API_URL}`,
             {

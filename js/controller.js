@@ -91,8 +91,9 @@ const loadEditMode = async function () {
     //toggled den bearbeiten button zwischen forumlar und anzeige des subchapters mit seinen artikeln
     model.state.editModeFlag = (model.state.editModeFlag === true) ? false : true;
     navHeader.renderInsert(model.state.editModeFlag);
+    navLeft.renderInsert(model.state.editModeFlag);
     await loadSubchapter(state.form.subchapterId);
-
+    // model.state.editModeFlag ? navLeft.removeHandlerRender(loadSubchapterById):navLeft.addHandlerRender(loadSubchapterById);
     showArticleView();
 }
 
@@ -240,14 +241,15 @@ const init = async function () {
     window.location.href = "#";
     await loadSubchapterById(1);
     console.log('init');
+    // await navLeft.addHandlerRenderChangCategory();
     await navLeft.render('init');
     navHeader.render('init');
     navLeft.addHandlerRenderChangeChapter(loadFormContentByChapter);
     navLeft.addHandlerRender(loadSubchapterById);
 
-    navLeft.addHandlerRenderChangeSubChapter();
-    await navLeft.addHandlerRenderChangCategory();
 
+    await navLeft.addHandlerRenderChangCategory();
+    navLeft.addHandlerRenderChangeSubChapter();
     navHeader.addHandlerEdit(loadEditMode);
     navHeader.addHandlerInsert(loadForm);
     navHeader.addHandlerMobileMenu(loadMobileMenu);
