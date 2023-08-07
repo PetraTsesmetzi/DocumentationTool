@@ -6,7 +6,7 @@ class Chapter
     private int $category;
 
     private string $chapterName;
-    private array $chapterArr;
+    private array $subChapterArr;
 
     /**
      * @param int|null $id

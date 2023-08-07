@@ -20,9 +20,9 @@ class NavHeader{
      * und setzt ein EventlLister für das Makieren der Links in blau
      * @param start
      */
-    render(start){
+    render(start,categories){
         if(start==='init'){
-            const markup = this.#generateMarkup();
+            const markup = this.#generateMarkup(categories);
             this.#parentElement.insertAdjacentHTML('afterbegin', markup);
             const startLink=document.querySelector('.startLink');
             this.#setActiveClassOnNav(startLink,start);
@@ -67,15 +67,15 @@ class NavHeader{
      * String für die Links in Nav-Header
      * @returns {string}
      */
-    #generateMarkup() {
+    #generateMarkup(categories) {
+        let htmlObj='';
 
-        return `<li class="nav-header-links"><span class="startLink" id="javascript">JAVASCRIPT</span></li>
-                <li class="nav-header-links"><span id="php">PHP</span></li>
-                <li class="nav-header-links"><span id="mysql">MSQL</span></li>
-                <li class="nav-header-links"><span id="html">HTML/CSS</span></li>
-                <li class="nav-header-links"><span id="how">HOW TO</span></li>
-                 `;
+        for (let i = 0; i < categories.length; i++) {
+            console.log('kategoriennamen',categories[i].categoryName)
+            htmlObj+=`<li class="nav-header-links"><span class="startLink" id=${categories[i].id} data-categoryName=${categories[i].categoryName}>${categories[i].categoryName}</span></li>`;
+        }
 
+        return htmlObj;
     }
 
     /**
@@ -108,5 +108,16 @@ class NavHeader{
             }
         })
     }
+
+    addHandlerRenderLoadSubchapter(loadChapterByCategory) {
+        const links=document.querySelectorAll('.nav-header-links')
+
+        links.forEach(link=>{
+            link.addEventListener('click',loadChapterByCategory.bind(this));
+
+        })
+
+    }
+
 }
 export default new NavHeader();

@@ -4,7 +4,7 @@ import articleView from "./views/ArticleView.js";
 import form from "./views/Form.js";
 import * as model from './model.js';
 import {
-    deleteField, loadChaptersByCategory,
+    deleteField, loadAllCategories, loadAllChapters, loadChaptersByCategory,
     loadSubchapter,
     loadSubChaptersByChapter,
     resetState,
@@ -91,7 +91,7 @@ const loadEditMode = async function () {
     //toggled den bearbeiten button zwischen forumlar und anzeige des subchapters mit seinen artikeln
     model.state.editModeFlag = (model.state.editModeFlag === true) ? false : true;
     navHeader.renderInsert(model.state.editModeFlag);
-    navLeft.renderInsert(model.state.editModeFlag);
+    navLeft.renderEditMode(model.state.editModeFlag);
     await loadSubchapter(state.form.subchapterId);
     // model.state.editModeFlag ? navLeft.removeHandlerRender(loadSubchapterById):navLeft.addHandlerRender(loadSubchapterById);
     showArticleView();
@@ -178,6 +178,11 @@ const loadSubchapterById = async function (element) {
     showArticleView();
 }
 
+const loadCategory=async function(){
+    await model.loadAllCategories();
+
+}
+
 const showArticleView = function () {
 
     articleView.render(model.state.form, model.state.editModeFlag);
@@ -234,25 +239,46 @@ export const loadChapterForNav= async function(categoryName){
 }
 
 /**
+ * wird vom nav-header aufgerufen
+ * @param e
+ * @returns {Promise<void>}
+ */
+export const loadChapterByCategory=async function(e){
+    console.log('controller-loadChapterByCategory',e.target)
+    await model.loadChaptersByCategory(e.target.dataset.categoryname);
+    console.log(model.state.form.chapterByCategorieName);
+
+    await navLeft.renderChapterDropDown(model.state.form.chapterByCategorieName);
+
+}
+export const laodAllChaptersForNav=async function(){
+    return await model.loadAllChapters();
+}
+
+/**
  * initialisiert alles
  * @returns {Promise<void>}
  */
 const init = async function () {
     window.location.href = "#";
     await loadSubchapterById(1);
-    console.log('init');
-    // await navLeft.addHandlerRenderChangCategory();
-    await navLeft.render('init');
-    navHeader.render('init');
+
+    const chapters=await model.loadChaptersByCategory('Javascript');
+    await navLeft.render('init',chapters);
+
+    await loadCategory();
+    navHeader.render('init',state.form.categoryNames);
+    navHeader.addHandlerRenderLoadSubchapter(loadChapterByCategory);
+
     navLeft.addHandlerRenderChangeChapter(loadFormContentByChapter);
     navLeft.addHandlerRender(loadSubchapterById);
-
-
-    await navLeft.addHandlerRenderChangCategory();
+    await navLeft.loadAllChaptersForEditMode();
     navLeft.addHandlerRenderChangeSubChapter();
+
     navHeader.addHandlerEdit(loadEditMode);
     navHeader.addHandlerInsert(loadForm);
     navHeader.addHandlerMobileMenu(loadMobileMenu);
+
     articleView.addHandlerBookletOverlay(loadMobileMenu);
     window.addEventListener("dblclick", (event) => {
         console.log('keeee')

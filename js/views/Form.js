@@ -184,7 +184,7 @@ class Form {
      * @returns {string}
      */
     #generateMarkup(form) {
-
+        console.log('form',form)
         console.log('generateMarkup',form.subchapterByChapterName)
        // ***************************** Überschrift und form  *************************************
         let htmlObj = `

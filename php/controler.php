@@ -6,7 +6,7 @@ include './classes/Article.php';
 include './classes/Description.php';
 include './classes/Code.php';
 include './classes/Chapter.php';
-
+include './classes/Category.php';
 
 $action = $_POST['action'];
 $id = $_POST['id'] ?? '';
@@ -26,6 +26,7 @@ $request = $_REQUEST;
 
 $args = [$action, $id, $articleId, $subChapterTitel, $articleTitel, $articleNr, $descriptionsArr, $codeArr, $subchapter_Id];
 $chapterName=$_POST['chapterName']?? '';
+$categoryName=$_POST['categoryName']?? '';
 
 try {
 
@@ -101,10 +102,20 @@ try {
             break;
         case 'loadChapterByCategory':
             setVariables();
-            $categoryId=1;
+            $categoryId=(new Category())->getCategoryId($categoryName);
             $chapters = (new Chapter())->getAllObjByCategoryId($categoryId);
             echo json_encode($chapters);
-
+            break;
+        case 'loadCategory':
+            setVariables();
+            $category=(new Category())->getAllCategories();
+            echo json_encode($category);
+            break;
+        case 'loadChapters':
+            setVariables();
+            $chapter=(new Chapter())->getAllChapters();
+            echo json_encode($chapter);
+            break;
 
     }
 

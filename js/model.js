@@ -71,12 +71,41 @@ export const loadChaptersByCategory = async (categoryName) => {
     })
 
     state.form.chapterByCategorieName=chapterByCategorieName;
-    state.form.chapterId= state.form.chapterByCategorieName[0].id;
-    state.form.chapterName= state.form.chapterByCategorieName[0].chapterName;
-    console.log(state.form.chapterByCategorieName);
+    if(chapterByCategorieName.length>0){
+        state.form.chapterId= state.form.chapterByCategorieName[0].id;
+        state.form.chapterName= state.form.chapterByCategorieName[0].chapterName;
+    }
+
+
     return chapterByCategorieName;
 }
 
+export const loadAllCategories=async()=>{
+    const categoryNames = [];
+    let formData = new FormData();
+    formData.append('action', 'loadCategory');
+    let data = await getJSONObj(formData);
+    data.map(chapter=> {
+        categoryNames.push(JSON.parse(chapter))
+
+    })
+    state.form.categoryNames=categoryNames;
+    // state.form.categoryId= state.form.categoryNames[0].id;
+    return categoryNames;
+}
+export const loadAllChapters=async()=>{
+    const chapterNames = [];
+    let formData = new FormData();
+    formData.append('action', 'loadChapters');
+    let data = await getJSONObj(formData);
+    data.map(chapter=> {
+        chapterNames.push(JSON.parse(chapter))
+
+    })
+    state.form.chapterNames=chapterNames;
+    // state.form.categoryId= state.form.categoryNames[0].id;
+    return chapterNames;
+}
 /**
  * Holt alle Artikel als Objekte aus der DB
  * @returns {Promise<*[]>}
