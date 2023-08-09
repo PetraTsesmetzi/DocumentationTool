@@ -36,9 +36,9 @@ class SubChapter
 
     /**
      * liest alle subchapters aus der DB
-     * @return array
+     * @return array|null
      */
-    public function getAllSubChapters(): array
+    public function getAllSubChapters(): array|null
     {
         try {
             $dbh = DB::connect();
@@ -62,8 +62,7 @@ class SubChapter
      * @param int $id
      * @return string
      */
-    public function getObjectById(int $id): string
-//    public function getObjectById(int $id): SubChapter
+    public function getObjectById(int $id=null): string
     {
         try {
 
@@ -73,6 +72,9 @@ class SubChapter
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             $subChapter = $stmt->fetchObject(__CLASS__);
+            if ($subChapter === false) {
+                throw new Exception("Subchapter with ID $id not found.");
+            }
             $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
 
         } catch (PDOException $e) {
@@ -95,7 +97,7 @@ class SubChapter
      * liest alle subchapter aus der Datenbank raus
      * @return array
      */
-    public function getAllAsObjects(int $id=null): array
+    public function getAllAsObjects(int $id=null): array|null
     {
         try {
             if(!isset($id)){
@@ -108,8 +110,6 @@ class SubChapter
                     $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
                     $subChapterArr[] = $subChapter->getJSONEncode();
                 }
-
-
             }else{
 
                 $dbh = DB::connect();
@@ -117,6 +117,7 @@ class SubChapter
                 $stmt = $dbh->prepare($sql);
                 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
                 $stmt->execute();
+                $subChapterArr = [];
                 while ($subChapter = $stmt->fetchObject(__CLASS__)) {
                     $subChapter->articleArr = (new Article())->getAllAsObjects($subChapter);
                     $subChapterArr[] = $subChapter->getJSONEncode();

@@ -4,7 +4,7 @@ import articleView from "./views/ArticleView.js";
 import form from "./views/Form.js";
 import * as model from './model.js';
 import {
-    deleteField, loadAllCategories, loadAllChapters, loadChaptersByCategory,
+    deleteField, initChapterSubchapterArr, loadAllCategories, loadAllChapters, loadChaptersByCategory,
     loadSubchapter, loadSubchapters,
     loadSubChaptersByChapter,
     resetState,
@@ -52,7 +52,7 @@ const loadFormContent=function(e){
     model.setFormDataForFocusSubChapter();
 }
 const loadFormContentByChapter=async function(chapterName){
-    console.log(model.state.editModeFlag)
+
     if(model.state.editModeFlag===true){
         await model.loadSubChaptersByChapter(chapterName);
         showForm();
@@ -159,7 +159,7 @@ const deleteFields = async function (e) {
         field = field.charAt(0).toUpperCase() + field.slice(1);
         console.log(field)
         if (id !== 'noId') {
-            model.deleteField(id, field);
+           await model.deleteField(id, field);
         }
     }
 }
@@ -169,7 +169,6 @@ const deleteFields = async function (e) {
  * @returns {Promise<void>}
  */
 const loadSubchapterById = async function (element) {
-
     if (!(element instanceof Event)) element = Number(element);
 
     // Unterscheidung ob ich die url auslese oder ob ich aus dem Formular
@@ -260,12 +259,9 @@ export const laodAllSubChaptersForNav=async function(){
  * @returns {Promise<void>}
  */
 export const loadChapterByCategory=async function(e){
-    console.log('controller-loadChapterByCategory',e.target)
     await model.loadChaptersByCategory(e.target.dataset.categoryname);
-    console.log(model.state.form.chapterByCategorieName);
-
+    if(model.state.form.chapterByCategorieName.length===0)showArticleView();
     await navLeft.renderChapterDropDown(model.state.form.chapterByCategorieName);
-
 }
 
 
@@ -275,22 +271,24 @@ export const loadChapterByCategory=async function(e){
  */
 const init = async function () {
     window.location.href = "#";
+    //Todo: abfangen wenn kein supchapter vorhanden ist
+    await initChapterSubchapterArr();
     await loadSubchapterById(1);
 
     const chapters=await model.loadChaptersByCategory('Javascript');
     await navLeft.render('init',chapters,model.state.editModeFlag);
 
     await loadCategory();
-;
+
     navHeader.render('init',state.form.categoryNames);
     navHeader.addHandlerRenderLoadSubchapter(loadChapterByCategory);
 
     navLeft.addHandlerRenderChangeChapter(loadFormContentByChapter);
     navLeft.addHandlerRender(loadSubchapterById);
 
-    let allCategories = await laodAllCategoriesForNav();
-    let allSubchapters= await laodAllSubChaptersForNav();
-    let allChapters = await laodAllChaptersForNav();
+    let allCategories = await model.loadAllCategories();
+    let allSubchapters=await model.loadSubchapters();
+    let allChapters = await model.loadAllChapters();
     await navLeft.loadAllObjectsForEditMode(allCategories, allChapters, allSubchapters)
     await navLeft.loadAllChaptersForEditMode();
 

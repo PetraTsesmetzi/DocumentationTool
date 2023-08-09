@@ -18,9 +18,9 @@ class Description
     private int $article_Id;
 
     /**
-     * @param int $id
-     * @param string $descriptionText
-     * @param int $article_Id
+     * @param int|null $id
+     * @param string|null $descriptionText
+     * @param int|null $article_Id
      */
     public function __construct(?int $id = null, ?string $descriptionText = null, ?int $article_Id = null)
     {

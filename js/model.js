@@ -19,7 +19,8 @@ export const state = {
         descriptionArr: [],
         codeArr: [],
         chapterId:'',
-        chapterName:''
+        chapterName:'',
+        noData:false
     }
 }
 
@@ -75,11 +76,20 @@ export const loadChaptersByCategory = async (categoryName) => {
         state.form.chapterId= state.form.chapterByCategorieName[0].id;
         state.form.chapterName= state.form.chapterByCategorieName[0].chapterName;
     }
+    if(chapterByCategorieName.length===0)
+        state.form.subchapterByChapterName=[];
 
 
     return chapterByCategorieName;
 }
-
+/**
+ * intialsiert die erste Seite
+ * @returns {Promise<void>}
+ */
+export const initChapterSubchapterArr=async ()=>{
+    await loadChaptersByCategory('Javascript');
+    // await loadSubChaptersByChapter('Javascript Fundamentals Part 1');
+}
 export const loadAllCategories=async()=>{
     const categoryNames = [];
     let formData = new FormData();
@@ -145,23 +155,24 @@ export const loadArticleById = async (articleId) => {
 export const loadSubchapter = async (id) => {
 
     try {
+
         let formData = new FormData();
         formData.append('action', 'loadSubchapterById');
         formData.append('id', id);
 
         let dataRaw = await getJSONObj(formData);
         let data = JSON.parse(dataRaw);
-        const articlesArr = data.articleArr;
-
-        for (const key in articlesArr) {
-            articlesArr[key] = JSON.parse(articlesArr[key]);
-            for (const keyKey in articlesArr[key].descriptionArr) {
-                articlesArr[key].descriptionArr[keyKey] = JSON.parse(articlesArr[key].descriptionArr[keyKey]);
+        // if (data.length === 0) {await loadSubchapter(id+1); return}
+            const articlesArr = data.articleArr;
+            for (const key in articlesArr) {
+                articlesArr[key] = JSON.parse(articlesArr[key]);
+                for (const keyKey in articlesArr[key].descriptionArr) {
+                    articlesArr[key].descriptionArr[keyKey] = JSON.parse(articlesArr[key].descriptionArr[keyKey]);
+                }
+                for (const keyKey in articlesArr[key].codeArr) {
+                    articlesArr[key].codeArr[keyKey] = JSON.parse(articlesArr[key].codeArr[keyKey]);
+                }
             }
-            for (const keyKey in articlesArr[key].codeArr) {
-                articlesArr[key].codeArr[keyKey] = JSON.parse(articlesArr[key].codeArr[keyKey]);
-            }
-        }
 
 
         const articlesTemp = [];
@@ -188,7 +199,8 @@ export const loadSubchapter = async (id) => {
         state.form.subchapterName = data.subchapterName;
         state.form.articles = articlesTemp;
         state.form.subchapterId = id;
-
+        // }
+        // state.form.noData=true;
 
     } catch (e) {
         errorMessage(e);

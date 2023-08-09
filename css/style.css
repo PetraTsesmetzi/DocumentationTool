@@ -92,7 +92,7 @@ header {
 }
 .button-nav-container {
     height: 70px;
-    width: 36%;
+    width: 50%;
     min-width:250px;
     display: flex;
     justify-content: center;
@@ -148,6 +148,7 @@ header {
 }
 
 .btn-insert {
+    width:160px;
     background-color: var(--btn-bg-light);
 }
 
@@ -421,9 +422,9 @@ a:link, a:visited {
 
     width: 260px;
     height: 70px;
-    overflow-y: scroll;
+    overflow-y: auto;
     list-style: none;
-    padding: 10px 0;
+
     margin-top:10px;
     border: 1px solid var( --border-input);
     /*border-bottom-right-radius: 5px;*/

@@ -20,7 +20,7 @@ class Category
         }
     }
 
-    public function getAllCategories(): array
+    public function getAllCategories(): array|null
     {
         try {
             $dbh = DB::connect();

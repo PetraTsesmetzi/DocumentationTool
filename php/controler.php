@@ -126,6 +126,9 @@ try {
     $message = file_get_contents($errorFile);
     $message = "Message: " . $e->getMessage() . "\n" . "LineNumber: " . $e->getLine() . "\n";
     file_put_contents($errorFile, $message);
+    $emptyObject = array();
+    $jsonString = json_encode($emptyObject);
+    echo json_encode($jsonString);
 }
 
 /**

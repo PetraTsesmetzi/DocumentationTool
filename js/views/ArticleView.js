@@ -14,6 +14,8 @@ class ArticleView {
     #subchapterName;
     #subcapterArticles;
     #editmode = false;
+    #chapterByCategorieName;
+    #subchapterByChapterName;
 
     /**
      * initialisiert das Markup
@@ -28,6 +30,8 @@ class ArticleView {
         this.#subchapterName = data.subchapterName;
         this.#subcapterArticles = data.articles;
 
+        this.#chapterByCategorieName=data.chapterByCategorieName;
+        this.#subchapterByChapterName=data.subchapterByChapterName;
         this.#clear();
         const markup = this.#generateMarkup();
         this.#contentContainer.insertAdjacentHTML('afterbegin', markup);
@@ -70,7 +74,10 @@ class ArticleView {
      * @returns {string}
      */
     #generateMarkup() {
-        let htmlObj = `<h1>${this.#subchapterName}</h1>`;
+        let htmlObj=''
+        if(this.#chapterByCategorieName.length>0 || this.#subchapterByChapterName.length>0){
+         htmlObj += `<h1>${this.#subchapterName}</h1>`;
+
         for (const key in this.#subcapterArticles) {
 
             htmlObj += `<article>
@@ -99,6 +106,9 @@ class ArticleView {
                 }
             }
             htmlObj += `</article>`;
+        }
+        }else{
+            htmlObj +='';
         }
         return htmlObj;
     }

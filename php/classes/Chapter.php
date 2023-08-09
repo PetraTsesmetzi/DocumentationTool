@@ -23,7 +23,7 @@ class Chapter
     /**
      * @return array
      */
-    public function getAllChapters(): array
+    public function getAllChapters(): array|null
     {
         try {
             $dbh = DB::connect();
@@ -63,7 +63,7 @@ class Chapter
     }
 
 
-    public function getAllObjByCategoryId(int $categoryId=null): array
+    public function getAllObjByCategoryId(int $categoryId=null): array|null
     {
         try {
             $dbh = DB::connect();
