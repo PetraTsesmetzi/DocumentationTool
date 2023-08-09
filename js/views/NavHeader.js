@@ -13,7 +13,7 @@ class NavHeader{
     #insertBtn=document.querySelector('.btn-insert');
 
     #bookBtn=document.querySelector('.btn-book');
-
+    #activateClass;
 
     /**
      * initialisiert das Markup (hängt die htmlObjekte in die Container)
@@ -27,7 +27,8 @@ class NavHeader{
             const startLink=document.querySelector('.startLink');
             this.#setActiveClassOnNav(startLink,start);
         }
-        this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
+        this.#activateClass=this.#setActiveClassOnNav.bind(this)
+        this.#parentElement.addEventListener('click',this.#activateClass );
     }
 
     /**
@@ -71,7 +72,7 @@ class NavHeader{
         let htmlObj='';
 
         for (let i = 0; i < categories.length; i++) {
-            console.log('kategoriennamen',categories[i].categoryName)
+
             htmlObj+=`<li class="nav-header-links"><span class="startLink" id=${categories[i].id} data-categoryName=${categories[i].categoryName}>${categories[i].categoryName}</span></li>`;
         }
 
@@ -109,14 +110,32 @@ class NavHeader{
         })
     }
 
+
+    //todo: bind(this) wegmachen und dann verschwindet auch der eventlistener
+    //dann noch activate irgendwie stoppen
     addHandlerRenderLoadSubchapter(loadChapterByCategory) {
         const links=document.querySelectorAll('.nav-header-links')
 
         links.forEach(link=>{
-            link.addEventListener('click',loadChapterByCategory.bind(this));
+            link.addEventListener('click',loadChapterByCategory);
 
         })
 
+    }
+
+
+    removeEventListenerFromLinks(loadChapterByCategory){
+        const links=document.querySelectorAll('.nav-header-links')
+        console.log('remove')
+        links.forEach(link=>{
+            link.removeEventListener('click',loadChapterByCategory);
+            console.log(link)
+        })
+        this.#parentElement.removeEventListener('click', this.#activateClass);
+    }
+
+    setEventListerForActiveClass(){
+        this.#parentElement.addEventListener('click', this.#activateClass);
     }
 
 }

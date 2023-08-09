@@ -421,8 +421,9 @@ a:link, a:visited {
 
     width: 260px;
     height: 70px;
+    overflow-y: scroll;
     list-style: none;
-    padding: 0;
+    padding: 10px 0;
     margin-top:10px;
     border: 1px solid var( --border-input);
     /*border-bottom-right-radius: 5px;*/

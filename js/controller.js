@@ -5,7 +5,7 @@ import form from "./views/Form.js";
 import * as model from './model.js';
 import {
     deleteField, loadAllCategories, loadAllChapters, loadChaptersByCategory,
-    loadSubchapter,
+    loadSubchapter, loadSubchapters,
     loadSubChaptersByChapter,
     resetState,
     setVariablesForForm,
@@ -33,7 +33,7 @@ export const loadForm = async function (e) {
  * @returns {Promise<void>}
  */
 export const loadArticleNumbers = async function (e) {
-    console.log('loadArticleNumbers',e)
+    console.log('++++++++++++++++++++++++++++++++++++++++++++++++loadArticleNumbers',e)
 
     const subchapterId =e.target.options[e.target.options.selectedIndex].id;
     model.setFormDataForFocusSubChapter(e);
@@ -90,9 +90,19 @@ export const closeForm = async function () {
 const loadEditMode = async function () {
     //toggled den bearbeiten button zwischen forumlar und anzeige des subchapters mit seinen artikeln
     model.state.editModeFlag = (model.state.editModeFlag === true) ? false : true;
+    console.log('editModeFlag',model.state.editModeFlag)
     navHeader.renderInsert(model.state.editModeFlag);
     navLeft.renderEditMode(model.state.editModeFlag);
     await loadSubchapter(state.form.subchapterId);
+    //Todo:nicht wegmachen:ausschalten der kategorielinks im editmode
+    // if(model.state.editModeFlag===true)
+    // {
+    //     navHeader.removeEventListenerFromLinks(loadChapterByCategory)
+    // }else{
+    //      navHeader.addHandlerRenderLoadSubchapter(loadChapterByCategory)
+    //     navHeader.setEventListerForActiveClass();
+    // }
+
     // model.state.editModeFlag ? navLeft.removeHandlerRender(loadSubchapterById):navLeft.addHandlerRender(loadSubchapterById);
     showArticleView();
 }
@@ -228,16 +238,22 @@ const initializePrismScript = function () {
     document.body.appendChild(scriptElement);
 }
 export const loadSubchaptersForNav= async function(chapterName){
-
-    // console.log(await model.loadSubChaptersByChapter(chapterName));
-
     return await model.loadSubChaptersByChapter(chapterName);
 }
 
 export const loadChapterForNav= async function(categoryName){
     return await model.loadChaptersByCategory(categoryName);
 }
+export const laodAllCategoriesForNav=async  function(){
+    return await model.loadAllCategories();
+}
+export const laodAllChaptersForNav=async function(){
+    return await model.loadAllChapters();
+}
+export const laodAllSubChaptersForNav=async function(){
 
+    return await model.loadSubchapters();
+}
 /**
  * wird vom nav-header aufgerufen
  * @param e
@@ -251,9 +267,7 @@ export const loadChapterByCategory=async function(e){
     await navLeft.renderChapterDropDown(model.state.form.chapterByCategorieName);
 
 }
-export const laodAllChaptersForNav=async function(){
-    return await model.loadAllChapters();
-}
+
 
 /**
  * initialisiert alles
@@ -264,15 +278,22 @@ const init = async function () {
     await loadSubchapterById(1);
 
     const chapters=await model.loadChaptersByCategory('Javascript');
-    await navLeft.render('init',chapters);
+    await navLeft.render('init',chapters,model.state.editModeFlag);
 
     await loadCategory();
+;
     navHeader.render('init',state.form.categoryNames);
     navHeader.addHandlerRenderLoadSubchapter(loadChapterByCategory);
 
     navLeft.addHandlerRenderChangeChapter(loadFormContentByChapter);
     navLeft.addHandlerRender(loadSubchapterById);
+
+    let allCategories = await laodAllCategoriesForNav();
+    let allSubchapters= await laodAllSubChaptersForNav();
+    let allChapters = await laodAllChaptersForNav();
+    await navLeft.loadAllObjectsForEditMode(allCategories, allChapters, allSubchapters)
     await navLeft.loadAllChaptersForEditMode();
+
     navLeft.addHandlerRenderChangeSubChapter();
 
     navHeader.addHandlerEdit(loadEditMode);

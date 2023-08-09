@@ -1,4 +1,10 @@
-import {loadSubchaptersForNav, loadChapterForNav, laodAllChaptersForNav} from "../controller.js";
+import {
+    loadSubchaptersForNav,
+    loadChapterForNav,
+    laodAllChaptersForNav,
+    laodAllSubChaptersForNav
+} from "../controller.js";
+
 
 /**
  * Autorin: Petra Tsesmetzi
@@ -11,7 +17,8 @@ import {loadSubchaptersForNav, loadChapterForNav, laodAllChaptersForNav} from ".
 
 class NavLeft {
 
-    #navLeftWrapper = document.querySelector('#nav-left-wrapper');
+
+    #nonEditWrapper = document.querySelector('#non-edit-section-wrapper');
     #navLeftContainer = document.querySelector('.nav-left-container');
     #navHeaderLinks;
     #navLeft;
@@ -26,123 +33,133 @@ class NavLeft {
     #chapteDropdown;
     #editBoxSubchapter;
     #editMode;
+    #categories;
+    #chapters;
+    #subchapters;
 
     /**
      * initialisiert das Markup (hängt die htmlObjekte in die Container)
      * und setzt ein EventListener für das Markieren der Links in blau
      * @param start
      * @param chapters
+     * @param editmode
      * @returns {Promise<void>}
      */
-    async render(start, chapters) {
+    async render(start, chapters, editmode) {
         if (start === 'init') {
-            const markUpChapter = this.#generateMarkupDropDownChapter(chapters);
-            this.#navLeftWrapper.insertAdjacentHTML('afterbegin', markUpChapter);
-            // this.#activateCustomDropdown();
+            console.log('render-editmode', editmode)
+            this.#editMode = editmode;
+            //dropdowwn einhängen
+            const markUpChapter = this.#generateMarkupDropDownChapter('chapter',chapters);
+            this.#nonEditWrapper.insertAdjacentHTML('beforeend', markUpChapter);
 
+
+            //intiale subchapter laden anhand des chapters
             const chapter = document.getElementById('chapter');
             this.subChapterObjects = await loadSubchaptersForNav(chapter.textContent);
 
 
-            const markupBox = this.#generateMarkupBox();
-            this.#navLeftWrapper.insertAdjacentHTML('beforeend', markupBox);
+            //subchapters als liste einhängen
+            const markupBox = `<section id="nav-left-box-subchapters"></section>`;
+            this.#nonEditWrapper.insertAdjacentHTML('beforeend', markupBox);
             let navLeftBox = document.getElementById('nav-left-box-subchapters');
             const markup = this.#generateMarkup(this.subChapterObjects);
             navLeftBox.insertAdjacentHTML('beforeend', markup);
 
 
-            // const startLink = document.querySelector('#startLink');
             this.setActiveClass(1);
             this.#setEventOnLinks('render');
 
-            let editSection = this.#generateMarkupForEditMode('subchapter', this.#chapterObjects);
-            this.#navLeftWrapper.insertAdjacentHTML('beforeend', editSection);
+            // let editSection = this.#generateMarkupForEditMode('subchapter', this.#chapterObjects);
+            // this.#nonEditWrapper.insertAdjacentHTML('beforeend', editSection);
 
         }
     }
 
+    // renderEditMode(editmode) {
+    //     this.#editMode = editmode;
+    //     console.log('editmode', this.#editMode)
+    //     this.#subchapterWrapper = document.querySelectorAll('.create-edit-wrapper');
+    //     this.#subchapterHeading = document.querySelector('.nav-editmode-header-subchapter');
+    //
+    //
+    //     this.#chapterWrapper = document.querySelector('.create-chapter-wrapper');
+    //     this.#editBoxSubchapter = document.querySelectorAll('.edit-box-subchapter');
+    //     this.#chapteDropdown = document.querySelector('.chapter-dropdown');
+    //
+    //     //Todo:nachheranschauen wie gut es funzt
+    //     // this.#customDropdownWrapper=document.querySelector('.custom-dropdown-wrapper')
+    //
+    //     if (this.#editMode === true) {
+    //         console.log('chapterWraper', this.#chapterWrapper)
+    //         this.#chapterWrapper.classList.remove('edit-section');
+    //
+    //         this.#subchapterHeading.classList.remove('edit-section');
+    //         this.#chapteDropdown.classList.add('edit-section');
+    //         // this.#customDropdownWrapper.classList.add('edit-section');
+    //         for (let i = 0; i < this.#subchapterWrapper.length; i++) {
+    //             this.#subchapterWrapper[i].classList.remove('edit-section');
+    //
+    //         }
+    //         this.#editBoxSubchapter.forEach(element => {
+    //             element.classList.remove('edit-section');
+    //         })
+    //
+    //     } else {
+    //         this.#chapterWrapper.classList.add('edit-section');
+    //         this.#subchapterHeading.classList.add('edit-section');
+    //         this.#chapteDropdown.classList.remove('edit-section');
+    //         // this.#customDropdownWrapper.classList.remove('edit-section');
+    //         for (let i = 0; i < this.#subchapterWrapper.length; i++) {
+    //             this.#subchapterWrapper[i].classList.add('edit-section');
+    //         }
+    //         this.#editBoxSubchapter.forEach(element => {
+    //             element.classList.add('edit-section');
+    //         })
+    //     }
+    //
+    //
+    // }
     renderEditMode(editmode) {
-        this.#editMode=editmode;
-        this.#subchapterWrapper = document.querySelectorAll('.create-edit-wrapper');
-        this.#subchapterHeading = document.querySelector('.nav-editmode-header-subchapter');
-        this.#chapteDropdown = document.querySelector('.chapter-dropdown');
-
-        this.#chapterWrapper = document.querySelector('.create-chapter-wrapper');
-        this.#editBoxSubchapter = document.querySelectorAll('.edit-box-subchapter');
+        this.#editMode = editmode;
+        console.log('render-editmode', editmode)
+        const editSectionWrapper = document.getElementById('edit-section-wrapper');
+        const nonEditSectionWrapper = document.getElementById('non-edit-section-wrapper');
 
 
-        if (editmode === true) {
-
-            this.#chapterWrapper.classList.remove('edit-section');
-            this.#subchapterHeading.classList.remove('edit-section');
-            this.#chapteDropdown.classList.add('edit-section');
-
-            for (let i = 0; i < this.#subchapterWrapper.length; i++) {
-                this.#subchapterWrapper[i].classList.remove('edit-section');
-
-            }
-            this.#editBoxSubchapter.forEach(element => {
-                element.classList.remove('edit-section');
-            })
-
+        if (this.#editMode === true) {
+            editSectionWrapper.classList.remove('edit-section');
+            nonEditSectionWrapper.classList.add('edit-section');
         } else {
-            this.#chapterWrapper.classList.add('edit-section');
-            this.#subchapterHeading.classList.add('edit-section');
-            this.#chapteDropdown.classList.remove('edit-section');
-            for (let i = 0; i < this.#subchapterWrapper.length; i++) {
-                this.#subchapterWrapper[i].classList.add('edit-section');
-            }
-            this.#editBoxSubchapter.forEach(element => {
-                element.classList.add('edit-section');
-            })
+            editSectionWrapper.classList.add('edit-section');
+            nonEditSectionWrapper.classList.remove('edit-section');
         }
-
-
     }
+
 
     /**
      * löscht altes Dropdown Menü wenn man auf ein Kaptegorie link drückt
      * @param chapters
      */
     async renderChapterDropDown(chapters) {
-        // console.log('nav-left- renderChapterDropdown',chapters[0].chapterName)
+        console.log('renderChapterDropDown -kategoriewechsel',chapters)
         const customDropdownWrapper = document.querySelectorAll('.custom-dropdown-wrapper');
+        //altes Dropdown löschen
         customDropdownWrapper[0].innerHTML = '';
-        const markUpChapter = this.#generateMarkupDropDownChapter(chapters);
+
+        const markUpChapter = this.#generateMarkupDropDownChapter('chapter',chapters);
 
         customDropdownWrapper[0].insertAdjacentHTML('afterbegin', markUpChapter);
-        console.log('customDropdownWrapper[0]',customDropdownWrapper[0])
+        console.log('customDropdownWrapper[0]', customDropdownWrapper[0])
         this.#activateCustomDropdown();
 
-
         //vom div anstatt von der variablen, 'damit kein kapitel vorhanden' mit abgedeckt wird
-        const chapterName=chapters.length>0 ? chapters[0].chapterName:'Kein Kapitel vorhanden';
+        const chapterName = chapters.length > 0 ? chapters[0].chapterName : 'Kein Kapitel vorhanden';
 
-        console.log('chapterNameExists',chapterName)
+        console.log('chapterNameExists', chapterName)
 
         await this.#changeSubChaptersByChapter(chapterName);
 
-
-        // this.addHandlerRenderChangeSubChapter();
-        // this.#setEventOnLinks();
-
-
-
-
-
-    }
-
-    /**
-     * setzt eventhandle auf navigations links
-     * @param event
-     */
-    #setEventOnLinks(event = null) {
-        console.log('event',event)
-        this.#navLeft = document.getElementById('nav-left-subchapter');
-
-        let firstLink = this.#navLeft.firstChild.dataset.subchapterid;
-
-        this.setActiveClass(firstLink)
     }
 
 
@@ -178,7 +195,7 @@ class NavLeft {
                     // this.#setEventOnLinks('dropdown');
 
                 }
-                  this.addHandlerRenderChangeSubChapter();
+                this.addHandlerRenderChangeSubChapter();
             });
 
             window.addEventListener('click', (event) => {
@@ -192,31 +209,31 @@ class NavLeft {
 
 
     }
-    async #changeSubChaptersByChapter(chapterName){
-        console.log('changeSubChaptersByChapter###################',chapterName)
+
+    async #changeSubChaptersByChapter(chapterName) {
+
 
 
         this.#clear(chapterName);
-        let markup='';
-        if(chapterName=='Kein Kapitel vorhanden'){
+        let markup = '';
+        if (chapterName === 'Kein Kapitel vorhanden') {
             console.log('keen kapitel')
 
-            markup=`<section id="nav-left-box-subchapters"><h1 class="nav-editmode-header-subchapter edit-section">Unterkapitel Berarbeiten</h1><h1 class="error">Kein Unterkapitel vorhanden</h1><ul id="nav-left-subchapter"></ul></section>`;
+            markup = `<section id="nav-left-box-subchapters"><h1 class="nav-editmode-header-subchapter edit-section">Unterkapitel Berarbeiten</h1><h1 class="error">Kein Unterkapitel vorhanden</h1><ul id="nav-left-subchapter"></ul></section>`;
             let box = document.querySelector('#nav-left-box-subchapters');
             box.insertAdjacentHTML('beforeend', markup);
-            console.log('box',box);
-        }else{
-            console.log('changing category')
+
+        } else {
+
             this.subChapterObjects = await loadSubchaptersForNav(chapterName);
-            console.log(this.subChapterObjects)
+
             markup = this.#generateMarkup(this.subChapterObjects);
             let box = document.querySelector('#nav-left-box-subchapters');
             box.insertAdjacentHTML('beforeend', markup);
-            console.log('####################+++++++after insert+++++#####################')
         }
 
 
-        if (chapterName!=='Kein Kapitel vorhanden') {
+        if (chapterName !== 'Kein Kapitel vorhanden') {
             this.#setEventOnLinks('dropdown');
             this.addHandlerRenderChangeSubChapter();
         }
@@ -240,107 +257,171 @@ class NavLeft {
      */
     addHandlerRenderChangeSubChapter() {
         this.#navLeft.addEventListener('click', (e) => {
-
-
             if (typeof e != 'number' && e.target.dataset.linkid !== undefined) {
                 e = Number(e.target.dataset.linkid);
-
                 this.setActiveClass(e);
             }
         });
     }
 
+    async loadAllObjectsForEditMode(categories, chapters, subchapters) {
+        this.#categories = categories;
+        this.#chapters = chapters;
+        this.#subchapters = subchapters;
+        console.log(this.#categories)
+        console.log(this.#chapters)
+        console.log(this.#subchapters)
+    }
+
     /**
-     *
+     * lädt alle Kapitelfür den Editmode
      * @returns {Promise<void>}
      */
     async loadAllChaptersForEditMode() {
-        //this.#navHeaderLinks = document.querySelectorAll('.nav-header-links');
-        // for (const e of this.#navHeaderLinks) {
-        //     if (e.firstChild.classList.contains('active')) {
-        //
-        //         this.#chapterObjects = await laodAllChaptersForNav();
-        //         console.log(this.#chapterObjects);
-        //         let markup = this.#generateMarkupChapterEdit(this.#chapterObjects);
-        //         let box = document.querySelector('#nav-left-box-subchapters');
-        //         box.insertAdjacentHTML('beforebegin', markup);
-        //     }
-        //
-        // }
-
         this.#chapterObjects = await laodAllChaptersForNav();
-        console.log(this.#chapterObjects);
-        let markup = this.#generateMarkupChapterEdit(this.#chapterObjects);
-        let box = document.querySelector('#nav-left-box-subchapters');
-        box.insertAdjacentHTML('beforebegin', markup);
-        this.#activateCustomDropdown();
+        console.log('this.#chapterObjects ', this.#chapterObjects)
 
+        let markup = `
+            ${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters)}
+            ${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters)}`;
+
+
+        let wrapper=document.getElementById('edit-section-wrapper');
+        wrapper.insertAdjacentHTML('beforeend',markup);
+        this.#activateCustomDropdown();
     }
+
+    /**
+     * erstellt entweder ein Liste mit Chapter oder Subchapter
+     * @param chapterType
+     * @param obj
+     * @returns {string}
+     */
+//todo: er findet den namen nicht deswegen undefined also wieder anpassen und achtung die methode wird ncoh von wo anders aufgerufen auch anpassen
+    #generateMarkupChapterTypeEdit(chapterType, obj) {
+        console.log('chapterType',chapterType)
+        let objName = chapterType === "subchapter" ? 'subchapterName' : 'chapterName';
+        console.log('objName',objName)
+        let chapterHeading = chapterType === 'chapter' ? 'Kapitel Bearbeiten' : 'UnterKapiel Bearbeiten';
+        console.log('generateMarkupChapterTypeEdit',this.#categories);
+        console.log('generateMarkupChapterTypeEdit',this.#chapters);
+        let dropDownObj=chapterType === "subchapter" ? this.#chapters : this.#categories;
+        console.log('##############################################################dropDownObj',dropDownObj)
+        this.#htmlObj = `<section class="create-chapter-wrapper "><section id="nav-left-box-chapters">
+      
+        <h1 class="nav-editmode-header">${chapterHeading}</h1>
+        <ul id="nav-left-chapter">`;
+        for (let i = 0; i < obj.length; i++) {
+            this.#htmlObj += `<li  class="nav-left-links-chapters" data-chapterid=${obj[i].id}><span class="nav-left-link-container-chapters"><span class="nav-left-link-box-chapter"><span class="nav-span-chapter"><span data-linkid=${obj[i].id} class='nav-link-chapter' ${obj[i].id}">${obj[i][objName]}</span></span></span><span class="edit-box-chapter nav-editmode"><ion-icon class="trash" name="trash-outline"></ion-icon><ion-icon class="update" name="create-outline"></ion-icon></span></li>`;
+        }
+
+        this.#htmlObj += ` </ul></section>`;
+        this.#htmlObj += `<section class="create-edit-wrapper ">
+                         <h1>Neu erstellen</h1>
+                         <div class="create-subchapter-box">
+                         <p>`;
+        this.#htmlObj += chapterType === 'chapter' ? "Kapitel eingeben:" : "Unterkapitel eingeben:"
+        this.#htmlObj += `</p>
+                         <input class="create-subchapter" type="text">
+                         </div>`;
+        this.#htmlObj += ` <p>`;
+        this.#htmlObj += chapterType === 'chapter' ? "Kategorie auswählen:" : "Kapitel auswählen:"
+        console.log('chapterType',chapterType);
+        console.log('dropDownObj',dropDownObj);
+        this.#htmlObj+=this.#generateMarkupDropDownChapter(chapterType,dropDownObj);
+        // this.#htmlObj += `</p><div class="custom-dropdown">
+        //     <div class="container-select">
+        //      <div id="chapter" class="selected-option">Javascript Fundamentals Part 1</div>
+        //      <div class="container-arrow"><ion-icon name="caret-down-outline"></ion-icon></div>
+        //     </div>
+        //       <ul class="options">
+        //        <li>Javascript Fundamentals Part 1</li>
+        //        <li>Javascript Fundamentals Part 2</li>
+        //       </ul>
+        //     </div>`;
+        this.#htmlObj += `<div class="create-buttons">
+                             <button class="btn btn-nav-reset">Zurücksetzen</button>
+                             <button class="btn btn-nav-send">Absenden</button>
+                         </div>
+                         <div>
+                             <button class="btn btn-neu">neu</button>
+                         </div>
+                         </section> </section>`;
+        return this.#htmlObj;
+    }
+
+
 
     /**
      * erzeugt das markup für das kapitel dropdown menu
      * @returns {string}
      */
-    #generateMarkupDropDownChapter(chapters) {
+    #generateMarkupDropDownChapter(chapterType,obj) {
+        console.log('----------------------------------chapterType',chapterType)
+        console.log('---------------------------------obj',obj)
+        let objName = chapterType === "subchapter" ? 'chapterName' : 'categoryName';
+        let chaptername = obj.length > 0 ? obj[0].chapterName : 'Kein Kapitel vorhanden';
+        console.log('---------------------------------obj-erstes',obj[0][objName])
 
-        let chaptername = chapters.length > 0 ? chapters[0].chapterName : 'Kein Kapitel vorhanden';
-
-        if(chapters.length>0){
-            this.#htmlObj = `<section class="custom-dropdown-wrapper"><div class="custom-dropdown chapter-dropdown">
+        // let objName = chapterType === "subchapter" ? 'chapterName' : 'categoryName';
+        if (obj.length > 0) {
+            this.#htmlObj = `<div class="custom-dropdown">
             <div class="container-select">
              <div id="chapter" class="selected-option">${chaptername}</div> 
              <div class="container-arrow"><ion-icon name="caret-down-outline"></ion-icon></div>
             </div>
               <ul class="options">`;
 
-            for (let i = 0; i < chapters.length; i++) {
-                this.#htmlObj += `<li>${chapters[i].chapterName}</li>`;
+            for (let i = 0; i < obj.length; i++) {
+                this.#htmlObj += `<li>${obj[i][objName]}</li>`;
             }
 
             this.#htmlObj += `</ul>
-            </div></section>`;
-        }else{
-            this.#htmlObj =`<h1 class="error">${chaptername}</h1>`
+            </div>`;
+        } else {
+            this.#htmlObj = `<h1 class="error">${chaptername}</h1>`
         }
 
         return this.#htmlObj;
 
     }
+    // #generateMarkupDropDownChapter(chapters) {
+    //
+    //     let chaptername = chapters.length > 0 ? chapters[0].chapterName : 'Kein Kapitel vorhanden';
+    //
+    //     if (chapters.length > 0) {
+    //         this.#htmlObj = `<section class="custom-dropdown-wrapper"><div class="custom-dropdown chapter-dropdown">
+    //         <div class="container-select">
+    //          <div id="chapter" class="selected-option">${chaptername}</div>
+    //          <div class="container-arrow"><ion-icon name="caret-down-outline"></ion-icon></div>
+    //         </div>
+    //           <ul class="options">`;
+    //
+    //         for (let i = 0; i < chapters.length; i++) {
+    //             this.#htmlObj += `<li>${chapters[i].chapterName}</li>`;
+    //         }
+    //
+    //         this.#htmlObj += `</ul>
+    //         </div></section>`;
+    //     } else {
+    //         this.#htmlObj = `<h1 class="error">${chaptername}</h1>`
+    //     }
+    //     console.log('htmlobj',this.#htmlObj);
+    //     return this.#htmlObj;
+    //
+    // }
 
 
-    /**
-     * markup edit modus chapter
-     * @param chapterObjects
-     * @returns {string}
-     */
-    #generateMarkupChapterEdit(chapterObjects) {
 
-        this.#htmlObj = `<section class="create-chapter-wrapper edit-section"><section id="nav-left-box-chapters">
-        <h1 class="nav-editmode-header">Kaptiel Bearbeiten</h1>
-        <ul id="nav-left-chapter">`;
-        for (let i = 0; i < chapterObjects.length; i++) {
-            this.#htmlObj += `<li  class="nav-left-links-chapters" data-chapterid=${chapterObjects[i].id}><span class="nav-left-link-container-chapters"><span class="nav-left-link-box-chapter"><span class="nav-span-chapter"><span data-linkid=${chapterObjects[i].id} class='nav-link-chapter' ${chapterObjects[i].id}">${chapterObjects[i].chapterName}</span></span></span><span class="edit-box-chapter nav-editmode"><ion-icon class="trash" name="trash-outline"></ion-icon><ion-icon class="update" name="create-outline"></ion-icon></span></li>`;
-        }
-        this.#htmlObj += ` </ul></section>`;
-        this.#htmlObj += this.#generateMarkupForEditMode('chapter', null) + `</section>`;
-        return this.#htmlObj;
-    }
-
-    /**
-     * markup box- für subchapter
-     * @returns {string}
-     */
-    #generateMarkupBox() {
-        this.#htmlObj = `<section id="nav-left-box-subchapters"></section>`;
-        return this.#htmlObj;
-    }
 
     /**
      * markup subchapter -normal mode
      * @returns {string}
      */
     #generateMarkup(subChapterObjects) {
-        this.#htmlObj = `<h1 class="nav-editmode-header-subchapter edit-section">Unterkapitel Berarbeiten</h1><ul id="nav-left-subchapter">`;
+        console.log('+++++++++++++++++++++++++++++++++++++++++generateMarkup');
+        this.#htmlObj = `<ul id="nav-left-subchapter">`;
+        console.log('generateMarkup', this.#htmlObj);
         for (let i = 0; i < subChapterObjects.length; i++) {
             if (subChapterObjects.id === 1) {
                 this.#htmlObj += `<li  class="nav-left-links-subchapter" data-subchapterid=${subChapterObjects[i].id}><span id="startLink" class="nav-span-subchapter"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></li>`;
@@ -353,46 +434,20 @@ class NavLeft {
 
     }
 
+
     /**
-     * generiert markup für den edetierbereich der subchapter
-     * @returns {string}
+     * setzt eventhandle auf navigations links
+     * @param event
      */
-    #generateMarkupForEditMode(action = 'chapter', obj) {
+    #setEventOnLinks(event = null) {
+        console.log('event', event)
+        this.#navLeft = document.getElementById('nav-left-subchapter');
 
-        this.#htmlObj = `<section class="create-edit-wrapper edit-section">
-                         
-                         <div class="create-subchapter-box">
-                         <p>`;
-        this.#htmlObj += action === 'chapter' ? "Kapital eingeben:" : "Unterkapitel eingeben:"
-        this.#htmlObj += `</p>
-                         <input class="create-subchapter" type="text">
-                         </div>`;
+        let firstLink = this.#navLeft.firstChild.dataset.subchapterid;
 
-
-        this.#htmlObj += ` <p>`;
-        this.#htmlObj += action === 'chapter' ? "Kategorie auswählen:" : "Kapitel auswählen:"
-        this.#htmlObj += `</p><div class="custom-dropdown">
-            <div class="container-select">
-             <div id="chapter" class="selected-option">Javascript Fundamentals Part 1</div> 
-             <div class="container-arrow"><ion-icon name="caret-down-outline"></ion-icon></div>
-            </div>
-              <ul class="options">
-               <li>Javascript Fundamentals Part 1</li>
-               <li>Javascript Fundamentals Part 2</li>
-              </ul>
-            </div>`;
-
-
-        this.#htmlObj += `<div class="create-buttons">
-                             <button class="btn btn-nav-reset">Zurücksetzen</button>
-                             <button class="btn btn-nav-send">Absenden</button>
-                         </div>
-                         <div>
-                             <button class="btn btn-neu">neu</button>
-                         </div>
-                         </section>`;
-        return this.#htmlObj;
+        this.setActiveClass(firstLink)
     }
+
 
     /**
      * färbt nav links blau bein anklicken
@@ -452,21 +507,10 @@ class NavLeft {
     }
 
     //löscht den die nav-left-box
-    #clear(chapterName='') {
-        console.log('chaptername',chapterName)
-
-
-            let box = document.querySelector('#nav-left-box-subchapters');
-            // let subchapeterEditheader = box.querySelector('.nav-editmode-header-subchapter');
-            // console.log(box);
-            // console.log(subchapeterEditheader);
-            // box.removeChild(subchapeterEditheader);
-            // let navLeft = box.querySelector('#nav-left-subchapter');
-            // console.log(navLeft)
-            // box.removeChild(navLeft);
-            box.innerHTML='';
-
-
+    #clear(chapterName = '') {
+        console.log('chaptername', chapterName)
+        let box = document.querySelector('#nav-left-box-subchapters');
+        box.innerHTML = '';
         console.log('altes zeugs gelöscht')
 
     }

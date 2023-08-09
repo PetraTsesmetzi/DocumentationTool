@@ -190,7 +190,7 @@ class Form {
         let htmlObj = `
         <div class="form-container">
             <div class="form-header">
-                 ${form.actionForm === 'update' ? '<h1>Elemente ändern</h1>' : '<h1>Elemente hinzufügen</h1>'}
+                 ${form.actionForm === 'update' ? '<h1>Artikel ändern</h1>' : '<h1>Artikel hinzufügen</h1>'}
                 <ion-icon class="close-outline" name="close-outline"></ion-icon>
             </div>
         <form action="#" method="post" id="createAndUpdateObjects">
