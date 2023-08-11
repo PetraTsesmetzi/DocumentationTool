@@ -235,7 +235,9 @@ header {
     margin-left: 15px;
 
 }
-/*#nav-left-box-subchapters h1{*/
+
+
+    /*#nav-left-box-subchapters h1{*/
 /*    font-size: 20px;*/
 /*    margin-bottom:10px;*/
 /*    color: var( --font-color-dark);*/
@@ -337,7 +339,6 @@ header {
 
 }
 
-
 a:link, a:visited {
     color: var(--font-color-dark);
     text-decoration: none;
@@ -345,15 +346,17 @@ a:link, a:visited {
 
 
 .create-edit-wrapper{
-    margin:15px 23px;
+    margin:15px 15px;
 }
+
 .create-edit-wrapper p{
     color:var(--font-color-dark);
     font-size: 14px;
     margin-bottom:0;
-
 }
-
+.create-subchapter-container{
+    margin:0 8px;
+}
 .create-subchapter{
     width:260px;
     height: 30px;
