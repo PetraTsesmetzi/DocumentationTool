@@ -245,6 +245,12 @@ class SubChapter
         }
     }
 
+    /**
+     * aktualisiert subchapter
+     * @param int $updateSubchapterId
+     * @param string $subchapterName
+     * @return void
+     */
     public function updateObject(int $updateSubchapterId,string $subchapterName ): void
     {
         try {

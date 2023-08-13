@@ -42,6 +42,12 @@ export const loadSubchapters = async () => {
     }
     return subchapters;
 }
+
+/**
+ * lädt alle Subchapters anhand des Chapternames
+ * @param chapterName
+ * @returns {Promise<*[]>}
+ */
 export const loadSubChaptersByChapter = async (chapterName) => {
 
     const subchapterByChapterName = [];
@@ -59,6 +65,11 @@ export const loadSubChaptersByChapter = async (chapterName) => {
     state.form.subchapterName= state.form.subchapterByChapterName[0].subchapterName;
     return subchapterByChapterName;
 }
+/**
+ * lädt alle chapters anhand des categorynames
+ * @param categoryName
+ * @returns {Promise<*[]>}
+ */
 export const loadChaptersByCategory = async (categoryName) => {
 
     const chapterByCategorieName = [];
@@ -90,6 +101,10 @@ export const initChapterSubchapterArr=async ()=>{
     await loadChaptersByCategory('Javascript');
     // await loadSubChaptersByChapter('Javascript Fundamentals Part 1');
 }
+/**
+ * lädt alle categories
+ * @returns {Promise<*[]>}
+ */
 export const loadAllCategories=async()=>{
     const categoryNames = [];
     let formData = new FormData();
@@ -103,6 +118,10 @@ export const loadAllCategories=async()=>{
     // state.form.categoryId= state.form.categoryNames[0].id;
     return categoryNames;
 }
+/**
+ * lädt alle subchapter
+ * @returns {Promise<*[]>}
+ */
 export const loadAllChapters=async()=>{
     const chapterNames = [];
     let formData = new FormData();
@@ -127,10 +146,18 @@ export const findChapterBySubchapter=async(subChapterName)=>{
     formData.append('action', 'findChapterBySubchapter');
     formData.append('subChapterName', subChapterName);
     let chapterName = await getJSONObj(formData);
-    console.log('.....................................chapterObj',chapterName)
     return JSON.parse(chapterName);
 }
 
+export const findCategoryByChapter=async(chapterName)=>{
+    state.form.oldChapterName=chapterName;
+    let formData = new FormData();
+    formData.append('action', 'findCategoryByChapter');
+    formData.append('chapterName', chapterName);
+    let categoryName = await getJSONObj(formData);
+
+    return JSON.parse(categoryName);
+}
 
 /**
  * Holt alle Artikel als Objekte aus der DB
@@ -323,24 +350,32 @@ export const validateForm = async () => {
     }
 }
 export const createSubchapter=async (chapterName,subChapterName)=>{
-    console.log('createSubchapter----chapterName',chapterName)
-    console.log('createSubchapter----subChapterName',subChapterName)
+
     let formDataArr = new FormData();
     formDataArr.append('action', 'createSubChapter');
     formDataArr.append('chapterName', chapterName);
     formDataArr.append('subChapterName', subChapterName);
     let data = await getJSONObj(formDataArr);
-    console.log(data);
+
+}
+export const createChapter=async (categoryName,chapterName)=>{
+
+    let formDataArr = new FormData();
+    formDataArr.append('action', 'createChapter');
+    formDataArr.append('categoryName', categoryName);
+    formDataArr.append('chapterName', chapterName);
+    let data = await getJSONObj(formDataArr);
+
 }
 
 export const createAndUpdateArticle = async (submitEvent) => {
 
     try {
-        console.log(submitEvent)
+
         const form = submitEvent.target;
-        console.log(form)
+
         let formData = new FormData(form);
-        console.log('formData', formData)
+
 
         const descriptionsArr = [];
         const codeArr = [];
@@ -349,7 +384,7 @@ export const createAndUpdateArticle = async (submitEvent) => {
         let textareas = document.getElementsByTagName('textarea');
 
         for (let i = 0; i < textareas.length; i++) {
-            console.log(textareas[i]);
+
             if (state.form.actionForm === 'create') {
 
                 if (textareas[i].classList.contains('description')) {
@@ -454,6 +489,22 @@ export const deleteSubChapter=async(id)=>{
         errorMessage(e);
     }
 }
+export const deleteChapter=async(id)=>{
+    try{
+        let formData=new FormData();
+        formData.append('action','deleteChapter');
+        formData.append('id',id);
+        let data=await getJSONObj(formData);
+    }catch(e){
+        errorMessage(e);
+    }
+}
+/**
+ * aktualsiert subchapter
+ * @param updateSubchapterId
+ * @param subChapterName
+ * @returns {Promise<void>}
+ */
 export const updateSubChapter=async(updateSubchapterId,subChapterName)=>{
     try{
 
@@ -462,7 +513,21 @@ export const updateSubChapter=async(updateSubchapterId,subChapterName)=>{
         formData.append('updateSubchapterId',updateSubchapterId);
         formData.append('subChapterName',subChapterName);
         let data=await getJSONObj(formData);
-        console.log(data);
+
+    }catch(e){
+        errorMessage(e);
+    }
+}
+
+export const updateChapter=async(updateChapterId,chapterName)=>{
+    try{
+
+        let formData=new FormData();
+        formData.append('action','updateChapter');
+        formData.append('updateChapterId',updateChapterId);
+        formData.append('chapterName',chapterName);
+        let data=await getJSONObj(formData);
+
     }catch(e){
         errorMessage(e);
     }
@@ -471,8 +536,6 @@ export const updateSubChapter=async(updateSubchapterId,subChapterName)=>{
 
 
 export const deleteField = async (id, field) => {
-    console.log('in model')
-    console.log(field)
 
     try {
         let formData = new FormData();
@@ -533,7 +596,6 @@ const errorMessage = function (e) {
  *
  */
 export const resetState = function () {
-    console.log('reset')
     state.form.articleId = '';
     state.form.articleNr = '';
     state.form.articleName = '';

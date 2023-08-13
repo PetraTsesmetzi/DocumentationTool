@@ -251,7 +251,7 @@ header {
     color: var( --font-color-dark);
 }
 
-.nav-left-links-subchapter,.nav-left-links-chapters{
+.nav-left-links-subchapter,.nav-left-links-chapter{
     height: auto;
     list-style: none;
 }
@@ -357,10 +357,10 @@ a:link, a:visited {
     font-size: 14px;
     margin-bottom:0;
 }
-.create-subchapter-container{
+.create-subchapter-container,.create-chapter-container{
     margin:0 8px;
 }
-.create-subchapter{
+.create-subchapter,.create-chapter{
     color: var(--font-color-dark);
     padding: 8px;
     font-size: 14px;
@@ -479,7 +479,7 @@ a:link, a:visited {
 .edit-section{
     display:none;
 }
-.chapterEdit-selected-update{
+.categories-selected-update,.chapterEdit-selected-update{
     background-color: lightgray;
 }
 /*********************************** ARTICLE SECTION ******************************************/

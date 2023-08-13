@@ -31,6 +31,9 @@ $categoryName=$_POST['categoryName']?? '';
 
 $subChapterName=$_POST['subChapterName']??'';
 $updateSubchapterId=$_POST['updateSubchapterId']??'';
+$updateChapterId=$_POST['updateChapterId']??'';
+
+
 try {
 
     switch ($action) {
@@ -138,9 +141,30 @@ try {
             break;
         case 'updateSubChapter':
             setVariables();
-
             (new SubChapter())->updateObject($updateSubchapterId,$subChapterName);
-            echo json_encode($chapterName);
+            echo json_encode('Subchapter wurde aktualisiert');
+            break;
+        case 'createChapter':
+            setVariables();
+            $categoryId=(new Category())->getCategoryId($categoryName);
+            $chapter=(new chapter())->createNewObject($categoryId,$chapterName);
+            echo json_encode('neues Kapitel wurde erstellt');
+            break;
+        case 'deleteChapter':
+            setVariables();
+            (new Chapter())->deleteObject($id);
+            echo json_encode('Kapitel wurde gelöscht');
+            break;
+        case 'findCategoryByChapter':
+            setVariables();
+            $categoryId=(new Chapter())->getCategoryId($chapterName);
+            $categoryName=(new Category())->getObjectNameById($categoryId);
+            echo json_encode($categoryName);
+            break;
+        case 'updateChapter':
+            setVariables();
+            (new Chapter())->updateObject($updateChapterId,$chapterName);
+            echo json_encode('Chapter wurde aktualisiert');
             break;
     }
 

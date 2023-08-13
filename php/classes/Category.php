@@ -59,8 +59,28 @@ class Category
 
     }
 
+    public function getObjectNameById(int $id=null): string
+    {
+        try {
+
+            $dbh = DB::connect();
+            $sql = "SELECT categoryName FROM category WHERE id=:id";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $categoryName = $stmt->fetchColumn();
+            if ($categoryName === false) {
+                throw new Exception("categoryName with ID $id not found.");
+            }
 
 
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().$e->getFile());
+        }
+
+
+        return json_encode($categoryName);
+    }
 
 
     /**
