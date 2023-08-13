@@ -61,7 +61,49 @@ class Chapter
         return $chapterId->id;
 
     }
+//    public function getObjectById(int $id=null): string
+//    {
+//        try {
+//
+//            $dbh = DB::connect();
+//            $sql = "SELECT * FROM chapter WHERE id=:id";
+//            $stmt = $dbh->prepare($sql);
+//            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+//            $stmt->execute();
+//            $chapter = $stmt->fetchObject(__CLASS__);
+//            if ($chapter === false) {
+//                throw new Exception("Subchapter with ID $id not found.");
+//            }
+//            $chapter->subChapterArr = (new SubChapter())->getAllAsObjects($chapter);
+//
+//        } catch (PDOException $e) {
+//            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().$e->getFile());
+//        }
+////        return $subChapter;
+//        return $chapter->getJSONEncode();
+//    }
+    public function getObjectNameById(int $id=null): string
+    {
+        try {
 
+            $dbh = DB::connect();
+            $sql = "SELECT chapterName FROM chapter WHERE id=:id";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $chapterName = $stmt->fetchColumn();
+            if ($chapterName === false) {
+                throw new Exception("ChapterName with ID $id not found.");
+            }
+
+
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().$e->getFile());
+        }
+
+
+        return json_encode($chapterName);
+    }
 
     public function getAllObjByCategoryId(int $categoryId=null): array|null
     {
@@ -91,5 +133,7 @@ class Chapter
     {
         return json_encode(get_object_vars($this));
     }
+
+
 
 }

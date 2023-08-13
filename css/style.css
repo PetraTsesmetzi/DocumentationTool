@@ -18,6 +18,7 @@
     --btn-fc-dangerous: #fff;
     --btn-bg--dangerous: #F26E14FF;
     --btn-bg--dangerous-hover: #de6412;
+    --btn-bg-back: #2d2d2d;
     --border-dark: #9d9d9d;
     --border-light:#D3D3D3FF;
     --font-color-form: #585858;
@@ -271,7 +272,9 @@ header {
     width:260px;
     background-color: var(--nav-left-bg-hover);
 }
-
+.trash,.update{
+    cursor:pointer;
+}
 .nav-left-link-box-chapter{
     width:260px;
 }
@@ -358,14 +361,26 @@ a:link, a:visited {
     margin:0 8px;
 }
 .create-subchapter{
+    color: var(--font-color-dark);
+    padding: 8px;
+    font-size: 14px;
     width:260px;
     height: 30px;
     border-radius:5px;
     margin-bottom:10px;
     border:1px solid var(--border-input);
 }
+
+
 .create-buttons{
-    margin: 15px 0 10px 0;
+    margin: 25px 0 40px 0;
+    width:260px;
+
+}
+.create-buttons-box{
+
+    display:flex;
+    justify-content: space-evenly;
 }
 .btn-nav-reset{
     background-color: var(--btn-bg-nav-reset);
@@ -373,12 +388,18 @@ a:link, a:visited {
     padding:5px;
     margin-right:10px;
 }
-.btn-nav-send {
+.btn-nav-send,.btn-nav-update {
     background-color: var(--btn-bg--dangerous);
     color: var(--btn-fc-dangerous);
     padding:5px;
 }
 
+.btn-nav-back{
+    margin-top:20px;
+    width:260px;
+    background-color: var( --btn-bg-back);
+    color: var(--btn-fc-dangerous);
+}
 
 #nav-left-box-chapters{
     /*margin-bottom: 15px;*/
@@ -403,11 +424,15 @@ a:link, a:visited {
     justify-content: space-between;
 }
 .container-arrow{
-    /*border: 1px solid blue;*/
+
     display:flex;
     padding:5px;
     justify-content: center;
     align-items: center;
+}
+.container-arrow .arrow{
+  color: var(--font-color-dark);
+    font-size: 20px;
 }
 .selected-option {
 
@@ -454,7 +479,9 @@ a:link, a:visited {
 .edit-section{
     display:none;
 }
-
+.chapterEdit-selected-update{
+    background-color: lightgray;
+}
 /*********************************** ARTICLE SECTION ******************************************/
 .content-container {
     position: relative;

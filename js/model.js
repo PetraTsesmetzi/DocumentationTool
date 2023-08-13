@@ -117,6 +117,22 @@ export const loadAllChapters=async()=>{
     return chapterNames;
 }
 /**
+ * gibt den chapternamen be gegebenen subchapternamen zurück
+ * @param subChapterName
+ * @returns {Promise<any>}
+ */
+export const findChapterBySubchapter=async(subChapterName)=>{
+    state.form.oldSubchapterName=subChapterName;
+    let formData = new FormData();
+    formData.append('action', 'findChapterBySubchapter');
+    formData.append('subChapterName', subChapterName);
+    let chapterName = await getJSONObj(formData);
+    console.log('.....................................chapterObj',chapterName)
+    return JSON.parse(chapterName);
+}
+
+
+/**
  * Holt alle Artikel als Objekte aus der DB
  * @returns {Promise<*[]>}
  */
@@ -306,7 +322,16 @@ export const validateForm = async () => {
         }
     }
 }
-
+export const createSubchapter=async (chapterName,subChapterName)=>{
+    console.log('createSubchapter----chapterName',chapterName)
+    console.log('createSubchapter----subChapterName',subChapterName)
+    let formDataArr = new FormData();
+    formDataArr.append('action', 'createSubChapter');
+    formDataArr.append('chapterName', chapterName);
+    formDataArr.append('subChapterName', subChapterName);
+    let data = await getJSONObj(formDataArr);
+    console.log(data);
+}
 
 export const createAndUpdateArticle = async (submitEvent) => {
 
@@ -419,6 +444,31 @@ export const deleteArticle = async (id, action) => {
         errorMessage(e);
     }
 }
+export const deleteSubChapter=async(id)=>{
+    try{
+        let formData=new FormData();
+        formData.append('action','deleteSubChapter');
+        formData.append('id',id);
+        let data=await getJSONObj(formData);
+    }catch(e){
+        errorMessage(e);
+    }
+}
+export const updateSubChapter=async(updateSubchapterId,subChapterName)=>{
+    try{
+
+        let formData=new FormData();
+        formData.append('action','updateSubChapter');
+        formData.append('updateSubchapterId',updateSubchapterId);
+        formData.append('subChapterName',subChapterName);
+        let data=await getJSONObj(formData);
+        console.log(data);
+    }catch(e){
+        errorMessage(e);
+    }
+}
+
+
 
 export const deleteField = async (id, field) => {
     console.log('in model')

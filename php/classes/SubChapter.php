@@ -153,6 +153,22 @@ class SubChapter
         return $subChapterId->id;
 
     }
+    public function getChapterId($subChapterName):int{
+        try {
+//
+            $dbh = DB::connect();
+            $sql = "SELECT chapter_Id FROM subchapter WHERE subchapterName=:subchapterName";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':subchapterName', $subChapterName, PDO::PARAM_STR);
+            $stmt->execute();
+            $chapterId = $stmt->fetchObject(__CLASS__);
+
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage());
+        }
+        return $chapterId->chapter_Id;
+
+    }
 
     public function getAllObjByChapterId(int $chapterId=null): array
     {
@@ -196,16 +212,15 @@ class SubChapter
      * @param int $chapter_Id
      * @return int
      */
-    public function createNewObject(int $subchapterNumber, string $subchapterName, int $chapter_Id): int
+    public function createNewObject(  int $chapter_Id, string $subchapterName): int
     {
         try {
             $dbh=DB::connect();
 //            $dbh = DB::connect();
-            $sql = "INSERT INTO subchapter(subchapterNumber,chapter_Id,subchapterName) VALUES(:subchapterNumber,:chapter_Id,:subchapterName)";
+            $sql = "INSERT INTO subchapter(chapter_Id,subchapterName) VALUES(:chapter_Id,:subchapterName)";
             $stmt = $dbh->prepare($sql);
-            $stmt->bindParam(':subchapterNumber', $subchapterNumber, PDO::PARAM_STR);
             $stmt->bindParam(':chapter_Id', $chapter_Id, PDO::PARAM_STR);
-            $stmt->bindParam(':subchapterName', $subchapterName, PDO::PARAM_INT);
+            $stmt->bindParam(':subchapterName', $subchapterName, PDO::PARAM_STR);
             $stmt->execute();
             $lastId = $dbh->lastInsertId();
             $dbh = null;
@@ -214,5 +229,38 @@ class SubChapter
         }
         return $lastId;
     }
+
+    public function deleteObject(int $id):void
+    {
+
+        try {
+            $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWD);
+            $sql = "DELETE from subchapter WHERE id=:id";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $dbh = null;
+        } catch (PDOException $e) {
+            throw new Exception($e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getCode() . ' ' . $e->getLine());
+        }
+    }
+
+    public function updateObject(int $updateSubchapterId,string $subchapterName ): void
+    {
+        try {
+            $dbh = DB::connect();
+            $sql = "UPDATE subchapter SET  subchapterName=:subchapterName
+                    WHERE id=:updateSubchapterId";
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':subchapterName', $subchapterName, PDO::PARAM_STR);
+            $stmt->bindParam(':updateSubchapterId', $updateSubchapterId, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $dbh = null;
+        } catch (PDOException $e) {
+            throw new PDOException('Fehler in der Datenbank: ' . $e->getMessage().'--'.$e->getLine());
+        }
+    }
+
 
 }
