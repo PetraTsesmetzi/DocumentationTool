@@ -66,9 +66,9 @@ class NavLeft {
             let navLeftBox = document.getElementById('nav-left-box-subchapters');
             const markup = this.#generateMarkup(this.subChapterObjects);
             navLeftBox.insertAdjacentHTML('beforeend', markup);
+            console.log('render: ')
 
-
-            this.setActiveClass(1);
+            // this.setActiveClass(2);
             this.#setEventOnLinks('render');
 
             this.#activateCustomDropdown('.chapterNorm-dropdown', '.chapterNorm-container', '.chapterNorm-selected', '.chapterNorm-options');
@@ -148,13 +148,13 @@ class NavLeft {
      * @returns {string}
      */
     #generateMarkupDropDownChapter(className, mode, chapterType, obj, name = '', modi = null, updateValueOverlay = null) {
-        console.log('generateMarkupDropDownChapter.............className..........',className);
-        console.log('generateMarkupDropDownChapter.............mode................',mode)
-        console.log('generateMarkupDropDownChapter.............chapterType..........',chapterType)
-        console.log('generateMarkupDropDownChapter.............obj..................',obj)
-        console.log('generateMarkupDropDownChapter.............name.................',name)
-        console.log('generateMarkupDropDownChapter.............modi..................',modi)
-        console.log('generateMarkupDropDownChapter.............updateValueOverlay....',updateValueOverlay)
+        // console.log('generateMarkupDropDownChapter.............className..........',className);
+        // console.log('generateMarkupDropDownChapter.............mode................',mode)
+        // console.log('generateMarkupDropDownChapter.............chapterType..........',chapterType)
+        // console.log('generateMarkupDropDownChapter.............obj..................',obj)
+        // console.log('generateMarkupDropDownChapter.............name.................',name)
+        // console.log('generateMarkupDropDownChapter.............modi..................',modi)
+        // console.log('generateMarkupDropDownChapter.............updateValueOverlay....',updateValueOverlay)
 
 
         let objName;
@@ -331,9 +331,12 @@ class NavLeft {
      * eventlister auf subchapter Links
      */
     addHandlerRenderChangeSubChapter() {
+        console.log('changesub');
         this.#navLeft.addEventListener('click', (e) => {
+
             if (typeof e != 'number' && e.target.dataset.linkid !== undefined) {
                 e = Number(e.target.dataset.linkid);
+                console.log('e',e)
                 this.setActiveClass(e);
             }
         });
@@ -456,7 +459,7 @@ class NavLeft {
      * @param event
      */
     #setEventOnLinks(event = null) {
-
+        console.log('event: ',event)
         this.#navLeft = document.getElementById('nav-left-subchapter');
 
         let firstLink = this.#navLeft.firstChild.dataset.subchapterid;
@@ -470,10 +473,11 @@ class NavLeft {
      * @param element
      */
     setActiveClass(element) {
-
+        console.log('element: ',element)
         this.#removeAttributeActiveOnLink();
         window.location.href = "#" + element;
         const links = document.getElementsByClassName('nav-link-subchapter');
+
         //beim wechseln von kapitel
         let start = Number(links[0].dataset.linkid) - 1;
 
@@ -504,15 +508,18 @@ class NavLeft {
      */
     #removeAttributeActiveOnLink() {
         const allLinks = document.querySelectorAll('.nav-left-links-subchapter');
+        // console.log('allLinks',allLinks)
         for (let i = 0; i < allLinks.length; i++) {
+            console.log('allLinks',allLinks[i])
             const navLink = document.getElementsByClassName('nav-link-subchapter');
-
+            // console.log('navLinks',navLink.length)
             navLink[i].style.color = "#444444FF";
             const navSpan = document.getElementsByClassName('nav-span-subchapter');
-
-            if (navSpan[i].classList.contains('active')) {
-                navSpan[i].classList.remove('active');
-            }
+            // console.log('navSpan',navSpan.length)
+            // console.log('span',navSpan[i])
+            // if (navSpan[i].classList.contains('active')) {
+            //     navSpan[i].classList.remove('active');
+            // }
         }
 
     }

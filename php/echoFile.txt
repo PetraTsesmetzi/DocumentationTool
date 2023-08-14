@@ -4935,3 +4935,1593 @@ action : loadCategory
 action : loadChapters
 
 
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript 1
+subChapterName : hdhdhdhdhdhd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 20
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript 1
+subChapterName : hdhdhdhd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : hdhdhdhd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 21
+subChapterName : hdhdhdhdfdfsdfgdfgfgfdg
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createChapter
+categoryName : HOW
+chapterName : neues große kapitel
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findCategoryByChapter
+chapterName : neues große kapitel
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateChapter
+updateChapterId : 12
+chapterName : neues große kapitel1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : HOW
+
+
+action : createSubChapter
+chapterName : neues große kapitel1
+subChapterName : neues unterkapitel
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : HOW
+
+
+articleTitel : fdfsdfsdf
+articleNr : 1
+subChapterTitel : neues unterkapitel
+description_0 : dfsdfsdfsdf
+codeblock_1 : sdfsdfsdfsdfsdfd
+action : createArticle
+descriptionsArr : [{"descriptionId":"","descriptionText":"dfsdfsdfsdf","elementOrder":"0"}]
+codeArr : [{"codeId":"","codeText":"sdfsdfsdfsdfsdfd","elementOrder":"1"}]
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : HOW
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findCategoryByChapter
+chapterName : neues große kapitel1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateChapter
+updateChapterId : 12
+chapterName : neues große kapitel12
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : HOW
+
+
+action : loadChapterByCategory
+categoryName : HTML/CSS
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+articleTitel : hfghfgh
+articleNr : 1
+subChapterTitel : String und Template literals
+description_0 : gfhdgfh
+codeblock_1 : ghdgfhdfghdfh
+action : createArticle
+descriptionsArr : [{"descriptionId":"","descriptionText":"gfhdgfh","elementOrder":"0"}]
+codeArr : [{"codeId":"","codeText":"ghdgfhdfghdfh","elementOrder":"1"}]
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : HTML/CSS
+
+
+action : loadChapterByCategory
+categoryName : HOW
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
