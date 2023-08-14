@@ -13,21 +13,22 @@ class NavHeader{
     #insertBtn=document.querySelector('.btn-insert');
 
     #bookBtn=document.querySelector('.btn-book');
-
+    #activateClass;
 
     /**
      * initialisiert das Markup (hängt die htmlObjekte in die Container)
      * und setzt ein EventlLister für das Makieren der Links in blau
      * @param start
      */
-    render(start){
+    render(start,categories){
         if(start==='init'){
-            const markup = this.#generateMarkup();
+            const markup = this.#generateMarkup(categories);
             this.#parentElement.insertAdjacentHTML('afterbegin', markup);
             const startLink=document.querySelector('.startLink');
             this.#setActiveClassOnNav(startLink,start);
         }
-        this.#parentElement.addEventListener('click', this.#setActiveClassOnNav.bind(this));
+        this.#activateClass=this.#setActiveClassOnNav.bind(this)
+        this.#parentElement.addEventListener('click',this.#activateClass );
     }
 
     /**
@@ -67,15 +68,15 @@ class NavHeader{
      * String für die Links in Nav-Header
      * @returns {string}
      */
-    #generateMarkup() {
+    #generateMarkup(categories) {
+        let htmlObj='';
 
-        return `<li class="nav-header-links"><span class="startLink" id="javascript">JAVASCRIPT</span></li>
-                <li class="nav-header-links"><span id="php">PHP</span></li>
-                <li class="nav-header-links"><span id="mysql">MSQL</span></li>
-                <li class="nav-header-links"><span id="html">HTML/CSS</span></li>
-                <li class="nav-header-links"><span id="how">HOW TO</span></li>
-                 `;
+        for (let i = 0; i < categories.length; i++) {
 
+            htmlObj+=`<li class="nav-header-links"><span class="startLink" id=${categories[i].id} data-categoryName=${categories[i].categoryName}>${categories[i].categoryName}</span></li>`;
+        }
+
+        return htmlObj;
     }
 
     /**
@@ -108,5 +109,34 @@ class NavHeader{
             }
         })
     }
+
+
+    //todo: bind(this) wegmachen und dann verschwindet auch der eventlistener
+    //dann noch activate irgendwie stoppen
+    addHandlerRenderLoadSubchapter(loadChapterByCategory) {
+        const links=document.querySelectorAll('.nav-header-links')
+
+        links.forEach(link=>{
+            link.addEventListener('click',loadChapterByCategory);
+
+        })
+
+    }
+
+
+    removeEventListenerFromLinks(loadChapterByCategory){
+        const links=document.querySelectorAll('.nav-header-links')
+        console.log('remove')
+        links.forEach(link=>{
+            link.removeEventListener('click',loadChapterByCategory);
+            console.log(link)
+        })
+        this.#parentElement.removeEventListener('click', this.#activateClass);
+    }
+
+    setEventListerForActiveClass(){
+        this.#parentElement.addEventListener('click', this.#activateClass);
+    }
+
 }
 export default new NavHeader();

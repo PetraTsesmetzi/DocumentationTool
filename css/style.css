@@ -11,12 +11,14 @@
 
     --pre-content: #2d2d2d;
 
-    --btn-bg-light: #ffffff;
+    --btn-bg-light: #eae9e9;
+    --btn-bg-nav-reset: #fffefe;
     --btn-bg-light-hover: #dedcdc;
     --btn-fc-dark: #444;
     --btn-fc-dangerous: #fff;
     --btn-bg--dangerous: #F26E14FF;
     --btn-bg--dangerous-hover: #de6412;
+    --btn-bg-back: #2d2d2d;
     --border-dark: #9d9d9d;
     --border-light:#D3D3D3FF;
     --font-color-form: #585858;
@@ -91,7 +93,7 @@ header {
 }
 .button-nav-container {
     height: 70px;
-    width: 36%;
+    width: 50%;
     min-width:250px;
     display: flex;
     justify-content: center;
@@ -147,6 +149,7 @@ header {
 }
 
 .btn-insert {
+    width:160px;
     background-color: var(--btn-bg-light);
 }
 
@@ -223,23 +226,32 @@ header {
 }
 
 
-/*#nav-left-wrapper > section {*/
-/*     margin-left: 15px;*/
-/*}*/
-#nav-left-box-chapters,#nav-left-box-subchapters,.create-subchapter-wrapper{
-    margin-left: 15px;
+.active {
+    background-color: var(--nav-left-bg-active);
+    color: var(--font-color-light);
 }
 
-/*#nav-left-wrapper > section > h1 {*/
-/*    width: 280px;*/
-/*    color: var(--font-color-dark);*/
+
+#nav-left-box-chapters,#nav-left-box-subchapters{
+    margin-left: 15px;
+
+}
+
+
+    /*#nav-left-box-subchapters h1{*/
 /*    font-size: 20px;*/
-/*    margin: 30px 0 15px 0;*/
-/*    padding: 0 7px;*/
+/*    margin-bottom:10px;*/
+/*    color: var( --font-color-dark);*/
 /*}*/
 
 
-.nav-left-links-subchapter,.nav-left-links-chapters{
+.nav-editmode-header,.nav-editmode-header-subchapter{
+    font-size: 20px;
+    margin:30px 0 15px 0;
+    color: var( --font-color-dark);
+}
+
+.nav-left-links-subchapter,.nav-left-links-chapter{
     height: auto;
     list-style: none;
 }
@@ -260,11 +272,22 @@ header {
     width:260px;
     background-color: var(--nav-left-bg-hover);
 }
-
+.trash,.update{
+    cursor:pointer;
+}
 .nav-left-link-box-chapter{
     width:260px;
 }
+.nav-span-chapter {
+    color: var(--font-color-dark);
+    padding: 5px 8px;
 
+}
+.error{
+    color:var(--font-color-dark);
+    padding:5px 7px;
+    font-size:14px;
+}
 .edit-box-subchapter{
     display:inline-flex;
     align-items: center;
@@ -279,6 +302,7 @@ header {
     height: inherit;
     width: 100%;
     display: inline-flex;
+
 }
 
 
@@ -288,10 +312,13 @@ header {
     height: inherit;
     padding: 5px 8px;
 }
+/* berarbeiten und löschen icons*/
 .trash, .update{
     font-size: 20px;
     margin-left:5px;
 }
+
+
 
 .trash{
 
@@ -306,108 +333,112 @@ header {
 
 }
 
+/*neu button*/
 .btn-neu {
     padding:5px 8px;
     background-color: var(--btn-bg--dangerous);
     color: var(--btn-fc-dangerous);
 
-}
 
-.active {
-    background-color: var(--nav-left-bg-active);
-    color: var(--font-color-light);
 }
-
 
 a:link, a:visited {
     color: var(--font-color-dark);
     text-decoration: none;
 }
 
-.nav-editmode{
+
+.create-edit-wrapper{
+    margin:15px 15px;
 }
-.create-subchapter-wrapper{
-    margin-top:20px;
+
+.create-edit-wrapper p{
+    color:var(--font-color-dark);
+    font-size: 14px;
+    margin-bottom:0;
 }
-.create-subchapter{
+.create-subchapter-container,.create-chapter-container{
+    margin:0 8px;
+}
+.create-subchapter,.create-chapter{
+    color: var(--font-color-dark);
+    padding: 8px;
+    font-size: 14px;
     width:260px;
     height: 30px;
     border-radius:5px;
+    margin-bottom:10px;
     border:1px solid var(--border-input);
 }
+
+
 .create-buttons{
-    margin: 10px 0 10px 0;
+    margin: 25px 0 40px 0;
+    width:260px;
+
+}
+.create-buttons-box{
+
+    display:flex;
+    justify-content: space-evenly;
 }
 .btn-nav-reset{
-    background-color: var(--btn-bg-light);
+    background-color: var(--btn-bg-nav-reset);
     color: var(--font-color-dark);
     padding:5px;
     margin-right:10px;
 }
-.btn-nav-send {
+.btn-nav-send,.btn-nav-update {
     background-color: var(--btn-bg--dangerous);
     color: var(--btn-fc-dangerous);
     padding:5px;
 }
 
+.btn-nav-back{
+    margin-top:20px;
+    width:260px;
+    background-color: var( --btn-bg-back);
+    color: var(--btn-fc-dangerous);
+}
 
 #nav-left-box-chapters{
-    margin-bottom: 30px;
-    border:1px solid green;
-}
-.nav-left-chapter-links{
+    /*margin-bottom: 15px;*/
 
 }
 
-/*#chapter{*/
-/*     background-color: #eee;*/
-/*     width: 300px;*/
-/*     color: var(--font-color-dark);*/
-/*     font-size: 16px;*/
-/*     margin: 30px 0 15px 10px;*/
-/*     padding: 10px;*/
-/*     cursor:pointer;*/
-/*     !*border:none;*!*/
-/* }*/
-/*select>option{*/
-/*    font-size: 18px;*/
-/*    font-family: 'Open Sans', sans-serif;*/
-/*    color: #555;*/
-/*    background-color: rgb(247, 247, 247);*/
-/*    background-image: none;*/
+/*custom dropdown*/
 
-
-/*    padding: 15px;*/
-/*    border: 1px solid rgb(41, 18, 18);*/
-/*}*/
-
-
-.custom-dropdown {
+.custom-dropdown{
     position: relative;
     display: inline-block;
     border: 1px solid var( --border-input);
     border-radius: 5px;
-    margin:15px 15px;
     width: 260px;
     background-color: #fff;
 }
+.custom-dropdown:first-child{
+    margin:15px 15px;
+}
 .container-select{
-
     display:flex;
     justify-content: space-between;
 }
 .container-arrow{
-    /*border: 1px solid blue;*/
+
     display:flex;
     padding:5px;
     justify-content: center;
     align-items: center;
 }
+.container-arrow .arrow{
+  color: var(--font-color-dark);
+    font-size: 20px;
+}
 .selected-option {
 
     /*border: 1px solid orange;*/
     color: var(--font-color-dark);
-    font-size: 15px;
+    /*font-size: 15px;*/
     height: 30px;
     display: flex;
     align-items: center;
@@ -419,8 +450,9 @@ a:link, a:visited {
 
     width: 260px;
     height: 70px;
+    overflow-y: auto;
     list-style: none;
-    padding: 0;
+
     margin-top:10px;
     border: 1px solid var( --border-input);
     /*border-bottom-right-radius: 5px;*/
@@ -444,7 +476,12 @@ a:link, a:visited {
 .options li:hover {
     background-color:  var(--nav-left-bg-hover);
 }
-
+.edit-section{
+    display:none;
+}
+.categories-selected-update,.chapterEdit-selected-update{
+    background-color: lightgray;
+}
 /*********************************** ARTICLE SECTION ******************************************/
 .content-container {
     position: relative;

@@ -1,6 +1,14 @@
 DROP DATABASE IF EXISTS docutool;
 CREATE DATABASE IF NOT EXISTS docutool;
 USE docutool;
+
+CREATE TABLE category
+(
+    id            INT PRIMARY KEY AUTO_INCREMENT,
+    categoryName   VARCHAR(100)
+);
+
+
 CREATE TABLE chapter
 (
     id            INT PRIMARY KEY AUTO_INCREMENT,
@@ -35,13 +43,29 @@ CREATE TABLE description
     elementOrder      INT,
     descriptionText   TEXT
 );
+INSERT INTO category(id,categoryName)
+VALUES (Null,'Javascript');
+INSERT INTO category(id,categoryName)
+VALUES (Null,'PHP');
+INSERT INTO category(id,categoryName)
+VALUES (Null,'MySQL');
+INSERT INTO category(id,categoryName)
+VALUES (Null,'HTML/CSS');
+INSERT INTO category(id,categoryName)
+VALUES (Null,'HOW');
 
 INSERT INTO chapter(id,category_Id,chapterName)
 VALUES (Null,1,'Javascript Fundamentals Part 1');
 INSERT INTO chapter(id,category_Id,chapterName)
 VALUES (Null,1,'Javascript Fundamentals Part 2');
 INSERT INTO chapter(id,category_Id,chapterName)
-VALUES (Null,2,'PHP Fundamenetals');
+VALUES (Null,2,'PHP Fundamenetals Part 1');
+INSERT INTO chapter(id,category_Id,chapterName)
+VALUES (Null,2,'PHP Fundamenetals Part 2');
+INSERT INTO chapter(id,category_Id,chapterName)
+VALUES (Null,3,'MySQL Fundamenetals Part 1');
+INSERT INTO chapter(id,category_Id,chapterName)
+VALUES (Null,3,'MySQL Fundamenetals Part 2');
 
 INSERT INTO subchapter(id,chapter_Id, subchapterName)
 VALUES (NULL,1, 'Values und Variables');
@@ -55,6 +79,31 @@ INSERT INTO subchapter(id,chapter_Id, subchapterName)
 VALUES (NULL,2, 'Fundamentals Part 2_2');
 INSERT INTO subchapter(id,chapter_Id, subchapterName)
 VALUES (NULL,2, 'Fundamentals Part 2_3');
+
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,3, 'PHP-Values und Variables');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,3, 'PHP-Basic Operators Mathoperators');
+
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,4, 'PHP-Fundamentals Part 2_1');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,4, 'PHP-Fundamentals Part 2_2');
+
+
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,5, 'MySql-First Steps');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,5, 'MySql-Second Steps');
+
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,6, 'MySql-Advanced Part 1');
+INSERT INTO subchapter(id,chapter_Id, subchapterName)
+VALUES (NULL,6, 'MySql-advanced Part 2');
+
+
+
+
 
 INSERT INTO article(id, articleNumber,subchapter_Id, articleName)
 VALUES (NULL, 1,1, 'Variables');
@@ -108,3 +157,10 @@ ALTER TABLE description
 ALTER TABLE article
     ADD FOREIGN KEY (subchapter_Id) REFERENCES subchapter(id) ON DELETE CASCADE;
 
+
+ALTER TABLE subchapter
+    ADD FOREIGN KEY (chapter_Id) REFERENCES chapter(id) ON DELETE CASCADE;
+
+
+ALTER TABLE chapter
+    ADD FOREIGN KEY (category_Id) REFERENCES category(id) ON DELETE CASCADE;

@@ -42,10 +42,10 @@ class Article
     /**
      * gibt alle Artikel anhand der Supchapterid zurück
      * @param Subchapter|null $subchapter
-     * @return array
+     * @return array|null
      */
 
-    public function getAllAsObjects(Subchapter $subchapter = null): array
+    public function getAllAsObjects(Subchapter $subchapter = null): array|null
     {
 
         try {
@@ -92,7 +92,7 @@ class Article
      * @return void
      * @throws Exception
      */
-    public function deleteObject(int $id)
+    public function deleteObject(int $id):void
     {
 
         try {

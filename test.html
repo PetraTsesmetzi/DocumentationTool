@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<input id='myinput' type="text">
+<button id="btn">clicki</button>
+<div id="myDiv" style="pointer-events: none;">Clickable Element</div>
+
+<script>
+    #generateMarkupDropDownChapter(className, mode, chapterType, obj, name = '', modi = null, updateValueOverlay = null) {
+        console.log('name.......................',name)
+        let objName;
+        let chaptername;
+        if (mode === 'nonEdit') {
+
+            objName = 'chapterName';
+            chaptername = obj.length > 0 ? obj[0].chapterName : 'Kein Kapitel vorhanden';
+
+        }
+
+        if (mode === 'editMode') {
+            objName = chapterType === "subchapter" ? 'chapterName' : 'categoryName';
+            chaptername = obj.length > 0 ? obj[0][objName] : 'Kein Kapitel vorhanden';
+        }
+
+        console.log('Dropiiiiiiiiiiiiiiiiiiiiiiiiiii',chaptername)
+        console.log('modi: :::::::,',modi)
+        // let objName = chapterType === "subchapter" ? 'chapterName' : 'categoryName';
+        if (obj.length > 0) {
+            this.#htmlObj = `<div  class="custom-dropdown ${className}-dropdown">`;
+
+            if (modi === 'updateMode') {
+                this.#htmlObj += ` <div class="container-select  ${className}-container ${className}-selected-update" style="pointer-events: none;">`;
+                this.#htmlObj += ` <div id="${className}-id" class="selected-option ${className}-selected ${className}-selected-update" >${updateValueOverlay}</div>`;
+                // this.#htmlObj += `<div  class="container-arrow ${className}-selected-update" ><ion-icon class='arrow' name="caret-down-outline"></ion-icon></div></div>`;
+            } else if(modi === 'refresh' || modi===null) {
+                this.#htmlObj += ` <div class="container-select  ${className}-container" ">`;
+                // this.#htmlObj += ` <div id="${className}-id" class="selected-option ${className}-selected"">${chaptername}</div>`;
+                // this.#htmlObj += `<div  class="container-arrow" ><ion-icon class='arrow' name="caret-down-outline"></ion-icon></div></div>`;
+                // this.#htmlObj += ` <div id="${className}-id" class="selected-option ${className}-selected"">${name !== '' ? name : chaptername}</div>`;
+            }
+            this.#htmlObj += ` <div id="${className}-id" class="selected-option ${className}-selected"">${chaptername}</div>`;
+            this.#htmlObj += `<div  class="container-arrow" ><ion-icon class='arrow' name="caret-down-outline"></ion-icon></div></div>`;
+
+            this.#htmlObj += ` <ul class="options ${className}-options"">`;
+
+            for (let i = 0; i < obj.length; i++) {
+                this.#htmlObj += `<li>${obj[i][objName]}</li>`;
+            }
+
+            this.#htmlObj += `</ul>
+            </div>`;
+        } else {
+            this.#htmlObj = `<h1 class="error">${chaptername}</h1>`
+        }
+        console.log('generateMarkupDropDownChapter')
+
+        return this.#htmlObj;
+
+    }
+
+</script>
+</body>
+</html>
