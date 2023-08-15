@@ -7288,3 +7288,2929 @@ action : loadCategory
 action : loadChapters
 
 
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 13
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 13
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 12
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 12
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : dasdsdasdasd
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : dasdsdasdasd
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : dasdsdasdasd
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : dasdsdasdasd
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : dasdsdasdasd
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : dasdsdasdasd
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : hello
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : hello2
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : hello
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : hello2
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : hello2
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 16
+subChapterName : hello21
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 16
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 15
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 14
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : MySql-Advanced Part 1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 13
+subChapterName : MySql-Advanced Part 13
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 13
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 12
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 11
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 10
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Values und Variables
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_12
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_12
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_12
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_123
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_123
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_1234
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1234
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1234
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1234
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1234
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1234
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_1234
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_12345
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_12345
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_12345
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_222
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_222
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_66
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_66
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_66
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_66
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_66
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_66
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_66sdsd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Fundamentals Part 2_66sdsd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 9
+subChapterName : PHP-Fundamentals Part 2_
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 9
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 8
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Values und Variables
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 7
+subChapterName : PHP-Values und Variablessddsdsd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Values und Variablessddsdsd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Values und Variablessddsdsd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 7
+subChapterName : PHP-Values und sdd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : PHP-Values und sdd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 7
+subChapterName : PHP-Values und sddsdasdasdasd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 7
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : dasdasdasd
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : dasdasdasd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 17
+subChapterName : dasdasdasdsadasdasdd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 17
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : Fundamentals Part 2_3
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 6
+subChapterName : Fundamentals Part 2_3sdasdasdad
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : asdasdasdasdasdasd
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : asdasdasdasdasdasd
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : sadasdasd
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : sadasdasd
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : fvvdv
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : vvvvvvvv
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : vvvvvvvv
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : qqqqq
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : dsdadsd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 26
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 25
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 24
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 23
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 21
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 20
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 22
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 18
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 19
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : asdasdasdasd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : sdasdas
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : sdasdasd
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : sdasdasd
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : rgrgerg
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : rgrgerg
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : rgrgerg
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 32
+subChapterName : gegegegegege
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 31
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : sdasdasd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : gegegegegege
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 32
+subChapterName : gegegegegegesdfsdfsdf
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 32
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : sdfsdfdfsddfhfzhh
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : sdfsdfdfsddfhfzhh
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 33
+subChapterName : jfjfjfjfjffj
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : sdasdas
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 28
+subChapterName : sdasdasdfgdfgdfgfdgf
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : Fundamentals Part 2_3sdasdasdad
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 6
+subChapterName : Fundamentals Part dfgdfgdfgdf2_3sdasdasdad
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+

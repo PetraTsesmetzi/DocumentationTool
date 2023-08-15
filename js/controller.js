@@ -235,6 +235,7 @@ const initializePrismScript = function () {
     scriptElement.setAttribute("async", true);
     document.body.appendChild(scriptElement);
 }
+//todo: suche den kreislauf
 
 /**
  * erzeugt ein subchapter anhand des ausgewählten Kapitels
@@ -243,25 +244,45 @@ const initializePrismScript = function () {
  */
 export const createAndEditSubchapter=async function(submitEvent,btn){
 
-
+    console.log('erstellt oder edetiert ein sub')
     let subChapterName=submitEvent.target.querySelector('#create-subchapter-id').value;
 
     let chapterName=submitEvent.target.querySelector('#chapterEdit-id').innerText;
     let btnAction=submitEvent.target.querySelector('.btn-action').innerText;
+
+
+
+
     if(btn==='Erstellen'){
         await model.createSubchapter(chapterName,subChapterName);
-        await refreshSubChapterList(chapterName,'refresh');
-    }else if(btn==='Aktualisieren'){
+        // await refreshSubChapterList(chapterName,'refresh');
+        let allCategories = await model.loadAllCategories();
+        let allSubchapters=await model.loadSubchapters();
+        let allChapters = await model.loadAllChapters();
 
+        await navLeft.loadAllObjectsForEditMode(allCategories, allChapters, allSubchapters);
+        await navLeft.refreshSubChapterForEditMode(chapterName,'refresh');
+        navLeft.addHandlerNewSubchapter(createAndEditSubchapter);
+        navLeft.addHandlerEditForSubchapter(deleteAndEditSubchapters);
+    }else if(btn==='Aktualisieren'){
+        console.log('aktualsiert gerade........')
         let updateId=model.state.form.updateSubchapterId;
 
         await model.updateSubChapter(updateId,subChapterName);
-        await refreshSubChapterList(chapterName,'refresh');
+        let allCategories = await model.loadAllCategories();
+        let allSubchapters=await model.loadSubchapters();
+        let allChapters = await model.loadAllChapters();
+        await navLeft.loadAllObjectsForEditMode(allCategories, allChapters, allSubchapters);
+        await navLeft.refreshSubChapterForEditMode(chapterName,'refresh');
+        navLeft.addHandlerNewSubchapter(createAndEditSubchapter);
+        navLeft.addHandlerEditForSubchapter(deleteAndEditSubchapters);
+        console.log('sollte refresht haben')
 
     } else if(btn==='Zurück zum Erstellen'){
 
-        await refreshSubChapterList(chapterName,'refresh');
+        await navLeft.refreshSubChapterForEditMode(chapterName,'refresh');
     }
+    // navLeft.addHandlerNewSubchapter(createAndEditSubchapter);
 }
 export const createAndEditChapter=async function(submitEvent,btn){
 
@@ -273,11 +294,16 @@ export const createAndEditChapter=async function(submitEvent,btn){
 
         await model.createChapter(categoryName,chapterName);
         await refreshSubChapterList(categoryName,'refresh');
+        // navLeft.addHandlerNewSubchapter(createAndEditSubchapter);
+        // navLeft.addHandlerEditForSubchapter(deleteAndEditSubchapters);
+
     }else if(btn==='Aktualisieren'){
 
         let updateId=model.state.form.updateChapterId
         await model.updateChapter(updateId,chapterName);
         await refreshSubChapterList(categoryName,'refresh');
+        // navLeft.addHandlerNewSubchapter(createAndEditSubchapter);
+        // navLeft.addHandlerEditForSubchapter(deleteAndEditSubchapters);
 
     } else if(btn==='Zurück zum Erstellen'){
 
@@ -293,12 +319,19 @@ export const createAndEditChapter=async function(submitEvent,btn){
  * @returns {Promise<void>}
  */
 export const deleteAndEditSubchapters=async function(event){
-
+    console.log('deleteAndEditSubchapters')
     if(event.target.classList.contains('trash')){
-
-
         await model.deleteSubChapter(event.target.dataset.trash_id);
-        await refreshSubChapterList('','refresh');
+        // await refreshSubChapterList('','refresh');
+        let allCategories = await model.loadAllCategories();
+        let allSubchapters=await model.loadSubchapters();
+        let allChapters = await model.loadAllChapters();
+        await navLeft.loadAllObjectsForEditMode(allCategories, allChapters, allSubchapters);
+        await navLeft.refreshSubChapterForEditMode('','refresh');
+        navLeft.addHandlerEditForSubchapter(deleteAndEditSubchapters);
+
+
+
     }else if(event.target.classList.contains('update')){
 
         model.state.form.updateSubchapterId=event.target.dataset.update_id;
@@ -307,7 +340,13 @@ export const deleteAndEditSubchapters=async function(event){
 
         let foundChapterName=await findChapterBySubchapter(subChapterName);
 
-        await refreshSubChapterList('','updateMode',subChapterName,foundChapterName);
+        // await refreshSubChapterList('','updateMode',subChapterName,foundChapterName,'subchapter');
+        let allCategories = await model.loadAllCategories();
+        let allSubchapters=await model.loadSubchapters();
+        let allChapters = await model.loadAllChapters();
+        await navLeft.loadAllObjectsForEditMode(allCategories, allChapters, allSubchapters);
+        await navLeft.refreshSubChapterForEditMode('','updateMode',subChapterName,foundChapterName,'subchapter');
+        navLeft.addHandlerEditForSubchapter(deleteAndEditSubchapters);
 
     }
 }
@@ -326,29 +365,31 @@ export const deleteAndEditChapters=async function(event){
 
         let foundCategoryName=await findCategoryByChapter(chapterName);
 
-        await refreshSubChapterList('','updateMode',chapterName,foundCategoryName);
+        await refreshSubChapterList('','updateMode',chapterName,foundCategoryName,'chapter');
 
     }
 }
 
 /**
- * aktualsiert die subchapterListe
+ * aktualsiert den gesamten editbereich
  * @param chapterName
  * @param modi
+ * @param linkName
+ * @param selectName
  * @returns {Promise<void>}
  */
-const refreshSubChapterList=async function(chapterName,modi=null,subChapterName=null,toUpdateChapterName=null){
+const refreshSubChapterList=async function(chapterName,modi=null,linkName=null,selectName=null ,overlay=null){
 
     let allCategories = await model.loadAllCategories();
     let allSubchapters=await model.loadSubchapters();
     let allChapters = await model.loadAllChapters();
     await navLeft.loadAllObjectsForEditMode(allCategories, allChapters, allSubchapters);
-    await navLeft.loadAllChaptersForEditMode(chapterName,modi,subChapterName,toUpdateChapterName);
+    // await navLeft.loadAllChaptersForEditMode(chapterName,modi,linkName,selectName,overlay);
+
     navLeft.addHandlerNewSubchapter(createAndEditSubchapter);
     navLeft.addHandlerNewChapter(createAndEditChapter);
     navLeft.addHandlerEditForSubchapter(deleteAndEditSubchapters);
     navLeft.addHandlerEditForChapter(deleteAndEditChapters);
-
 
 }
 

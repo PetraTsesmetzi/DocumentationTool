@@ -858,3 +858,6 @@ pre[class*=language-] {
     height: 50px;
 }
 
+.create-chapter-wrapper{
+    border:1px solid red;
+}

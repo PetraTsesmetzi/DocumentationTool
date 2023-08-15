@@ -304,9 +304,11 @@ class NavLeft {
      * @param createAndEditSubchapter
      */
     addHandlerNewSubchapter(createAndEditSubchapter) {
-
+        console.log('erzeugt event create and edit subb')
         this.#btnSubchapter = document.getElementById('subchapter-form');
+        console.log('was ist ist im submitbtn',this.#btnSubchapter );
         this.#btnSubchapter.addEventListener('submit', function(event) {
+            console.log('ich submitte schon mal in der anonymen function')
             event.preventDefault();
             let whichBtnWasPressed=event.submitter.innerText;
             createAndEditSubchapter.call(this,event, whichBtnWasPressed);
@@ -318,6 +320,7 @@ class NavLeft {
      * @param deleteAndEditSubchapters
      */
     addHandlerEditForSubchapter(deleteAndEditSubchapters) {
+        console.log('delete And EditSubs eventhandler')
         this.#subchaptersUl = document.querySelector('.nav-left-subchapter');
         this.#subchaptersUl.addEventListener('click', deleteAndEditSubchapters);
     }
@@ -354,13 +357,14 @@ class NavLeft {
         this.#categories = categories;
         this.#chapters = chapters;
         this.#subchapters = subchapters;
+        console.log('subchapters',this.#subchapters)
     }
 
     /**
      * lädt alle Kapitelfür den Editmode
      * @returns {Promise<void>}
      */
-    async loadAllChaptersForEditMode( name = '', modi,linkName=null,selectName=null) {
+    async loadAllChaptersForEditMode( name = '', modi,linkName=null,selectName=null, overlay=null) {
         console.log('selectName',selectName)
         let wrapper = document.getElementById('edit-section-wrapper');
         wrapper.innerHTML = '';
@@ -371,22 +375,10 @@ class NavLeft {
             // this.#btnChapter.removeEventListener('submit', createAndEditSubchapter);
             // this.#chaptersUl.removeEventListener('submit', createAndEditSubchapter);
         }
-        // if (modi === 'updateMode') {
-        //     modi = 'updateMode';
-        //     updateValue = subChapterName;
-        //     updateValueOverlay = toUpdateChapterName;
-        // }
+
         let markup = `
             ${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name, modi, linkName, selectName)}
             ${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, linkName, selectName)}`;
-        // let markup;
-        // let overlay='chapter'
-        // if(overlay==='chapter'){
-        //     markup =`${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name, modi, subChapterName, toUpdateChapterName)}`;
-        //
-        // }else{
-        //     markup+= `${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, subChapterName, toUpdateChapterName)}`;
-        // }
 
 
         wrapper.insertAdjacentHTML('beforeend', markup);
@@ -395,6 +387,29 @@ class NavLeft {
         this.#activateCustomDropdown('.categories-dropdown', '.categories-container', '.categories-selected', '.categories-options');
         this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
     }
+
+    //Todo:weiter diesen weg jede section für sich updaten
+
+    async refreshSubChapterForEditMode( name = '', modi,linkName=null,selectName=null, overlay=null){
+        console.log('refreshed das subschaptergffffffffffffffffffffffffffffffffffffffffffffffffff')
+        let wrapper = document.getElementById('edit-section-wrapper');
+        console.log('wrapper',wrapper)
+        wrapper.removeChild(wrapper.lastChild);
+        console.log('wrapper',wrapper)
+        if (modi === 'refresh') {
+
+            this.#btnSubchapter.removeEventListener('submit', createAndEditSubchapter);
+            this.#subchaptersUl.removeEventListener('submit', createAndEditSubchapter);
+
+        }
+        let markup = `${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, linkName, selectName)}`;
+        wrapper.insertAdjacentHTML('beforeend', markup);
+        this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
+        this.addHandlerNewSubchapter(createAndEditSubchapter);
+
+    }
+
+
 
     /**
      * erstellt entweder ein Liste mit Chapter oder Subchapter (oder aktualisiert sie bei benutztung des editmodes)
@@ -417,7 +432,7 @@ class NavLeft {
 
         let dropDownObj = chapterType === "subchapter" ? this.#chapters : this.#categories;
         let className = chapterType === "subchapter" ? 'chapterEdit' : 'categories'
-        this.#htmlObj = `<section class="create-chapter-wrapper "><section id="nav-left-box-chapters">
+        this.#htmlObj = `<section class="create-${chapterType}-wrapper "><section id="nav-left-box-chapters">
       
         <h1 class="nav-editmode-header">${chapterHeading} Bearbeiten</h1>
         <ul class="nav-left-${chapterType}">`;
