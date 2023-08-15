@@ -1,9 +1,8 @@
 import {
-    createAndEditSubchapter,
+    createAndEditSubchapter, deleteAndEditChapters, deleteAndEditSubchapters, createAndEditChapter,
     loadSubchaptersForNav,
 
 } from "../controller.js";
-
 
 
 /**
@@ -132,10 +131,9 @@ class NavLeft {
         customDropdownWrapper[0].insertAdjacentHTML('afterbegin', markUpChapter);
 
 
-
         //vom div anstatt von der variablen, 'damit kein kapitel vorhanden' mit abgedeckt wird
         const chapterName = chapters.length > 0 ? chapters[0].chapterName : 'Kein Kapitel vorhanden';
-        if (chapterName !=='Kein Kapitel vorhanden') {
+        if (chapterName !== 'Kein Kapitel vorhanden') {
             this.#activateCustomDropdown('.chapterNorm-dropdown', '.chapterNorm-container', '.chapterNorm-selected', '.chapterNorm-options');
         }
 
@@ -178,11 +176,10 @@ class NavLeft {
             this.#htmlObj = `<div  class="custom-dropdown ${className}-dropdown">`;
 
 
-
             if (modi === 'updateMode') {
                 this.#htmlObj += ` <div class="container-select  ${className}-container ${className}-selected-update" style="pointer-events: none;">`;
                 this.#htmlObj += ` <div id="${className}-id" class="selected-option ${className}-selected">${updateValueOverlay}</div>`;
-            } else if(modi === 'refresh' || modi===null) {
+            } else if (modi === 'refresh' || modi === null) {
 
                 this.#htmlObj += ` <div class="container-select  ${className}-container">`;
                 this.#htmlObj += ` <div id="${className}-id" class="selected-option ${className}-selected"">${chaptername}</div>`;
@@ -245,7 +242,6 @@ class NavLeft {
     async #changeSubChaptersByChapter(chapterName) {
 
 
-
         this.#clear(chapterName);
         let markup = '';
         if (chapterName === 'Kein Kapitel vorhanden') {
@@ -291,11 +287,11 @@ class NavLeft {
      */
     addHandlerNewChapter(createAndEditChapter) {
         this.#btnChapter = document.getElementById('chapter-form');
-        this.#btnChapter.addEventListener('submit', function(event) {
-            console.log('kapitel erstellen',event)
+        this.#btnChapter.addEventListener('submit', function (event) {
+            console.log('kapitel erstellen', event)
             event.preventDefault();
-            let whichBtnWasPressed=event.submitter.innerText;
-            createAndEditChapter.call(this,event, whichBtnWasPressed);
+            let whichBtnWasPressed = event.submitter.innerText;
+            createAndEditChapter.call(this, event, whichBtnWasPressed);
         }.bind(this));
     }
 
@@ -306,12 +302,12 @@ class NavLeft {
     addHandlerNewSubchapter(createAndEditSubchapter) {
         console.log('erzeugt event create and edit subb')
         this.#btnSubchapter = document.getElementById('subchapter-form');
-        console.log('was ist ist im submitbtn',this.#btnSubchapter );
-        this.#btnSubchapter.addEventListener('submit', function(event) {
+        console.log('was ist ist im submitbtn', this.#btnSubchapter);
+        this.#btnSubchapter.addEventListener('submit', function (event) {
             console.log('ich submitte schon mal in der anonymen function')
             event.preventDefault();
-            let whichBtnWasPressed=event.submitter.innerText;
-            createAndEditSubchapter.call(this,event, whichBtnWasPressed);
+            let btnPressed = event.submitter.innerText;
+            createAndEditSubchapter.call(this, event, btnPressed);
         }.bind(this));
     }
 
@@ -324,11 +320,11 @@ class NavLeft {
         this.#subchaptersUl = document.querySelector('.nav-left-subchapter');
         this.#subchaptersUl.addEventListener('click', deleteAndEditSubchapters);
     }
+
     addHandlerEditForChapter(deleteAndEditChapters) {
         this.#chaptersUl = document.querySelector('.nav-left-chapter');
         this.#chaptersUl.addEventListener('click', deleteAndEditChapters);
     }
-
 
 
     /**
@@ -340,7 +336,7 @@ class NavLeft {
 
             if (typeof e != 'number' && e.target.dataset.linkid !== undefined) {
                 e = Number(e.target.dataset.linkid);
-                console.log('e',e)
+                console.log('e', e)
                 this.setActiveClass(e);
             }
         });
@@ -357,32 +353,21 @@ class NavLeft {
         this.#categories = categories;
         this.#chapters = chapters;
         this.#subchapters = subchapters;
-        console.log('subchapters',this.#subchapters)
+        console.log('subchapters', this.#subchapters)
     }
 
     /**
      * lädt alle Kapitelfür den Editmode
      * @returns {Promise<void>}
      */
-    async loadAllChaptersForEditMode( name = '', modi,linkName=null,selectName=null, overlay=null) {
-        console.log('selectName',selectName)
+    async loadAllChaptersForEditMode() {
+
         let wrapper = document.getElementById('edit-section-wrapper');
         wrapper.innerHTML = '';
-        if (modi === 'refresh') {
-
-            this.#btnSubchapter.removeEventListener('submit', createAndEditSubchapter);
-            this.#subchaptersUl.removeEventListener('submit', createAndEditSubchapter);
-            // this.#btnChapter.removeEventListener('submit', createAndEditSubchapter);
-            // this.#chaptersUl.removeEventListener('submit', createAndEditSubchapter);
-        }
-
         let markup = `
-            ${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name, modi, linkName, selectName)}
-            ${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, linkName, selectName)}`;
-
-
+            ${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name)}
+            ${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name)}`;
         wrapper.insertAdjacentHTML('beforeend', markup);
-
 
         this.#activateCustomDropdown('.categories-dropdown', '.categories-container', '.categories-selected', '.categories-options');
         this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
@@ -390,23 +375,101 @@ class NavLeft {
 
     //Todo:weiter diesen weg jede section für sich updaten
 
-    async refreshSubChapterForEditMode( name = '', modi,linkName=null,selectName=null, overlay=null){
-        console.log('refreshed das subschaptergffffffffffffffffffffffffffffffffffffffffffffffffff')
-        let wrapper = document.getElementById('edit-section-wrapper');
-        console.log('wrapper',wrapper)
-        wrapper.removeChild(wrapper.lastChild);
-        console.log('wrapper',wrapper)
-        if (modi === 'refresh') {
+    // async refreshSubChapterForEditMode(element, name = '', modi, linkName = null, selectName = null, overlay = null) {
+    //     console.log('refreshed das subschapter element', element, 'jdjdj')
+    //     console.log('refreshed das subschapter name', name)
+    //     console.log('refreshed das subschapter modi', modi)
+    //     console.log('refreshed das subschapter linkName', linkName)
+    //     console.log('refreshed das subschapter selectName', selectName)
+    //     console.log('refreshed das subschapter overlay', overlay)
+    //
+    //
+    //     if (element === 'subchapter') {
+    //         let wrapper = document.getElementById('edit-section-wrapper');
+    //         console.log('im if das element', element)
+    //         const elementsToRemove = document.querySelectorAll('.create-subchapter-wrapper');
+    //         elementsToRemove.forEach(element => {
+    //             element.remove();
+    //         });
+    //         if (modi === 'refresh') {
+    //
+    //             this.#btnSubchapter.removeEventListener('submit', createAndEditSubchapter);
+    //             this.#subchaptersUl.removeEventListener('submit', createAndEditSubchapter);
+    //
+    //         }
+    //         let markup = '';
+    //
+    //         markup = `${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, linkName, selectName)}`;
+    //         wrapper.insertAdjacentHTML('beforeend', markup);
+    //         this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
+    //         this.addHandlerNewSubchapter(createAndEditSubchapter);
+    //         this.addHandlerEditForSubchapter(deleteAndEditSubchapters);
+    //     }
+    //
+    //     if (element === 'chapter') {
+    //         console.log('chaptermodus')
+    //         let wrapper = document.getElementById('edit-section-wrapper');
+    //         // wrapper.removeChild(wrapper.firstChild);
+    //         // console.log('wrapper', wrapper)
+    //         const elementsToRemove = document.querySelectorAll('.create-chapter-wrapper');
+    //
+    //         elementsToRemove.forEach(element => {
+    //             element.remove();
+    //         });
+    //         if (modi === 'refresh') {
+    //
+    //             this.#btnChapter.removeEventListener('submit', createAndEditChapter);
+    //             this.#chaptersUl.removeEventListener('click', deleteAndEditChapters);
+    //
+    //
+    //         }
+    //         let markup = '';
+    //         markup = `${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name, modi, linkName, selectName)}`;
+    //         wrapper.insertAdjacentHTML('afterbegin', markup);
+    //         this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
+    //         this.addHandlerNewChapter(createAndEditChapter);
+    //         this.addHandlerEditForChapter(deleteAndEditChapters);
+    //     }
+    //
+    //
+    // }
 
-            this.#btnSubchapter.removeEventListener('submit', createAndEditSubchapter);
-            this.#subchaptersUl.removeEventListener('submit', createAndEditSubchapter);
+    async refreshSubChapterForEditMode(element, name = '', modi, linkName = null, selectName = null) {
+        const wrapper = document.getElementById('edit-section-wrapper');
+        const removeElements = (selector) => {
+            const elementsToRemove = document.querySelectorAll(selector);
+            elementsToRemove.forEach(element => {
+                element.remove();
+            });
+        };
 
+        if (element === 'subchapter') {
+            removeElements('.create-subchapter-wrapper');
+
+            if (modi === 'refresh') {
+                this.#btnSubchapter.removeEventListener('submit', createAndEditSubchapter);
+                this.#subchaptersUl.removeEventListener('submit', createAndEditSubchapter);
+            }
+
+            wrapper.insertAdjacentHTML('beforeend', `${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, linkName, selectName)}`);
+            this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
+            this.addHandlerNewSubchapter(createAndEditSubchapter);
+            this.addHandlerEditForSubchapter(deleteAndEditSubchapters);
         }
-        let markup = `${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, linkName, selectName)}`;
-        wrapper.insertAdjacentHTML('beforeend', markup);
-        this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
-        this.addHandlerNewSubchapter(createAndEditSubchapter);
 
+        if (element === 'chapter') {
+            removeElements('.create-chapter-wrapper');
+
+            if (modi === 'refresh') {
+                this.#btnChapter.removeEventListener('submit', createAndEditChapter);
+                this.#chaptersUl.removeEventListener('click', deleteAndEditChapters);
+            }
+
+            wrapper.insertAdjacentHTML('afterbegin', `${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name, modi, linkName, selectName)}`);
+            this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
+            this.addHandlerNewChapter(createAndEditChapter);
+            this.addHandlerEditForChapter(deleteAndEditChapters);
+        }
     }
 
 
@@ -483,7 +546,7 @@ class NavLeft {
      * @param event
      */
     #setEventOnLinks(event = null) {
-        console.log('event: ',event)
+        console.log('event: ', event)
         this.#navLeft = document.getElementById('nav-left-subchapter');
 
         let firstLink = this.#navLeft.firstChild.dataset.subchapterid;
@@ -497,7 +560,7 @@ class NavLeft {
      * @param element
      */
     setActiveClass(element) {
-        console.log('element: ',element)
+        console.log('element: ', element)
         this.#removeAttributeActiveOnLink();
         window.location.href = "#" + element;
         const links = document.getElementsByClassName('nav-link-subchapter-normMode');
@@ -534,13 +597,13 @@ class NavLeft {
         const allLinks = document.querySelectorAll('.nav-left-links-subchapter-normMode');
         // console.log('allLinks',allLinks)
         for (let i = 0; i < allLinks.length; i++) {
-            console.log('allLinks',allLinks[i])
+            console.log('allLinks', allLinks[i])
             const navLink = document.getElementsByClassName('nav-link-subchapter-normMode');
             // console.log('navLinks',navLink.length)
             navLink[i].style.color = "#444444FF";
             const navSpan = document.getElementsByClassName('nav-span-subchapter-normMode');
-            console.log('navSpan',navSpan.length)
-            console.log('span',navSpan[i])
+            console.log('navSpan', navSpan.length)
+            console.log('span', navSpan[i])
             if (navSpan[i].classList.contains('active')) {
                 navSpan[i].classList.remove('active');
             }

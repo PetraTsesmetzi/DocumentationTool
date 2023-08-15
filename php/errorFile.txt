@@ -1,2 +1,2 @@
-Message: Fehler in der Datenbank: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined--184
-LineNumber: 188
+Message: Fehler in der Datenbank: SQLSTATE[HY000] [2002] Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte
+LineNumber: 56
