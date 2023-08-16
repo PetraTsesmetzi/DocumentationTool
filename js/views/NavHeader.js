@@ -1,3 +1,5 @@
+
+
 /**
  * Autorin: Petra Tsesmetzi
  * Datum: 12.06.2023
@@ -111,19 +113,22 @@ class NavHeader{
     }
 
 
-    //todo: bind(this) wegmachen und dann verschwindet auch der eventlistener
-    //dann noch activate irgendwie stoppen
-    addHandlerRenderLoadSubchapter(loadChapterByCategory) {
+    /**
+     *setzt eventlistener auf jeden link des headers
+     * @param loadChapterByCategory
+     */
+    addHandlerRenderLoadSubchapter(loadChapterByCategory,loadEventListnerForSubChapter) {
         const links=document.querySelectorAll('.nav-header-links')
-
         links.forEach(link=>{
             link.addEventListener('click',loadChapterByCategory);
-
+            // link.addEventListener('click',loadEventListnerForSubChapter)
         })
-
     }
 
-
+    /**
+     * entfern eventlistener von links
+     * @param loadChapterByCategory
+     */
     removeEventListenerFromLinks(loadChapterByCategory){
         const links=document.querySelectorAll('.nav-header-links')
         console.log('remove')
@@ -134,6 +139,9 @@ class NavHeader{
         this.#parentElement.removeEventListener('click', this.#activateClass);
     }
 
+    /**
+     * setzt einen eventlistener
+     */
     setEventListerForActiveClass(){
         this.#parentElement.addEventListener('click', this.#activateClass);
     }

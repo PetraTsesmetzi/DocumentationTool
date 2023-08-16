@@ -59,10 +59,12 @@ export const loadSubChaptersByChapter = async (chapterName) => {
         subchapterByChapterName.push(JSON.parse(subchapter))
 
     })
+    if(subchapterByChapterName.length>0){
+        state.form.subchapterByChapterName=subchapterByChapterName;
+        state.form.subchapterId= state.form.subchapterByChapterName[0].id;
+        state.form.subchapterName= state.form.subchapterByChapterName[0].subchapterName;
+    }
 
-    state.form.subchapterByChapterName=subchapterByChapterName;
-    state.form.subchapterId= state.form.subchapterByChapterName[0].id;
-    state.form.subchapterName= state.form.subchapterByChapterName[0].subchapterName;
     return subchapterByChapterName;
 }
 /**

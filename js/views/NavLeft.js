@@ -1,9 +1,8 @@
 import {
-    createAndEditSubchapter,
+    createAndEditSubchapter, deleteAndEditChapters, deleteAndEditSubchapters, createAndEditChapter,
     loadSubchaptersForNav,
 
 } from "../controller.js";
-
 
 
 /**
@@ -21,7 +20,8 @@ class NavLeft {
     #nonEditWrapper = document.querySelector('#non-edit-section-wrapper');
     #navLeftContainer = document.querySelector('.nav-left-container');
     #navHeaderLinks;
-    #navLeft;
+
+    #navLeft = document.getElementById('nav-left-subchapter');
     #htmlObj = '';
     #id;
     subChapterObjects;
@@ -66,9 +66,9 @@ class NavLeft {
             let navLeftBox = document.getElementById('nav-left-box-subchapters');
             const markup = this.#generateMarkup(this.subChapterObjects);
             navLeftBox.insertAdjacentHTML('beforeend', markup);
-            console.log('render: ')
 
-            // this.setActiveClass(2);
+
+            this.setActiveClass(1);
             this.#setEventOnLinks('render');
 
             this.#activateCustomDropdown('.chapterNorm-dropdown', '.chapterNorm-container', '.chapterNorm-selected', '.chapterNorm-options');
@@ -87,7 +87,8 @@ class NavLeft {
             if (subChapterObjects.id === 1) {
                 this.#htmlObj += `<li  class="nav-left-links-subchapter" data-subchapterid=${subChapterObjects[i].id}><span id="startLink" class="nav-span-subchapter"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></li>`;
             } else {
-                this.#htmlObj += `<li  class="nav-left-links-subchapter" data-subchapterid=${subChapterObjects[i].id}><span class="nav-left-link-container-subchapters "><span class="nav-left-link-box-subchapter"><span class="nav-span-subchapter"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></span><span class="edit-box-subchapter edit-section"><ion-icon class="trash" name="trash-outline"></ion-icon><ion-icon class="update" name="create-outline"></ion-icon></span></li>`;
+                // this.#htmlObj += `<li  class="nav-left-links-subchapter" data-subchapterid=${subChapterObjects[i].id}><span class="nav-left-link-container-subchapters "><span class="nav-left-link-box-subchapter"><span class="nav-span-subchapter"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></span><span class="edit-box-subchapter edit-section"><ion-icon class="trash" name="trash-outline"></ion-icon><ion-icon class="update" name="create-outline"></ion-icon></span></li>`;
+                this.#htmlObj += `<li  class="nav-left-links-subchapter-normMode" data-subchapterid=${subChapterObjects[i].id}><span class="nav-left-link-container-subchapters-normMode "><span class="nav-left-link-box-subchapter-normMode"><span class="nav-span-subchapter-normMode"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter-normMode' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></span></span></li>`;
             }
         }
         this.#htmlObj += ` </ul>`;
@@ -131,10 +132,9 @@ class NavLeft {
         customDropdownWrapper[0].insertAdjacentHTML('afterbegin', markUpChapter);
 
 
-
         //vom div anstatt von der variablen, 'damit kein kapitel vorhanden' mit abgedeckt wird
         const chapterName = chapters.length > 0 ? chapters[0].chapterName : 'Kein Kapitel vorhanden';
-        if (chapterName !=='Kein Kapitel vorhanden') {
+        if (chapterName !== 'Kein Kapitel vorhanden') {
             this.#activateCustomDropdown('.chapterNorm-dropdown', '.chapterNorm-container', '.chapterNorm-selected', '.chapterNorm-options');
         }
 
@@ -148,14 +148,6 @@ class NavLeft {
      * @returns {string}
      */
     #generateMarkupDropDownChapter(className, mode, chapterType, obj, name = '', modi = null, updateValueOverlay = null) {
-        // console.log('generateMarkupDropDownChapter.............className..........',className);
-        // console.log('generateMarkupDropDownChapter.............mode................',mode)
-        // console.log('generateMarkupDropDownChapter.............chapterType..........',chapterType)
-        // console.log('generateMarkupDropDownChapter.............obj..................',obj)
-        // console.log('generateMarkupDropDownChapter.............name.................',name)
-        // console.log('generateMarkupDropDownChapter.............modi..................',modi)
-        // console.log('generateMarkupDropDownChapter.............updateValueOverlay....',updateValueOverlay)
-
 
         let objName;
         let chaptername;
@@ -177,11 +169,10 @@ class NavLeft {
             this.#htmlObj = `<div  class="custom-dropdown ${className}-dropdown">`;
 
 
-
             if (modi === 'updateMode') {
                 this.#htmlObj += ` <div class="container-select  ${className}-container ${className}-selected-update" style="pointer-events: none;">`;
                 this.#htmlObj += ` <div id="${className}-id" class="selected-option ${className}-selected">${updateValueOverlay}</div>`;
-            } else if(modi === 'refresh' || modi===null) {
+            } else if (modi === 'refresh' || modi === null) {
 
                 this.#htmlObj += ` <div class="container-select  ${className}-container">`;
                 this.#htmlObj += ` <div id="${className}-id" class="selected-option ${className}-selected"">${chaptername}</div>`;
@@ -199,7 +190,7 @@ class NavLeft {
             this.#htmlObj += `</ul>
             </div>`;
         } else {
-            this.#htmlObj = `<h1 class="error">${chaptername}</h1>`
+            this.#htmlObj = `<h1 class="error-chapter">${chaptername}</h1>`
         }
 
 
@@ -244,13 +235,12 @@ class NavLeft {
     async #changeSubChaptersByChapter(chapterName) {
 
 
-
         this.#clear(chapterName);
         let markup = '';
         if (chapterName === 'Kein Kapitel vorhanden') {
 
 
-            markup = `<section id="nav-left-box-subchapters"><h1 class="nav-editmode-header-subchapter edit-section">Unterkapitel Berarbeiten</h1><h1 class="error">Kein Unterkapitel vorhanden</h1><ul id="nav-left-subchapter"></ul></section>`;
+            markup = `<section id="nav-left-box-subchapters"><h1 class="nav-editmode-header-subchapter edit-section">Unterkapitel Berarbeiten</h1><h1 class="error-subchapter">Kein Unterkapitel vorhanden</h1><ul id="nav-left-subchapter"></ul></section>`;
             let box = document.querySelector('#nav-left-box-subchapters');
             box.insertAdjacentHTML('beforeend', markup);
 
@@ -290,11 +280,10 @@ class NavLeft {
      */
     addHandlerNewChapter(createAndEditChapter) {
         this.#btnChapter = document.getElementById('chapter-form');
-        this.#btnChapter.addEventListener('submit', function(event) {
-            console.log('kapitel erstellen',event)
+        this.#btnChapter.addEventListener('submit', function (event) {
             event.preventDefault();
-            let whichBtnWasPressed=event.submitter.innerText;
-            createAndEditChapter.call(this,event, whichBtnWasPressed);
+            let whichBtnWasPressed = event.submitter.innerText;
+            createAndEditChapter.call(this, event, whichBtnWasPressed);
         }.bind(this));
     }
 
@@ -305,10 +294,11 @@ class NavLeft {
     addHandlerNewSubchapter(createAndEditSubchapter) {
 
         this.#btnSubchapter = document.getElementById('subchapter-form');
-        this.#btnSubchapter.addEventListener('submit', function(event) {
+
+        this.#btnSubchapter.addEventListener('submit', function (event) {
             event.preventDefault();
-            let whichBtnWasPressed=event.submitter.innerText;
-            createAndEditSubchapter.call(this,event, whichBtnWasPressed);
+            let btnPressed = event.submitter.innerText;
+            createAndEditSubchapter.call(this, event, btnPressed);
         }.bind(this));
     }
 
@@ -317,26 +307,24 @@ class NavLeft {
      * @param deleteAndEditSubchapters
      */
     addHandlerEditForSubchapter(deleteAndEditSubchapters) {
+
         this.#subchaptersUl = document.querySelector('.nav-left-subchapter');
         this.#subchaptersUl.addEventListener('click', deleteAndEditSubchapters);
     }
+
     addHandlerEditForChapter(deleteAndEditChapters) {
         this.#chaptersUl = document.querySelector('.nav-left-chapter');
         this.#chaptersUl.addEventListener('click', deleteAndEditChapters);
     }
 
 
-
     /**
      * eventlister auf subchapter Links
      */
     addHandlerRenderChangeSubChapter() {
-        console.log('changesub');
         this.#navLeft.addEventListener('click', (e) => {
-
             if (typeof e != 'number' && e.target.dataset.linkid !== undefined) {
                 e = Number(e.target.dataset.linkid);
-                console.log('e',e)
                 this.setActiveClass(e);
             }
         });
@@ -359,33 +347,61 @@ class NavLeft {
      * lädt alle Kapitelfür den Editmode
      * @returns {Promise<void>}
      */
-    async loadAllChaptersForEditMode( name = '', modi,subChapterName=null,toUpdateChapterName=null) {
+    async loadAllChaptersForEditMode() {
 
         let wrapper = document.getElementById('edit-section-wrapper');
         wrapper.innerHTML = '';
-        if (modi === 'refresh') {
-
-            this.#btnSubchapter.removeEventListener('submit', createAndEditSubchapter);
-            this.#subchaptersUl.removeEventListener('submit', createAndEditSubchapter);
-            // this.#btnChapter.removeEventListener('submit', createAndEditSubchapter);
-            // this.#chaptersUl.removeEventListener('submit', createAndEditSubchapter);
-        }
-        // if (modi === 'updateMode') {
-        //     modi = 'updateMode';
-        //     updateValue = subChapterName;
-        //     updateValueOverlay = toUpdateChapterName;
-        // }
         let markup = `
-            ${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name, modi, subChapterName, toUpdateChapterName)}
-            ${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, subChapterName, toUpdateChapterName)}`;
-
-
+            ${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name)}
+            ${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name)}`;
         wrapper.insertAdjacentHTML('beforeend', markup);
-
 
         this.#activateCustomDropdown('.categories-dropdown', '.categories-container', '.categories-selected', '.categories-options');
         this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
     }
+
+
+
+
+    async refreshSubChapterForEditMode(element, name = '', modi, linkName = null, selectName = null) {
+        const wrapper = document.getElementById('edit-section-wrapper');
+        const removeElements = (selector) => {
+            const elementsToRemove = document.querySelectorAll(selector);
+            elementsToRemove.forEach(element => {
+                element.remove();
+            });
+        };
+
+        if (element === 'subchapter') {
+            removeElements('.create-subchapter-wrapper');
+
+            if (modi === 'refresh') {
+                this.#btnSubchapter.removeEventListener('submit', createAndEditSubchapter);
+                this.#subchaptersUl.removeEventListener('submit', createAndEditSubchapter);
+            }
+
+            wrapper.insertAdjacentHTML('beforeend', `${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, linkName, selectName)}`);
+            this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
+            this.addHandlerNewSubchapter(createAndEditSubchapter);
+            this.addHandlerEditForSubchapter(deleteAndEditSubchapters);
+        }
+
+        if (element === 'chapter') {
+            removeElements('.create-chapter-wrapper');
+
+            if (modi === 'refresh') {
+                this.#btnChapter.removeEventListener('submit', createAndEditChapter);
+                this.#chaptersUl.removeEventListener('click', deleteAndEditChapters);
+            }
+
+            wrapper.insertAdjacentHTML('afterbegin', `${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name, modi, linkName, selectName)}`);
+            this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
+            this.addHandlerNewChapter(createAndEditChapter);
+            this.addHandlerEditForChapter(deleteAndEditChapters);
+        }
+    }
+
+
 
     /**
      * erstellt entweder ein Liste mit Chapter oder Subchapter (oder aktualisiert sie bei benutztung des editmodes)
@@ -408,7 +424,7 @@ class NavLeft {
 
         let dropDownObj = chapterType === "subchapter" ? this.#chapters : this.#categories;
         let className = chapterType === "subchapter" ? 'chapterEdit' : 'categories'
-        this.#htmlObj = `<section class="create-chapter-wrapper "><section id="nav-left-box-chapters">
+        this.#htmlObj = `<section class="create-${chapterType}-wrapper "><section id="nav-left-box-chapters">
       
         <h1 class="nav-editmode-header">${chapterHeading} Bearbeiten</h1>
         <ul class="nav-left-${chapterType}">`;
@@ -459,12 +475,12 @@ class NavLeft {
      * @param event
      */
     #setEventOnLinks(event = null) {
-        console.log('event: ',event)
         this.#navLeft = document.getElementById('nav-left-subchapter');
+        if(this.#navLeft.children.length>0){
+            let firstLink = this.#navLeft.firstChild.dataset.subchapterid;
+            this.setActiveClass(firstLink);
+        }
 
-        let firstLink = this.#navLeft.firstChild.dataset.subchapterid;
-
-        this.setActiveClass(firstLink)
     }
 
 
@@ -473,10 +489,10 @@ class NavLeft {
      * @param element
      */
     setActiveClass(element) {
-        console.log('element: ',element)
+
         this.#removeAttributeActiveOnLink();
         window.location.href = "#" + element;
-        const links = document.getElementsByClassName('nav-link-subchapter');
+        const links = document.getElementsByClassName('nav-link-subchapter-normMode');
 
         //beim wechseln von kapitel
         let start = Number(links[0].dataset.linkid) - 1;
@@ -503,23 +519,33 @@ class NavLeft {
         window.addEventListener('load', loadSubchapterById);
     }
 
+    //Todo :hier weitermachen aber vorher hochladen und emails verschicken
+    // addHandlerRender(loadSubchapterById) {
+    //     let subchaptersUL=document.getElementById('nav-left-subchapter')
+    //     let listElements=subchaptersUL.getElementsByTagName('li');
+    //     console.log('listelements',listElements.length)
+    //     for (let i = 0; i <listElements.length ; i++) {
+    //         listElements[i].addEventListener('click',loadSubchapterById)
+    //     }
+    // }
+
+
     /**
      * entfernt blauen gefärbten bereich vom nav link
      */
     #removeAttributeActiveOnLink() {
-        const allLinks = document.querySelectorAll('.nav-left-links-subchapter');
-        // console.log('allLinks',allLinks)
+        const allLinks = document.querySelectorAll('.nav-left-links-subchapter-normMode');
+
         for (let i = 0; i < allLinks.length; i++) {
-            console.log('allLinks',allLinks[i])
-            const navLink = document.getElementsByClassName('nav-link-subchapter');
-            // console.log('navLinks',navLink.length)
+
+            const navLink = document.getElementsByClassName('nav-link-subchapter-normMode');
+
             navLink[i].style.color = "#444444FF";
-            const navSpan = document.getElementsByClassName('nav-span-subchapter');
-            // console.log('navSpan',navSpan.length)
-            // console.log('span',navSpan[i])
-            // if (navSpan[i].classList.contains('active')) {
-            //     navSpan[i].classList.remove('active');
-            // }
+            const navSpan = document.getElementsByClassName('nav-span-subchapter-normMode');
+
+            if (navSpan[i].classList.contains('active')) {
+                navSpan[i].classList.remove('active');
+            }
         }
 
     }
