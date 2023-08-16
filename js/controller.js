@@ -35,8 +35,8 @@ export const loadArticleNumbers = async function (e) {
     model.setFormDataForFocusSubChapter(e);
     // model.state.form.subchapterId=subchapterId;
     // model.state.form.subchapterName=e.target.options[e.target.options.selectedIndex].innerText;
-
-    window.location.href = "#" +subchapterId;
+    console.log('--------------------------subchapterId', subchapterId)
+    // window.location.href = "#" +subchapterId;
     window.removeEventListener('hashchange', loadSubchapterById);
     await model.loadAllArticleNumbers(subchapterId);
     navLeft.setActiveClass(model.state.form.subchapterId);
@@ -44,10 +44,10 @@ export const loadArticleNumbers = async function (e) {
 
 }
 const loadFormContent=function(e){
-
     model.setFormDataForFocusSubChapter();
 }
 const loadFormContentByChapter=async function(chapterName){
+
     if(model.state.editModeFlag===true){
         await model.loadSubChaptersByChapter(chapterName);
         showForm();
@@ -97,6 +97,7 @@ const loadEditMode = async function () {
 
     // model.state.editModeFlag ? navLeft.removeHandlerRender(loadSubchapterById):navLeft.addHandlerRender(loadSubchapterById);
     showArticleView();
+
 }
 
 
@@ -162,22 +163,31 @@ const deleteFields = async function (e) {
  * @returns {Promise<void>}
  */
 const loadSubchapterById = async function (element) {
-    if (!(element instanceof Event)) element = Number(element);
 
+
+    if (!(element instanceof Event)) element = Number(element);
+    let subchapter;
     // Unterscheidung ob ich die url auslese oder ob ich aus dem Formular
     // beim anklicken eines Unterkapitels die Id übertrage
+    console.log('element',element)
     if (element instanceof Event) {
-        let id = window.location.hash.slice(1);
+
+        // let id = window.location.hash.slice(1);
+        let id = window.location.hash.split('/').pop();
+        console.log('id',id)
         model.state.form.subchapterId = id;
-        await model.loadSubchapter(id);
+        subchapter=await model.loadSubchapter(id);
+
     }
     if (typeof element === 'number') {
         model.state.form.subchapterId = element;
-        await model.loadSubchapter(element);
+        subchapter=await model.loadSubchapter(element);
+
     }
 
     await model.setVariablesForForm(model.state.form.subchapterId, 'create');
-    console.log('lade artikel')
+    console.log(window.location.hash)
+    console.log('subchapter----------------------------------------------',subchapter)
     showArticleView();
 }
 /**
@@ -192,7 +202,7 @@ const loadCategory=async function(){
  * zeigt alle artikel-refresht auch
  */
 const showArticleView = function () {
-    console.log('lädt')
+
     articleView.render(model.state.form, model.state.editModeFlag);
     articleView.addHandlerDeleteArt(deleteArticles);
     articleView.addHandlerUpdateArt(loadForm);
@@ -275,7 +285,7 @@ export const createAndEditChapter = async function(submitEvent, btn) {
         let updateId=model.state.form.updateChapterId
         await model.updateChapter(updateId,chapterName);
         await refreshEditMode();
-        console.log('Refreshed.');
+
         await navLeft.refreshSubChapterForEditMode('chapter',categoryName, 'refresh','','');
     }
 }
@@ -299,7 +309,7 @@ const refreshEditMode = async () => {
  * @returns {Promise<void>}
  */
 export const deleteAndEditSubchapters=async function(event){
-    console.log('deleteAndEditSubchapters')
+
     if(event.target.classList.contains('trash')){
         await model.deleteSubChapter(event.target.dataset.trash_id);
         await refreshEditMode();
@@ -323,7 +333,7 @@ export const deleteAndEditSubchapters=async function(event){
  */
 export const deleteAndEditChapters=async function(event){
 
-    console.log('deleteAndEditSubchapters')
+
     if(event.target.classList.contains('trash')){
         await model.deleteChapter(event.target.dataset.trash_id);
         let allCategories = await model.loadAllCategories();
@@ -348,10 +358,22 @@ export const deleteAndEditChapters=async function(event){
 
 
 export const loadSubchaptersForNav= async function(chapterName){
-    return await model.loadSubChaptersByChapter(chapterName);
+    console.log('-chapterName----------------------------------------',chapterName)
+    let chapter='';
+    let subchapters=await model.loadSubChaptersByChapter(chapterName);
+
+    chapterName===undefined?chapter='':chapter=chapterName
+    let category=window.location.hash.split('/').shift();
+    window.location.href =category+'/'+chapter+'/'+subchapters[0].id;
+
+
+    console.log('hash--chap+sub',window.location.hash);
+    console.log('subchapters',subchapters);
+    return subchapters;
 }
 
 export const loadChapterForNav= async function(categoryName){
+
     return await model.loadChaptersByCategory(categoryName);
 }
 export const laodAllCategoriesForNav=async  function(){
@@ -365,7 +387,7 @@ export const laodAllSubChaptersForNav=async function(){
     return await model.loadSubchapters();
 }
 export const loadEventListnerForSubChapter=async function(){
-    console.log('activate add Handler')
+
     navLeft.addHandlerRender(loadSubchapterById);
 }
 
@@ -374,13 +396,26 @@ export const loadEventListnerForSubChapter=async function(){
  * @param e
  * @returns {Promise<void>}
  */
-export const loadChapterByCategory=async function(e){
-    console.log(e.target.dataset.categoryname)
+export const loadChapterByCategory=async function(e=null){
+
+    let category=e.target.dataset.categoryname;
+    console.log('category----------------------------------------------------------------------------------',category)
+
+    window.location.href = "#"+category+'/';
+    console.log('hash-category',window.location.hash)
     await model.loadChaptersByCategory(e.target.dataset.categoryname);
     if(model.state.form.chapterByCategorieName.length===0)showArticleView();
     await navLeft.renderChapterDropDown(model.state.form.chapterByCategorieName);
     navLeft.addHandlerRender(loadSubchapterById);
-    //window.location.href='#/'+e.target.dataset.categoryname
+
+
+    // let hash2layer=window.location.hash;
+    //
+    // let subchapter=model.state.form.subchapterByChapterName.length>0?model.state.form.subchapterByChapterName[0].subchapterName:'';
+    // console.log('subchapter----------------------------------------------------------------------------------',subchapter)
+    //
+    // window.location.href = hash2layer+"/"+subchapter;
+    // console.log('sub',window.location.hash)
 }
 
 
@@ -389,8 +424,8 @@ export const loadChapterByCategory=async function(e){
  * @returns {Promise<void>}
  */
 const init = async function () {
-    console.log('before first loctaction',model.state.form)
-    window.location.href = "#";
+    model.state.form.load=true;
+    window.location.href = "#Javascript";
 
     await initChapterSubchapterArr();
     await loadSubchapterById(1);
