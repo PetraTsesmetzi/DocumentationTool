@@ -1,2 +1,2 @@
-Message: Fehler in der Datenbank: SQLSTATE[HY000] [2002] Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte
-LineNumber: 56
+Message: Subchapter with ID 0 not found.
+LineNumber: 76

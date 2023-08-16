@@ -20,7 +20,8 @@ class NavLeft {
     #nonEditWrapper = document.querySelector('#non-edit-section-wrapper');
     #navLeftContainer = document.querySelector('.nav-left-container');
     #navHeaderLinks;
-    #navLeft;
+
+    #navLeft = document.getElementById('nav-left-subchapter');
     #htmlObj = '';
     #id;
     subChapterObjects;
@@ -65,9 +66,9 @@ class NavLeft {
             let navLeftBox = document.getElementById('nav-left-box-subchapters');
             const markup = this.#generateMarkup(this.subChapterObjects);
             navLeftBox.insertAdjacentHTML('beforeend', markup);
-            console.log('render: ')
 
-            // this.setActiveClass(2);
+
+            this.setActiveClass(1);
             this.#setEventOnLinks('render');
 
             this.#activateCustomDropdown('.chapterNorm-dropdown', '.chapterNorm-container', '.chapterNorm-selected', '.chapterNorm-options');
@@ -147,14 +148,6 @@ class NavLeft {
      * @returns {string}
      */
     #generateMarkupDropDownChapter(className, mode, chapterType, obj, name = '', modi = null, updateValueOverlay = null) {
-        // console.log('generateMarkupDropDownChapter.............className..........',className);
-        // console.log('generateMarkupDropDownChapter.............mode................',mode)
-        // console.log('generateMarkupDropDownChapter.............chapterType..........',chapterType)
-        // console.log('generateMarkupDropDownChapter.............obj..................',obj)
-        // console.log('generateMarkupDropDownChapter.............name.................',name)
-        // console.log('generateMarkupDropDownChapter.............modi..................',modi)
-        // console.log('generateMarkupDropDownChapter.............updateValueOverlay....',updateValueOverlay)
-
 
         let objName;
         let chaptername;
@@ -197,7 +190,7 @@ class NavLeft {
             this.#htmlObj += `</ul>
             </div>`;
         } else {
-            this.#htmlObj = `<h1 class="error">${chaptername}</h1>`
+            this.#htmlObj = `<h1 class="error-chapter">${chaptername}</h1>`
         }
 
 
@@ -247,7 +240,7 @@ class NavLeft {
         if (chapterName === 'Kein Kapitel vorhanden') {
 
 
-            markup = `<section id="nav-left-box-subchapters"><h1 class="nav-editmode-header-subchapter edit-section">Unterkapitel Berarbeiten</h1><h1 class="error">Kein Unterkapitel vorhanden</h1><ul id="nav-left-subchapter"></ul></section>`;
+            markup = `<section id="nav-left-box-subchapters"><h1 class="nav-editmode-header-subchapter edit-section">Unterkapitel Berarbeiten</h1><h1 class="error-subchapter">Kein Unterkapitel vorhanden</h1><ul id="nav-left-subchapter"></ul></section>`;
             let box = document.querySelector('#nav-left-box-subchapters');
             box.insertAdjacentHTML('beforeend', markup);
 
@@ -288,7 +281,6 @@ class NavLeft {
     addHandlerNewChapter(createAndEditChapter) {
         this.#btnChapter = document.getElementById('chapter-form');
         this.#btnChapter.addEventListener('submit', function (event) {
-            console.log('kapitel erstellen', event)
             event.preventDefault();
             let whichBtnWasPressed = event.submitter.innerText;
             createAndEditChapter.call(this, event, whichBtnWasPressed);
@@ -300,11 +292,10 @@ class NavLeft {
      * @param createAndEditSubchapter
      */
     addHandlerNewSubchapter(createAndEditSubchapter) {
-        console.log('erzeugt event create and edit subb')
+
         this.#btnSubchapter = document.getElementById('subchapter-form');
-        console.log('was ist ist im submitbtn', this.#btnSubchapter);
+
         this.#btnSubchapter.addEventListener('submit', function (event) {
-            console.log('ich submitte schon mal in der anonymen function')
             event.preventDefault();
             let btnPressed = event.submitter.innerText;
             createAndEditSubchapter.call(this, event, btnPressed);
@@ -316,7 +307,7 @@ class NavLeft {
      * @param deleteAndEditSubchapters
      */
     addHandlerEditForSubchapter(deleteAndEditSubchapters) {
-        console.log('delete And EditSubs eventhandler')
+
         this.#subchaptersUl = document.querySelector('.nav-left-subchapter');
         this.#subchaptersUl.addEventListener('click', deleteAndEditSubchapters);
     }
@@ -331,12 +322,9 @@ class NavLeft {
      * eventlister auf subchapter Links
      */
     addHandlerRenderChangeSubChapter() {
-        console.log('changesub');
         this.#navLeft.addEventListener('click', (e) => {
-
             if (typeof e != 'number' && e.target.dataset.linkid !== undefined) {
                 e = Number(e.target.dataset.linkid);
-                console.log('e', e)
                 this.setActiveClass(e);
             }
         });
@@ -353,7 +341,6 @@ class NavLeft {
         this.#categories = categories;
         this.#chapters = chapters;
         this.#subchapters = subchapters;
-        console.log('subchapters', this.#subchapters)
     }
 
     /**
@@ -373,66 +360,8 @@ class NavLeft {
         this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
     }
 
-    //Todo:weiter diesen weg jede section für sich updaten
 
-    // async refreshSubChapterForEditMode(element, name = '', modi, linkName = null, selectName = null, overlay = null) {
-    //     console.log('refreshed das subschapter element', element, 'jdjdj')
-    //     console.log('refreshed das subschapter name', name)
-    //     console.log('refreshed das subschapter modi', modi)
-    //     console.log('refreshed das subschapter linkName', linkName)
-    //     console.log('refreshed das subschapter selectName', selectName)
-    //     console.log('refreshed das subschapter overlay', overlay)
-    //
-    //
-    //     if (element === 'subchapter') {
-    //         let wrapper = document.getElementById('edit-section-wrapper');
-    //         console.log('im if das element', element)
-    //         const elementsToRemove = document.querySelectorAll('.create-subchapter-wrapper');
-    //         elementsToRemove.forEach(element => {
-    //             element.remove();
-    //         });
-    //         if (modi === 'refresh') {
-    //
-    //             this.#btnSubchapter.removeEventListener('submit', createAndEditSubchapter);
-    //             this.#subchaptersUl.removeEventListener('submit', createAndEditSubchapter);
-    //
-    //         }
-    //         let markup = '';
-    //
-    //         markup = `${this.#generateMarkupChapterTypeEdit("subchapter", this.#subchapters, name, modi, linkName, selectName)}`;
-    //         wrapper.insertAdjacentHTML('beforeend', markup);
-    //         this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
-    //         this.addHandlerNewSubchapter(createAndEditSubchapter);
-    //         this.addHandlerEditForSubchapter(deleteAndEditSubchapters);
-    //     }
-    //
-    //     if (element === 'chapter') {
-    //         console.log('chaptermodus')
-    //         let wrapper = document.getElementById('edit-section-wrapper');
-    //         // wrapper.removeChild(wrapper.firstChild);
-    //         // console.log('wrapper', wrapper)
-    //         const elementsToRemove = document.querySelectorAll('.create-chapter-wrapper');
-    //
-    //         elementsToRemove.forEach(element => {
-    //             element.remove();
-    //         });
-    //         if (modi === 'refresh') {
-    //
-    //             this.#btnChapter.removeEventListener('submit', createAndEditChapter);
-    //             this.#chaptersUl.removeEventListener('click', deleteAndEditChapters);
-    //
-    //
-    //         }
-    //         let markup = '';
-    //         markup = `${this.#generateMarkupChapterTypeEdit("chapter", this.#chapters, name, modi, linkName, selectName)}`;
-    //         wrapper.insertAdjacentHTML('afterbegin', markup);
-    //         this.#activateCustomDropdown('.chapterEdit-dropdown', '.chapterEdit-container', '.chapterEdit-selected', '.chapterEdit-options');
-    //         this.addHandlerNewChapter(createAndEditChapter);
-    //         this.addHandlerEditForChapter(deleteAndEditChapters);
-    //     }
-    //
-    //
-    // }
+
 
     async refreshSubChapterForEditMode(element, name = '', modi, linkName = null, selectName = null) {
         const wrapper = document.getElementById('edit-section-wrapper');
@@ -546,12 +475,12 @@ class NavLeft {
      * @param event
      */
     #setEventOnLinks(event = null) {
-        console.log('event: ', event)
         this.#navLeft = document.getElementById('nav-left-subchapter');
+        if(this.#navLeft.children.length>0){
+            let firstLink = this.#navLeft.firstChild.dataset.subchapterid;
+            this.setActiveClass(firstLink);
+        }
 
-        let firstLink = this.#navLeft.firstChild.dataset.subchapterid;
-
-        this.setActiveClass(firstLink)
     }
 
 
@@ -560,7 +489,7 @@ class NavLeft {
      * @param element
      */
     setActiveClass(element) {
-        console.log('element: ', element)
+
         this.#removeAttributeActiveOnLink();
         window.location.href = "#" + element;
         const links = document.getElementsByClassName('nav-link-subchapter-normMode');
@@ -590,20 +519,30 @@ class NavLeft {
         window.addEventListener('load', loadSubchapterById);
     }
 
+    //Todo :hier weitermachen aber vorher hochladen und emails verschicken
+    // addHandlerRender(loadSubchapterById) {
+    //     let subchaptersUL=document.getElementById('nav-left-subchapter')
+    //     let listElements=subchaptersUL.getElementsByTagName('li');
+    //     console.log('listelements',listElements.length)
+    //     for (let i = 0; i <listElements.length ; i++) {
+    //         listElements[i].addEventListener('click',loadSubchapterById)
+    //     }
+    // }
+
+
     /**
      * entfernt blauen gefärbten bereich vom nav link
      */
     #removeAttributeActiveOnLink() {
         const allLinks = document.querySelectorAll('.nav-left-links-subchapter-normMode');
-        // console.log('allLinks',allLinks)
+
         for (let i = 0; i < allLinks.length; i++) {
-            console.log('allLinks', allLinks[i])
+
             const navLink = document.getElementsByClassName('nav-link-subchapter-normMode');
-            // console.log('navLinks',navLink.length)
+
             navLink[i].style.color = "#444444FF";
             const navSpan = document.getElementsByClassName('nav-span-subchapter-normMode');
-            console.log('navSpan', navSpan.length)
-            console.log('span', navSpan[i])
+
             if (navSpan[i].classList.contains('active')) {
                 navSpan[i].classList.remove('active');
             }

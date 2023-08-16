@@ -25,7 +25,7 @@ class ArticleView {
      * @param editmode
      */
     render(data, editmode) {
-
+        console.log('data',data)
         this.#editmode = editmode;
         this.#subchapterName = data.subchapterName;
         this.#subcapterArticles = data.articles;

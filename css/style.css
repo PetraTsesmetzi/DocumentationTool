@@ -284,10 +284,22 @@ header {
     padding: 5px 8px;
 
 }
-.error{
+/*.error{*/
+/*     color:var(--font-color-dark);*/
+/*     padding:5px 7px;*/
+/*     font-size:14px;*/
+/* }*/
+
+
+.error-chapter{
     color:var(--font-color-dark);
-    padding:5px 7px;
-    font-size:14px;
+   margin:20px 20px;
+    font-size:18px;
+}
+.error-subchapter{
+    color:var(--font-color-dark);
+    margin-top:10px;
+    font-size:16px;
 }
 .edit-box-subchapter{
     display:inline-flex;
@@ -859,5 +871,6 @@ pre[class*=language-] {
 }
 
 .create-chapter-wrapper{
-    border:1px solid red;
+    border-bottom:1px solid var(--font-color-dark);
+
 }

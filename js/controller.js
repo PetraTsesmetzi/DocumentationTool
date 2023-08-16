@@ -36,7 +36,7 @@ export const loadArticleNumbers = async function (e) {
     // model.state.form.subchapterId=subchapterId;
     // model.state.form.subchapterName=e.target.options[e.target.options.selectedIndex].innerText;
 
-    window.location.href = "#" + subchapterId;
+    window.location.href = "#" +subchapterId;
     window.removeEventListener('hashchange', loadSubchapterById);
     await model.loadAllArticleNumbers(subchapterId);
     navLeft.setActiveClass(model.state.form.subchapterId);
@@ -90,7 +90,7 @@ const loadEditMode = async function () {
     // {
     //     navHeader.removeEventListenerFromLinks(loadChapterByCategory)
     // }else{
-    //      navHeader.addHandlerRenderLoadSubchapter(loadChapterByCategory)
+    //      navHeader.addHandlerRenderLoadSubchapter(loadChapterByCategory,loadEventListnerForSubChapter)
     //     navHeader.setEventListerForActiveClass();
     // }
 
@@ -177,6 +177,7 @@ const loadSubchapterById = async function (element) {
     }
 
     await model.setVariablesForForm(model.state.form.subchapterId, 'create');
+    console.log('lade artikel')
     showArticleView();
 }
 /**
@@ -191,7 +192,7 @@ const loadCategory=async function(){
  * zeigt alle artikel-refresht auch
  */
 const showArticleView = function () {
-
+    console.log('lädt')
     articleView.render(model.state.form, model.state.editModeFlag);
     articleView.addHandlerDeleteArt(deleteArticles);
     articleView.addHandlerUpdateArt(loadForm);
@@ -363,6 +364,10 @@ export const laodAllSubChaptersForNav=async function(){
 
     return await model.loadSubchapters();
 }
+export const loadEventListnerForSubChapter=async function(){
+    console.log('activate add Handler')
+    navLeft.addHandlerRender(loadSubchapterById);
+}
 
 /**
  * wird vom nav-header aufgerufen
@@ -370,9 +375,12 @@ export const laodAllSubChaptersForNav=async function(){
  * @returns {Promise<void>}
  */
 export const loadChapterByCategory=async function(e){
+    console.log(e.target.dataset.categoryname)
     await model.loadChaptersByCategory(e.target.dataset.categoryname);
     if(model.state.form.chapterByCategorieName.length===0)showArticleView();
     await navLeft.renderChapterDropDown(model.state.form.chapterByCategorieName);
+    navLeft.addHandlerRender(loadSubchapterById);
+    //window.location.href='#/'+e.target.dataset.categoryname
 }
 
 
@@ -381,6 +389,7 @@ export const loadChapterByCategory=async function(e){
  * @returns {Promise<void>}
  */
 const init = async function () {
+    console.log('before first loctaction',model.state.form)
     window.location.href = "#";
 
     await initChapterSubchapterArr();
@@ -392,7 +401,7 @@ const init = async function () {
     await loadCategory();
 
     navHeader.render('init',state.form.categoryNames);
-    navHeader.addHandlerRenderLoadSubchapter(loadChapterByCategory);
+    navHeader.addHandlerRenderLoadSubchapter(loadChapterByCategory,loadEventListnerForSubChapter);
 
     navLeft.addHandlerRenderChangeChapter(loadFormContentByChapter);
     navLeft.addHandlerRender(loadSubchapterById);
