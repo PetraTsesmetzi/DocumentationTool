@@ -50,7 +50,7 @@ VALUES (Null,'PHP');
 INSERT INTO category(id,categoryName)
 VALUES (Null,'MySQL');
 INSERT INTO category(id,categoryName)
-VALUES (Null,'HTML/CSS');
+VALUES (Null,'HTML-CSS');
 INSERT INTO category(id,categoryName)
 VALUES (Null,'HOW');
 

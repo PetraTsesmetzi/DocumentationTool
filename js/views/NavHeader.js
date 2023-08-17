@@ -117,7 +117,7 @@ class NavHeader{
      *setzt eventlistener auf jeden link des headers
      * @param loadChapterByCategory
      */
-    addHandlerRenderLoadSubchapter(loadChapterByCategory,loadEventListnerForSubChapter) {
+    addHandlerRenderLoadSubchapter(loadChapterByCategory) {
         const links=document.querySelectorAll('.nav-header-links')
         links.forEach(link=>{
             link.addEventListener('click',loadChapterByCategory);
@@ -131,10 +131,8 @@ class NavHeader{
      */
     removeEventListenerFromLinks(loadChapterByCategory){
         const links=document.querySelectorAll('.nav-header-links')
-        console.log('remove')
         links.forEach(link=>{
             link.removeEventListener('click',loadChapterByCategory);
-            console.log(link)
         })
         this.#parentElement.removeEventListener('click', this.#activateClass);
     }

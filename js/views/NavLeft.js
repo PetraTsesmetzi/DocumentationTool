@@ -5,6 +5,7 @@ import {
 } from "../controller.js";
 
 
+
 /**
  * Autorin: Petra Tsesmetzi
  * Datum: 12.06.2023
@@ -82,13 +83,19 @@ class NavLeft {
      * @returns {string}
      */
     #generateMarkup(subChapterObjects) {
+        let hash=window.location.hash.split('/');
+        hash.pop();
+        hash=hash.join('/')
+        console.log('generateMarkup------category2',hash);
+
         this.#htmlObj = `<ul id="nav-left-subchapter">`;
         for (let i = 0; i < subChapterObjects.length; i++) {
+            let link=hash+'/'+subChapterObjects[i].id;
             if (subChapterObjects.id === 1) {
-                this.#htmlObj += `<li  class="nav-left-links-subchapter" data-subchapterid=${subChapterObjects[i].id}><span id="startLink" class="nav-span-subchapter"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></li>`;
+                this.#htmlObj += `<li  class="nav-left-links-subchapter" data-subchapterid=${subChapterObjects[i].id}><span id="startLink" class="nav-span-subchapter"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter' href="${hash}${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></li>`;
             } else {
                 // this.#htmlObj += `<li  class="nav-left-links-subchapter" data-subchapterid=${subChapterObjects[i].id}><span class="nav-left-link-container-subchapters "><span class="nav-left-link-box-subchapter"><span class="nav-span-subchapter"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></span><span class="edit-box-subchapter edit-section"><ion-icon class="trash" name="trash-outline"></ion-icon><ion-icon class="update" name="create-outline"></ion-icon></span></li>`;
-                this.#htmlObj += `<li  class="nav-left-links-subchapter-normMode" data-subchapterid=${subChapterObjects[i].id}><span class="nav-left-link-container-subchapters-normMode "><span class="nav-left-link-box-subchapter-normMode"><span class="nav-span-subchapter-normMode"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter-normMode' href="#${subChapterObjects[i].id}">${subChapterObjects[i].subchapterName}</a></span></span></span></li>`;
+                this.#htmlObj += `<li  class="nav-left-links-subchapter-normMode" data-subchapterid=${subChapterObjects[i].id}><span class="nav-left-link-container-subchapters-normMode "><span class="nav-left-link-box-subchapter-normMode"><span class="nav-span-subchapter-normMode"><a data-linkid=${subChapterObjects[i].id} class='nav-link-subchapter-normMode' href="${link}">${subChapterObjects[i].subchapterName}</a></span></span></span></li>`;
             }
         }
         this.#htmlObj += ` </ul>`;
@@ -122,7 +129,7 @@ class NavLeft {
      * @param chapters
      */
     async renderChapterDropDown(chapters) {
-
+        console.log('in nav dd',chapters)
         const customDropdownWrapper = document.querySelectorAll('.custom-dropdown-wrapper');
         //altes Dropdown löschen
         customDropdownWrapper[0].innerHTML = '';
@@ -249,6 +256,7 @@ class NavLeft {
             this.subChapterObjects = await loadSubchaptersForNav(chapterName);
 
             markup = this.#generateMarkup(this.subChapterObjects);
+
             let box = document.querySelector('#nav-left-box-subchapters');
             box.insertAdjacentHTML('beforeend', markup);
         }
@@ -268,6 +276,7 @@ class NavLeft {
      */
     addHandlerRenderChangeChapter(loadFormContentByChapter) {
         let optionsList = document.querySelector('.options');
+
         optionsList.addEventListener('click', function (e) {
 
             loadFormContentByChapter(e.target.innerText)
@@ -491,7 +500,8 @@ class NavLeft {
     setActiveClass(element) {
 
         this.#removeAttributeActiveOnLink();
-        window.location.href = "#" + element;
+        // console.log(window.location.hash)
+        // window.location.href = "#" + element;
         const links = document.getElementsByClassName('nav-link-subchapter-normMode');
 
         //beim wechseln von kapitel

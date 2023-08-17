@@ -20,7 +20,8 @@ export const state = {
         codeArr: [],
         chapterId:'',
         chapterName:'',
-        noData:false
+        noData:false,
+        load:false
     }
 }
 
@@ -247,6 +248,7 @@ export const loadSubchapter = async (id) => {
         // }
         // state.form.noData=true;
 
+        return state.form.subchapterName;
     } catch (e) {
         errorMessage(e);
     }
