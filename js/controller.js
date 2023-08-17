@@ -267,6 +267,9 @@ export const createAndEditSubchapter = async function(submitEvent, btn) {
         await navLeft.refreshSubChapterForEditMode('subchapter',chapterName, 'refresh','','');
 
     }
+    await loadSubchapter(state.form.subchapterId);
+    showArticleView();
+    await refreshEditMode();
 }
 /**
  * stößt das erstellen und editieren über das modell an -für chapter
@@ -285,9 +288,11 @@ export const createAndEditChapter = async function(submitEvent, btn) {
         let updateId=model.state.form.updateChapterId
         await model.updateChapter(updateId,chapterName);
         await refreshEditMode();
-
         await navLeft.refreshSubChapterForEditMode('chapter',categoryName, 'refresh','','');
     }
+    await loadSubchapter(state.form.subchapterId);
+    showArticleView();
+    await refreshEditMode();
 }
 /**
  * refresht alle wichtigen Variablen für den navi-left
@@ -325,6 +330,9 @@ export const deleteAndEditSubchapters=async function(event){
         navLeft.addHandlerEditForSubchapter(deleteAndEditSubchapters);
 
     }
+    await loadSubchapter(state.form.subchapterId);
+    showArticleView();
+    await refreshEditMode();
 }
 /**
  * führ die trash und edit buttons in der ul des chapters
@@ -354,6 +362,9 @@ export const deleteAndEditChapters=async function(event){
         navLeft.addHandlerEditForChapter(deleteAndEditChapters);
 
     }
+    await loadSubchapter(state.form.subchapterId);
+    showArticleView();
+    await refreshEditMode();
 }
 
 

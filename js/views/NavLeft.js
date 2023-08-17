@@ -129,7 +129,7 @@ class NavLeft {
      * @param chapters
      */
     async renderChapterDropDown(chapters) {
-
+        console.log('in nav dd',chapters)
         const customDropdownWrapper = document.querySelectorAll('.custom-dropdown-wrapper');
         //altes Dropdown löschen
         customDropdownWrapper[0].innerHTML = '';

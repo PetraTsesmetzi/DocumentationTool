@@ -22953,3 +22953,981 @@ action : loadChapterByCategory
 categoryName : Javascript
 
 
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : HTML-CSS
+
+
+action : loadChapterByCategory
+categoryName : HOW
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : deleteSubChapter
+id : 14
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : MySql-Advanced Part 1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 13
+subChapterName : MySql-Advanced Part 1cxcxc
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : HTML-CSS
+
+
+action : loadChapterByCategory
+categoryName : HOW
+
+
+action : loadChapterByCategory
+categoryName : HTML-CSS
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : HTML-CSS
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : deleteChapter
+id : 3
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : deleteChapter
+id : 4
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : findChapterBySubchapter
+subChapterName : MySql-First Steps
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 11
+subChapterName : MySql-First Stepsdsdsdd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : findChapterBySubchapter
+subChapterName : MySql-First Stepsdsdsdd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 11
+subChapterName : MySql-First sddsd
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 11
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : MySQL
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 13
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 1
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 2
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : hello
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : String und Template literals
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 3
+subChapterName : String und Template fghfghfgh
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : String und Template fghfghfgh
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 3
+subChapterName : Stringghfgh
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : deleteSubChapter
+id : 3
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : hello
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 15
+subChapterName : hellogrgrgreg
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : rgergerg
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : createSubChapter
+chapterName : Javascript Fundamentals Part 1
+subChapterName : gergerg
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : findChapterBySubchapter
+subChapterName : gergerg
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : updateSubChapter
+updateSubchapterId : 17
+subChapterName : ggggg
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : PHP
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapterByCategory
+categoryName : Javascript
+
+
+action : loadChapters
+
+
+action : loadCategory
+
+
+action : loadCategory
+
+
+action : loadChapters
+
+
