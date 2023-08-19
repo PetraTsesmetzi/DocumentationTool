@@ -50,23 +50,26 @@ export const loadSubchapters = async () => {
  * @returns {Promise<*[]>}
  */
 export const loadSubChaptersByChapter = async (chapterName) => {
+    if(chapterName!=='Kein Kapitel vorhanden') {
+        const subchapterByChapterName = [];
+        let formData = new FormData();
+        formData.append('action', 'loadSubChapterByChapter');
+        formData.append('chapterName', chapterName);
+        let data = await getJSONObj(formData);
+        data.map(subchapter => {
+            subchapterByChapterName.push(JSON.parse(subchapter))
 
-    const subchapterByChapterName = [];
-    let formData = new FormData();
-    formData.append('action', 'loadSubChapterByChapter');
-    formData.append('chapterName', chapterName);
-    let data = await getJSONObj(formData);
-    data.map(subchapter=> {
-        subchapterByChapterName.push(JSON.parse(subchapter))
-
-    })
-    if(subchapterByChapterName.length>0){
-        state.form.subchapterByChapterName=subchapterByChapterName;
-        state.form.subchapterId= state.form.subchapterByChapterName[0].id;
-        state.form.subchapterName= state.form.subchapterByChapterName[0].subchapterName;
-    }
+        })
+        if (subchapterByChapterName.length > 0) {
+            state.form.subchapterByChapterName = subchapterByChapterName;
+            state.form.subchapterId = state.form.subchapterByChapterName[0].id;
+            state.form.subchapterName = state.form.subchapterByChapterName[0].subchapterName;
+        }
 
     return subchapterByChapterName;
+    }else{
+        return [];
+    }
 }
 /**
  * lädt alle chapters anhand des categorynames
@@ -74,27 +77,28 @@ export const loadSubChaptersByChapter = async (chapterName) => {
  * @returns {Promise<*[]>}
  */
 export const loadChaptersByCategory = async (categoryName) => {
+    if(categoryName!=='Kein Kapitel vorhanden') {
+        const chapterByCategorieName = [];
+        let formData = new FormData();
+        formData.append('action', 'loadChapterByCategory');
+        formData.append('categoryName', categoryName);
+        let data = await getJSONObj(formData);
+        data.map(chapter => {
+            chapterByCategorieName.push(JSON.parse(chapter))
 
-    const chapterByCategorieName = [];
-    let formData = new FormData();
-    formData.append('action', 'loadChapterByCategory');
-    formData.append('categoryName', categoryName);
-    let data = await getJSONObj(formData);
-    data.map(chapter=> {
-        chapterByCategorieName.push(JSON.parse(chapter))
+        })
 
-    })
+        state.form.chapterByCategorieName = chapterByCategorieName;
+        if (chapterByCategorieName.length > 0) {
+            state.form.chapterId = state.form.chapterByCategorieName[0].id;
+            state.form.chapterName = state.form.chapterByCategorieName[0].chapterName;
+        }
+        if (chapterByCategorieName.length === 0)
+            state.form.subchapterByChapterName = [];
 
-    state.form.chapterByCategorieName=chapterByCategorieName;
-    if(chapterByCategorieName.length>0){
-        state.form.chapterId= state.form.chapterByCategorieName[0].id;
-        state.form.chapterName= state.form.chapterByCategorieName[0].chapterName;
+
+        return chapterByCategorieName;
     }
-    if(chapterByCategorieName.length===0)
-        state.form.subchapterByChapterName=[];
-
-
-    return chapterByCategorieName;
 }
 /**
  * intialsiert die erste Seite
