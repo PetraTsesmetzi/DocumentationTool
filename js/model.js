@@ -9,8 +9,8 @@ export const state = {
         articleNr: '',
         articleName: '',
         subchapters: [],
-        subchapterByChapterName:[],
-        chapterByCategorieName:[],
+        subchapterByChapterName: [],
+        chapterByCategorieName: [],
         freeArticleNumbers: [],
         articles: [],
         articleElementArr: [],
@@ -18,14 +18,13 @@ export const state = {
         subchapterId: 1,
         descriptionArr: [],
         codeArr: [],
-        chapterId:'',
-        chapterName:'',
-        categoryName:'',
-        noData:false,
-        load:false
+        chapterId: '',
+        chapterName: '',
+        categoryName: '',
+        noData: false,
+        load: false
     }
 }
-
 
 
 /**
@@ -51,7 +50,7 @@ export const loadSubchapters = async () => {
  * @returns {Promise<*[]>}
  */
 export const loadSubChaptersByChapter = async (chapterName) => {
-    if(chapterName!=='Kein Kapitel vorhanden') {
+    if (chapterName !== 'Kein Kapitel vorhanden') {
         const subchapterByChapterName = [];
         let formData = new FormData();
         formData.append('action', 'loadSubChapterByChapter');
@@ -66,9 +65,13 @@ export const loadSubChaptersByChapter = async (chapterName) => {
             state.form.subchapterId = state.form.subchapterByChapterName[0].id;
             state.form.subchapterName = state.form.subchapterByChapterName[0].subchapterName;
         }
+        else{
+            state.form.subchapterByChapterName=[];
+        }
 
-    return subchapterByChapterName;
-    }else{
+        state.form.chapterName = chapterName;
+        return subchapterByChapterName;
+    } else {
         return [];
     }
 }
@@ -78,12 +81,13 @@ export const loadSubChaptersByChapter = async (chapterName) => {
  * @param categoryName
  * @returns {Promise<*[]>}
  */
-export const loadChaptersByCategory = async (categoryName) => {
-    if(categoryName!=='Kein Kapitel vorhanden') {
+export const loadChaptersByCategory = async (categoryName = null) => {
+    if (categoryName !== 'Kein Kapitel vorhanden') {
         const chapterByCategorieName = [];
         let formData = new FormData();
         formData.append('action', 'loadChapterByCategory');
         formData.append('categoryName', categoryName);
+        // formData.append('categoryId', id);
         let data = await getJSONObj(formData);
         data.map(chapter => {
             chapterByCategorieName.push(JSON.parse(chapter))
@@ -98,15 +102,17 @@ export const loadChaptersByCategory = async (categoryName) => {
         if (chapterByCategorieName.length === 0)
             state.form.subchapterByChapterName = [];
 
-        state.form.categoryName=categoryName;
+        state.form.categoryName = categoryName;
         return chapterByCategorieName;
     }
 }
+
+
 /**
  * intialsiert die erste Seite
  * @returns {Promise<void>}
  */
-export const initChapterSubchapterArr=async ()=>{
+export const initChapterSubchapterArr = async () => {
     await loadChaptersByCategory('Javascript');
     // await loadSubChaptersByChapter('Javascript Fundamentals Part 1');
 }
@@ -114,16 +120,16 @@ export const initChapterSubchapterArr=async ()=>{
  * lädt alle categories
  * @returns {Promise<*[]>}
  */
-export const loadAllCategories=async()=>{
+export const loadAllCategories = async () => {
     const categoryNames = [];
     let formData = new FormData();
     formData.append('action', 'loadCategory');
     let data = await getJSONObj(formData);
-    data.map(chapter=> {
+    data.map(chapter => {
         categoryNames.push(JSON.parse(chapter))
 
     })
-    state.form.categoryNames=categoryNames;
+    state.form.categoryNames = categoryNames;
     // state.form.categoryId= state.form.categoryNames[0].id;
     return categoryNames;
 }
@@ -131,16 +137,16 @@ export const loadAllCategories=async()=>{
  * lädt alle subchapter
  * @returns {Promise<*[]>}
  */
-export const loadAllChapters=async()=>{
+export const loadAllChapters = async () => {
     const chapterNames = [];
     let formData = new FormData();
     formData.append('action', 'loadChapters');
     let data = await getJSONObj(formData);
-    data.map(chapter=> {
+    data.map(chapter => {
         chapterNames.push(JSON.parse(chapter))
 
     })
-    state.form.chapterNames=chapterNames;
+    state.form.chapterNames = chapterNames;
     // state.form.categoryId= state.form.categoryNames[0].id;
     return chapterNames;
 }
@@ -149,8 +155,8 @@ export const loadAllChapters=async()=>{
  * @param subChapterName
  * @returns {Promise<any>}
  */
-export const findChapterBySubchapter=async(subChapterName)=>{
-    state.form.oldSubchapterName=subChapterName;
+export const findChapterBySubchapter = async (subChapterName) => {
+    state.form.oldSubchapterName = subChapterName;
     let formData = new FormData();
     formData.append('action', 'findChapterBySubchapter');
     formData.append('subChapterName', subChapterName);
@@ -158,8 +164,8 @@ export const findChapterBySubchapter=async(subChapterName)=>{
     return JSON.parse(chapterName);
 }
 
-export const findCategoryByChapter=async(chapterName)=>{
-    state.form.oldChapterName=chapterName;
+export const findCategoryByChapter = async (chapterName) => {
+    state.form.oldChapterName = chapterName;
     let formData = new FormData();
     formData.append('action', 'findCategoryByChapter');
     formData.append('chapterName', chapterName);
@@ -215,16 +221,16 @@ export const loadSubchapter = async (id) => {
         let dataRaw = await getJSONObj(formData);
         let data = JSON.parse(dataRaw);
         // if (data.length === 0) {await loadSubchapter(id+1); return}
-            const articlesArr = data.articleArr;
-            for (const key in articlesArr) {
-                articlesArr[key] = JSON.parse(articlesArr[key]);
-                for (const keyKey in articlesArr[key].descriptionArr) {
-                    articlesArr[key].descriptionArr[keyKey] = JSON.parse(articlesArr[key].descriptionArr[keyKey]);
-                }
-                for (const keyKey in articlesArr[key].codeArr) {
-                    articlesArr[key].codeArr[keyKey] = JSON.parse(articlesArr[key].codeArr[keyKey]);
-                }
+        const articlesArr = data.articleArr;
+        for (const key in articlesArr) {
+            articlesArr[key] = JSON.parse(articlesArr[key]);
+            for (const keyKey in articlesArr[key].descriptionArr) {
+                articlesArr[key].descriptionArr[keyKey] = JSON.parse(articlesArr[key].descriptionArr[keyKey]);
             }
+            for (const keyKey in articlesArr[key].codeArr) {
+                articlesArr[key].codeArr[keyKey] = JSON.parse(articlesArr[key].codeArr[keyKey]);
+            }
+        }
 
 
         const articlesTemp = [];
@@ -359,7 +365,7 @@ export const validateForm = async () => {
         }
     }
 }
-export const createSubchapter=async (chapterName,subChapterName)=>{
+export const createSubchapter = async (chapterName, subChapterName) => {
 
     let formDataArr = new FormData();
     formDataArr.append('action', 'createSubChapter');
@@ -368,7 +374,7 @@ export const createSubchapter=async (chapterName,subChapterName)=>{
     let data = await getJSONObj(formDataArr);
 
 }
-export const createChapter=async (categoryName,chapterName)=>{
+export const createChapter = async (categoryName, chapterName) => {
 
     let formDataArr = new FormData();
     formDataArr.append('action', 'createChapter');
@@ -489,23 +495,23 @@ export const deleteArticle = async (id, action) => {
         errorMessage(e);
     }
 }
-export const deleteSubChapter=async(id)=>{
-    try{
-        let formData=new FormData();
-        formData.append('action','deleteSubChapter');
-        formData.append('id',id);
-        let data=await getJSONObj(formData);
-    }catch(e){
+export const deleteSubChapter = async (id) => {
+    try {
+        let formData = new FormData();
+        formData.append('action', 'deleteSubChapter');
+        formData.append('id', id);
+        let data = await getJSONObj(formData);
+    } catch (e) {
         errorMessage(e);
     }
 }
-export const deleteChapter=async(id)=>{
-    try{
-        let formData=new FormData();
-        formData.append('action','deleteChapter');
-        formData.append('id',id);
-        let data=await getJSONObj(formData);
-    }catch(e){
+export const deleteChapter = async (id) => {
+    try {
+        let formData = new FormData();
+        formData.append('action', 'deleteChapter');
+        formData.append('id', id);
+        let data = await getJSONObj(formData);
+    } catch (e) {
         errorMessage(e);
     }
 }
@@ -515,34 +521,33 @@ export const deleteChapter=async(id)=>{
  * @param subChapterName
  * @returns {Promise<void>}
  */
-export const updateSubChapter=async(updateSubchapterId,subChapterName)=>{
-    try{
+export const updateSubChapter = async (updateSubchapterId, subChapterName) => {
+    try {
 
-        let formData=new FormData();
-        formData.append('action','updateSubChapter');
-        formData.append('updateSubchapterId',updateSubchapterId);
-        formData.append('subChapterName',subChapterName);
-        let data=await getJSONObj(formData);
+        let formData = new FormData();
+        formData.append('action', 'updateSubChapter');
+        formData.append('updateSubchapterId', updateSubchapterId);
+        formData.append('subChapterName', subChapterName);
+        let data = await getJSONObj(formData);
 
-    }catch(e){
+    } catch (e) {
         errorMessage(e);
     }
 }
 
-export const updateChapter=async(updateChapterId,chapterName)=>{
-    try{
+export const updateChapter = async (updateChapterId, chapterName) => {
+    try {
 
-        let formData=new FormData();
-        formData.append('action','updateChapter');
-        formData.append('updateChapterId',updateChapterId);
-        formData.append('chapterName',chapterName);
-        let data=await getJSONObj(formData);
+        let formData = new FormData();
+        formData.append('action', 'updateChapter');
+        formData.append('updateChapterId', updateChapterId);
+        formData.append('chapterName', chapterName);
+        let data = await getJSONObj(formData);
 
-    }catch(e){
+    } catch (e) {
         errorMessage(e);
     }
 }
-
 
 
 export const deleteField = async (id, field) => {
@@ -557,7 +562,7 @@ export const deleteField = async (id, field) => {
         ;
     }
 }
-export const setFormDataForFocusSubChapter = function (e=null) {
+export const setFormDataForFocusSubChapter = function (e = null) {
 
     const articleName = document.querySelector('#articleTitel');
     const descriptionArr = document.querySelectorAll('.description');
@@ -586,10 +591,10 @@ export const setFormDataForFocusSubChapter = function (e=null) {
     state.form.articleElementArr = sortArrayOfObjects([...descArr, ...codeArr], 'elementOrder');
     state.form.descriptionArr = descArr;
     state.form.codeArr = codeArr;
-    if(e) {
-        let subchapterId =e.target.options[e.target.options.selectedIndex].id;
-        state.form.subchapterId=subchapterId;
-        state.form.subchapterName=e.target.options[e.target.options.selectedIndex].innerText;
+    if (e) {
+        let subchapterId = e.target.options[e.target.options.selectedIndex].id;
+        state.form.subchapterId = subchapterId;
+        state.form.subchapterName = e.target.options[e.target.options.selectedIndex].innerText;
     }
 
 }
