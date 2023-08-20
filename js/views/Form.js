@@ -1,4 +1,4 @@
-import {loadArticleNumbers, loadForm} from "../controller.js";
+import {loadArticleNumbers, loadChapterByCategoryForForm, loadForm} from "../controller.js";
 import {sortArrayOfObjects} from '../helper.js';
 
 /**
@@ -28,7 +28,7 @@ class Form {
     render(state) {
 
         this.#clear();
-        console.log('aktuelles',state);
+
         console.log('aktuelles f',state.form);
 
         console.log('subchapterByChapterName',state.form.subchapterByChapterName);
@@ -73,7 +73,6 @@ class Form {
     addHandlerRenderArticleNumbers(loadArticleNumbers) {
         this.#selectField = document.querySelector('#subChapterTitels');
         this.#selectField.addEventListener('change', loadArticleNumbers);
-
     }
 
     /**
@@ -84,6 +83,16 @@ class Form {
         this.#selectField.addEventListener('focus', loadFormContent);
 
       }
+
+    addHandlerRenderChangeChapter(loadChapterByCategoryForForm) {
+        this.#selectField = document.querySelector('#categoryTitels');
+        this.#selectField.addEventListener('change', loadChapterByCategoryForForm);
+    }
+    addHandlerRenderChangeSubChapter(loadSubChapterByChapterForForm) {
+        this.#selectField = document.querySelector('#chapterTitels');
+        this.#selectField.addEventListener('change', loadSubChapterByChapterForForm);
+    }
+
 
     /**
      * Eventhandler für submit Button
@@ -312,7 +321,7 @@ class Form {
                    <label for="categoryTitel">Kategorie</label>
                    <select name="categoryTitel" id="categoryTitels" class="overlayContainer">`;
         // let starterId=form.subchapterByChapterName[0].id
-
+        console.log('category in form---------------------------------------',form.categoryName);
         for (let i = 0; i < form.categoryNames.length; i++) {
 
 
@@ -321,7 +330,7 @@ class Form {
 
         }
 
-        console.log('generateMarkupform',form)
+
 
         htmlObj += `</select></div>`;
 
@@ -331,17 +340,18 @@ class Form {
                    <label for="chapterTitel">Kapitel</label>
                    <select name="chapterTitel" id="chapterTitels" class="overlayContainer">`;
         // let starterId=form.subchapterByChapterName[0].id
-        console.log(form.chapterExists);
+        console.log('chapter in form---------------------------------------',form.chapterName);
         // if(form.chapterExists){
         for (let i = 0; i < form.chapterByCategorieName.length; i++) {
             // htmlObj += `<option class="overlayContainer" id=${form.subchapterByChapterName[i].id} value="${form.subchapterByChapterName[i].subchapterName}"  ${(form.subchapterId - starterId) === i ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapterByChapterName[i].subchapterName}</option>`;
             htmlObj += `<option class="overlayContainer" id=${form.chapterByCategorieName[i].id} value="${form.chapterByCategorieName[i].chapterName}"   ${(form.chapterName) === form.chapterByCategorieName[i].chapterName ? 'selected' : ''} ${form.actionForm === 'update' ? 'disabled' : ''}>${form.chapterByCategorieName[i].chapterName}</option>`;
+
         }
             //  }else{
         //     htmlObj += `<option class="overlayContainer" id='keinKapitel' value="-"   selected   ${form.actionForm === 'update'?'disabled':''}>Erstelle ein Kapitel</option>`;
         // }
 
-        console.log('generateMarkupform',form)
+
 
         htmlObj += `</select></div>`;
         //  ***************************** Unterkapitel -Selectfeld  **************************************
@@ -349,18 +359,17 @@ class Form {
         htmlObj += `<div class="inputFields unterkapitel">
                    <label for="subChapterTitel">Unterkapitel</label>
                    <select name="subChapterTitel" id="subChapterTitels" class="overlayContainer">`;
-        // let starterId=form.subchapterByChapterName[0].id
-        console.log(form.subExists);
-        // if(form.subExists){
-        for (let i = 0; i < form.subchapterByChapterName.length; i++) {
-            // htmlObj += `<option class="overlayContainer" id=${form.subchapterByChapterName[i].id} value="${form.subchapterByChapterName[i].subchapterName}"  ${(form.subchapterId - starterId) === i ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapterByChapterName[i].subchapterName}</option>`;
-            htmlObj += `<option class="overlayContainer" id=${form.subchapterByChapterName[i].id} value="${form.subchapterByChapterName[i].subchapterName}"   ${(form.subchapterName) === form.subchapterByChapterName[i].subchapterName ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapterByChapterName[i].subchapterName}</option>`;
-        }
-        // }else{
-        //     htmlObj += `<option class="overlayContainer" id='keinUnterkapitel' value="-"   selected   ${form.actionForm === 'update'?'disabled':''}>Erstelle ein  Unterkapitel</option>`;
-        // }
 
-        console.log('generateMarkupform',form)
+        if(form.subchapterByChapterName.length!==0){
+            for (let i = 0; i < form.subchapterByChapterName.length; i++) {
+                // htmlObj += `<option class="overlayContainer" id=${form.subchapterByChapterName[i].id} value="${form.subchapterByChapterName[i].subchapterName}"  ${(form.subchapterId - starterId) === i ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapterByChapterName[i].subchapterName}</option>`;
+                htmlObj += `<option class="overlayContainer" id=${form.subchapterByChapterName[i].id} value="${form.subchapterByChapterName[i].subchapterName}"   ${(form.subchapterName) === form.subchapterByChapterName[i].subchapterName ? 'selected' : ''  } ${form.actionForm === 'update'?'disabled':''}>${form.subchapterByChapterName[i].subchapterName}</option>`;
+            }
+        }else{
+            htmlObj += `<option class="overlayContainer" id='keinUnterkapitel' value="-"   selected   ${form.actionForm === 'update'?'disabled':''}>Erstelle ein  Unterkapitel</option>`;
+        }
+
+
 
         htmlObj += `</select></div>`;
         // ***************************** Artikelname **************************************
@@ -434,7 +443,7 @@ class Form {
         <!-- ****************** Reset und Submit Button *********************************************-->
         <div class="btn-form-container">
             <button type="reset" class="btn-form btn-reset"  value="Zurücksetzen">Zurücksetzen</button>
-            <button type="submit" class="btn-form btn-send"  value="Absenden">Absenden</button>
+            <button type="submit" class="btn-form btn-send"  value="Absenden" ${form.subchapterByChapterName.length===0? 'disabled':''}>Absenden</button>
         </div>
     </form>
     </div>`;

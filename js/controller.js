@@ -6,7 +6,7 @@ import * as model from './model.js';
 import {
     findCategoryByChapter,
     findChapterBySubchapter,
-    initChapterSubchapterArr,
+    initChapterSubchapterArr, loadChaptersByCategory,
     loadSubchapter, loadSubChaptersByChapter,
     state
 } from "./model.js";
@@ -43,6 +43,21 @@ export const loadArticleNumbers = async function (e) {
     showForm();
 
 }
+export const loadChapterByCategoryForForm=async function(e){
+    let categoryName=e.target.options[e.target.options.selectedIndex].value;
+    console.log(e.target.options[e.target.options.selectedIndex].value);
+    let chapters=await model.loadChaptersByCategory(categoryName);
+    console.log('loadchapters',chapters)
+    await model.loadSubChaptersByChapter(chapters[0].chapterName);
+    showForm();
+}
+export const loadSubChapterByChapterForForm=async function(e){
+    console.log(e.target)
+    let chapterName=e.target.options[e.target.options.selectedIndex].value;
+    console.log('loadsub',chapterName)
+    await model.loadSubChaptersByChapter(chapterName);
+    showForm();
+}
 const loadFormContent=function(e){
     model.setFormDataForFocusSubChapter();
 }
@@ -63,6 +78,8 @@ const showForm = function () {
     form.addHandlerRenderSend(createAndUpdateArticles);
     form.addHandlerRenderArticleNumbers(loadArticleNumbers);
     form.addHandlerRenderChangeSubChapter(loadFormContent);
+    form.addHandlerRenderChangeChapter(loadChapterByCategoryForForm);
+    form.addHandlerRenderChangeSubChapter(loadSubChapterByChapterForForm);
     form.addHandleRenderClose(closeForm);
     form.deleteHandleRenderFields(deleteFields);
     navLeft.addHandlerRender(loadSubchapterById);

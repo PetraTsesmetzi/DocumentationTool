@@ -622,10 +622,15 @@ pre[class*=language-] {
     align-items: center;
     margin-bottom: 30px;
 }
+
 /************ Inputs *****************/
+/*.input-container {*/
+/*    display: grid;*/
+/*    grid-template-columns: 2fr 1fr 2fr;*/
+/*}*/
 .input-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
+    display: flex;
+   flex-direction: column;
 }
 .close-outline{
     font-size: 24px;
@@ -639,7 +644,11 @@ pre[class*=language-] {
     border-radius: 3px;
     background-color:var( --btn-bg--dangerous-hover);
 }
-
+.article-wrapper{
+    display:flex;
+    justify-content: space-between;
+    width:70%;
+}
 .inputFields {
 
     height: 70px;
