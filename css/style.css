@@ -30,6 +30,7 @@
     --boxshadow-orange:rgba(247, 146, 83, 0.7);
     --boxshadow-dark:rgba(0, 0, 0, 0.15);
 
+    --disabledColor:#d4d3d3;
 }
 
 * {
@@ -237,7 +238,6 @@ header {
 
 }
 
-
     /*#nav-left-box-subchapters h1{*/
 /*    font-size: 20px;*/
 /*    margin-bottom:10px;*/
@@ -382,6 +382,9 @@ a:link, a:visited {
     border-radius:5px;
     margin-bottom:10px;
     border:1px solid var(--border-input);
+}
+input[type="text"]:disabled {
+    background: var( --disabledColor);
 }
 
 

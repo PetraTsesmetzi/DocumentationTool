@@ -75,8 +75,8 @@ class ArticleView {
      */
     #generateMarkup() {
         let htmlObj=''
-        if(this.#chapterByCategorieName.length>0 || this.#subchapterByChapterName.length>0){
-         htmlObj += `<h1>${this.#subchapterName}</h1>`;
+        if((this.#chapterByCategorieName.length>0 || this.#subchapterByChapterName.length>0)){
+         htmlObj += `<h1>${this.#subchapterName!==undefined ?this.#subchapterName:''}</h1>`;
 
         for (const key in this.#subcapterArticles) {
 
@@ -108,7 +108,7 @@ class ArticleView {
             htmlObj += `</article>`;
         }
         }else{
-            htmlObj +='';
+            htmlObj += `<h1>Keine Artikel vorhanden</h1>`;
         }
         return htmlObj;
     }
