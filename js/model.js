@@ -20,6 +20,7 @@ export const state = {
         codeArr: [],
         chapterId:'',
         chapterName:'',
+        categoryName:'',
         noData:false,
         load:false
     }
@@ -71,6 +72,7 @@ export const loadSubChaptersByChapter = async (chapterName) => {
         return [];
     }
 }
+
 /**
  * lädt alle chapters anhand des categorynames
  * @param categoryName
@@ -96,7 +98,7 @@ export const loadChaptersByCategory = async (categoryName) => {
         if (chapterByCategorieName.length === 0)
             state.form.subchapterByChapterName = [];
 
-
+        state.form.categoryName=categoryName;
         return chapterByCategorieName;
     }
 }

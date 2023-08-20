@@ -7,7 +7,7 @@ import {
     findCategoryByChapter,
     findChapterBySubchapter,
     initChapterSubchapterArr,
-    loadSubchapter,
+    loadSubchapter, loadSubChaptersByChapter,
     state
 } from "./model.js";
 
@@ -95,11 +95,15 @@ const loadEditMode = async function () {
     // }
 
 
-    // model.state.editModeFlag ? navLeft.removeHandlerRender(loadSubchapterById):navLeft.addHandlerRender(loadSubchapterById);
+
     showArticleView();
-    await loadChapterByCategory('Javascript');
-    // const chapters=await model.loadChaptersByCategory('Javascript');
-    // await navLeft.render('init',chapters,model.state.editModeFlag);
+    console.log('the state: ',model.state.form)
+    if(model.state.editModeFlag === false){
+        console.log('state chapter name im edit',model.state.form.chapterName)
+        await loadChapterByCategory(model.state.form.categoryName);
+        await loadSubChaptersByChapter(model.state.form.chapterName)
+    }
+
 
 }
 
@@ -269,9 +273,11 @@ export const createAndEditSubchapter = async function(submitEvent, btn) {
         await navLeft.refreshSubChapterForEditMode('subchapter',chapterName, 'refresh','','');
 
     }
+
     await loadSubchapter(state.form.subchapterId);
     showArticleView();
     await refreshEditMode();
+    await loadChapterByCategory(model.state.form.categoryName);
 }
 /**
  * stößt das erstellen und editieren über das modell an -für chapter
@@ -283,10 +289,12 @@ export const createAndEditChapter = async function(submitEvent, btn) {
     let chapterName=submitEvent.target.querySelector('#create-chapter-id').value;
     let categoryName=submitEvent.target.querySelector('#categories-id').innerText;
     if (btn === 'Erstellen') {
+        console.log('push the create btn')
         await model.createChapter(categoryName,chapterName);
         await refreshEditMode();
         await navLeft.refreshSubChapterForEditMode('chapter',categoryName, 'refresh','','');
         await navLeft.refreshSubChapterForEditMode('subchapter','', 'refresh','','');
+
     } else if (btn === 'Aktualisieren') {
         let updateId=model.state.form.updateChapterId
         await model.updateChapter(updateId,chapterName);
@@ -297,6 +305,7 @@ export const createAndEditChapter = async function(submitEvent, btn) {
     await loadSubchapter(state.form.subchapterId);
     showArticleView();
     await refreshEditMode();
+    await loadChapterByCategory(model.state.form.categoryName);
 }
 /**
  * refresht alle wichtigen Variablen für den navi-left
@@ -318,7 +327,7 @@ const refreshEditMode = async () => {
  * @returns {Promise<void>}
  */
 export const deleteAndEditSubchapters=async function(event){
-
+    console.log('delete and Edit sub')
     if(event.target.classList.contains('trash')){
         await model.deleteSubChapter(event.target.dataset.trash_id);
         await refreshEditMode();
@@ -337,6 +346,7 @@ export const deleteAndEditSubchapters=async function(event){
     await loadSubchapter(state.form.subchapterId);
     showArticleView();
     await refreshEditMode();
+    // await loadChapterByCategory(model.state.form.categoryName);
 }
 /**
  * führ die trash und edit buttons in der ul des chapters
@@ -370,9 +380,10 @@ export const deleteAndEditChapters=async function(event){
 
     }
     await loadSubchapter(state.form.subchapterId);
+
     showArticleView();
     await refreshEditMode();
-    await loadChapterByCategory('Javascript')
+    // await loadChapterByCategory(model.state.form.categoryName);
 
 }
 
@@ -382,7 +393,6 @@ export const loadSubchaptersForNav= async function(chapterName){
     let chapter='';
     let id;
     let subchapters=await model.loadSubChaptersByChapter(chapterName);
-    console.log('subchapters: ',subchapters)
     subchapters.length>0?id=subchapters[0].id:'';
     chapterName===undefined?chapter='':chapter=chapterName
     let category=window.location.hash.split('/').shift();

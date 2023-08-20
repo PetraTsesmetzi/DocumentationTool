@@ -128,9 +128,7 @@ class NavLeft {
      * @param chapters
      */
     async renderChapterDropDown(chapters) {
-        console.log('renderChapterDropdown');
 
-        console.log('renderChapterDropdown nicht im editmode');
 
         const customDropdownWrapper = document.querySelectorAll('.custom-dropdown-wrapper');
         //altes Dropdown löschen
@@ -167,7 +165,7 @@ class NavLeft {
         if (mode === 'editMode') {
             objName = chapterType === "subchapter" ? 'chapterName' : 'categoryName';
             chaptername = obj.length > 0 ? obj[0][objName] : 'Kein Kapitel vorhanden';
-            console.log('generateMarkupDropDownChapter ---chaptername: ' + chaptername)
+
         }
 
 
@@ -507,9 +505,9 @@ class NavLeft {
         // console.log(window.location.hash)
         // window.location.href = "#" + element;
         const links = document.getElementsByClassName('nav-link-subchapter-normMode');
-        console.log('links', links)
+
         if (links.length > 0) {
-            console.log('links', length)
+
 
             //beim wechseln von kapitel
             let start = Number(links[0].dataset.linkid) - 1;
